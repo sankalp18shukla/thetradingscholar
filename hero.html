@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trading Scholar</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #FFFFFF;       /* Pure White */
+            --bg-secondary: #F7F9FC;     /* Soft Off White */
+            --accent-primary: #1E3A8A;   /* Royal Trading Blue */
+            --accent-secondary: #2563EB; /* Electric Blue */
+            --accent-glow: #4F7DF3;      /* Muted Blue Glow */
+            --text-primary: #0B0F19;      /* Rich Black */
+            --text-secondary: #5B6475;    /* Slate Gray */
+            --border-slate: #E2E8F0;      /* Light Slate Border */
+            font-size: 16px;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        a, button {
+            cursor: none;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-secondary);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.15s, height 0.15s, background-color 0.15s;
+            box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Background Visual Lines */
+        .bg-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-lines svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .path-line {
+            fill: none;
+            stroke: var(--border-slate);
+            stroke-width: 1.2;
+            opacity: 0.6;
+        }
+
+        .path-ray {
+            fill: none;
+            stroke: var(--accent-secondary);
+            stroke-width: 1.5;
+            stroke-dasharray: 100 1500;
+            animation: moveRay 15s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveRay {
+            0% { stroke-dashoffset: 1600; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* -----------------------
+           Navigation Bar (Buttery Smooth Capsule Morph)
+        ------------------------ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0);
+            border: 1px solid transparent;
+            border-radius: 0px;
+            /* Performant animations mapped to smooth eases */
+            transition: top 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        padding 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Actively morphs into a floating capsule container */
+        header.scrolled {
+            top: 20px;
+            width: calc(100% - 60px);
+            max-width: 1100px;
+            padding: 12px 28px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: var(--border-slate);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(11, 15, 25, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Logo Configuration */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-placeholder {
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-placeholder svg {
+            width: 14px;
+            height: 14px;
+            fill: #FFFFFF;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav .slash {
+            color: var(--border-slate);
+            pointer-events: none;
+        }
+
+        /* Demat Button */
+        .demat-wrapper {
+            position: relative;
+        }
+
+        .btn-demat {
+            background-color: transparent;
+            color: var(--accent-secondary);
+            border: 1.5px solid var(--accent-secondary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-demat:hover, .btn-demat.active {
+            background-color: var(--accent-secondary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Dropdown Structure */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            width: 500px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-slate);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(11, 15, 25, 0.06);
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1001;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-box {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 14px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .dropdown-box:hover {
+            border-color: var(--accent-secondary);
+            background: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-box h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .dropdown-box p {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .dropdown-box-link {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* -----------------------
+           Hero Structure
+        ------------------------ */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 180px 20px 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        h1 .light-text {
+            font-weight: 300;
+            font-size: 3.8rem;
+            letter-spacing: -1px;
+            display: block;
+        }
+
+        h1 .bold-italic-text {
+            font-weight: 800;
+            font-style: italic;
+            font-size: 4.8rem;
+            letter-spacing: -2px;
+            display: block;
+            background: linear-gradient(135deg, var(--accent-primary) 30%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+
+        /* -----------------------
+           Premium Sliding Buttons (Responsive Layout)
+        ------------------------ */
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .btn-explore {
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+
+        /* Primary Button: Blue to White Slide */
+        .btn-explore.primary {
+            background-color: var(--accent-secondary);
+            color: #FFFFFF;
+            border: 1.5px solid var(--accent-secondary);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-explore.primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FFFFFF;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-explore.primary:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn-explore.primary:hover {
+            color: var(--accent-secondary);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
+            transform: translateY(-2px);
+            border-color: var(--accent-secondary);
+        }
+
+        /* Secondary Button: Outline to Solid Blue Slide */
+        .btn-explore.secondary {
+            background-color: transparent;
+            color: var(--accent-secondary);
+            border: 1.5px solid var(--accent-secondary);
+        }
+
+        .btn-explore.secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-secondary);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-explore.secondary:hover::before {
+            transform: scaleX(1);
+            transform-origin: right;
+        }
+
+        .btn-explore.secondary:hover {
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        /* -----------------------
+           Modern Tech Typography Stats
+        ------------------------ */
+        .stats-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            border-top: 1px solid var(--border-slate);
+            padding-top: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif; /* High-end tech typeface */
+            font-weight: 600;
+            font-size: 3.2rem;
+            letter-spacing: -1.5px;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        .stat-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* -----------------------
+           Bottom Floating Actions
+        ------------------------ */
+        .bottom-right {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            z-index: 900;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-slate);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(11, 15, 25, 0.05);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-secondary);
+            background-color: var(--accent-secondary);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s ease;
+        }
+
+        .social-btn:hover svg {
+            fill: #FFFFFF;
+        }
+
+        /* Utility helper icon */
+        .icon-sm { 
+            width: 12px; 
+            height: 12px; 
+            fill: currentColor; 
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            header.scrolled {
+                width: calc(100% - 20px);
+            }
+            .stats-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .dropdown-menu {
+                width: 90vw;
+                max-width: 460px;
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Smooth Pointer Track -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Background Abstract Lines -->
+    <div class="bg-lines">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <path class="path-line" d="M 900 -100 C 1100 300, 1200 600, 1100 900" />
+            <path class="path-line" d="M 600 -200 C 1200 0, 1400 300, 1300 700" />
+            <path class="path-line" d="M -100 400 C 300 100, 800 600, 1500 500" />
+            <path d="M 900 -100 C 1100 300, 1200 600, 1100 900" class="path-ray" />
+            <path d="M 600 -200 C 1200 0, 1400 300, 1300 700" class="path-ray" style="animation-delay: -6s;" />
+        </svg>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="navbar">
+        <div class="logo">
+            <div class="logo-placeholder">
+                <svg viewBox="0 0 24 24"><path d="M3 17h2v-7H3v7zm4 3h2V10H7v10zm8-11h-2v11h2V9zm4-3h-2v14h2V6z"/></svg>
+            </div>
+            <div class="logo-text">The Trading Scholar</div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <span class="slash">/</span>
+                <li><a href="#">About</a></li>
+                <span class="slash">/</span>
+                <li><a href="#">Courses <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                <span class="slash">/</span>
+                <li><a href="#">Services <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                <span class="slash">/</span>
+                <li><a href="#">Student Results</a></li>
+                <span class="slash">/</span>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="demat-wrapper">
+            <button class="btn-demat" id="dematBtn" aria-expanded="false">
+                Open Free Demat Account
+                <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dematDropdown">
+                <div class="dropdown-box">
+                    <div>
+                        <h4>Angel One</h4>
+                        <p>Free setup & instant onboarding workflow.</p>
+                    </div>
+                    <a href="#" class="dropdown-box-link">Open Account →</a>
+                </div>
+                <div class="dropdown-box">
+                    <div>
+                        <h4>Zerodha</h4>
+                        <p>Premium platforms with advanced chart tools.</p>
+                    </div>
+                    <a href="#" class="dropdown-box-link">Open Account →</a>
+                </div>
+                <div class="dropdown-box">
+                    <div>
+                        <h4>Upstox</h4>
+                        <p>No account maintenance costs for beginners.</p>
+                    </div>
+                    <a href="#" class="dropdown-box-link">Open Account →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="hero-container">
+            <h1>
+                <span class="light-text">Reimagining The Future Of</span>
+                <span class="bold-italic-text">Modern Trading</span>
+            </h1>
+        </div>
+        
+        <p class="hero-sub">
+            Built for traders who seek consistency over chaos, systems over speculation, and long-term wealth over short-term excitement. The Trading Scholar helps serious traders approach markets with institutional thinking, disciplined execution, and structured risk management.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-ctas">
+            <a href="#" class="btn-explore primary">Explore Courses</a>
+            <a href="#" class="btn-explore secondary">Explore Services</a>
+        </div>
+
+        <!-- Corrected Large Stats Section (Directly Below Buttons) -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number" id="stat-years">0+</div>
+                <div class="stat-text"><strong>Years of</strong> Experience</div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-number" id="stat-students">500+</div>
+                <div class="stat-text"><strong>Students</strong> Trained Successfully</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp & Telegram Only -->
+    <div class="bottom-right">
+        <div class="social-icons">
+            <a href="https://wa.me/#" target="_blank" class="social-btn" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </a>
+            <a href="https://t.me/#" target="_blank" class="social-btn" aria-label="Telegram">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.03.51.16.13.11.17.27.19.38.02.09.02.21.01.31z"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Interface Script -->
+    <script>
+        const cursor = document.getElementById('cursor');
+        const navbar = document.getElementById('navbar');
+        const dematBtn = document.getElementById('dematBtn');
+        const dematDropdown = document.getElementById('dematDropdown');
+
+        // Pointer Tracking
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Pointer Scale Feedback
+        const interactables = document.querySelectorAll('a, button, .dropdown-box');
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.6)';
+                cursor.style.backgroundColor = 'rgba(37, 99, 235, 0.15)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'var(--accent-secondary)';
+            });
+        });
+
+        // Dynamic scroll listener for smooth capsule transition
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Demat Account Dropdown Setup
+        dematBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dematBtn.getAttribute('aria-expanded') === 'true';
+            dematBtn.setAttribute('aria-expanded', !isOpen);
+            dematBtn.classList.toggle('active');
+            dematDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dematBtn.contains(e.target) && !dematDropdown.contains(e.target)) {
+                dematBtn.setAttribute('aria-expanded', 'false');
+                dematBtn.classList.remove('active');
+                dematDropdown.classList.remove('show');
+            }
+        });
+
+        // Smooth Counter Animation
+        function animateCounter(id, start, end, duration) {
+            const element = document.getElementById(id);
+            const range = end - start;
+            let current = start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = current + "+";
+                if (current === end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            animateCounter("stat-years", 0, 9, 1000);
+            animateCounter("stat-students", 500, 1000, 1200);
+        });
+    </script>
+</body>
+</html>

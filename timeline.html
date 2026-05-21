@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Finch Design - Process Timeline</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #1C35FF;
+            --text-dark: #111111;
+            --text-gray: #6B7280;
+            --bg-light: #ffffff;
+            --bg-capsule: #111111;
+            --tag-bg: #F3F4F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            /* Smooth scrolling for anchor links if any */
+            scroll-behavior: smooth;
+        }
+
+        a, button {
+            cursor: none;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        /* -----------------------
+           Custom Cursor
+        ------------------------ */
+        .custom-cursor {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+
+        /* -----------------------
+           Header Transition Logic
+        ------------------------ */
+        .header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 20px 60px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* The Capsule State triggered on scroll */
+        .header-wrapper.scrolled {
+            padding: 20px;
+        }
+
+        .header-wrapper.scrolled header {
+            background-color: var(--bg-capsule);
+            width: 1100px;
+            max-width: 95%;
+            padding: 10px 10px 10px 35px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Logo styling adapts to background */
+        .logo-mark {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .logo-mark .row { display: flex; gap: 2px; }
+        .logo-mark .square { width: 14px; height: 14px; background: var(--primary-blue); }
+        .header-wrapper.scrolled .logo-mark .square { background: #ffffff; }
+        .logo-mark .square.top-left { border-top-left-radius: 8px; }
+        .logo-mark .square.bottom-right { opacity: 0.8; }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .header-wrapper.scrolled nav a {
+            color: #A1A1AA;
+        }
+
+        .header-wrapper.scrolled nav a.active {
+            color: var(--primary-blue);
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        nav .slash {
+            color: #E5E7EB;
+            margin: 0 -5px;
+            pointer-events: none;
+            font-weight: 300;
+        }
+        .header-wrapper.scrolled nav .slash { color: #333; }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: 2px solid var(--primary-blue);
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
+        .header-wrapper.scrolled .btn-primary:hover {
+            color: white;
+            border-color: white;
+        }
+
+        .icon-sm { width: 12px; height: 12px; fill: currentColor; }
+
+        /* -----------------------
+           Dummy Hero (To allow initial scrolling)
+        ------------------------ */
+        .dummy-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+        }
+        
+        .dummy-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            color: #d1d5db;
+        }
+        
+        .dummy-hero p {
+            margin-top: 20px;
+            color: var(--text-gray);
+        }
+
+        /* -----------------------
+           Horizontal Scroll Section
+        ------------------------ */
+        /* The container height dictates how long the user scrolls vertically before the section ends */
+        .horizontal-scroll-wrapper {
+            height: 400vh;
+            position: relative;
+        }
+
+        /* The sticky area that stays on screen while scrolling */
+        .sticky-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+        }
+
+        /* The actual wide track that moves side-to-side */
+        .scroll-track {
+            display: flex;
+            flex-direction: column;
+            width: max-content;
+            padding: 0 10vw; /* Padding so it doesn't start completely flush with screen edge */
+            will-change: transform;
+        }
+
+        /* --- Timeline UI --- */
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline-line {
+            height: 1px;
+            background-color: var(--primary-blue);
+            flex-grow: 1;
+            min-width: 100px;
+        }
+
+        .timeline-node {
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(28, 53, 255, 0.1);
+        }
+
+        .timeline-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin: 0 30px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* --- Process Columns --- */
+        .process-columns {
+            display: flex;
+            gap: 150px;
+        }
+
+        .process-col {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .process-col h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .process-col p.subhead {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--text-dark);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* -----------------------
+           Persistent Absolute Elements
+        ------------------------ */
+        .bottom-left {
+            position: fixed;
+            bottom: 40px;
+            left: 60px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+            z-index: 100;
+        }
+
+        .bottom-left .time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .time-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .bottom-right {
+            position: fixed;
+            bottom: 40px;
+            right: 120px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            background-color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-blue);
+        }
+
+        .social-btn svg { width: 20px; height: 20px; fill: white; }
+
+        .right-badge {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: white;
+            padding: 25px 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: translateY(-50%) rotate(180deg);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            z-index: 100;
+        }
+
+        /* Dummy End Space */
+        .end-space {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            color: var(--text-gray);
+            font-size: 1.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Fixed Header (Transitions to Capsule on Scroll) -->
+    <div class="header-wrapper" id="headerWrapper">
+        <header>
+            <div class="logo">
+                <div class="logo-mark">
+                    <div class="row">
+                        <div class="square top-left"></div>
+                        <div></div>
+                    </div>
+                    <div class="row">
+                        <div class="square"></div>
+                        <div class="square bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#">Services <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                    <span class="slash">/</span>
+                    <li><a href="#">Solutions <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                    <span class="slash">/</span>
+                    <li><a href="#">Industries <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                    <span class="slash">/</span>
+                    <li><a href="#">Hire Us <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                    <span class="slash">/</span>
+                    <li><a href="#">Work</a></li>
+                    <span class="slash">/</span>
+                    <li><a href="#" class="active">About <svg class="icon-sm" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a></li>
+                </ul>
+            </nav>
+
+            <button class="btn-primary">INQUIRY NOW</button>
+        </header>
+    </div>
+
+    <!-- Persistent Floating UI Elements -->
+    <div class="bottom-left">
+        <div>Tue, May 19th</div>
+        <div class="time"><span class="time-dot"></span> 4:38 am, India</div>
+    </div>
+
+    <div class="bottom-right">
+        <a href="#" class="social-btn">
+            <!-- WhatsApp -->
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+            <!-- Mail -->
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+            <!-- Cal -->
+            <span style="color: white; font-weight: 700; font-size: 0.9rem; font-family: 'Outfit', sans-serif;">Cal</span>
+        </a>
+    </div>
+
+    <div class="right-badge">W. Nominee</div>
+
+
+    <!-- Dummy Top Section to trigger header transition -->
+    <div class="dummy-hero">
+        <div>
+            <h1>Scroll Down</h1>
+            <p>To see the header morph and the timeline scroll sideways.</p>
+        </div>
+    </div>
+
+    <!-- The Horizontal Scroll Section -->
+    <div class="horizontal-scroll-wrapper" id="hScrollWrapper">
+        <div class="sticky-container">
+            <div class="scroll-track" id="scrollTrack">
+                
+                <!-- The continuous timeline line above the columns -->
+                <div class="timeline-header">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-node"></div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-label">Defining the Opportunity</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-node"></div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-label">Validating Impact Before Execution</div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-node"></div>
+                    <div class="timeline-line" style="flex-grow: 2;"></div>
+                </div>
+
+                <!-- Process Columns Content -->
+                <div class="process-columns">
+                    
+                    <!-- Column 1 -->
+                    <div class="process-col">
+                        <h2>Discovery</h2>
+                        <p class="subhead">Beginning the Journey</p>
+                        <div class="tags-grid">
+                            <span class="tag">Briefing</span>
+                            <span class="tag">People Problem</span>
+                            <span class="tag">Market Research</span>
+                            <span class="tag">People Needs</span>
+                            <span class="tag">Creative Ideation</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="process-col">
+                        <h2>Strategy</h2>
+                        <p class="subhead">Mapping the Path</p>
+                        <div class="tags-grid">
+                            <span class="tag">Goal Setting</span>
+                            <span class="tag">User Analysis</span>
+                            <span class="tag">Competitor Analysis</span>
+                            <span class="tag">Design Principles</span>
+                            <span class="tag">Roadmapping</span>
+                            <span class="tag">Design Vision</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div class="process-col">
+                        <h2>Evaluation</h2>
+                        <p class="subhead">Challenging the Views</p>
+                        <div class="tags-grid">
+                            <span class="tag">Heuristic Evaluation</span>
+                            <span class="tag">User Testing</span>
+                            <span class="tag">A/B Testing</span>
+                            <span class="tag">Feedback Analysis</span>
+                            <span class="tag">Design System</span>
+                            <span class="tag">Accessibility Checks</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 4 -->
+                    <div class="process-col">
+                        <h2>Development</h2>
+                        <p class="subhead">Crafting the Experiences</p>
+                        <div class="tags-grid">
+                            <span class="tag">Wireframing</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">Visual Design</span>
+                            <span class="tag">Interactive Design</span>
+                            <span class="tag">Front-End Development</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 5 ( deduced from "Ex..." ) -->
+                    <div class="process-col">
+                        <h2>Execution</h2>
+                        <p class="subhead">Setting things in motion</p>
+                        <div class="tags-grid">
+                            <span class="tag">Deployment</span>
+                            <span class="tag">Quality Assurance</span>
+                            <span class="tag">Testing</span>
+                            <span class="tag">Launch Plan</span>
+                        </div>
+                    </div>
+
+                    <!-- Spacer at the end of scroll track to let the last item breathe -->
+                    <div style="width: 20vw;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Dummy End Section to resume vertical scroll -->
+    <div class="end-space">
+        Normal Vertical Scroll Resumes Here
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effects for custom cursor
+        const interactables = document.querySelectorAll('a, button, .tag');
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                cursor.style.opacity = '0.5';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.opacity = '1';
+            });
+        });
+
+        // Scroll Logic: Header Morphing & Horizontal Scrolling
+        const headerWrapper = document.getElementById('headerWrapper');
+        const hScrollWrapper = document.getElementById('hScrollWrapper');
+        const scrollTrack = document.getElementById('scrollTrack');
+
+        window.addEventListener('scroll', () => {
+            let scrollY = window.scrollY;
+
+            // 1. Header Capsule Transition
+            if (scrollY > 100) {
+                headerWrapper.classList.add('scrolled');
+            } else {
+                headerWrapper.classList.remove('scrolled');
+            }
+
+            // 2. Horizontal Scrolling Logic
+            const wrapperRect = hScrollWrapper.getBoundingClientRect();
+            const wrapperTop = wrapperRect.top;
+            const wrapperHeight = wrapperRect.height;
+            const windowHeight = window.innerHeight;
+
+            // Check if user is scrolling within the horizontal section container
+            if (wrapperTop <= 0 && wrapperTop > -(wrapperHeight - windowHeight)) {
+                // Calculate percentage of progress through the container
+                let progress = Math.abs(wrapperTop) / (wrapperHeight - windowHeight);
+                progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
+
+                // How far we need to slide the track left (total width minus viewport width)
+                const maxTranslate = scrollTrack.scrollWidth - window.innerWidth;
+                
+                // Apply the translation
+                scrollTrack.style.transform = `translateX(-${progress * maxTranslate}px)`;
+            } 
+            // Lock to start/end points if scrolled past
+            else if (wrapperTop > 0) {
+                scrollTrack.style.transform = `translateX(0px)`;
+            } else if (wrapperTop <= -(wrapperHeight - windowHeight)) {
+                const maxTranslate = scrollTrack.scrollWidth - window.innerWidth;
+                scrollTrack.style.transform = `translateX(-${maxTranslate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

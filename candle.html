@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Trading Background - Scale Match</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff; /* Solid White */
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="tradingCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('tradingCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let candles = [];
+    
+    // Exact visual parameters from your image
+    const candleWidth = 20; // Thick, visible candles
+    const spacing = 32;     // Enough space to see individual action
+    const colorBull = '#56c15b'; 
+    const colorBear = '#f14336';
+
+    // Trend Management
+    let currentPrice;
+    let trendDirection = -1.5; // Starts with an upward bias (negative Y is up)
+    let trendTimer = 0;
+
+    function init() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        
+        // Start near the bottom for the upward trend
+        currentPrice = height * 0.75;
+        candles = [];
+
+        // Fill screen initially
+        const count = Math.ceil(width / spacing) + 5;
+        for (let i = 0; i < count; i++) {
+            addCandle(i * spacing);
+        }
+    }
+
+    function addCandle(xPos) {
+        // Change macro trend every 100-200 candles
+        trendTimer++;
+        if (trendTimer > 120) {
+            // Cycle: Up -> Consolidation -> Down -> Aggressive Up
+            const phases = [-1.8, 0.2, 2.0, -3.5]; 
+            trendDirection = phases[Math.floor(Math.random() * phases.length)];
+            trendTimer = 0;
+        }
+
+        // Random market volatility
+        const volatility = 25;
+        const move = (Math.random() - 0.5) * volatility + trendDirection;
+        
+        const open = currentPrice;
+        const close = currentPrice + (move * 15); // Large vertical moves
+        
+        // Ensure candles have "body" even on small moves
+        const bodySize = Math.max(Math.abs(close - open), 15);
+        
+        const high = Math.min(open, close) - (Math.random() * 20 + 5);
+        const low = Math.max(open, close) + (Math.random() * 20 + 5);
+
+        const candle = {
+            x: xPos,
+            open: open,
+            close: close,
+            high: high,
+            low: low,
+            baseHeight: bodySize,
+            pulsePhase: Math.random() * Math.PI * 2,
+            pulseSpeed: 0.04 + (Math.random() * 0.03)
+        };
+
+        currentPrice = close;
+
+        // Bounce logic to keep the graph on screen
+        if (currentPrice < height * 0.15) currentPrice += 100;
+        if (currentPrice > height * 0.85) currentPrice -= 100;
+
+        candles.push(candle);
+    }
+
+    function update() {
+        const scrollSpeed = 1.2;
+
+        for (let i = 0; i < candles.length; i++) {
+            let c = candles[i];
+            c.x -= scrollSpeed;
+            c.pulsePhase += c.pulseSpeed; // The rhythmic timing
+        }
+
+        // Remove old, add new to maintain loop
+        if (candles[0].x < -spacing) {
+            const lastCandle = candles[candles.length - 1];
+            candles.shift();
+            addCandle(lastCandle.x + spacing);
+        }
+    }
+
+    function draw() {
+        // Clear to Solid White
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let i = 0; i < candles.length; i++) {
+            const c = candles[i];
+            const isBullish = c.close < c.open;
+            const color = isBullish ? colorBull : colorBear;
+
+            // Rhythmic Pulsing Logic (Big/Small Animation)
+            // Oscillates both height and position for a "breathing" effect
+            const pulseFactor = Math.sin(c.pulsePhase) * 12;
+            const animatedHeight = Math.max(c.baseHeight + pulseFactor, 8);
+            const animatedWidth = candleWidth + (Math.sin(c.pulsePhase) * 2);
+            
+            // Adjust Y position so the pulse happens from the center of the candle
+            const yOffset = pulseFactor / 2;
+
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.5; // Bold wicks
+
+            // Draw Wick (Vertical line)
+            ctx.moveTo(c.x, c.high - yOffset);
+            ctx.lineTo(c.x, c.low + yOffset);
+            ctx.stroke();
+
+            // Draw Candle Body (Rectangle)
+            ctx.fillStyle = color;
+            const bodyY = Math.min(c.open, c.close) - yOffset;
+            
+            ctx.fillRect(
+                c.x - animatedWidth / 2, 
+                bodyY, 
+                animatedWidth, 
+                animatedHeight
+            );
+        }
+    }
+
+    function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    loop();
+</script>
+
+</body>
+</html>

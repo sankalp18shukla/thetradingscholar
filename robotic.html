@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Robotic Arm</title>
+    <style>
+        :root {
+            --bg-color: #f3f3f3;
+            --robot-white-light: #ffffff;
+            --robot-white-mid: #f5f5f5;
+            --robot-white-shadow: #d5d5d5;
+            --robot-dark-panel: #1a1a1a;
+            --robot-dark-accent: #0f0f0f;
+            --gripper-gray: #cccccc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at center, #ffffff 0%, #e6e6e6 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Presentation Container */
+        .canvas {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Robot Wrapper */
+        .robot {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        /* BASE CYLINDER (Bottom Center) */
+        .base-cylinder {
+            position: absolute;
+            bottom: 10px;
+            left: 215px;
+            width: 130px;
+            height: 180px;
+            background: linear-gradient(to right, 
+                #dcdcdc 0%, 
+                var(--robot-white-light) 25%, 
+                var(--robot-white-light) 70%, 
+                #cfcfcf 100%
+            );
+            border-radius: 65px 65px 25px 25px / 20px 20px 25px 25px;
+            box-shadow: 
+                inset 0 -15px 20px rgba(0,0,0,0.06),
+                0 15px 30px rgba(0,0,0,0.08);
+            z-index: 1;
+        }
+
+        /* LOWER HORIZONTAL JOINT (Left side) */
+        .lower-joint-left {
+            position: absolute;
+            bottom: 70px;
+            left: 110px;
+            width: 140px;
+            height: 90px;
+            background: linear-gradient(to bottom, 
+                var(--robot-white-light) 0%, 
+                var(--robot-white-mid) 50%, 
+                #d0d0d0 100%
+            );
+            border-radius: 45px;
+            box-shadow: 
+                inset 5px 5px 10px rgba(255,255,255,0.8),
+                -5px 10px 20px rgba(0,0,0,0.06);
+            z-index: 3;
+        }
+
+        /* Black side cap on the lower joint */
+        .joint-cap-black {
+            position: absolute;
+            top: 10px;
+            left: 8px;
+            width: 32px;
+            height: 70px;
+            background: linear-gradient(135deg, #222 0%, #0a0a0a 100%);
+            border-radius: 50%;
+            border: 2px solid #333;
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1);
+        }
+
+        /* SWEEPING LOWER ARM LINK */
+        .lower-arm-sweep {
+            position: absolute;
+            bottom: 115px;
+            left: 140px;
+            width: 200px;
+            height: 115px;
+            background: linear-gradient(135deg, 
+                var(--robot-white-light) 0%, 
+                #f0f0f0 60%, 
+                #dadada 100%
+            );
+            border-radius: 60px 50px 10px 60px;
+            transform: rotate(-16deg);
+            box-shadow: 
+                inset -3px -5px 15px rgba(0,0,0,0.05),
+                inset 5px 5px 10px rgba(255,255,255,0.9),
+                0 10px 20px rgba(0,0,0,0.04);
+            z-index: 2;
+        }
+
+        /* UPPER ARM (Slanted on the right) */
+        .upper-arm {
+            position: absolute;
+            top: 100px;
+            right: 85px;
+            width: 110px;
+            height: 290px;
+            background: linear-gradient(100deg, 
+                var(--robot-white-light) 0%, 
+                var(--robot-white-mid) 70%, 
+                #e2e2e2 100%
+            );
+            border-radius: 55px;
+            transform: rotate(-24deg);
+            box-shadow: 
+                inset 5px 5px 12px rgba(255,255,255,0.9),
+                inset -5px -10px 20px rgba(0,0,0,0.05),
+                10px 15px 30px rgba(0,0,0,0.07);
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* Dark glossy shield on upper arm outer edge */
+        .upper-arm-shield {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 42px;
+            height: 100%;
+            background: linear-gradient(to bottom, #2b2b2b, #0f0f0f);
+            border-left: 2px solid #3a3a3a;
+            box-shadow: inset -5px 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Glossy reflection line on the dark shield */
+        .upper-arm-shield::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 5px;
+            width: 3px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            filter: blur(1px);
+        }
+
+        /* WRIST CURVE (Holds the head) */
+        .wrist-curve {
+            position: absolute;
+            top: 75px;
+            left: 232px;
+            width: 145px;
+            height: 125px;
+            border-top: 38px solid var(--robot-white-light);
+            border-right: 38px solid var(--robot-white-mid);
+            border-top-right-radius: 100px;
+            border-top-left-radius: 40px;
+            border-bottom-right-radius: 15px;
+            transform: rotate(-6deg);
+            filter: drop-shadow(5px 8px 10px rgba(0,0,0,0.05));
+            z-index: 3;
+        }
+
+        /* HEAD CAPSULE */
+        .head {
+            position: absolute;
+            top: 45px;
+            left: 155px;
+            width: 105px;
+            height: 185px;
+            background: linear-gradient(135deg, 
+                var(--robot-white-light) 0%, 
+                var(--robot-white-mid) 50%, 
+                #e4e4e4 100%
+            );
+            border-radius: 52px;
+            box-shadow: 
+                inset 4px 4px 10px rgba(255,255,255,0.9),
+                inset -5px -5px 15px rgba(0,0,0,0.08),
+                5px 15px 35px rgba(0,0,0,0.09);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4;
+        }
+
+        /* BLACK SCREEN FACEPLATE */
+        .screen {
+            position: relative;
+            width: 85px;
+            height: 165px;
+            background: linear-gradient(145deg, #1f1f1f 0%, #0d0d0d 100%);
+            border-radius: 42px;
+            box-shadow: 
+                inset 0 0 10px rgba(0,0,0,0.8),
+                0 2px 4px rgba(255,255,255,0.2);
+            overflow: hidden;
+        }
+
+        /* Subtle reflection on screen */
+        .screen::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%);
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        /* FACE EXPRESSION */
+        .expression-container {
+            position: absolute;
+            top: 48px;
+            left: 18px;
+            width: 49px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Left Eye (Oval Pill) */
+        .eye-left {
+            width: 10px;
+            height: 25px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(255,255,255,0.4);
+        }
+
+        /* Right Eye (Winking Arc) */
+        .eye-right {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            border-top: 5px solid #ffffff;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            border-radius: 50% 50% 0 0;
+            transform: translateY(6px);
+            filter: drop-shadow(0 0 3px rgba(255,255,255,0.4));
+        }
+
+        /* GRIPPER MOUNT & PINS */
+        .gripper-mount {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 15px;
+            z-index: 5;
+        }
+
+        /* Tiny mechanical pins linking head to grippers */
+        .gripper-pin {
+            position: absolute;
+            top: -5px;
+            width: 4px;
+            height: 12px;
+            background-color: #7a7a7a;
+            border-radius: 2px;
+        }
+
+        .pin-left { left: 8px; transform: rotate(-20deg); }
+        .pin-center { left: 20px; }
+        .pin-right { right: 8px; transform: rotate(20deg); }
+
+        /* GRIPPER FINGERS (Claws) */
+        .gripper-finger {
+            position: absolute;
+            top: 4px;
+            width: 15px;
+            height: 42px;
+            background: linear-gradient(to bottom, 
+                var(--gripper-gray) 0%, 
+                #b5b5b5 100%
+            );
+            box-shadow: 
+                inset 1px 1px 3px rgba(255,255,255,0.8),
+                0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .gripper-finger.left {
+            left: 3px;
+            border-radius: 8px 3px 5px 12px;
+            transform: rotate(8deg);
+        }
+
+        .gripper-finger.right {
+            right: 3px;
+            border-radius: 3px 8px 12px 5px;
+            transform: rotate(-8deg);
+        }
+
+        /* Inner texture padding on claws */
+        .gripper-finger::before {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            width: 6px;
+            height: 14px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #959595,
+                #959595 2px,
+                transparent 2px,
+                transparent 4px
+            );
+        }
+
+        .gripper-finger.left::before {
+            right: 1px;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .gripper-finger.right::before {
+            left: 1px;
+            border-radius: 2px 0 0 2px;
+        }
+
+        /* Subtle idle breathing animation to bring the robot to life */
+        @keyframes subtle-float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(-0.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .head {
+            animation: subtle-float 6s ease-in-out infinite;
+        }
+
+        .wrist-curve {
+            animation: subtle-float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="canvas">
+        <div class="robot">
+            
+            <!-- Base Column -->
+            <div class="base-cylinder"></div>
+
+            <!-- Left Lower Rotating Joint -->
+            <div class="lower-joint-left">
+                <div class="joint-cap-black"></div>
+            </div>
+
+            <!-- Sweeping Lower Arm Section -->
+            <div class="lower-arm-sweep"></div>
+
+            <!-- Upper Slanted Arm with Dark Outer Panel -->
+            <div class="upper-arm">
+                <div class="upper-arm-shield"></div>
+            </div>
+
+            <!-- Curve Connecting Upper Arm to Head -->
+            <div class="wrist-curve"></div>
+
+            <!-- Head Capsule Unit -->
+            <div class="head">
+                <div class="screen">
+                    <!-- Face Expression -->
+                    <div class="expression-container">
+                        <div class="eye-left"></div>
+                        <div class="eye-right"></div>
+                    </div>
+                </div>
+
+                <!-- Hand / Gripper Assembly -->
+                <div class="gripper-mount">
+                    <div class="gripper-pin pin-left"></div>
+                    <div class="gripper-pin pin-center"></div>
+                    <div class="gripper-pin pin-right"></div>
+                    
+                    <div class="gripper-finger left"></div>
+                    <div class="gripper-finger right"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Financial Chart</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1600px;
+      max-height: 900px;
+      background-color: #ffffff;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chart-container">
+    <canvas id="financialChart"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('financialChart');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Aesthetic color constants
+    const COLOR_PRIMARY_BLUE = 'rgba(56, 189, 248, 0.85)';    // Main blue candle
+    const COLOR_DARK_BLUE = 'rgba(14, 116, 144, 0.9)';        // Accent candle
+    const COLOR_LIGHT_BLUE = 'rgba(186, 230, 253, 0.4)';      // Volume & soft waves
+    const COLOR_REFLECTION_BLUE = 'rgba(56, 189, 248, 0.08)'; // Transparent back candles
+    const COLOR_LINE_BLUE = 'rgba(56, 189, 248, 0.5)';        // Geometric line chart
+    const COLOR_LINE_FILL = 'rgba(56, 189, 248, 0.03)';       // Area fill under line
+
+    // Configuration
+    const candleWidth = 7;
+    const candleGap = 16;
+    let offset = 0;
+    const scrollSpeed = 0.4;
+
+    // Data generation structures
+    const dataPoints = [];
+    const totalPointsNeeded = Math.ceil(2400 / (candleWidth + candleGap));
+
+    // Simple smooth random walk generator
+    let lastClose = 350;
+    function generateDataPoint() {
+      const change = (Math.sin(dataPoints.length * 0.05) * 15) + ((Math.random() - 0.5) * 12);
+      let close = lastClose + change;
+      
+      // Keep boundaries inside comfortable viewport margins
+      if (close < 150) close = 150;
+      if (close > 550) close = 550;
+      
+      const open = lastClose;
+      const high = Math.max(open, close) + (Math.random() * 8);
+      const low = Math.min(open, close) - (Math.random() * 8);
+      const isUp = close >= open;
+
+      lastClose = close;
+
+      return {
+        open,
+        close,
+        high,
+        low,
+        isUp,
+        // Pre-calculated offset variation for visual depth
+        seed: Math.random()
+      };
+    }
+
+    // Seed initial dataset
+    for (let i = 0; i < totalPointsNeeded; i++) {
+      dataPoints.push(generateDataPoint());
+    }
+
+    // Background Wave drawing helper
+    function drawWave(amplitude, frequency, offsetPhase, strokeStyle, isDashed = false) {
+      ctx.beginPath();
+      if (isDashed) {
+        ctx.setLineDash([4, 6]);
+      } else {
+        ctx.setLineDash([]);
+      }
+      ctx.strokeStyle = strokeStyle;
+      ctx.lineWidth = 1.2;
+
+      for (let x = 0; x < width; x += 5) {
+        // Map dynamic height positioning based on canvas dimension
+        const y = (height * 0.45) + Math.sin((x + offsetPhase + offset * 10) * frequency) * amplitude;
+        if (x === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      // 1. Draw Background Soft Volume Bars at the Bottom
+      const volumeBarWidth = 75;
+      const volumeBarGap = 45;
+      const totalVolumeBars = Math.ceil(width / (volumeBarWidth + volumeBarGap)) + 1;
+      const volOffset = offset % (volumeBarWidth + volumeBarGap);
+
+      for (let i = 0; i < totalVolumeBars; i++) {
+        const x = width - (i * (volumeBarWidth + volumeBarGap)) + volOffset;
+        
+        // Generate continuous undulating height for the columns
+        const dynamicPhase = (x + offset) * 0.002;
+        const barHeight = (height * 0.18) + Math.sin(dynamicPhase) * (height * 0.1);
+
+        const gradient = ctx.createLinearGradient(0, height - barHeight, 0, height);
+        gradient.addColorStop(0, 'rgba(186, 230, 253, 0.22)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(x, height - barHeight, volumeBarWidth, barHeight);
+      }
+
+      // 2. Draw Elegant Dashed Trend Lines
+      drawWave(70, 0.003, 100, 'rgba(148, 163, 184, 0.25)', true);
+      drawWave(110, 0.002, 450, 'rgba(56, 189, 248, 0.25)', true);
+
+      // Scroll coordinates offset
+      offset -= scrollSpeed;
+      if (Math.abs(offset) >= (candleWidth + candleGap)) {
+        offset = 0;
+        dataPoints.shift();
+        dataPoints.push(generateDataPoint());
+      }
+
+      // 3. Draw Ambient/Faded Candle Background layer (Reflection depth)
+      ctx.lineWidth = 1;
+      for (let i = 0; i < dataPoints.length; i++) {
+        const x = width - (i * (candleWidth + candleGap)) + offset;
+        const dp = dataPoints[i];
+        
+        // Offset mapping to dynamic height
+        const scaleY = height / 700;
+        const openY = dp.open * scaleY;
+        const closeY = dp.close * scaleY;
+        const highY = dp.high * scaleY;
+        const lowY = dp.low * scaleY;
+
+        // Render shadow-reflection (slightly shifted downward and blurred-like opacity)
+        ctx.fillStyle = COLOR_REFLECTION_BLUE;
+        ctx.strokeStyle = COLOR_REFLECTION_BLUE;
+        
+        // Wick
+        ctx.beginPath();
+        ctx.moveTo(x + candleWidth / 2, highY + 80);
+        ctx.lineTo(x + candleWidth / 2, lowY + 80);
+        ctx.stroke();
+
+        // Body
+        const bodyHeight = Math.max(1.5, Math.abs(closeY - openY));
+        ctx.fillRect(x, Math.min(openY, closeY) + 80, candleWidth, bodyHeight);
+      }
+
+      // 4. Draw Geometric Area/Line Chart Overlay
+      ctx.beginPath();
+      const nodePoints = [];
+      const nodeStep = 180;
+      const totalNodes = Math.ceil(width / nodeStep) + 2;
+      const nodeOffset = offset % nodeStep;
+
+      for (let i = 0; i < totalNodes; i++) {
+        const x = width - (i * nodeStep) + nodeOffset;
+        // Generate consistent height points using clean sine waves
+        const y = (height * 0.35) + Math.sin((x + offset * 3) * 0.004) * (height * 0.18);
+        nodePoints.push({ x, y });
+      }
+
+      // Fill area under the geometric path
+      ctx.lineTo(width + 50, height);
+      for (let i = 0; i < nodePoints.length; i++) {
+        ctx.lineTo(nodePoints[i].x, nodePoints[i].y);
+      }
+      ctx.lineTo(-50, height);
+      ctx.closePath();
+      
+      const fillGradient = ctx.createLinearGradient(0, height * 0.2, 0, height * 0.85);
+      fillGradient.addColorStop(0, COLOR_LINE_FILL);
+      fillGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = fillGradient;
+      ctx.fill();
+
+      // Draw the geometric path stroke
+      ctx.beginPath();
+      ctx.strokeStyle = COLOR_LINE_BLUE;
+      ctx.lineWidth = 1.5;
+      for (let i = 0; i < nodePoints.length; i++) {
+        if (i === 0) ctx.moveTo(nodePoints[i].x, nodePoints[i].y);
+        else ctx.lineTo(nodePoints[i].x, nodePoints[i].y);
+      }
+      ctx.stroke();
+
+      // Draw nodes (circular joints)
+      for (let i = 0; i < nodePoints.length; i++) {
+        const node = nodePoints[i];
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = COLOR_LINE_BLUE;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      // 5. Draw Primary Candlesticks Layer
+      for (let i = 0; i < dataPoints.length; i++) {
+        const x = width - (i * (candleWidth + candleGap)) + offset;
+        if (x < -20 || x > width + 20) continue;
+
+        const dp = dataPoints[i];
+        const scaleY = height / 750;
+
+        const openY = dp.open * scaleY;
+        const closeY = dp.close * scaleY;
+        const highY = dp.high * scaleY;
+        const lowY = dp.low * scaleY;
+
+        // Clean subtle variance of blue colors matching image
+        const candleColor = dp.seed > 0.65 ? COLOR_DARK_BLUE : COLOR_PRIMARY_BLUE;
+        ctx.fillStyle = candleColor;
+        ctx.strokeStyle = candleColor;
+        ctx.lineWidth = 1.2;
+
+        // Wick
+        ctx.beginPath();
+        ctx.moveTo(x + candleWidth / 2, highY);
+        ctx.lineTo(x + candleWidth / 2, lowY);
+        ctx.stroke();
+
+        // Candle Body
+        const bodyHeight = Math.max(2, Math.abs(closeY - openY));
+        ctx.fillRect(x, Math.min(openY, closeY), candleWidth, bodyHeight);
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    // Run render loop
+    draw();
+  </script>
+</body>
+</html>
