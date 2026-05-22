@@ -1341,45 +1341,105 @@
             transform: scale(1.05);
         }
 
-        background-image: radial-gradient(circle at top right,
-            rgba(37, 99, 235, 0.12),
-            transparent 35%);
-
         .view-all-btn {
-            align-self: flex-start;
-            background: transparent !important;
-            border: 1.5px solid var(--secondary-accent) !important;
-            color: #FFFFFF !important;
-            font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 1px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            margin-top: 20px;
+
+            padding: 14px 24px;
+
+            border-radius: 50px;
+            border: none;
+
+            background: linear-gradient(135deg, var(--secondary-accent), #1D4ED8);
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+
+            color: #FFFFFF;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+            cursor: pointer;
+
+            margin-top: 22px;
+
+            position: relative;
+            overflow: hidden;
+
+            white-space: nowrap;
+            width: fit-content;
+
+            box-shadow:
+                0 10px 24px rgba(37, 99, 235, 0.28);
+
+            transition:
+                transform 0.25s cubic-bezier(.2, .8, .2, 1),
+                box-shadow 0.25s cubic-bezier(.2, .8, .2, 1),
+                background-position 0.6s ease;
         }
 
-        .view-all-btn svg.btn-arrow {
-            transition: transform 0.3s ease;
-            display: inline-block;
-            vertical-align: middle;
-            fill: none;
-            stroke: currentColor;
-        }
-
+        /* HOVER */
         .view-all-btn:hover {
-            background: var(--secondary-accent) !important;
-            border-color: var(--secondary-accent) !important;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+            transform: translateY(-3px) scale(1.02);
+
+            background-position: 100% 50%;
+
+            box-shadow:
+                0 18px 40px rgba(37, 99, 235, 0.45);
         }
 
-        .view-all-btn:hover svg.btn-arrow {
-            transform: translateX(4px);
+        /* ACTIVE (click feel) */
+        .view-all-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow:
+                0 8px 18px rgba(37, 99, 235, 0.25);
+        }
+
+        /* FOCUS (accessibility) */
+        .view-all-btn:focus-visible {
+            outline: 3px solid rgba(59, 130, 246, 0.5);
+            outline-offset: 3px;
+        }
+
+        /* ICON */
+        .view-all-btn svg {
+            transition: transform 0.3s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        /* ICON MOVE */
+        .view-all-btn:hover svg {
+            transform: translateX(6px) rotate(-5deg);
+        }
+
+        /* OPTIONAL GLOW PULSE ON HOVER */
+        .view-all-btn:hover::after {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 60%);
+            animation: glowPulse 1.4s ease infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.4;
+            }
         }
 
         /* NEW SECTION: How It Works Section */
