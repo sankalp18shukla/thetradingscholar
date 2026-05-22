@@ -1671,7 +1671,193 @@
                 border-color 0.3s ease;
         }
 
-        /* BUTTON HOVER */
+        .podcast-section {
+            background-color: var(--bg-dark);
+            padding: 120px 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .podcast-grid {
+            width: 100%;
+            max-width: 1280px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 28px;
+        }
+
+        /* CARD */
+        .podcast-card {
+            background: rgba(255, 255, 255, 0.03);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            transition: 0.35s ease;
+
+            min-height: 430px;
+        }
+
+        .podcast-card:hover {
+            transform: translateY(-6px);
+
+            border-color: var(--secondary-accent);
+        }
+
+        /* THUMBNAIL */
+        .podcast-thumb {
+            position: relative;
+
+            width: 100%;
+            height: 220px;
+
+            overflow: hidden;
+
+            display: block;
+
+            flex-shrink: 0;
+
+            text-decoration: none;
+        }
+
+        /* IMAGE FIX */
+        .podcast-thumb img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+        }
+
+        /* HOVER ZOOM */
+        .podcast-card:hover .podcast-thumb img {
+            transform: scale(1.05);
+        }
+
+        /* OVERLAY */
+        .podcast-thumb::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(to top,
+                    rgba(0, 0, 0, 0.7),
+                    rgba(0, 0, 0, 0.15));
+        }
+
+        /* PLAY BUTTON */
+        .play-overlay {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.14);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 28px;
+
+            z-index: 2;
+
+            transition: 0.3s ease;
+        }
+
+        .podcast-card:hover .play-overlay {
+            background: var(--primary-accent);
+
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        /* CONTENT */
+        .podcast-info {
+            padding: 24px;
+
+            display: flex;
+            flex-direction: column;
+
+            flex-grow: 1;
+        }
+
+        /* TITLE */
+        .podcast-info h3 {
+            font-family: 'Outfit', sans-serif;
+
+            font-size: 1.15rem;
+            font-weight: 700;
+
+            line-height: 1.4;
+
+            color: #FFFFFF;
+
+            margin-bottom: 12px;
+        }
+
+        /* TEXT */
+        .podcast-info p {
+            color: var(--text-secondary);
+
+            line-height: 1.7;
+
+            font-size: 0.92rem;
+
+            margin-bottom: 22px;
+
+            flex-grow: 1;
+        }
+
+        /* BUTTON */
+        .podcast-btn {
+            display: inline-flex;
+            align-items: center;
+
+            width: fit-content;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            color: #FFFFFF;
+
+            text-decoration: none;
+
+            font-size: 0.9rem;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
         .podcast-btn:hover {
             background: var(--primary-accent);
 
@@ -1695,10 +1881,6 @@
 
             .podcast-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .podcast-thumb {
-                height: 220px;
             }
         }
 
