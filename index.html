@@ -8,7 +8,9 @@
     <!-- Import Fonts: Outfit for primary headings, Inter for body/ui, Plus Jakarta Sans for form structures -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap"
+        rel="stylesheet">
 
     <!-- GSAP Core and ScrollTrigger Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -58,8 +60,10 @@
             color: var(--primary-text);
             overflow-x: hidden;
             position: relative;
-            scrollbar-width: none; /* Hide scrollbar Firefox */
-            -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+            scrollbar-width: none;
+            /* Hide scrollbar Firefox */
+            -ms-overflow-style: none;
+            /* Hide scrollbar IE/Edge */
         }
 
         /* Hide Scrollbar for Chrome, Safari and Opera */
@@ -854,6 +858,30 @@
             justify-content: space-between;
         }
 
+        .card-icon {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-icon img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+
+            filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+
+            transition: transform 0.35s ease;
+        }
+
+        /* Optional hover animation */
+        .card:hover .card-icon img {
+            transform: scale(1.08);
+        }
+
         /* Card fronts */
         .card-front {
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(11, 15, 25, 0.65) 100%) !important;
@@ -1084,7 +1112,7 @@
             justify-content: center;
             gap: 8px;
             padding: 14px 20px;
-            border-radius: 12px;
+            border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 700;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1182,11 +1210,32 @@
             -webkit-backface-visibility: hidden;
         }
 
-        .stack-card:nth-child(1) { background: #111827; z-index: 10; }
-        .stack-card:nth-child(2) { background: #162033; z-index: 20; }
-        .stack-card:nth-child(3) { background: #0D1322; z-index: 30; }
-        .stack-card:nth-child(4) { background: #1A2742; border-color: rgba(59, 130, 246, 0.32) !important; z-index: 40; }
-        .stack-card:nth-child(5) { background: #121A2B; border-color: rgba(59, 130, 246, 0.38) !important; z-index: 50; }
+        .stack-card:nth-child(1) {
+            background: #111827;
+            z-index: 10;
+        }
+
+        .stack-card:nth-child(2) {
+            background: #162033;
+            z-index: 20;
+        }
+
+        .stack-card:nth-child(3) {
+            background: #0D1322;
+            z-index: 30;
+        }
+
+        .stack-card:nth-child(4) {
+            background: #1A2742;
+            border-color: rgba(59, 130, 246, 0.32) !important;
+            z-index: 40;
+        }
+
+        .stack-card:nth-child(5) {
+            background: #121A2B;
+            border-color: rgba(59, 130, 246, 0.38) !important;
+            z-index: 50;
+        }
 
         .stack-left {
             width: 55%;
@@ -1475,7 +1524,8 @@
         .video-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 35px 75px rgba(0, 0, 0, 0.6);
@@ -1614,123 +1664,42 @@
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 18px;
+
+            transition:
+                background 0.3s ease,
+                transform 0.3s ease,
+                border-color 0.3s ease;
         }
 
-        .result-card .student-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .result-card .student-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--border-slate);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--accent-gold);
-            font-size: 0.88rem;
-        }
-
-        .result-card .student-meta h4 {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #FFFFFF;
-        }
-
-        .result-card .student-meta span {
-            font-size: 0.76rem;
-            color: var(--text-secondary);
-        }
-
-        /* INTEGRATED SECTION: Learn Beyond The Markets (Podcasts) */
-        .podcast-section {
-            background-color: var(--bg-dark);
-            padding: 120px 40px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .podcast-card {
-            background: var(--bg-dark);
-            border: 1px solid var(--border-slate);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .podcast-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--secondary-accent);
-        }
-
-        .podcast-thumb {
-            width: 100%;
-            height: 180px;
-            background: rgba(255, 255, 255, 0.02);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .podcast-thumb svg {
-            width: 48px;
-            height: 48px;
-            fill: var(--soft-accent);
-            opacity: 0.85;
-        }
-
-        .podcast-info {
-            padding: 24px;
-        }
-
-        .podcast-info h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 8px;
-        }
-
-        .podcast-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .podcast-btn {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--secondary-accent);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.3s;
-        }
-
+        /* BUTTON HOVER */
         .podcast-btn:hover {
-            color: var(--soft-accent);
+            background: var(--primary-accent);
+
+            border-color: var(--primary-accent);
+
+            transform: translateY(-2px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .podcast-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .podcast-section {
+                padding: 90px 20px;
+            }
+
+            .podcast-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .podcast-thumb {
+                height: 220px;
+            }
         }
 
         /* INTEGRATED SECTION: Photo/Media Collage Gallery */
@@ -1769,9 +1738,17 @@
             z-index: 5;
         }
 
-        .gallery-item.wide-2 { grid-column: span 2; }
-        .gallery-item.tall-2 { grid-row: span 2; }
-        .gallery-item.wide-3 { grid-column: span 3; }
+        .gallery-item.wide-2 {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall-2 {
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide-3 {
+            grid-column: span 3;
+        }
 
         .gallery-placeholder {
             width: 100%;
@@ -1881,7 +1858,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #C9A84C; /* Gold Accent */
+            color: #C9A84C;
+            /* Gold Accent */
             flex-shrink: 0;
             margin-top: 2px;
         }
@@ -2026,7 +2004,7 @@
             height: 15px;
             border-radius: 2px;
             object-fit: cover;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         .dropdown-arrow {
@@ -2204,7 +2182,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background-color: rgba(255,255,255,0.04);
+            background-color: rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2250,8 +2228,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* INTEGRATED FOOTER SECTION */
@@ -2913,6 +2898,9 @@
                             <span class="face-tag">Problem 01</span>
                             <h3 style="margin-top:15px;">Option Buying Losses</h3>
                         </div>
+                        <div class="card-icon">
+                            <img src="problem1.png" alt="Problem 1">
+                        </div>
                         <p>Traders continuously lose money chasing quick directional moves without a defined
                             risk-management system.</p>
                     </div>
@@ -2934,6 +2922,9 @@
                         <div>
                             <span class="face-tag">Problem 02</span>
                             <h3 style="margin-top:15px;">Emotional Trading</h3>
+                        </div>
+                        <div class="card-icon">
+                            <img src="problem2.png" alt="Problem 2">
                         </div>
                         <p>Fear, greed, revenge trading, and lack of discipline destroy consistency and wipe out
                             accounts.</p>
@@ -2957,6 +2948,9 @@
                             <span class="face-tag">Problem 03</span>
                             <h3 style="margin-top:15px;">No Scalability</h3>
                         </div>
+                        <div class="card-icon">
+                            <img src="problem3.png" alt="Problem 3">
+                        </div>
                         <p>Most retail strategies fail when capital increases because they lack institutional risk
                             management metrics.</p>
                     </div>
@@ -2978,6 +2972,9 @@
                         <div>
                             <span class="face-tag">Problem 04</span>
                             <h3 style="margin-top:15px;">No Structured Mentorship</h3>
+                        </div>
+                        <div class="card-icon">
+                            <img src="problem4.png" alt="Problem 4">
                         </div>
                         <p>Jumping from video to video creates confusion. Most traders never learn how to manage actual
                             live execution pressure.</p>
@@ -3015,13 +3012,18 @@
                     <div>
                         <!-- Image / Graphic Placeholder Area -->
                         <div class="card-image-placeholder">
-                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="300" height="160" fill="#F0F4FF"/>
-                                <path d="M10 130 L90 90 L160 110 L240 40 L290 60" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="240" cy="40" r="6" fill="#1E3A8A"/>
-                                <line x1="10" y1="130" x2="290" y2="130" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4 4"/>
-                                <rect x="80" y="80" width="20" height="50" fill="#2563EB" fill-opacity="0.1" stroke="#2563EB" stroke-width="1"/>
-                                <rect x="150" y="100" width="20" height="30" fill="#2563EB" fill-opacity="0.1" stroke="#2563EB" stroke-width="1"/>
+                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="160" fill="#F0F4FF" />
+                                <path d="M10 130 L90 90 L160 110 L240 40 L290 60" stroke="#2563EB" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="240" cy="40" r="6" fill="#1E3A8A" />
+                                <line x1="10" y1="130" x2="290" y2="130" stroke="#E2E8F0" stroke-width="1.5"
+                                    stroke-dasharray="4 4" />
+                                <rect x="80" y="80" width="20" height="50" fill="#2563EB" fill-opacity="0.1"
+                                    stroke="#2563EB" stroke-width="1" />
+                                <rect x="150" y="100" width="20" height="30" fill="#2563EB" fill-opacity="0.1"
+                                    stroke="#2563EB" stroke-width="1" />
                             </svg>
                         </div>
 
@@ -3029,8 +3031,9 @@
                             <h3 class="card-title">Algo Trading (Elgo System)</h3>
                             <p class="card-sub">Remove Emotion. Execute Automatically. Scale Confidently.</p>
                         </div>
-                        
-                        <p class="card-one-liner">Build &amp; deploy fully automated strategies — no coding needed, zero emotional interference.</p>
+
+                        <p class="card-one-liner">Build &amp; deploy fully automated strategies — no coding needed, zero
+                            emotional interference.</p>
                     </div>
                     <a href="#courses" class="course-cta-btn">Explore Algo Course →</a>
                 </div>
@@ -3042,12 +3045,14 @@
                     <div>
                         <!-- Image / Graphic Placeholder Area -->
                         <div class="card-image-placeholder">
-                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="300" height="160" fill="#F0F4FF"/>
-                                <circle cx="150" cy="80" r="45" stroke="#1E3A8A" stroke-width="2" stroke-dasharray="6 4"/>
-                                <circle cx="150" cy="80" r="25" fill="#2563EB"/>
-                                <line x1="50" y1="80" x2="250" y2="80" stroke="#E2E8F0" stroke-width="2"/>
-                                <line x1="150" y1="20" x2="150" y2="140" stroke="#E2E8F0" stroke-width="2"/>
+                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="160" fill="#F0F4FF" />
+                                <circle cx="150" cy="80" r="45" stroke="#1E3A8A" stroke-width="2"
+                                    stroke-dasharray="6 4" />
+                                <circle cx="150" cy="80" r="25" fill="#2563EB" />
+                                <line x1="50" y1="80" x2="250" y2="80" stroke="#E2E8F0" stroke-width="2" />
+                                <line x1="150" y1="20" x2="150" y2="140" stroke="#E2E8F0" stroke-width="2" />
                             </svg>
                         </div>
 
@@ -3055,8 +3060,9 @@
                             <h3 class="card-title">One-on-One Mentorship</h3>
                             <p class="card-sub">Personalized Strategy. Direct Accountability. Real Results.</p>
                         </div>
-                        
-                        <p class="card-one-liner">Get a custom trading framework built around your psychology, capital &amp; goals — with direct 1:1 guidance from Kundan Prajapati.</p>
+
+                        <p class="card-one-liner">Get a custom trading framework built around your psychology, capital
+                            &amp; goals — with direct 1:1 guidance from Kundan Prajapati.</p>
                     </div>
                     <a href="#courses" class="course-cta-btn">Apply For Mentorship →</a>
                 </div>
@@ -3068,11 +3074,13 @@
                     <div>
                         <!-- Image / Graphic Placeholder Area -->
                         <div class="card-image-placeholder">
-                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="300" height="160" fill="#F0F4FF"/>
-                                <path d="M30 110 Q150 10 270 110" stroke="#1E3A8A" stroke-width="3" fill="none"/>
-                                <path d="M30 130 Q150 50 270 130" stroke="#2563EB" stroke-dasharray="5 5" stroke-width="2" fill="none"/>
-                                <circle cx="150" cy="60" r="6" fill="#2563EB"/>
+                            <svg class="placeholder-pattern" viewBox="0 0 300 160" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="160" fill="#F0F4FF" />
+                                <path d="M30 110 Q150 10 270 110" stroke="#1E3A8A" stroke-width="3" fill="none" />
+                                <path d="M30 130 Q150 50 270 130" stroke="#2563EB" stroke-dasharray="5 5"
+                                    stroke-width="2" fill="none" />
+                                <circle cx="150" cy="60" r="6" fill="#2563EB" />
                             </svg>
                         </div>
 
@@ -3080,8 +3088,9 @@
                             <h3 class="card-title">Option Selling &amp; Hedging</h3>
                             <p class="card-sub">Consistent Income. Defined Risk. Institutional Execution.</p>
                         </div>
-                        
-                        <p class="card-one-liner">Master hedged option-selling strategies that generate weekly income with pre-defined, capped risk.</p>
+
+                        <p class="card-one-liner">Master hedged option-selling strategies that generate weekly income
+                            with pre-defined, capped risk.</p>
                     </div>
                     <a href="#courses" class="course-cta-btn">Explore Options Course →</a>
                 </div>
@@ -3286,7 +3295,8 @@
                     <div class="step-num">1</div>
                     <div>
                         <h3>Learn The Methodology</h3>
-                        <p>Master institutional frameworks, hedging systems, and risk management principles. Understand how professional market participants think before you place a single trade.</p>
+                        <p>Master institutional frameworks, hedging systems, and risk management principles. Understand
+                            how professional market participants think before you place a single trade.</p>
                     </div>
                 </div>
 
@@ -3295,7 +3305,8 @@
                     <div class="step-num">2</div>
                     <div>
                         <h3>Practice With Live Support</h3>
-                        <p>Apply systems in real market conditions with direct mentor guidance. Get feedback on actual trades, not hypothetical scenarios.</p>
+                        <p>Apply systems in real market conditions with direct mentor guidance. Get feedback on actual
+                            trades, not hypothetical scenarios.</p>
                     </div>
                 </div>
 
@@ -3304,7 +3315,8 @@
                     <div class="step-num">3</div>
                     <div>
                         <h3>Trade With Consistency</h3>
-                        <p>Execute with discipline and build a sustainable, scalable trading approach. Track performance, refine the system, and compound results over time.</p>
+                        <p>Execute with discipline and build a sustainable, scalable trading approach. Track
+                            performance, refine the system, and compound results over time.</p>
                     </div>
                 </div>
             </div>
@@ -3318,17 +3330,17 @@
             <h2>About Mr. <span>Kundan Prajapati</span></h2>
         </div>
         <p class="about-desc-preview">
-            Kundan Prajapati has spent 9+ years studying markets, risk management, and institutional-style execution frameworks. His approach is not built on theory or recycled video content — it is built from years of live execution, real losses, and hard-won discipline.
+            Kundan Prajapati has spent 9+ years studying markets, risk management, and institutional-style execution
+            frameworks. His approach is not built on theory or recycled video content — it is built from years of live
+            execution, real losses, and hard-won discipline.
         </p>
 
         <div class="video-viewport">
             <!-- Video container with 3D animation properties -->
             <div class="video-container" id="mentor-video">
-                <iframe 
-                    id="yt-player"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                    title="Mentor Video" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe id="yt-player" src="https://www.youtube.com/embed/75J3rO9ZnIw?si=qmeSa-ov1bsSPa8Q"
+                    title="Mentor Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -3345,12 +3357,15 @@
             <span class="sub-title">Performance Proof</span>
             <h2>Verified Student <span>Results</span></h2>
         </div>
-        
+
         <div class="results-grid">
             <!-- Student Proof Card 1 -->
             <div class="result-card">
                 <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
+                    </svg>
                     <span>P&L Statement Verified</span>
                 </div>
                 <div class="metrics">
@@ -3363,7 +3378,8 @@
                         <strong>3 Months</strong>
                     </div>
                 </div>
-                <p>"The Elgo system completely saved my capital. I used to chase naked option buying moves. Shifting to systematic options selling with strict code logic changed my performance profile."</p>
+                <p>"The Elgo system completely saved my capital. I used to chase naked option buying moves. Shifting to
+                    systematic options selling with strict code logic changed my performance profile."</p>
                 <div class="student-info">
                     <div class="student-avatar">RS</div>
                     <div class="student-meta">
@@ -3376,7 +3392,10 @@
             <!-- Student Proof Card 2 -->
             <div class="result-card">
                 <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
+                    </svg>
                     <span>P&L Screenshot Attached</span>
                 </div>
                 <div class="metrics">
@@ -3389,7 +3408,8 @@
                         <strong>-3.2% Max</strong>
                     </div>
                 </div>
-                <p>"Applying the systematic 1:1 mentorship helped me define custom position sizes based on my active account capital. I finally stopped experiencing emotional drawdowns."</p>
+                <p>"Applying the systematic 1:1 mentorship helped me define custom position sizes based on my active
+                    account capital. I finally stopped experiencing emotional drawdowns."</p>
                 <div class="student-info">
                     <div class="student-avatar">PP</div>
                     <div class="student-meta">
@@ -3402,7 +3422,10 @@
             <!-- Student Proof Card 3 -->
             <div class="result-card">
                 <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
+                    </svg>
                     <span>Trading Statement PDF</span>
                 </div>
                 <div class="metrics">
@@ -3415,7 +3438,8 @@
                         <strong>Iron Condors</strong>
                     </div>
                 </div>
-                <p>"The option selling and hedging strategies course taught me how to manage delta risk systematically. I sleep peacefully knowing my maximum risk is always hedged and capped."</p>
+                <p>"The option selling and hedging strategies course taught me how to manage delta risk systematically.
+                    I sleep peacefully knowing my maximum risk is always hedged and capped."</p>
                 <div class="student-info">
                     <div class="student-avatar">AJ</div>
                     <div class="student-meta">
@@ -3429,83 +3453,190 @@
 
     <!-- INTEGRATED SECTION: Learn Beyond The Markets (Podcasts) -->
     <section class="podcast-section">
-        <div class="section-hdr">
-            <span class="sub-title">Resources</span>
-            <h2>Learn Beyond <span>The Markets</span></h2>
-        </div>
-        
+
         <div class="podcast-grid">
-            <!-- Podcast Card 1 -->
+
+            <!-- CARD 1 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=SjesP4clpHM" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/SjesP4clpHM/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 12: Building Algorithmic Robustness</h3>
-                    <p>Deep dive into parameter backtesting, overfitting traps, and broker API latency handling rules.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        1L Per Month Using Simple Strategy
+                    </h3>
+
+                    <p>
+                        Live backtesting session discussing practical
+                        strategies, execution flow, and consistent
+                        monthly income systems.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=SjesP4clpHM" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
 
-            <!-- Podcast Card 2 -->
+            <!-- CARD 2 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=d2MOyGxrh-o" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/d2MOyGxrh-o/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 11: The Truth About Volatility Hedging</h3>
-                    <p>How institutional desks hedge option premium portfolios prior to high-impact economic announcements.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        Delivery Boy to Crores Through Trading
+                    </h3>
+
+                    <p>
+                        Inspirational trading journey discussing discipline,
+                        psychology, and real market struggles.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=d2MOyGxrh-o" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
 
-            <!-- Podcast Card 3 -->
+            <!-- CARD 3 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=6el9Jqnrdz8" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/6el9Jqnrdz8/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 10: Retail Pitfalls in Option Buying</h3>
-                    <p>Why retail options buyers consistently lose capital over time to theta decay and implied volatility crush.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        Hedge Like a Pro
+                    </h3>
+
+                    <p>
+                        Free option selling masterclass focused on institutional
+                        hedging systems and reducing drawdowns.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=6el9Jqnrdz8" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
 
-            <!-- Podcast Card 4 - NEW -->
+            <!-- CARD 4 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=znJHaEo6-8s" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/znJHaEo6-8s/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 9: Position Sizing for Capital Preservation</h3>
-                    <p>Master the institutional approach to sizing trades based on account capital, volatility, and risk tolerance.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        Secret Batman Trading Strategy
+                    </h3>
+
+                    <p>
+                        Deep discussion on the Batman strategy,
+                        probability setups, and high win-rate systems.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=znJHaEo6-8s" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
 
-            <!-- Podcast Card 5 - NEW -->
+            <!-- CARD 5 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=M4bK4rRCtWQ" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/M4bK4rRCtWQ/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 8: Systematic Entry and Exit Points</h3>
-                    <p>Learn how to define clear entry/exit signals and avoid the trap of emotional decision-making in live markets.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        Harsh Truth About Option Selling
+                    </h3>
+
+                    <p>
+                        Unfiltered insights into option selling risks,
+                        emotional pressure, and retail trader mistakes.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=M4bK4rRCtWQ" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
 
-            <!-- Podcast Card 6 - NEW -->
+            <!-- CARD 6 -->
             <div class="podcast-card">
-                <div class="podcast-thumb">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                </div>
+
+                <a href="https://www.youtube.com/watch?v=FMkIE1X-61I" target="_blank" class="podcast-thumb">
+
+                    <img src="https://img.youtube.com/vi/FMkIE1X-61I/maxresdefault.jpg" alt="Podcast Thumbnail">
+
+                    <div class="play-overlay">▶</div>
+                </a>
+
                 <div class="podcast-info">
-                    <h3>Ep 7: Backtesting Strategies That Actually Work</h3>
-                    <p>Deep insights into proper backtesting methodology, avoiding curve-fitting, and forward-testing strategies.</p>
-                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+
+                    <h3>
+                        20 Years of Trading Wisdom
+                    </h3>
+
+                    <p>
+                        Santosh Pasi shares decades of market experience,
+                        psychology, risk-management, and trading lessons.
+                    </p>
+
+                    <a href="https://www.youtube.com/watch?v=FMkIE1X-61I" target="_blank" class="podcast-btn">
+
+                        Watch Episode →
+
+                    </a>
+
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -3515,95 +3646,140 @@
             <span class="sub-title">Gallery</span>
             <h2>Moments In <span>Our Journey</span></h2>
         </div>
-        
+
         <div class="gallery-collage">
             <div class="gallery-item wide-2 tall-2">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Live Trading Workshop Mumbai</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>One-on-One Live Desk Session</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Student Meetup Bangalore</span>
                 </div>
             </div>
             <div class="gallery-item wide-2">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Algo Automation Server Backtesting</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Trading Psychology Workshop</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Group Trading Session Delhi</span>
                 </div>
             </div>
             <div class="gallery-item wide-2 tall-2">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Live Market Analysis Studio</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Hedging Strategy Session</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Options Trading Bootcamp</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Algo Code Development Masterclass</span>
                 </div>
             </div>
             <div class="gallery-item wide-3">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Annual Trading Scholar Summit</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Risk Management Workshop</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Student Success Stories</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Student Meetup Bangalore</span>
                 </div>
             </div>
             <div class="gallery-item">
                 <div class="gallery-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                    </svg>
                     <span>Advanced Trading Academy</span>
                 </div>
             </div>
@@ -3614,38 +3790,55 @@
     <section class="masterclass-section" id="masterclass">
         <div class="main-wrapper">
             <div class="main-container">
-                
+
                 <!-- Left Side Panel Content -->
                 <div class="content-left">
                     <div>
                         <h1 class="hero-title">Join The Free<br><span class="italic">Masterclass</span></h1>
-                        <p class="hero-subtitle">A free live session with Kundan Prajapati. 9+ years of real market experience. 1000+ traders mentored.</p>
-                        
+                        <p class="hero-subtitle">A free live session with Kundan Prajapati. 9+ years of real market
+                            experience. 1000+ traders mentored.</p>
+
                         <!-- What You'll Learn Bullet Points -->
                         <div class="bullet-list">
                             <div class="bullet-item">
                                 <div class="bullet-icon-box">
-                                    <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <p class="bullet-text">Why 90% of traders fail — and the exact mindset shift that changes everything</p>
+                                <p class="bullet-text">Why 90% of traders fail — and the exact mindset shift that
+                                    changes everything</p>
                             </div>
                             <div class="bullet-item">
                                 <div class="bullet-icon-box">
-                                    <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <p class="bullet-text">The institutional hedging framework used by professional traders</p>
+                                <p class="bullet-text">The institutional hedging framework used by professional traders
+                                </p>
                             </div>
                             <div class="bullet-item">
                                 <div class="bullet-icon-box">
-                                    <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <p class="bullet-text">How to build a systematic trading approach without emotional interference</p>
+                                <p class="bullet-text">How to build a systematic trading approach without emotional
+                                    interference</p>
                             </div>
                             <div class="bullet-item">
                                 <div class="bullet-icon-box">
-                                    <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <p class="bullet-text">Live Q&A with Kundan Prajapati — get your specific trading questions answered</p>
+                                <p class="bullet-text">Live Q&A with Kundan Prajapati — get your specific trading
+                                    questions answered</p>
                             </div>
                         </div>
                     </div>
@@ -3686,14 +3879,15 @@
                                 <div class="country-selector">
                                     <!-- India Flag SVG -->
                                     <svg class="flag-icon" viewBox="0 0 3 2">
-                                        <rect width="3" height="2" fill="#000080"/>
-                                        <rect width="3" height="2/3" y="0" fill="#FF9933"/>
-                                        <rect width="3" height="2/3" y="2/3" fill="#FFFFFF"/>
-                                        <rect width="3" height="2/3" y="4/3" fill="#138808"/>
-                                        <circle cx="1.5" cy="1" r="1/6" fill="#000080"/>
+                                        <rect width="3" height="2" fill="#000080" />
+                                        <rect width="3" height="2/3" y="0" fill="#FF9933" />
+                                        <rect width="3" height="2/3" y="2/3" fill="#FFFFFF" />
+                                        <rect width="3" height="2/3" y="4/3" fill="#138808" />
+                                        <circle cx="1.5" cy="1" r="1/6" fill="#000080" />
                                     </svg>
                                     <svg class="dropdown-arrow" width="8" height="6" viewBox="0 0 8 6" fill="none">
-                                        <path d="M1 1.5L4 4.5L7 1.5" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1 1.5L4 4.5L7 1.5" stroke="#718096" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
                                 <input type="tel" class="phone-input" placeholder="+91 XXXXX XXXXX" required>
@@ -3706,7 +3900,8 @@
 
                         <button type="submit" class="submit-btn">
                             Reserve My Free Seat
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
                                 <polyline points="7 7 17 7 17 17"></polyline>
                             </svg>
@@ -3724,7 +3919,7 @@
             <div class="hub-header">
                 <span class="gold-label">Academic Specifications</span>
                 <h1 class="hub-title">Program Details & FAQs</h1>
-                
+
                 <!-- Category Tabs Selector -->
                 <div class="tab-bar">
                     <button class="tab-btn active" onclick="switchCategory('algo', event)">Algo Trading (Elgo)</button>
@@ -3738,64 +3933,85 @@
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Is this suitable for beginners?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Yes, we start completely from zero. No prior coding or complex algorithmic knowledge is required to begin learning this program.</p>
+                        <p class="answer-text">Yes, we start completely from zero. No prior coding or complex
+                            algorithmic knowledge is required to begin learning this program.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What platform / broker is required?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">We primarily support Zerodha Kite Connect API and Dhan API. We cover the step-by-step connection process during Module 5.</p>
+                        <p class="answer-text">We primarily support Zerodha Kite Connect API and Dhan API. We cover the
+                            step-by-step connection process during Module 5.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Do I need coding knowledge?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">No prior coding experience is needed. The core Python programmatic concepts required for trading automation are structured directly within our system.</p>
+                        <p class="answer-text">No prior coding experience is needed. The core Python programmatic
+                            concepts required for trading automation are structured directly within our system.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What markets does this cover?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">The system is designed and optimized to trade NSE Options, Futures, and Equity market segments.</p>
+                        <p class="answer-text">The system is designed and optimized to trade NSE Options, Futures, and
+                            Equity market segments.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What if I miss live sessions?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">All live lectures are recorded and cataloged in the portal within 24 hours. You can review them anytime at your own convenience.</p>
+                        <p class="answer-text">All live lectures are recorded and cataloged in the portal within 24
+                            hours. You can review them anytime at your own convenience.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">How long is the course?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">The program runs for 8 weeks, introducing 1 comprehensive module per week alongside interactive live weekend review sessions.</p>
+                        <p class="answer-text">The program runs for 8 weeks, introducing 1 comprehensive module per week
+                            alongside interactive live weekend review sessions.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Is there ongoing support after the course?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Standard and Premium tiers feature 3-month support. Premium users receive lifetime update access and priority communication channels.</p>
+                        <p class="answer-text">Standard and Premium tiers feature 3-month support. Premium users receive
+                            lifetime update access and priority communication channels.</p>
                     </div>
                 </div>
             </div>
@@ -3805,55 +4021,76 @@
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">How many sessions are included?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">The core mentorship package includes 8 highly comprehensive 1:1 sessions over a 2-month period, combined with consistent daily support over WhatsApp.</p>
+                        <p class="answer-text">The core mentorship package includes 8 highly comprehensive 1:1 sessions
+                            over a 2-month period, combined with consistent daily support over WhatsApp.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Is this for beginners?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">We recommend having at least basic market experience. Students should ideally have traded for at least a couple of months and understood standard terminology beforehand.</p>
+                        <p class="answer-text">We recommend having at least basic market experience. Students should
+                            ideally have traded for at least a couple of months and understood standard terminology
+                            beforehand.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">How do I apply?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">You can fill out the application form on our site. Kundan personally reviews every single form submission and invites qualified candidates for a 15-minute discovery call to assess fit.</p>
+                        <p class="answer-text">You can fill out the application form on our site. Kundan personally
+                            reviews every single form submission and invites qualified candidates for a 15-minute
+                            discovery call to assess fit.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What markets / instruments are covered?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Based entirely on your personalized profile, capital size, and goals, we structure strategies across NSE Options (weekly/monthly), Futures, and liquid Equities.</p>
+                        <p class="answer-text">Based entirely on your personalized profile, capital size, and goals, we
+                            structure strategies across NSE Options (weekly/monthly), Futures, and liquid Equities.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Is there a refund policy?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Due to the highly exclusive, time-consuming nature of direct 1:1 personalized mentorship, fees are non-refundable once the sessions have commenced.</p>
+                        <p class="answer-text">Due to the highly exclusive, time-consuming nature of direct 1:1
+                            personalized mentorship, fees are non-refundable once the sessions have commenced.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What happens if I miss a session?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">We completely understand timing issues. Scheduled interactive sessions can be easily rescheduled as long as you notify your mentor at least 24 hours in advance.</p>
+                        <p class="answer-text">We completely understand timing issues. Scheduled interactive sessions
+                            can be easily rescheduled as long as you notify your mentor at least 24 hours in advance.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -3863,55 +4100,77 @@
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Do I need to know options before taking this course?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Basic option literacy is recommended. You must understand what puts and calls are, how buying and selling functions, and what expiry parameters represent. True beginners should read our foundational literature first.</p>
+                        <p class="answer-text">Basic option literacy is recommended. You must understand what puts and
+                            calls are, how buying and selling functions, and what expiry parameters represent. True
+                            beginners should read our foundational literature first.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">Is option selling risky?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Naked option selling introduces asymmetric risk. Because of this, our program strictly covers hedged execution architectures—ensuring your absolute max risk profile is defined prior to placement.</p>
+                        <p class="answer-text">Naked option selling introduces asymmetric risk. Because of this, our
+                            program strictly covers hedged execution architectures—ensuring your absolute max risk
+                            profile is defined prior to placement.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What markets and instruments are covered?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">We specialize heavily in NSE weekly Nifty and BankNifty options, alongside structured monthly capital compounding strategies.</p>
+                        <p class="answer-text">We specialize heavily in NSE weekly Nifty and BankNifty options,
+                            alongside structured monthly capital compounding strategies.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">How much capital do I need to start?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">We require a minimum capital structure of ₹2L for basic strategies. A balance of ₹5L+ is highly recommended to execute fully optimized Iron Condor margin-hedged setups.</p>
+                        <p class="answer-text">We require a minimum capital structure of ₹2L for basic strategies. A
+                            balance of ₹5L+ is highly recommended to execute fully optimized Iron Condor margin-hedged
+                            setups.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What if I miss live sessions?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">No problem at all. All live webinar elements are fully captured, indexed, and available inside the user dashboard within 24 hours of recording.</p>
+                        <p class="answer-text">No problem at all. All live webinar elements are fully captured, indexed,
+                            and available inside the user dashboard within 24 hours of recording.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <span class="question-text">What platform / broker is needed?</span>
-                        <div class="icon-indicator"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                        <div class="icon-indicator"><svg viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg></div>
                     </div>
                     <div class="accordion-body">
-                        <p class="answer-text">Any major Indian broker with active NSE F&O segment permissions will work. We strongly recommend Zerodha, Dhan, or Angel One for optimized order book execution.</p>
+                        <p class="answer-text">Any major Indian broker with active NSE F&O segment permissions will
+                            work. We strongly recommend Zerodha, Dhan, or Angel One for optimized order book execution.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -3924,7 +4183,8 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3>The Trading Scholar</h3>
-                <p>Building disciplined, systematic, and institutional thinkers in the Indian financial markets. Learn strategies built for capital preservation first.</p>
+                <p>Building disciplined, systematic, and institutional thinkers in the Indian financial markets. Learn
+                    strategies built for capital preservation first.</p>
             </div>
             <div class="footer-links">
                 <h4>Navigation</h4>
@@ -3956,10 +4216,22 @@
         <div class="footer-bottom">
             <p>&copy; 2026 The Trading Scholar. All Rights Reserved. Education-only purposes.</p>
             <div class="footer-socials">
-                <a href="#" class="footer-social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-                <a href="#" class="footer-social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 0.013-3.583 0.07-4.849 0.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
-                <a href="#" class="footer-social-btn" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.03.51.16.13.11.17.27.19.38.02.09.02.21.01.31z"/></svg></a>
-                <a href="#" class="footer-social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+                <a href="#" class="footer-social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg></a>
+                <a href="#" class="footer-social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 0.013-3.583 0.07-4.849 0.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                    </svg></a>
+                <a href="#" class="footer-social-btn" aria-label="Telegram"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.03.51.16.13.11.17.27.19.38.02.09.02.21.01.31z" />
+                    </svg></a>
+                <a href="#" class="footer-social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                    </svg></a>
             </div>
         </div>
 
@@ -4241,8 +4513,8 @@
             tiltCards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left; 
-                    const y = e.clientY - rect.top; 
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
                     const xPercent = (x / rect.width) * 100;
                     const yPercent = (y / rect.height) * 100;
@@ -4294,13 +4566,13 @@
             const isActive = item.classList.contains('active');
 
             item.parentElement.querySelectorAll('.accordion-item').forEach(el => {
-                if(el !== item) {
+                if (el !== item) {
                     el.classList.remove('active');
                     el.querySelector('.accordion-body').style.maxHeight = null;
                 }
             });
 
-            if(isActive) {
+            if (isActive) {
                 item.classList.remove('active');
                 body.style.maxHeight = null;
             } else {
