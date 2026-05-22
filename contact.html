@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join The Free Masterclass - The Trading Scholar</title>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #08090c;
+            background-image: radial-gradient(circle at 50% -20%, #111525 0%, #08090c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 24px 80px;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Container Layout mirroring the exact original style */
+        .main-wrapper {
+            width: 100%;
+            max-width: 1160px;
+            position: relative;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            background: linear-gradient(135deg, #020205 0%, #031445 45%, #0040e6 100%);
+            border-radius: 28px;
+            padding: 70px 55px 70px 70px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            align-items: stretch;
+            position: relative;
+        }
+
+        /* Left Side Content */
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 40px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: #ffffff;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span.italic {
+            font-style: italic;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            max-width: 520px;
+        }
+
+        /* Feature bullet list replaces the social row */
+        .bullet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .bullet-icon-box {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #C9A84C; /* Gold Accent */
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .bullet-icon-box svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 3;
+        }
+
+        .bullet-text {
+            font-size: 0.98rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* 2x2 Stats Grid mirroring the exact original layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stat-number {
+            font-size: 3.1rem;
+            font-weight: 800;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #ffffff;
+            opacity: 0.9;
+            line-height: 1.25;
+            max-width: 120px;
+        }
+
+        /* Right Side Overlapping White Card */
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 55px 45px;
+            color: #1a1a1a;
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.22);
+            position: relative;
+            margin-top: -110px;
+            margin-bottom: -110px;
+            align-self: center;
+            z-index: 10;
+        }
+
+        .form-title {
+            font-size: 2.4rem;
+            line-height: 1.15;
+            letter-spacing: -0.8px;
+            color: #0b0c10;
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+
+        .form-title span.bold {
+            font-weight: 800;
+        }
+
+        .form-subtitle {
+            font-size: 0.98rem;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+
+        .form-input::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        .form-input:focus {
+            border-bottom-color: #1d35f5;
+        }
+
+        /* Custom Phone Input Container with India Flag (+91) */
+        .phone-input-wrapper {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            transition: border-color 0.2s;
+        }
+
+        .phone-input-wrapper:focus-within {
+            border-bottom-color: #1d35f5;
+        }
+
+        .country-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-right: 12px;
+            margin-right: 14px;
+            border-right: 1px solid #e2e8f0;
+            cursor: pointer;
+            user-select: none;
+            height: 45px;
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 15px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+
+        .dropdown-arrow {
+            fill: #718096;
+            margin-left: 2px;
+        }
+
+        .phone-input {
+            flex: 1;
+            border: none;
+            padding: 12px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            outline: none;
+            color: #1a1a1a;
+            background: transparent;
+        }
+
+        .phone-input::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #1d35f5 0%, #151fe3 100%);
+            color: #ffffff;
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(29, 53, 245, 0.35);
+            margin-top: 35px;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(29, 53, 245, 0.45);
+        }
+
+        .submit-btn svg {
+            stroke-width: 2.5;
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+        }
+
+        /* Collapsible Masterclass FAQs under the main container */
+        .faq-outer-section {
+            margin-top: 150px;
+            width: 100%;
+        }
+
+        .faq-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: #111216;
+            border: 1px solid #1e2026;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.25s;
+        }
+
+        .faq-item:hover {
+            border-color: #2a2d36;
+        }
+
+        .faq-header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            gap: 20px;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .faq-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            transition: transform 0.25s;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px 24px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #94a3b8;
+        }
+
+        .faq-item.active {
+            border-color: #1d35f5;
+        }
+
+        .faq-item.active .faq-icon {
+            background-color: #1d35f5;
+            color: #ffffff;
+        }
+
+        .faq-item.active .faq-icon svg {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 1024px) {
+            body {
+                padding: 40px 16px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 50px 40px;
+                gap: 60px;
+            }
+
+            .form-card {
+                margin-top: 0;
+                margin-bottom: 0;
+                width: 100%;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .content-left {
+                padding-right: 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .faq-outer-section {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-container {
+                padding: 40px 24px;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .form-card {
+                padding: 40px 24px;
+            }
+
+            .form-title {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="main-container">
+            
+            <!-- Left Side Panel Content -->
+            <div class="content-left">
+                <div>
+                    <h1 class="hero-title">Join The Free<br><span class="italic">Masterclass</span></h1>
+                    <p class="hero-subtitle">A free live session with Kundan Prajapati. 9+ years of real market experience. 1000+ traders mentored.</p>
+                    
+                    <!-- What You'll Learn Bullet Points -->
+                    <div class="bullet-list">
+                        <div class="bullet-item">
+                            <div class="bullet-icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <p class="bullet-text">Why 90% of traders fail — and the exact mindset shift that changes everything</p>
+                        </div>
+                        <div class="bullet-item">
+                            <div class="bullet-icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <p class="bullet-text">The institutional hedging framework used by professional traders</p>
+                        </div>
+                        <div class="bullet-item">
+                            <div class="bullet-icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <p class="bullet-text">How to build a systematic trading approach without emotional interference</p>
+                        </div>
+                        <div class="bullet-item">
+                            <div class="bullet-icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <p class="bullet-text">Live Q&A with Kundan Prajapati — get your specific trading questions answered</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Masterclass Statistics Grid -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">9+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Traders Mentored</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Free Session</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Live</div>
+                        <div class="stat-label">Q&A Included</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Overlapping Registration Card -->
+            <div class="form-card">
+                <h2 class="form-title">Reserve My<span class="bold"><br>Free Seat.</span></h2>
+                <p class="form-subtitle">Spaces are limited for the live stream. Secure your access now.</p>
+
+                <form action="#" method="POST" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="phone-input-wrapper">
+                            <div class="country-selector">
+                                <!-- India Flag SVG -->
+                                <svg class="flag-icon" viewBox="0 0 3 2">
+                                    <rect width="3" height="2" fill="#000080"/>
+                                    <rect width="3" height="2/3" y="0" fill="#FF9933"/>
+                                    <rect width="3" height="2/3" y="2/3" fill="#FFFFFF"/>
+                                    <rect width="3" height="2/3" y="4/3" fill="#138808"/>
+                                    <circle cx="1.5" cy="1" r="1/6" fill="#000080"/>
+                                </svg>
+                                <svg class="dropdown-arrow" width="8" height="6" viewBox="0 0 8 6" fill="none">
+                                    <path d="M1 1.5L4 4.5L7 1.5" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <input type="tel" class="phone-input" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Reserve My Free Seat
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Masterclass Collapsible FAQs Section -->
+        <div class="faq-outer-section">
+            <h3 class="faq-title">Masterclass FAQs</h3>
+            <div class="faq-list">
+                
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span class="faq-question">Is this masterclass truly free?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="faq-answer">Yes, completely free. There are no hidden fees or card authorizations required to register or join the stream.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span class="faq-question">Who is this for?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="faq-answer">This session is designed for traders of all experience levels who want to progress from manual speculation to systematic, institutional-grade risk management.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span class="faq-question">Will I get a recording?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="faq-answer">Yes, we will distribute link access to the session recordings to all registered participants within 24 hours of the live stream's conclusion.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Collapsible Accordion logic -->
+    <script>
+        function toggleFaq(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.faq-content');
+            const isActive = item.classList.contains('active');
+
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(el => {
+                if (el !== item) {
+                    el.classList.remove('active');
+                    el.querySelector('.faq-content').style.maxHeight = null;
+                }
+            });
+
+            // Toggle selected item
+            if (isActive) {
+                item.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+</html>
