@@ -1250,10 +1250,10 @@
         .stack-title h3 {
             font-size: 11px;
             font-weight: 500;
-            color: #EF4444;
+            color: #2563EB;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border: 1px solid rgba(239, 68, 68, 0.25);
+            border: 1px solid #2563EB;
             padding: 4px 12px;
             border-radius: 20px;
             display: inline-block;
@@ -1305,13 +1305,45 @@
         }
 
         .stack-right {
-            width: 40%;
+            width: 38%;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             position: relative;
+
             height: 100%;
+
+            overflow: hidden;
         }
+
+        .stack-right img {
+            width: 100%;
+            max-width: 900px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            display: block;
+
+            transition:
+                transform 0.4s ease,
+                filter 0.4s ease;
+
+            filter:
+                drop-shadow(0 20px 35px rgba(0, 0, 0, 0.45));
+        }
+
+        /* HOVER EFFECT */
+        .stack-card:hover .stack-right img {
+            transform: scale(1.05);
+        }
+
+        background-image: radial-gradient(circle at top right,
+            rgba(37, 99, 235, 0.12),
+            transparent 35%);
 
         .view-all-btn {
             align-self: flex-start;
@@ -3327,14 +3359,9 @@
                     </div>
                 </div>
                 <div class="stack-right">
-                    <svg viewBox="0 0 400 400" width="85%" height="85%">
-                        <circle cx="200" cy="200" r="120" stroke="rgba(255, 255, 255, 0.1)" stroke-width="4"
-                            fill="none" />
-                        <circle cx="200" cy="200" r="80" stroke="var(--secondary-accent)" stroke-width="2"
-                            fill="none" />
-                        <path d="M200,80 L200,320 M80,200 L320,200" stroke="rgba(255, 255, 255, 0.08)"
-                            stroke-width="2" />
-                    </svg>
+
+                    <img src="service1.png" alt="Service 1">
+
                 </div>
             </div>
 
@@ -3363,11 +3390,7 @@
                     </div>
                 </div>
                 <div class="stack-right">
-                    <svg viewBox="0 0 400 400" width="85%" height="85%">
-                        <rect x="100" y="100" width="200" height="200" rx="20" stroke="var(--secondary-accent)"
-                            stroke-width="3" fill="none" />
-                        <circle cx="200" cy="200" r="40" fill="none" stroke="var(--soft-accent)" stroke-width="2" />
-                    </svg>
+                    <img src="service2.png" alt="Service 2">
                 </div>
             </div>
 
@@ -3396,12 +3419,7 @@
                     </div>
                 </div>
                 <div class="stack-right">
-                    <svg viewBox="0 0 400 400" width="85%" height="85%">
-                        <polygon points="200,80 320,280 80,280" stroke="rgba(255, 255, 255, 0.1)" stroke-width="4"
-                            fill="none" />
-                        <circle cx="200" cy="200" r="50" fill="none" stroke="var(--secondary-accent)"
-                            stroke-width="2" />
-                    </svg>
+                    <img src="service3.png" alt="Service 3">
                 </div>
             </div>
 
@@ -3430,11 +3448,7 @@
                     </div>
                 </div>
                 <div class="stack-right">
-                    <svg viewBox="0 0 400 400" width="85%" height="85%">
-                        <path d="M100,200 Q200,50 300,200 T300,350" stroke="var(--secondary-accent)" stroke-width="3"
-                            fill="none" />
-                        <circle cx="200" cy="200" r="30" fill="var(--soft-accent)" />
-                    </svg>
+                    <img src="service4.png" alt="Service 4">
                 </div>
             </div>
 
@@ -3463,15 +3477,13 @@
                     </div>
                 </div>
                 <div class="stack-right">
-                    <svg viewBox="0 0 400 400" width="85%" height="85%">
-                        <g transform="translate(200, 200)">
-                            <rect x="-80" y="-80" width="160" height="160" rx="30" transform="rotate(45)"
-                                stroke="var(--secondary-accent)" stroke-width="3" fill="none" />
-                            <circle cx="0" cy="0" r="20" fill="var(--primary-accent)" />
-                        </g>
-                    </svg>
+                    <img src="service5.png" alt="Service 5">
                 </div>
             </div>
+
+
+        </div>
+        </div>
 
         </div>
     </section>
