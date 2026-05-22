@@ -1526,7 +1526,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-top: 1px solid var(--border-slate);
             position: relative;
             z-index: 10;
         }
@@ -1649,13 +1648,12 @@
 
         /* INTEGRATED SECTION: Learn Beyond The Markets (Podcasts) */
         .podcast-section {
-            background-color: var(--bg-dark-secondary);
+            background-color: var(--bg-dark);
             padding: 120px 40px;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-top: 1px solid var(--border-slate);
             position: relative;
             z-index: 10;
         }
@@ -1743,7 +1741,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-top: 1px solid var(--border-slate);
             position: relative;
             z-index: 10;
         }
@@ -1810,7 +1807,6 @@
             justify-content: center;
             position: relative;
             z-index: 10;
-            border-top: 1px solid var(--border-slate);
         }
 
         .main-wrapper {
@@ -2097,7 +2093,6 @@
             justify-content: center;
             position: relative;
             z-index: 10;
-            border-top: 1px solid var(--border-slate);
         }
 
         .hub-container {
@@ -2111,7 +2106,7 @@
         }
 
         .gold-label {
-            color: var(--accent-gold);
+            color: var(--secondary-accent);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2.5px;
@@ -2122,8 +2117,8 @@
 
         .hub-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 300;
             letter-spacing: -1.5px;
             margin-bottom: 30px;
             color: #ffffff;
@@ -2159,8 +2154,8 @@
         }
 
         .tab-btn.active {
-            background-color: var(--accent-gold);
-            color: #000000;
+            background-color: var(--secondary-accent);
+            color: #ffffff;
             font-weight: 700;
         }
 
@@ -2242,12 +2237,12 @@
 
         /* Active styling modifications */
         .accordion-item.active {
-            border-color: var(--accent-gold);
+            border-color: var(--secondary-accent);
         }
 
         .accordion-item.active .icon-indicator {
-            background-color: var(--accent-gold);
-            color: #000000;
+            background-color: var(--secondary-accent);
+            color: #ffffff;
         }
 
         .accordion-item.active .icon-indicator svg {
@@ -2267,7 +2262,6 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            border-top: 1px solid var(--border-slate);
             z-index: 10;
         }
 
@@ -2283,9 +2277,10 @@
 
         .footer-brand h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
 
         .footer-brand p {
@@ -2301,7 +2296,7 @@
             margin-bottom: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--accent-gold);
+            color: var(--secondary-accent);
         }
 
         .footer-links ul {
@@ -2384,13 +2379,21 @@
 
         .giant-footer-logo {
             font-family: 'Outfit', sans-serif;
-            font-size: 15vw;
+            font-size: 8vw;
             font-weight: 900;
             text-align: center;
-            color: rgba(255, 255, 255, 0.015);
+            color: rgba(255, 255, 255, 0.08);
             user-select: none;
             pointer-events: none;
             line-height: 1;
+        }
+
+        .giant-footer-logo img {
+            height: 150px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.15;
+            filter: brightness(0) invert(1);
         }
 
         .giant-footer-fade {
@@ -3467,6 +3470,42 @@
                     <a href="#" class="podcast-btn">Listen Podcast →</a>
                 </div>
             </div>
+
+            <!-- Podcast Card 4 - NEW -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+                <div class="podcast-info">
+                    <h3>Ep 9: Position Sizing for Capital Preservation</h3>
+                    <p>Master the institutional approach to sizing trades based on account capital, volatility, and risk tolerance.</p>
+                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+                </div>
+            </div>
+
+            <!-- Podcast Card 5 - NEW -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+                <div class="podcast-info">
+                    <h3>Ep 8: Systematic Entry and Exit Points</h3>
+                    <p>Learn how to define clear entry/exit signals and avoid the trap of emotional decision-making in live markets.</p>
+                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+                </div>
+            </div>
+
+            <!-- Podcast Card 6 - NEW -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+                <div class="podcast-info">
+                    <h3>Ep 7: Backtesting Strategies That Actually Work</h3>
+                    <p>Deep insights into proper backtesting methodology, avoiding curve-fitting, and forward-testing strategies.</p>
+                    <a href="#" class="podcast-btn">Listen Podcast →</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -3490,16 +3529,82 @@
                     <span>One-on-One Live Desk Session</span>
                 </div>
             </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Student Meetup Bangalore</span>
+                </div>
+            </div>
             <div class="gallery-item wide-2">
                 <div class="gallery-placeholder">
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     <span>Algo Automation Server Backtesting</span>
                 </div>
             </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Trading Psychology Workshop</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Group Trading Session Delhi</span>
+                </div>
+            </div>
+            <div class="gallery-item wide-2 tall-2">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Live Market Analysis Studio</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Hedging Strategy Session</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Options Trading Bootcamp</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Algo Code Development Masterclass</span>
+                </div>
+            </div>
             <div class="gallery-item wide-3">
                 <div class="gallery-placeholder">
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Annual Trading Scholar Summit</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Risk Management Workshop</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Student Success Stories</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     <span>Student Meetup Bangalore</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Advanced Trading Academy</span>
                 </div>
             </div>
         </div>
@@ -3860,7 +3965,9 @@
 
         <!-- Giant bottom brand watermark with elegant bottom fade overlay -->
         <div class="giant-footer-logo-container">
-            <div class="giant-footer-logo">TTS</div>
+            <div class="giant-footer-logo">
+                <img src="logo.png" alt="Trading Scholar Logo">
+            </div>
             <div class="giant-footer-fade"></div>
         </div>
     </footer>
