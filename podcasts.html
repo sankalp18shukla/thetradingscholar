@@ -1,0 +1,2538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcasts - The Trading Scholar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Lexend:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #F7F9FC;
+            --primary-accent: #2563EB;
+            --secondary-accent: #2563EB;
+            --soft-accent: #4F7DF3;
+            --primary-text: #0B0F19;
+            --secondary-text: #5B6475;
+            --border-color: #E2E8F0;
+            --circle-bg: #EFF6FF;
+            --bg-dark: #030712;
+            --bg-dark-secondary: #0B0F19;
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --border-slate: rgba(255, 255, 255, 0.08);
+            --accent-gold: #C9A84C;
+            --text-secondary: #94A3B8;
+            --color-black: #030712;
+            --color-white: #ffffff;
+            --color-dark: #101820;
+            --color-blue: #2563EB;
+            --color-blue-glow: rgba(37, 99, 235, 0.5);
+            --gradient-button: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --font-primary: 'Inter', sans-serif;
+            --font-headings: 'Outfit', sans-serif;
+            --font-nav: 'Lexend', sans-serif;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        html,
+        body {
+            background-color: var(--bg-dark);
+            color: var(--color-white);
+            overflow-x: hidden;
+            position: relative;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            width: 100%;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            font-family: var(--font-primary);
+        }
+
+        a,
+        span.nav-dropdown-trigger {
+            cursor: none;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .custom-cursor {
+            width: 10px;
+            height: 10px;
+            background-color: #2563EB;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
+        }
+
+        /* ===== TRADING GRAPH BACKGROUND ===== */
+        .bg-chart-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-chart-lines svg {
+            width: 100%;
+            height: 100%;
+            min-height: 2000px;
+        }
+
+        .chart-grid {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.015);
+            stroke-width: 1;
+        }
+
+        .chart-line-green {
+            fill: none;
+            stroke: #10B981;
+            stroke-width: 2;
+            opacity: 0.12;
+            filter: drop-shadow(0 0 6px #10B981);
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawGreenPath 24s linear infinite;
+        }
+
+        .chart-line-red {
+            fill: none;
+            stroke: #EF4444;
+            stroke-width: 2;
+            opacity: 0.1;
+            filter: drop-shadow(0 0 6px #EF4444);
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawRedPath 28s linear infinite;
+        }
+
+        @keyframes drawGreenPath {
+            0% { stroke-dashoffset: 2000; }
+            50% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes drawRedPath {
+            0% { stroke-dashoffset: -2000; }
+            50% { stroke-dashoffset: -1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* ===== GLOW BORDER ANIMATION ===== */
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .glow-border-wrapper {
+            position: relative;
+            border-radius: 28px;
+            padding: 1.5px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            display: flex;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .glow-border-wrapper.glowing::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1.5px;
+            background: linear-gradient(90deg, 
+                #2563EB 0%, 
+                #60A5FA 25%, 
+                #2563EB 50%, 
+                #60A5FA 75%, 
+                #2563EB 100%);
+            background-size: 200% 100%;
+            animation: glowFlow 4s linear infinite;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 1;
+        }
+
+        @keyframes glowFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .glow-border-inner {
+            position: relative;
+            background: #050507;
+            border-radius: 26px;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* ===== WORDPRESS BLOCK BUTTON ===== */
+        .wp-block-button__link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-nav);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+        .is-style-fill .wp-block-button__link {
+            background: var(--gradient-button);
+            color: var(--color-white) !important;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+        }
+
+        .is-style-fill .wp-block-button__link:hover {
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.55);
+            transform: translateY(-2px);
+        }
+
+        .is-style-outline-alt .wp-block-button__link {
+            background: transparent;
+            color: #2563EB;
+            border: 1.5px solid rgba(37, 99, 235, 0.5);
+        }
+
+        .is-style-outline-alt .wp-block-button__link:hover {
+            background: #2563EB;
+            color: var(--color-white) !important;
+            border-color: #2563EB;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+        }
+
+        .gp-arrow {
+            display: inline-flex;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .wp-block-button__link:hover .gp-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ===== SLIDE-ANIMATION BUTTONS ===== */
+        .hero-cta-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            text-decoration: none;
+            font-family: var(--font-nav);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease,
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease;
+        }
+
+        .hero-cta-btn.filled {
+            background: var(--gradient-button);
+            color: #ffffff !important;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+        }
+
+        .hero-cta-btn.filled:hover {
+            box-shadow: 0 10px 32px rgba(37, 99, 235, 0.6);
+        }
+
+        .hero-cta-btn.outline {
+            background: transparent;
+            color: #2563EB !important;
+            border: 1.5px solid rgba(37, 99, 235, 0.5);
+        }
+
+        .hero-cta-btn.outline:hover {
+            background: #2563EB;
+            color: #ffffff !important;
+            border-color: #2563EB;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+        }
+
+        .hero-cta-btn.black-style {
+            background: #030712;
+            color: #ffffff !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-cta-btn.black-style:hover {
+            background: #ffffff;
+            color: #030712 !important;
+            border-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-cta-btn.white-style {
+            background: #ffffff;
+            color: #030712 !important;
+            border: 1px solid transparent;
+            box-shadow: 0 10px 32px rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-cta-btn.white-style:hover {
+            background: #2563EB;
+            color: #ffffff !important;
+            box-shadow: 0 10px 32px rgba(37, 99, 235, 0.5);
+        }
+
+        .hero-cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-sizer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            opacity: 0;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .btn-row {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 30px;
+            white-space: nowrap;
+            transition: transform 0.46s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .btn-visible {
+            transform: translateY(0%);
+        }
+
+        .hero-cta-btn:hover .btn-visible {
+            transform: translateY(-105%);
+        }
+
+        .btn-ghost {
+            transform: translateY(105%);
+        }
+
+        .hero-cta-btn:hover .btn-ghost {
+            transform: translateY(0%);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1440px;
+            z-index: 1000;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 15px 0;
+            box-shadow: none !important;
+            transition: all 0.5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .header.scrolled {
+            top: 20px;
+            width: 95%;
+            max-width: 1350px;
+            background-color: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 10px 40px;
+            box-shadow: none !important;
+        }
+
+        .menu-item-link {
+            color: rgba(255, 255, 255, 0.65) !important;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color .3s ease;
+        }
+
+        .menu-item-link:hover {
+            color: #FFFFFF !important;
+        }
+
+        .forward-sign {
+            color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .container-fluid--menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header--logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        #header--logo img {
+            width: 35px;
+            height: 35px;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            filter: invert(31%) sepia(98%) saturate(1832%) hue-rotate(213deg) brightness(94%) contrast(96%);
+        }
+
+        .logo-text-fallback {
+            font-family: var(--font-headings);
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #2563EB;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .header.scrolled .logo-text-fallback {
+            font-size: 1.25rem;
+            color: #FFFFFF;
+        }
+
+        .header.scrolled #header--logo img {
+            filter: invert(100%);
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item-link {
+            font-family: var(--font-nav);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--secondary-text);
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-item-link:hover,
+        .menu-item.active .menu-item-link {
+            color: #2563EB;
+        }
+
+        .menu-item-arv svg {
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item-link:hover .menu-item-arv svg {
+            transform: translateY(2px);
+        }
+
+        .forward-sign {
+            color: var(--border-color);
+            margin-left: 15px;
+            font-weight: 300;
+            font-size: 13px;
+        }
+
+        .header-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        /* BURGER */
+        .header--burger {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            outline: none;
+            z-index: 10001;
+        }
+
+        .header--burger svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header--burger .line {
+            fill: none;
+            stroke: #2563EB;
+            stroke-width: 5.5;
+            stroke-linecap: round;
+            transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+        }
+
+        .header.scrolled .header--burger .line {
+            stroke: #FFFFFF;
+        }
+
+        .header--burger .line1 { stroke-dasharray: 40 139; }
+        .header--burger .line2 { stroke-dasharray: 40 139; }
+        .header--burger .line3 { stroke-dasharray: 40 139; }
+
+        .header--burger.active .line1 {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+        }
+
+        .header--burger.active .line2 {
+            stroke-dasharray: 1 60;
+            stroke-dashoffset: -30;
+        }
+
+        .header--burger.active .line3 {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+        }
+
+        /* ===== DEMAT DROPDOWN ===== */
+        .demat-dropdown {
+            position: absolute;
+            top: calc(100% + 18px);
+            right: 0;
+            width: 980px;
+            max-width: calc(100vw - 40px);
+            background: rgba(5, 8, 22, 0.98);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: 24px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1001;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(37, 99, 235, 0.08);
+        }
+
+        .demat-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 26px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-box:hover {
+            border-color: rgba(37, 99, 235, 0.4);
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .dropdown-box.highlighted {
+            background: rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.35);
+        }
+
+        .dropdown-box.highlighted:hover {
+            border-color: rgba(37, 99, 235, 0.6);
+            background: rgba(37, 99, 235, 0.12);
+        }
+
+        .box-header {
+            margin-bottom: 2px;
+        }
+
+        .box-title {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #FFFFFF !important;
+            margin-bottom: 4px;
+        }
+
+        .box-subtitle {
+            font-size: 0.73rem;
+            color: #3B82F6;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+        }
+
+        .box-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            flex: 1;
+        }
+
+        .box-list li {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.35;
+        }
+
+        .box-list li span.check-icon {
+            color: #3B82F6;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .dropdown-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 11px 18px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .accent-color-link {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+        }
+
+        .accent-color-link:hover {
+            box-shadow: 0 6px 26px rgba(37, 99, 235, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .light-outline-link {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.85) !important;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .light-outline-link:hover {
+            background: rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.5);
+            color: #FFFFFF !important;
+        }
+
+        .demat-btn .wp-block-button__link {
+            background: transparent;
+            color: #2563EB !important;
+            border: 1.5px solid rgba(37, 99, 235, 0.5);
+        }
+
+        .demat-btn .wp-block-button__link:hover {
+            background: #2563EB;
+            color: #FFFFFF !important;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .header.scrolled .demat-btn .wp-block-button__link {
+            color: #FFFFFF !important;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .header.scrolled .demat-btn .wp-block-button__link:hover {
+            background: #2563EB;
+            border-color: #2563EB;
+        }
+
+        /* ===== MEGA MENU CONTAINER ===== */
+        .header--mega-menu-container {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            width: 100%;
+            background: rgba(6, 8, 22, 0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            border-radius: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            padding: 32px 48px;
+            z-index: 998;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 99, 235, 0.06);
+        }
+
+        .header.mega-menu-open .header--mega-menu-container {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .header--mega-menu-item {
+            display: none;
+        }
+
+        .header--mega-menu-item.active {
+            display: block;
+        }
+
+        .mega-menu-inner {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .mega-menu-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mega-menu-link-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            transition: background 0.25s ease;
+            text-decoration: none;
+            cursor: none;
+        }
+
+        .mega-menu-link-item:hover {
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .mega-link-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .mega-link-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: #60A5FA;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .mega-link-title {
+            font-family: var(--font-headings);
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .mega-link-desc {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.75);
+            line-height: 1.4;
+            display: block;
+        }
+
+        .mega-collage-panel {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .mega-collage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .mega-collage-img {
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mega-collage-img.tall {
+            grid-row: span 2;
+        }
+
+        .mega-collage-img-inner {
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+        }
+
+        .mega-collage-label {
+            font-size: 10px;
+            color: rgba(148, 163, 184, 0.6);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .mega-collage-icon {
+            width: 24px;
+            height: 24px;
+            stroke: rgba(96, 165, 250, 0.5);
+            fill: none;
+        }
+
+        .mega-cta-bottom {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mega-cta-bottom-text {
+            font-size: 13px;
+            color: rgba(148, 163, 184, 0.7);
+        }
+
+        .mega-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: #FFFFFF !important;
+            border-radius: 30px;
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mega-cta-link:hover {
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(5, 8, 22, 0.97);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .mobile-nav a {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: #3B82F6;
+        }
+
+        .mobile-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: #FFFFFF;
+            border-radius: 50px;
+            font-family: var(--font-nav);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== PODCAST HERO ===== */
+        .podcast-hero {
+            padding: 180px 20px 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .podcast-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: #60A5FA;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .podcast-hero h1 {
+            font-family: var(--font-headings);
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.1;
+            color: #FFFFFF;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .podcast-hero h1 span.accent {
+            font-weight: 800;
+            font-style: italic;
+            color: #60A5FA;
+        }
+
+        .podcast-hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        /* Platform buttons */
+        .podcast-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        /* ===== PODCASTS GRID ===== */
+        .podcasts-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .podcast-grid-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 120px;
+        }
+
+        .podcast-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s ease;
+        }
+
+        .podcast-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .podcast-thumb {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .podcast-thumb img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .podcast-card:hover .podcast-thumb img {
+            transform: scale(1.05);
+        }
+
+        .podcast-thumb::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.15));
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            z-index: 2;
+            transition: 0.3s ease;
+        }
+
+        .podcast-card:hover .play-overlay {
+            background: #2563EB;
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            z-index: 3;
+        }
+
+        .host-guest-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            z-index: 3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .host-guest-badge.host {
+            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+        }
+
+        .host-guest-badge.guest {
+            background: linear-gradient(135deg, #B45309 0%, #F59E0B 100%);
+        }
+
+        .podcast-info {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .podcast-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #60A5FA;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .podcast-info h3 {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .podcast-card:hover .podcast-info h3 {
+            color: #60A5FA;
+        }
+
+        .podcast-info p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .podcast-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 18px;
+        }
+
+        .watch-btn-wrapper {
+            display: inline-flex;
+        }
+
+        .platform-icon-wrap {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-link {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .icon-link:hover {
+            background: #2563EB;
+            border-color: #2563EB;
+            transform: translateY(-2px);
+        }
+
+        .icon-link svg {
+            width: 14px;
+            height: 14px;
+            fill: #FFFFFF;
+        }
+
+        /* ===== EDGE-GLOWING CTA CARD ===== */
+        .cta-convert-banner {
+            max-width: 1200px;
+            margin: 0 auto 120px auto;
+            position: relative;
+            z-index: 10;
+            padding: 0 40px;
+        }
+
+        .cta-banner-inner {
+            padding: 60px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .cta-banner-content {
+            max-width: 600px;
+        }
+
+        .cta-banner-content h2 {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+
+        .cta-banner-content h2 span {
+            font-weight: 800;
+            font-style: italic;
+            color: #60A5FA;
+        }
+
+        .cta-banner-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        /* ===== LIGHTBOX / MODAL ===== */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .video-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 960px;
+            background: #090d1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.15);
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .video-modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .video-container-modal {
+            position: relative;
+            padding-top: 56.25%;
+            width: 100%;
+        }
+
+        .video-container-modal iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            padding: 80px 60px 40px 60px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-headings);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #3B82F6;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social-link:hover {
+            background: #2563EB;
+            border-color: #2563EB;
+            transform: translateY(-2px);
+        }
+
+        .footer-social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+            display: block;
+            margin: auto;
+            transition: fill 0.3s ease;
+        }
+
+        .footer-social-link:hover svg {
+            fill: #FFFFFF;
+        }
+
+        .giant-footer-logo-container {
+            position: relative;
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .giant-footer-logo img {
+            height: 150px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.15;
+            filter: brightness(0) invert(1);
+        }
+
+        .giant-footer-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, rgba(3, 7, 18, 0) 100%);
+            pointer-events: none;
+        }
+
+        /* ===== FIXED BOTTOM DOCK ===== */
+        .fixed-bottom-dock {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 9999;
+        }
+
+        .social-dock-link {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(11, 15, 25, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(11, 15, 25, 0.1);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .social-dock-link:hover {
+            transform: translateY(-4px);
+            border-color: #2563EB;
+            background-color: #2563EB;
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+        }
+
+        .social-dock-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-text);
+            display: block;
+            margin: auto;
+            transition: fill 0.3s ease;
+        }
+
+        .social-dock-link:hover svg {
+            fill: #FFFFFF;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            * {
+                cursor: auto !important;
+            }
+
+            .custom-cursor {
+                display: none !important;
+            }
+
+            .header,
+            .header.scrolled {
+                padding: 12px 20px;
+                width: calc(100% - 20px);
+                border-radius: 30px;
+                background-color: rgba(3, 7, 18, 0.96);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                top: 12px;
+            }
+
+            #desktop,
+            .demat-btn {
+                display: none !important;
+            }
+
+            .header--burger {
+                display: block !important;
+            }
+
+            .demat-dropdown {
+                display: none !important;
+            }
+
+            .logo-text-fallback,
+            .header.scrolled .logo-text-fallback {
+                color: #FFFFFF;
+            }
+
+            #header--logo img {
+                filter: invert(100%);
+            }
+
+            .podcast-hero {
+                padding-top: 140px;
+            }
+
+            .podcast-hero h1 {
+                font-size: 3rem;
+            }
+
+            .podcast-grid-main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-banner-inner {
+                flex-direction: column;
+                padding: 40px;
+                text-align: center;
+                gap: 24px;
+            }
+
+            .fixed-bottom-dock {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .mega-menu-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .mega-collage-panel {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .podcast-grid-main {
+                grid-template-columns: 1fr;
+            }
+
+            .podcasts-container {
+                padding: 0 20px;
+            }
+
+            .podcast-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 40px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Background Loop Chart -->
+    <div class="bg-chart-lines">
+        <svg viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            
+            <!-- Dynamic Green Trend Path (Looping) -->
+            <path class="chart-line-green" d="M -100,500 C 150,300 250,600 500,400 C 750,200 950,550 1200,350 C 1450,150 1550,450 1800,300" />
+            <!-- Dynamic Red Trend Path (Looping) -->
+            <path class="chart-line-red" d="M -100,700 C 200,850 350,600 650,750 C 950,900 1100,650 1350,800 C 1600,950 1700,700 1900,850" />
+        </svg>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" data-header id="navbar">
+        <div class="container-fluid">
+            <div class="row align-items-center header--frow">
+                <div class="col-12">
+                    <div class="container-fluid--menu">
+
+                        <a href="index.html" class="header--logo-link">
+                            <div id="header--logo">
+                                <img src="logo.png" alt="The Trading Scholar"
+                                    style="width: 45px; height: 38px; display: block; object-fit: contain;">
+                            </div>
+                            <div class="header--logo-two">
+                                <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
+                            </div>
+                        </a>
+
+                        <nav id="nav-main" class="nav-main">
+                            <ul class="menu" id="desktop">
+                                <li class="menu-item">
+                                    <a class="menu-item-link" href="index.html">Home</a>
+                                    <span class="forward-sign">/</span>
+                                </li>
+                                <li class="menu-item menu-item-has-menu" data-menu-target="courses-menu">
+                                    <a class="menu-item-link" href="index.html#courses">Courses
+                                        <span class="menu-item-arv">
+                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <span class="forward-sign">/</span>
+                                </li>
+                                <li class="menu-item menu-item-has-menu" data-menu-target="services-menu">
+                                    <a class="menu-item-link" href="index.html#stack-viewport">Services
+                                        <span class="menu-item-arv">
+                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <span class="forward-sign">/</span>
+                                </li>
+                                <li class="menu-item menu-item-has-menu" data-menu-target="about-menu">
+                                    <a class="menu-item-link" href="index.html#about-viewport">About
+                                        <span class="menu-item-arv">
+                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <span class="forward-sign">/</span>
+                                </li>
+                                <li class="menu-item active">
+                                    <a class="menu-item-link" href="#">Podcast</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="header-actions-group">
+                            <div class="wp-block-button is-style-outline-alt header-btn demat-btn">
+                                <span class="wp-block-button__link" id="dematTrigger">
+                                    <span class="btn-text">Open Free Demat Account</span>
+                                    <span class="gp-arrow">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="demat-dropdown" id="dematDropdown">
+                                <div class="dropdown-box">
+                                    <div class="box-header">
+                                        <div class="box-title">5Paisa</div>
+                                        <div class="box-subtitle">India's Flat-Fee Broker</div>
+                                    </div>
+                                    <ul class="box-list">
+                                        <li><span class="check-icon">✓</span>Flat ₹20/order all segments</li>
+                                        <li><span class="check-icon">✓</span>Free equity delivery</li>
+                                        <li><span class="check-icon">✓</span>Easy mobile app</li>
+                                        <li><span class="check-icon">✓</span>Zero AMC first year</li>
+                                    </ul>
+                                    <a href="#" class="dropdown-link light-outline-link">Open Free Account →</a>
+                                </div>
+                                <div class="dropdown-box">
+                                    <div class="box-header">
+                                        <div class="box-title">Zerodha</div>
+                                        <div class="box-subtitle">India's No.1 Stock Broker</div>
+                                    </div>
+                                    <ul class="box-list">
+                                        <li><span class="check-icon">✓</span>Zero brokerage equity delivery</li>
+                                        <li><span class="check-icon">✓</span>Flat ₹20/order F&amp;O</li>
+                                        <li><span class="check-icon">✓</span>Trusted by 1 Cr+ traders</li>
+                                        <li><span class="check-icon">✓</span>Kite — best-in-class platform</li>
+                                    </ul>
+                                    <a href="#" class="dropdown-link light-outline-link">Open Free Account →</a>
+                                </div>
+                                <div class="dropdown-box highlighted">
+                                    <div class="box-header">
+                                        <div class="box-title">Free Masterclass</div>
+                                        <div class="box-subtitle">With Chandan Prajapati</div>
+                                    </div>
+                                    <ul class="box-list">
+                                        <li><span class="check-icon">✓</span>Institutional hedging framework</li>
+                                        <li><span class="check-icon">✓</span>Why 90% of traders fail</li>
+                                        <li><span class="check-icon">✓</span>Build a systematic approach</li>
+                                        <li><span class="check-icon">✓</span>Live Q&amp;A with Chandan</li>
+                                    </ul>
+                                    <a href="index.html#masterclass" class="dropdown-link accent-color-link">Reserve My Free Seat
+                                        →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button aria-label="Burger Icon" class="header--burger" id="menuToggle">
+                            <svg width="40" height="40" viewBox="0 0 100 100">
+                                <path class="line line1"
+                                    d="M 20,29 H 80 C 80,29 94,28 94,66 94,77 90,81 85,81 79,81 75,75 75,75 L 25,25" />
+                                <path class="line line2" d="M 20,50 H 80" />
+                                <path class="line line3"
+                                    d="M 20,70 H 80 C 80,70 94,71 94,33 94,22 90,18 85,18 79,18 75,25 75,25 L 25,75" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEGA MENU OVERLAYS -->
+        <div class="header--mega-menu-container">
+            <div class="header--mega-menu-item" data-menu-id="courses-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#courses" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algo Trading — Elgo System</span>
+                                <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with precision.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#courses" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1-on-1 Live Mentorship</span>
+                                <span class="mega-link-desc">Direct coaching with Chandan. Personalised systems built around your capital.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#courses" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Option Selling &amp; Hedging</span>
+                                <span class="mega-link-desc">Consistent monthly income. Defined risk. Institutional-style execution.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Trading Desk</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z" fill="rgba(96,165,250,0.4)" />
+                                    </svg>
+                                    <span class="mega-collage-label">Student Results</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">1000+ Traders</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Explore all academy programs and find your path</span>
+                    <a href="index.html#courses" class="mega-cta-link">View All Programs →</a>
+                </div>
+            </div>
+
+            <div class="header--mega-menu-item" data-menu-id="services-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#service-1" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Expert Mutual Funds Structuring</span>
+                                <span class="mega-link-desc">Goal-aligned portfolios, risk calibration, and long-term wealth building.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-2" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Custom Strategy Automation</span>
+                                <span class="mega-link-desc">Python-powered algo systems built exactly to your logic and API specs.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-3" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algorithmic Trading — Elgo System</span>
+                                <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Strategies</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M2 20h20M5 20V8l7-5 7 5v12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Workshops</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Professional-grade services tailored to your goals</span>
+                    <a href="index.html#stack-viewport" class="mega-cta-link">Explore Services →</a>
+                </div>
+            </div>
+
+            <div class="header--mega-menu-item" data-menu-id="about-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#about-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Meet Your Mentor</span>
+                                <span class="mega-link-desc">Chandan Prajapati — 9+ years, 1000+ traders mentored across India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#results" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Student Verification</span>
+                                <span class="mega-link-desc">Real P&amp;L statements. Verified broker results. No claims without proof.</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Learn more about the team and our trading philosophy</span>
+                    <a href="index.html#about-viewport" class="mega-cta-link">Read Our Story →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="index.html" class="mobile-link">Home</a></li>
+                    <li><a href="index.html#about-viewport" class="mobile-link">About Us</a></li>
+                    <li><a href="index.html#courses" class="mobile-link">Academy Programs</a></li>
+                    <li><a href="index.html#stack-viewport" class="mobile-link">Services</a></li>
+                    <li><a href="index.html#results" class="mobile-link">Student Results</a></li>
+                    <li><a href="index.html#masterclass" class="mobile-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div style="margin-top:20px; display:flex; flex-direction:column; gap:14px; align-items:center;">
+                <a href="index.html#masterclass" class="mobile-cta-btn mobile-link">FREE MASTERCLASS →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="podcast-hero">
+        <div class="hero-title-container">
+            <div class="podcast-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                Listen, Learn &amp; Dominate
+            </div>
+            <h1>The Trading Scholar <span class="accent">Podcast Hub</span></h1>
+            <p>Unfiltered conversations on algorithmic frameworks, options hedging mechanics, and structural psychology featuring Chandan Prajapati. Discover setups built around institutional risk principles.</p>
+
+            <!-- Quick Platforms Links with Slide Animation -->
+            <div class="podcast-platforms">
+                <a href="#" class="hero-cta-btn black-style">
+                    <span class="btn-sizer">YouTube Channel</span>
+                    <span class="btn-row btn-visible">YouTube Channel</span>
+                    <span class="btn-row btn-ghost">YouTube Channel</span>
+                </a>
+                <a href="#" class="hero-cta-btn black-style">
+                    <span class="btn-sizer">Spotify Podcast</span>
+                    <span class="btn-row btn-visible">Spotify Podcast</span>
+                    <span class="btn-row btn-ghost">Spotify Podcast</span>
+                </a>
+                <a href="#" class="hero-cta-btn black-style">
+                    <span class="btn-sizer">Telegram Community</span>
+                    <span class="btn-row btn-visible">Telegram Community</span>
+                    <span class="btn-row btn-ghost">Telegram Community</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALL PODCASTS IN ONE PLACE -->
+    <section class="podcasts-container">
+        <div class="podcast-grid-main" id="podcastGrid">
+            
+            <!-- Episode 1 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/SjesP4clpHM/maxresdefault.jpg" alt="No Risk Strategy">
+                    <span class="host-guest-badge guest">Guest Feature</span>
+                    <span class="duration-badge">21 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 01</span>
+                        <span>Dhan/PRT Talk</span>
+                    </div>
+                    <h3>Set &amp; Forget: Passive Hedging Strategy</h3>
+                    <p>Chandan Prajapati details his "Invincible Set & Forget Strategy" for options trading, explaining how to manage structural risk parameters with zero adjustment stress.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('SjesP4clpHM')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=SjesP4clpHM" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 2 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/6el9Jqnrdz8/maxresdefault.jpg" alt="Swing Trading Path">
+                    <span class="host-guest-badge guest">Guest Feature</span>
+                    <span class="duration-badge">1h 10m</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 02</span>
+                        <span>Upsurge Club</span>
+                    </div>
+                    <h3>Delivery Boy to Crores Through Trading</h3>
+                    <p>Chandan shares his real, raw personal story—how he went from delivery rider to master of swing trading systems, and the psychological discipline required.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('6el9Jqnrdz8')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=6el9Jqnrdz8" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 3 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/znJHaEo6-8s/maxresdefault.jpg" alt="Batman Strategy Setup">
+                    <span class="host-guest-badge guest">Guest Feature</span>
+                    <span class="duration-badge">44 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 03</span>
+                        <span>Traders Talk</span>
+                    </div>
+                    <h3>Secret Batman Options Trading Strategy</h3>
+                    <p>A deep-dive tutorial where Chandan shares precise entries, adjustment rules, and stoploss parameters for setting up his favorite low-risk options template.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('znJHaEo6-8s')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=znJHaEo6-8s" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 4 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/d2MOyGxrh-o/maxresdefault.jpg" alt="Swing trading rules">
+                    <span class="host-guest-badge guest">Guest Feature</span>
+                    <span class="duration-badge">1 Hour</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 04</span>
+                        <span>Swing Expert Series</span>
+                    </div>
+                    <h3>Spotting Breakouts &amp; Structural Setups</h3>
+                    <p>Chandan outlines 5 systematic, rule-based indicators to accurately spot breakouts and avoid common retail traps during highly volatile market trends.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('d2MOyGxrh-o')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=d2MOyGxrh-o" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 5 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/M4bK4rRCtWQ/maxresdefault.jpg" alt="Option Selling F&O">
+                    <span class="host-guest-badge guest">Guest Feature</span>
+                    <span class="duration-badge">51 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 05</span>
+                        <span>Spider Software</span>
+                    </div>
+                    <h3>Harsh Truth About Option Selling</h3>
+                    <p>Watch Chandan Prajapati actively backtest F&amp;O positions under live pressure, revealing the systematic data-points that keep risk parameters defined.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('M4bK4rRCtWQ')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=M4bK4rRCtWQ" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 6 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/FMkIE1X-61I/maxresdefault.jpg" alt="Option Selling Wisdom">
+                    <span class="host-guest-badge host">Host Series</span>
+                    <span class="duration-badge">38 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 06</span>
+                        <span>The Trading Scholar</span>
+                    </div>
+                    <h3>Why Naked Option Buying is a Retail Trap</h3>
+                    <p>Chandan explains options greeks (theta and vega collapse) and details why 95% of directional buyers blow accounts before the cycle ends.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('FMkIE1X-61I')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=FMkIE1X-61I" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 7 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/SjesP4clpHM/maxresdefault.jpg" alt="Delta Hedging Masterclass">
+                    <span class="host-guest-badge host">Host Series</span>
+                    <span class="duration-badge">42 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 07</span>
+                        <span>The Trading Scholar</span>
+                    </div>
+                    <h3>1L Per Month Using Simple Options System</h3>
+                    <p>An easy, step-by-step masterclass demonstrating how Chandan builds complex multi-leg hedged systems (Iron Condors) with calculated protection offsets.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('SjesP4clpHM')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=SjesP4clpHM" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 8 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/6el9Jqnrdz8/maxresdefault.jpg" alt="Risk management rules">
+                    <span class="host-guest-badge host">Host Series</span>
+                    <span class="duration-badge">31 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 08</span>
+                        <span>The Trading Scholar</span>
+                    </div>
+                    <h3>Conquering Revenge Trading &amp; Psychology</h3>
+                    <p>Chandan covers behavioral patterns, showing you exactly how to automate risk ceilings so code stops you from manual, emotion-driven trading.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('6el9Jqnrdz8')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=6el9Jqnrdz8" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 9 -->
+            <div class="podcast-card">
+                <div class="podcast-thumb">
+                    <img src="https://img.youtube.com/vi/FMkIE1X-61I/maxresdefault.jpg" alt="Decades of market wisdom">
+                    <span class="host-guest-badge host">Host Series</span>
+                    <span class="duration-badge">1 Hour 5 Min</span>
+                    <div class="play-overlay">▶</div>
+                </div>
+                <div class="podcast-info">
+                    <div class="podcast-meta-row">
+                        <span>Episode 09</span>
+                        <span>The Trading Scholar</span>
+                    </div>
+                    <h3>20 Years of Hard-Earned Trading Wisdom</h3>
+                    <p>Chandan Prajapati sits down with Santosh Pasi to talk about SEBI structural regulations, margin changes, and long-term positioning.</p>
+                    <div class="podcast-action-bar">
+                        <div class="watch-btn-wrapper">
+                            <a href="javascript:void(0);" onclick="openVideo('FMkIE1X-61I')" class="hero-cta-btn outline" style="border-radius: 12px;">
+                                <span class="btn-sizer" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-visible" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                                <span class="btn-row btn-ghost" style="padding: 8px 18px; font-size: 11px;">Watch Episode</span>
+                            </a>
+                        </div>
+                        <div class="platform-icon-wrap">
+                            <a href="https://www.youtube.com/watch?v=FMkIE1X-61I" target="_blank" class="icon-link"><svg viewBox="0 0 24 24"><path d="M23.5 12a11.5 11.5 0 1 1-23 0 11.5 11.5 0 0 1 23 0z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDGE-GLOWING CTA CARD WITH AN EDGE RUNNING ANIMATION -->
+    <section class="cta-convert-banner">
+        <div class="glow-border-wrapper glowing">
+            <div class="glow-border-inner">
+                <div class="cta-banner-inner">
+                    <div class="cta-banner-content">
+                        <h2>Ready to Trade Like an <span>Institution?</span></h2>
+                        <p>Move past directional predictions. Join our next live masterclass and learn to deploy rule-based options hedging and custom algo mechanics.</p>
+                    </div>
+                    <a href="index.html#masterclass" class="hero-cta-btn white-style">
+                        <span class="btn-sizer">Reserve Free Seat</span>
+                        <span class="btn-row btn-visible">Reserve Free Seat</span>
+                        <span class="btn-row btn-ghost">Reserve Free Seat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL LIGHTBOX FOR VIDEO PLAYBACK -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModalBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Close Video
+            </button>
+            <div class="video-container-modal">
+                <iframe id="modalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER WITH THE TRADING SCHOLAR LOGO -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>The Trading Scholar</h3>
+                <p>Building disciplined, systematic, and institutional thinkers in the Indian financial markets. Learn strategies built for capital preservation first.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#courses">Our Programs</a></li>
+                    <li><a href="index.html#about-viewport">The Mentor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="index.html#results">Student Proof</a></li>
+                    <li><a href="index.html#masterclass">Free Masterclass</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Risk Disclaimer</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Trading Scholar. All Rights Reserved. Education-only purposes.</p>
+            <div class="footer-socials">
+                <a href="#" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
+                <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" /></svg></a>
+            </div>
+        </div>
+        
+        <!-- Center-Aligned Trading Logo in the footer -->
+        <div class="giant-footer-logo-container">
+            <div class="giant-footer-logo"><img src="logo.png" alt="The Trading Scholar Logo"></div>
+            <div class="giant-footer-fade"></div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom Docks -->
+    <div class="fixed-bottom-dock">
+        <a href="#" class="social-dock-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+            </svg>
+        </a>
+        <a href="#" class="social-dock-link" aria-label="Telegram">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.02.51.13.14.1.18.24.2.35-.01.06.01.24 0 .24z" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        /* ===== CURSOR MOTION ===== */
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .icon-link, .podcast-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1.6)'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+        });
+
+        /* ===== NAVBAR SCROLL EFFECT ===== */
+        const navbar = document.getElementById('navbar');
+        const brandLabel = document.getElementById('brandLabel');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 25) {
+                navbar.classList.add('scrolled');
+                brandLabel.textContent = "TTS";
+            } else {
+                navbar.classList.remove('scrolled');
+                brandLabel.textContent = "The Trading Scholar";
+            }
+        });
+
+        /* ===== MOBILE HAMBURGER MENU ===== */
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenuOverlay.classList.remove('open');
+            });
+        });
+
+        /* ===== DEMAT DROPDOWN ===== */
+        const dematTrigger = document.getElementById('dematTrigger');
+        const dematDropdown = document.getElementById('dematDropdown');
+
+        dematTrigger.addEventListener('click', e => {
+            e.stopPropagation();
+            dematDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') dematDropdown.classList.remove('show'); });
+        document.addEventListener('click', e => {
+            if (!dematDropdown.contains(e.target) && !dematTrigger.contains(e.target)) {
+                dematDropdown.classList.remove('show');
+            }
+        });
+
+        /* ===== MEGA MENU MOUSE HOVER ===== */
+        const header = document.querySelector('[data-header]');
+        const menuTriggers = document.querySelectorAll('#desktop [data-menu-target]');
+        const megaMenuItems = document.querySelectorAll('.header--mega-menu-item');
+
+        menuTriggers.forEach(t => {
+            t.addEventListener('mouseenter', () => {
+                const target = t.getAttribute('data-menu-target');
+                header.classList.add('mega-menu-open');
+                megaMenuItems.forEach(item => item.classList.toggle('active', item.getAttribute('data-menu-id') === target));
+            });
+        });
+
+        header.addEventListener('mouseleave', () => {
+            header.classList.remove('mega-menu-open');
+            megaMenuItems.forEach(item => item.classList.remove('active'));
+        });
+
+        /* ===== VIDEO LIGHTBOX / MODAL ENGINE ===== */
+        const videoModal = document.getElementById('videoModal');
+        const modalIframe = document.getElementById('modalIframe');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function openVideo(youtubeId) {
+            modalIframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+            videoModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            videoModal.classList.remove('show');
+            setTimeout(() => {
+                modalIframe.src = '';
+            }, 400);
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeVideo);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeVideo();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeVideo();
+        });
+
+        /* ===== INTERACTIVE CLICKS FOR CARDS ===== */
+        document.querySelectorAll('.podcast-thumb').forEach(thumb => {
+            thumb.addEventListener('click', (e) => {
+                const card = e.currentTarget.closest('.podcast-card');
+                const actionButton = card.querySelector('.watch-btn-wrapper a');
+                if (actionButton) {
+                    actionButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
