@@ -1,1168 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>thefinch.design - Premium UI/UX Design Agency</title>
-  
-  <!-- Premium Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    /* Global Resets & Theme Variables */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    :root {
-      --bg-color: #000000;
-      --card-bg: #0d0d0f;
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-blue: #1A56FF;
-      --accent-blue-glow: rgba(26, 86, 255, 0.4);
-      --text-primary: #FFFFFF;
-      --text-secondary: #8E8E93;
-      --text-muted: #545458;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-primary);
-      overflow-x: hidden;
-    }
-
-    /* Background glow accents */
-    .glow-bg-1 {
-      position: absolute;
-      top: -10%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(26, 86, 255, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ----------------------------------
-       NAVBAR (Smooth Capsule Transform)
-    ---------------------------------- */
-    .navbar-container {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92%;
-      max-width: 1400px;
-      z-index: 1000;
-      /* All parameters transition smoothly to prevent jerking */
-      transition: max-width 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  padding 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  background-color 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  border-radius 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  border-color 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-      background-color: transparent;
-      border: 1px solid transparent;
-      border-radius: 0px;
-      padding: 12px 0;
-    }
-
-    /* Scrolled State: Transitions centered and down-sizes into a Capsule */
-    .navbar-container.scrolled {
-      max-width: 960px;
-      background-color: rgba(6, 6, 8, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 100px;
-      padding: 8px 24px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .navbar {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-      background: var(--text-primary);
-      -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 4a4 4 0 110 8 4 4 0 010-8zm0 8a4 4 0 110 8 4 4 0 010-8zm8-4a4 4 0 110 8 4 4 0 010-8z' fill='%23000'/%3E%3C/svg%3E") no-repeat center;
-      -webkit-mask-size: contain;
-      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 4a4 4 0 110 8 4 4 0 010-8zm0 8a4 4 0 110 8 4 4 0 010-8zm8-4a4 4 0 110 8 4 4 0 010-8z' fill='%23000'/%3E%3C/svg%3E") no-repeat center;
-      mask-size: contain;
-    }
-
-    .logo-text {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-text span {
-      font-weight: 300;
-      color: var(--text-secondary);
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .nav-links li {
-      position: static; /* Required for Megamenu absolute full-width behavior */
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 0;
-    }
-
-    .nav-links a i {
-      font-size: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-links li:hover > a {
-      color: var(--text-primary);
-    }
-
-    .nav-links li:hover > a i {
-      transform: rotate(180deg);
-    }
-
-    .btn-inquiry {
-      background: var(--accent-blue);
-      color: var(--text-primary);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 25px rgba(26, 86, 255, 0.3);
-    }
-
-    .btn-inquiry:hover {
-      background: #0044ff;
-      transform: translateY(-1px);
-    }
-
-    /* ----------------------------------
-       MEGAMENU (Strictly aligned to Navbar)
-    ---------------------------------- */
-    .mega-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%; /* Matches the exact horizontal size of the navbar container */
-      background: rgba(10, 10, 12, 0.98);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 40px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(15px);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.4s;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(20px);
-      z-index: 1001;
-      margin-top: 10px;
-    }
-
-    .nav-links li:hover .mega-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .mega-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px 30px;
-    }
-
-    .mega-grid a {
-      font-size: 15px;
-      font-weight: 500;
-      color: #9d9da4;
-      padding: 4px 0;
-      display: block;
-      transition: color 0.2s;
-    }
-
-    .mega-grid a:hover {
-      color: var(--text-primary);
-    }
-
-    .mega-right {
-      border-left: 1px solid rgba(255, 255, 255, 0.06);
-      padding-left: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .mega-blog-item {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .mega-blog-thumb {
-      width: 70px;
-      height: 50px;
-      background: radial-gradient(circle, #0052FF 0%, #000 100%);
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .mega-blog-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .mega-blog-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: #ff7b00;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .mega-blog-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #e2e2e5;
-      line-height: 1.4;
-    }
-
-    .mega-footer {
-      grid-column: 1 / -1;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    .mega-footer a {
-      color: var(--text-primary);
-      font-weight: 600;
-      text-decoration: underline;
-    }
-
-    /* ----------------------------------
-       GLOWING BORDER TRAIL ANIMATION
-    ---------------------------------- */
-    @keyframes rotateGlow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .glow-border-wrapper {
-      position: relative;
-      border-radius: 28px;
-      padding: 1.5px; /* Border thickness */
-      background: rgba(255, 255, 255, 0.08); /* Default static border */
-      overflow: hidden;
-      display: flex;
-    }
-
-    .glow-border-wrapper.glowing::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent 50%, #1A56FF 80%, #00D2FF 100%);
-      animation: rotateGlow 4s linear infinite;
-      z-index: 1;
-    }
-
-    .glow-border-inner {
-      position: relative;
-      background: #050507; /* Matches card interior */
-      border-radius: 26px;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
-
-    /* ----------------------------------
-       HERO SECTION
-    ---------------------------------- */
-    .hero-section {
-      position: relative;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 180px 20px 80px;
-      z-index: 2;
-    }
-
-    .hero-title {
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -2px;
-      max-width: 1100px;
-      margin-bottom: 24px;
-    }
-
-    .hero-title span.italic-accent {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 500;
-    }
-
-    .hero-subtitle {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 680px;
-      margin-bottom: 48px;
-      line-height: 1.6;
-    }
-
-    .btn-talk {
-      background: #1A56FF;
-      color: var(--text-primary);
-      padding: 18px 48px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      box-shadow: 0 15px 35px rgba(26, 86, 255, 0.4);
-    }
-
-    .btn-talk:hover {
-      background: #0044ff;
-      transform: translateY(-2px);
-    }
-
-    /* ----------------------------------
-       CARDS / BRAND VISION SECTION
-    ---------------------------------- */
-    .brand-vision-section {
-      max-width: 1300px;
-      margin: 0 auto 120px;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .vision-container {
-      background: #050507;
-      border: 1px solid var(--card-border);
-      border-radius: 32px;
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 60px;
-      padding: 60px;
-    }
-
-    /* Left Block with Border-Trail integration */
-    .vision-left-inner {
-      padding: 40px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .vision-header-title {
-      font-size: 38px;
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -1px;
-      margin-bottom: 40px;
-    }
-
-    .vision-header-title span.italic-accent {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 500;
-    }
-
-    .pain-points-list {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .pain-point-item {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #9d9da4;
-    }
-
-    .pain-point-item strong {
-      color: var(--text-primary);
-      font-weight: 700;
-    }
-
-    .vision-divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.08);
-      margin: 40px 0 30px;
-    }
-
-    .vision-conclusion {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    /* Right Block Stacked Cards */
-    .vision-cards-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .service-card {
-      position: relative;
-      border-radius: 24px;
-      padding: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 180px;
-      overflow: hidden;
-    }
-
-    .service-card.card-blue {
-      background: #0044FF;
-    }
-
-    .service-card.card-navy {
-      background: linear-gradient(135deg, #020f3a 0%, #000414 100%);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .service-card.card-dark {
-      background: #09090b;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .service-card-content {
-      z-index: 2;
-      max-width: 65%;
-    }
-
-    .service-card-title {
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    .service-card-desc {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 24px;
-    }
-
-    .btn-learn-more {
-      background: #FFFFFF;
-      color: #000000;
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 700;
-      display: inline-block;
-      transition: opacity 0.2s ease;
-    }
-
-    .btn-learn-more:hover {
-      opacity: 0.9;
-    }
-
-    /* Abstract shapes matches exactly */
-    .art-diamond {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #00C2FF 0%, #0044FF 100%);
-      transform: rotate(45deg);
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0, 194, 255, 0.5);
-    }
-
-    .art-orb {
-      width: 64px;
-      height: 64px;
-      background: radial-gradient(circle at 30% 30%, #437eff 0%, #001242 100%);
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(0, 82, 255, 0.6);
-    }
-
-    .art-ring {
-      width: 64px;
-      height: 64px;
-      border: 8px dotted #0044FF;
-      border-radius: 50%;
-    }
-
-    /* ----------------------------------
-       FAQ SECTION
-    ---------------------------------- */
-    .faq-section {
-      max-width: 1300px;
-      margin: 0 auto 120px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1fr 1.35fr;
-      gap: 80px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .faq-left {
-      position: sticky;
-      top: 120px;
-      height: fit-content;
-    }
-
-    .faq-title {
-      font-size: 56px;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
-    }
-
-    .faq-title span.italic-accent {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 500;
-    }
-
-    .faq-desc {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-bottom: 40px;
-    }
-
-    /* Founder Card with Placeholder */
-    .founder-card {
-      background: #050507;
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 32px;
-    }
-
-    .founder-card-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .founder-card-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .founder-photo-frame {
-      width: 100%;
-      height: 280px;
-      background-color: #0b0b0d;
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--text-muted);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* ----------------------------------
-       FAQ FILTER TABS
-    ---------------------------------- */
-    .faq-tabs-wrapper {
-      grid-column: 2;
-      margin-bottom: 20px;
-    }
-
-    .faq-tabs {
-      display: flex;
-      background: #09090b;
-      border: 1px solid var(--card-border);
-      padding: 6px;
-      border-radius: 100px;
-      gap: 4px;
-    }
-
-    .faq-tab-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      padding: 14px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .faq-tab-btn.active {
-      background: #111115;
-      color: var(--text-primary);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-
-    /* Accordion Grid Area */
-    .faq-right {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* Filter Category Container switching sets smoothly */
-    .faq-category-set {
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .faq-category-set.active {
-      display: flex;
-    }
-
-    /* Accordion Layout with border glows */
-    .faq-item-wrapper {
-      transition: all 0.3s ease;
-    }
-
-    .accordion-inner-content-box {
-      background: #050507;
-      padding: 24px;
-      border-radius: 26px;
-      width: 100%;
-    }
-
-    .accordion-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .accordion-question {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .accordion-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-primary);
-      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    /* Active States dynamically toggled in JS */
-    .faq-item-wrapper.active .accordion-toggle {
-      background: var(--accent-blue);
-      border-color: var(--accent-blue);
-      transform: rotate(180deg);
-    }
-
-    .accordion-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .faq-item-wrapper.active .accordion-content {
-      grid-template-rows: 1fr;
-    }
-
-    .accordion-inner-desc {
-      overflow: hidden;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      padding-top: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Market Terminal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ambient subtle grid overlay for depth */
+        #app-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Minimalist Trading Panel Overlay */
+        .market-panel {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 16px 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            z-index: 10;
+            pointer-events: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .market-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .price-display {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1c1c1e;
+            letter-spacing: -1px;
+            font-feature-settings: "tnum" on; /* Prevents shifting numbers */
+        }
+
+        .price-change {
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-feature-settings: "tnum" on;
+        }
+
+        .price-change.up {
+            color: #00a651;
+        }
+
+        .price-change.down {
+            color: #df222a;
+        }
+
+        /* Subtle animated dot in the UI card */
+        .live-indicator {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #00a651;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="glow-bg-1"></div>
-
-  <!-- NAVIGATION BAR (Dynamic smooth layout wrapper) -->
-  <header class="navbar-container" id="main-header">
-    <nav class="navbar">
-      <div class="logo-container">
-        <div class="logo-mark"></div>
-        <div class="logo-text">thefinch<span>.design</span></div>
-      </div>
-      
-      <ul class="nav-links">
-        <!-- Services Trigger -->
-        <li>
-          <a href="#">Services <i class="fa-solid fa-chevron-down"></i></a>
-          <div class="mega-menu">
-            <div class="mega-grid">
-              <div>
-                <a href="#">Design Discovery</a>
-                <a href="#">Minimum Viable Product</a>
-                <a href="#">Full Product Design</a>
-              </div>
-              <div>
-                <a href="#">Saas Design</a>
-                <a href="#">CMS Design</a>
-                <a href="#">Enterprise Visuals</a>
-              </div>
-            </div>
-            <div class="mega-right">
-              <div class="mega-blog-item">
-                <div class="mega-blog-thumb"></div>
-                <div class="mega-blog-info">
-                  <span class="mega-blog-tag">UI Excellence</span>
-                  <span class="mega-blog-title">Advanced layouts for modern visual patterns</span>
-                </div>
-              </div>
-            </div>
-            <div class="mega-footer">
-              <span>Looking for premium product layouts?</span>
-              <a href="#">GET INQUIRY NOW</a>
-            </div>
-          </div>
-        </li>
-        
-        <!-- Solutions Trigger -->
-        <li>
-          <a href="#">Solutions <i class="fa-solid fa-chevron-down"></i></a>
-          <div class="mega-menu">
-            <div class="mega-grid">
-              <div>
-                <a href="#">Design Discovery</a>
-                <a href="#">Minimum Viable Product</a>
-                <a href="#">Full Product Design</a>
-                <a href="#">Saas Design</a>
-              </div>
-              <div>
-                <a href="#">Website Development</a>
-                <a href="#">Mobile App Development</a>
-                <a href="#">Ecommerce Development</a>
-                <a href="#">Cross Platform Development</a>
-              </div>
-            </div>
-            <div class="mega-right">
-              <div class="mega-blog-item">
-                <div class="mega-blog-thumb"></div>
-                <div class="mega-blog-info">
-                  <span class="mega-blog-tag">User Interface Design</span>
-                  <span class="mega-blog-title">10 Common UX Mistakes And How to Avoid Them</span>
-                </div>
-              </div>
-              <div class="mega-blog-item">
-                <div class="mega-blog-thumb"></div>
-                <div class="mega-blog-info">
-                  <span class="mega-blog-tag">AI Technology</span>
-                  <span class="mega-blog-title">Assessing Usability Principles for AI Interfaces</span>
-                </div>
-              </div>
-            </div>
-            <div class="mega-footer">
-              <span>Subscribe to incorporate our expert product designer in your team.</span>
-              <a href="#">GET INQUIRY NOW</a>
-            </div>
-          </div>
-        </li>
-
-        <!-- Industries Trigger -->
-        <li>
-          <a href="#">Industries <i class="fa-solid fa-chevron-down"></i></a>
-          <div class="mega-menu">
-            <div class="mega-grid">
-              <div>
-                <a href="#">Real Estate</a>
-                <a href="#">Sports and Fitness</a>
-                <a href="#">E-commerce</a>
-                <a href="#">Healthcare</a>
-              </div>
-              <div>
-                <a href="#">Logistics</a>
-                <a href="#">Fintech</a>
-                <a href="#">Social Media</a>
-                <a href="#">EdTech</a>
-              </div>
-            </div>
-            <div class="mega-right">
-              <div class="mega-blog-item">
-                <div class="mega-blog-thumb"></div>
-                <div class="mega-blog-info">
-                  <span class="mega-blog-tag">AI Technology, UI/UX</span>
-                  <span class="mega-blog-title">How Generative AI Is Remaking UI/UX Design</span>
-                </div>
-              </div>
-            </div>
-            <div class="mega-footer">
-              <span>Let's Collaborate to turn your vision into reality!</span>
-              <a href="#">CALCULATE NOW</a>
-            </div>
-          </div>
-        </li>
-
-        <li><a href="#">Hire Us <i class="fa-solid fa-chevron-down"></i></a></li>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">About <i class="fa-solid fa-chevron-down"></i></a></li>
-      </ul>
-
-      <a href="#" class="btn-inquiry">INQUIRY NOW</a>
-    </nav>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <h1 class="hero-title">
-      Crafting Impactful Visuals with AI-Led <br>
-      <span class="italic-accent">UI UX Design Agency</span>
-    </h1>
-    <p class="hero-subtitle">
-      We merge creativity with artificial intelligence and craft intuitive UI-UX designs that push the boundaries of innovation, crafting experiences that touch hearts and minds.
-    </p>
-    <a href="#" class="btn-talk">LET'S TALK</a>
-  </section>
-
-  <!-- BRAND VISION SECTION -->
-  <section class="brand-vision-section">
-    <div class="vision-container">
-      
-      <!-- Left side contains Glowing Border Animation trail wrapper -->
-      <div class="glow-border-wrapper glowing" id="vision-left-glow-container">
-        <div class="glow-border-inner">
-          <div class="vision-left-inner">
-            <div>
-              <h2 class="vision-header-title">
-                Hire A UI UX Designer <span class="italic-accent">Who Resonates With Your Brand's Vision</span>
-              </h2>
-              
-              <div class="pain-points-list">
-                <div class="pain-point-item">
-                  <strong>Outsourcing vendors</strong> often display inflexible working methods.
-                </div>
-                <div class="pain-point-item">
-                  <strong>Freelance designers</strong> offer flexibility but don't guarantee dependability.
-                </div>
-                <div class="pain-point-item">
-                  <strong>Design agencies</strong> fall short of the transparency that is assured by In-House Designers.
-                </div>
-                <div class="pain-point-item">
-                  <strong>In-house designers</strong> fail to match the competence of Design Agencies.
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div class="vision-divider"></div>
-              <p class="vision-conclusion">
-                Very rarely do you find a Service Solution that ticks off all the boxes of Product Design needs? More often than not there is always something that doesn't feel right.
-              </p>
-            </div>
-          </div>
+<div id="app-container">
+    <div class="market-panel">
+        <div class="market-title">
+            <span class="live-indicator" id="live-dot"></span>Live Index Track
         </div>
-      </div>
-
-      <!-- Right Blue Cards Column -->
-      <div class="vision-cards-stack">
-        <div class="service-card card-blue">
-          <div class="service-card-content">
-            <h3 class="service-card-title">Dedicated Product Solutions</h3>
-            <p class="service-card-desc">Product Scalable solutions for companies</p>
-            <a href="#" class="btn-learn-more">LEARN MORE</a>
-          </div>
-          <div class="art-diamond"></div>
+        <div class="price-row">
+            <span class="price-display" id="price-lbl">$10,000.00</span>
+            <span class="price-change up" id="change-lbl">+0.00%</span>
         </div>
-
-        <div class="service-card card-navy">
-          <div class="service-card-content">
-            <h3 class="service-card-title">Trusted Design Partner</h3>
-            <p class="service-card-desc">Hire dedicated design team (PTaas)</p>
-            <a href="#" class="btn-learn-more">LEARN MORE</a>
-          </div>
-          <div class="art-orb"></div>
-        </div>
-
-        <div class="service-card card-dark">
-          <div class="service-card-content">
-            <h3 class="service-card-title">Complete Enterprise Solution</h3>
-            <p class="service-card-desc">Product design partner for enterprises</p>
-            <a href="#" class="btn-learn-more">LEARN MORE</a>
-          </div>
-          <div class="art-ring"></div>
-        </div>
-      </div>
-
     </div>
-  </section>
+    <canvas id="chartCanvas"></canvas>
+</div>
 
-  <!-- FAQ SECTION -->
-  <section class="faq-section">
-    <div class="faq-left">
-      <h2 class="faq-title">
-        Frequently <br> Asked <span class="italic-accent">Questions</span>
-      </h2>
-      <p class="faq-desc">
-        Seeking Basic Information? Our FAQ section is a ready reckoner with precise answers to the most probable queries
-      </p>
+<script>
+    const canvas = document.getElementById('chartCanvas');
+    const ctx = canvas.getContext('2d');
+    const priceLbl = document.getElementById('price-lbl');
+    const changeLbl = document.getElementById('change-lbl');
+    const liveDot = document.getElementById('live-dot');
 
-      <!-- Connection / Founder Card Frame -->
-      <div class="founder-card">
-        <h3 class="founder-card-title">Connect with our Vision</h3>
-        <p class="founder-card-desc">Have more questions or just curious about your idea to explore?</p>
+    // UI Configuration
+    const rightMargin = 100; // Room for price indicators and scales
+    const topMargin = 100;   // Safe zone from top
+    const bottomMargin = 80; // Safe zone from bottom
+    const dx = 16;           // Distance between points on the X axis
+
+    // Colors
+    const COLOR_UP_BASE = '#00a651';
+    const COLOR_UP_GLOW1 = 'rgba(0, 166, 81, 0.45)';
+    const COLOR_UP_GLOW2 = 'rgba(0, 166, 81, 0.15)';
+
+    const COLOR_DOWN_BASE = '#df222a';
+    const COLOR_DOWN_GLOW1 = 'rgba(223, 34, 42, 0.45)';
+    const COLOR_DOWN_GLOW2 = 'rgba(223, 34, 42, 0.15)';
+
+    const COLOR_GRID = 'rgba(0, 0, 0, 0.03)';
+    const COLOR_TEXT = '#8e8e93';
+
+    // Market Simulation State
+    let initialPrice = 10450.00;
+    let currentPrice = initialPrice;
+    let targetPrice = initialPrice;
+    let prices = [];         // Stores historical price ticks
+    let offset = 0;          // Dynamic horizontal scroll progress
+    let speed = 0.85;        // Horizontal scroll rate (pixels per frame)
+
+    // Dynamic scale limits (smoothly transition to avoid sharp layout jumps)
+    let minPriceSmooth = 10300;
+    let maxPriceSmooth = 10600;
+
+    // Tick/Trend generation controls
+    let trendDuration = 0;
+    let trendDirection = 0; // -1 (bearish), 1 (bullish), 0 (flat)
+
+    function resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        ctx.scale(dpr, dpr);
         
-        <!-- Placeholder Box for Ravi's Picture Link -->
-        <div class="founder-photo-frame">
-          <i class="fa-regular fa-image" style="font-size: 32px; margin-bottom: 12px; opacity: 0.5;"></i>
-          <span style="font-size: 13px;">Add Ravi's Photo URL here</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Side contains Tab Filters and Accordion Box -->
-    <div style="display: flex; flex-direction: column;">
-      
-      <!-- FAQ categories switcher toggle -->
-      <div class="faq-tabs-wrapper">
-        <div class="faq-tabs">
-          <button class="faq-tab-btn active" onclick="switchCategory('general')">General Queries</button>
-          <button class="faq-tab-btn" onclick="switchCategory('services')">Our Services</button>
-          <button class="faq-tab-btn" onclick="switchCategory('collaboration')">Collaboration</button>
-        </div>
-      </div>
-
-      <div class="faq-right">
-        
-        <!-- Category Set: General -->
-        <div class="faq-category-set active" id="general">
-          
-          <div class="glow-border-wrapper active glowing faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">What is a UI UX design agency?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    A UI/UX design agency is a company, often called a consulting company, that designs digital products of all types and sizes. They have a team of creative experts who ensure building quality UI/UX design that delivers good user experiences. This is important to note that creating user experience is a lifeline for B2B and B2C. The design agency using its expertise and time-tested design approach ensures the website is interactive, helping companies achieve their business goals with improvised user experiences (UX) and visually attractive user interfaces (UI). In the general case, a design agency has a separate team of UI and UX designers or may have both.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="glow-border-wrapper faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">Why do I need a UI UX design company for my business?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    A specialized design agency helps align user goals with conversion benchmarks. Professional design builds Trust, increases engagement, reduces development rework, and elevates your brand positioning.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Category Set: Services -->
-        <div class="faq-category-set" id="services">
-          
-          <div class="glow-border-wrapper faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">What services do UI/UX design agencies offer?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    We provide comprehensive services including digital product strategy, visual design, user research, wireframing, high-fidelity prototyping, testing, responsive website layouts, and complete frontend development handoff.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="glow-border-wrapper faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">Does your UX design agency help with product redesign?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    Yes, redesigns are a key part of our focus. We run heuristic analysis, target drop-off points, map out fresh user flows, and modernise visuals without confusing existing active users.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Category Set: Collaboration -->
-        <div class="faq-category-set" id="collaboration">
-          
-          <div class="glow-border-wrapper faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">How long does it take to complete a UI/UX design project?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    A standard project can range from 3 to 12 weeks depending on complexity. Small features and simple MVPs can be ready faster, while extensive enterprise applications require deeper visual design exploration.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="glow-border-wrapper faq-item-wrapper">
-            <div class="glow-border-inner">
-              <div class="accordion-inner-content-box">
-                <div class="accordion-header">
-                  <div class="accordion-question">How does TheFinch Design differ from other agencies?</div>
-                  <div class="accordion-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="accordion-content">
-                  <div class="accordion-inner-desc">
-                    We merge visual craftsmanship with AI-powered data pipelines. This guarantees both rapid cycles of iteration and a precise alignment with the structural dynamics of your target market.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SCRIPTS -->
-  <script>
-    // Smooth Transforming Capsule Navbar functionality
-    const mainHeader = document.getElementById('main-header');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        mainHeader.classList.add('scrolled');
-      } else {
-        mainHeader.classList.remove('scrolled');
-      }
-    });
-
-    // Accordion interaction logic with glowing border animation trigger
-    const accordionWrappers = document.querySelectorAll('.faq-item-wrapper');
-
-    accordionWrappers.forEach(wrapper => {
-      const header = wrapper.querySelector('.accordion-header');
-      header.addEventListener('click', () => {
-        const isActive = wrapper.classList.contains('active');
-        
-        // Remove active state and rotating glow from all accordion wrappers
-        accordionWrappers.forEach(w => {
-          w.classList.remove('active', 'glowing');
-        });
-        
-        // If the clicked one wasn't active, activate it and start the rotating glow animation
-        if (!isActive) {
-          wrapper.classList.add('active', 'glowing');
+        // Populate array initially to fill screen if empty
+        const maxPoints = Math.ceil((window.innerWidth - rightMargin) / dx) + 5;
+        if (prices.length === 0) {
+            for (let i = 0; i < maxPoints; i++) {
+                prices.push(generateNextPricePoint(prices[prices.length - 1] || initialPrice));
+            }
+            currentPrice = prices[prices.length - 1];
+            targetPrice = currentPrice;
         }
-      });
-    });
-
-    // Toggle categories for FAQ
-    function switchCategory(catId) {
-      // Toggle Tab Buttons active styling
-      const tabs = document.querySelectorAll('.faq-tab-btn');
-      tabs.forEach(tab => {
-        tab.classList.remove('active');
-      });
-      event.currentTarget.classList.add('active');
-
-      // Toggle visible category question block set
-      const sets = document.querySelectorAll('.faq-category-set');
-      sets.forEach(set => {
-        set.classList.remove('active');
-      });
-      
-      const targetSet = document.getElementById(catId);
-      targetSet.classList.add('active');
-
-      // Reset accordion visual state when switching tabs
-      accordionWrappers.forEach(w => {
-        w.classList.remove('active', 'glowing');
-      });
-      
-      // Auto-expand the first item of the new category set
-      const firstItem = targetSet.querySelector('.faq-item-wrapper');
-      if (firstItem) {
-        firstItem.classList.add('active', 'glowing');
-      }
     }
-  </script>
+
+    // Algorithmic Price Generator (Geometric walk with random trend momentum)
+    function generateNextPricePoint(basePrice) {
+        if (trendDuration <= 0) {
+            // Decide a new short-term momentum trend
+            trendDirection = (Math.random() - 0.5) * 1.8; // range from roughly -0.9 to 0.9
+            trendDuration = Math.floor(Math.random() * 80) + 40; // frames
+        }
+        trendDuration--;
+
+        const volatility = 4.5;
+        const change = (Math.random() - 0.5) * volatility + (trendDirection * 1.1);
+        let next = basePrice + change;
+        
+        // Ensure price stays in a positive band
+        if (next < 1000) next = 1000;
+        return parseFloat(next.toFixed(2));
+    }
+
+    // Smoothly update live tick values to create realistic, micro-fluctuations
+    function tickActivePrice() {
+        if (Math.abs(currentPrice - targetPrice) < 0.05) {
+            targetPrice = generateNextPricePoint(currentPrice);
+        }
+        // Lerp step for sub-frame micro fluctuations
+        currentPrice += (targetPrice - currentPrice) * 0.15;
+    }
+
+    function formatCurrency(val) {
+        return '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function draw() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // 1. Clear with clean white
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+
+        // Advance simulation scrolling
+        offset += speed;
+        if (offset >= dx) {
+            // Push active price to history, discard oldest point off-screen
+            prices.push(parseFloat(currentPrice.toFixed(2)));
+            prices.shift();
+            offset -= dx;
+        }
+
+        // Always keep the absolute last index synchronized with the live tracking tick
+        prices[prices.length - 1] = currentPrice;
+
+        // 2. Dynamic auto-scaling bounds detection
+        let minVal = Math.min(...prices);
+        let maxVal = Math.max(...prices);
+        const padding = (maxVal - minVal) * 0.15 || 10; // 15% padding top and bottom
+        
+        const targetMin = minVal - padding;
+        const targetMax = maxVal + padding;
+
+        // Smoothly interpolate coordinate bounds to avoid jarring camera pops
+        minPriceSmooth += (targetMin - minPriceSmooth) * 0.05;
+        maxPriceSmooth += (targetMax - maxPriceSmooth) * 0.05;
+
+        // Price mapping function to vertical canvas coordinates
+        function getScaleY(priceValue) {
+            const chartHeight = height - topMargin - bottomMargin;
+            const normalized = (priceValue - minPriceSmooth) / (maxPriceSmooth - minPriceSmooth);
+            return height - bottomMargin - (normalized * chartHeight);
+        }
+
+        // 3. Render grid background layers
+        const gridLinesCount = 5;
+        ctx.font = '11px -apple-system, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        for (let i = 0; i < gridLinesCount; i++) {
+            const gridVal = minPriceSmooth + (i * (maxPriceSmooth - minPriceSmooth) / (gridLinesCount - 1));
+            const y = getScaleY(gridVal);
+
+            // Grid lines
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width - rightMargin, y);
+            ctx.strokeStyle = COLOR_GRID;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Axis price indicators
+            ctx.fillStyle = COLOR_TEXT;
+            ctx.fillText(formatCurrency(gridVal), width - 15, y);
+        }
+
+        // Vertical faint grid tracking lines moving with the scale
+        const verticalGridInterval = dx * 8;
+        const verticalGridOffset = offset % verticalGridInterval;
+        ctx.beginPath();
+        for (let x = width - rightMargin - verticalGridOffset; x > 0; x -= verticalGridInterval) {
+            ctx.moveTo(x, topMargin);
+            ctx.lineTo(x, height - bottomMargin);
+        }
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.015)';
+        ctx.stroke();
+
+        // 4. Calculate coordinates of historical segments
+        const coords = [];
+        for (let i = 0; i < prices.length; i++) {
+            const x = i * dx - offset;
+            const y = getScaleY(prices[i]);
+            coords.push({ x, y, price: prices[i] });
+        }
+
+        // Draw very subtle global background gradient shape underneath the line
+        ctx.beginPath();
+        ctx.moveTo(coords[0].x, height - bottomMargin);
+        for (let i = 0; i < coords.length; i++) {
+            ctx.lineTo(coords[i].x, coords[i].y);
+        }
+        ctx.lineTo(coords[coords.length - 1].x, height - bottomMargin);
+        ctx.closePath();
+        
+        const areaGrad = ctx.createLinearGradient(0, topMargin, 0, height - bottomMargin);
+        areaGrad.addColorStop(0, 'rgba(0, 0, 0, 0.025)');
+        areaGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = areaGrad;
+        ctx.fill();
+
+        // 5. Draw segments with layered glowing outlines (UP = Green, DOWN = Red)
+        for (let i = 1; i < coords.length; i++) {
+            const p1 = coords[i - 1];
+            const p2 = coords[i];
+
+            // Up or down trend determining color
+            const isUp = p2.price >= p1.price;
+            const colorBase = isUp ? COLOR_UP_BASE : COLOR_DOWN_BASE;
+            const colorGlow1 = isUp ? COLOR_UP_GLOW1 : COLOR_DOWN_GLOW1;
+            const colorGlow2 = isUp ? COLOR_UP_GLOW2 : COLOR_DOWN_GLOW2;
+
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            // Glow Pass 1 (Broad blur)
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = colorGlow2;
+            ctx.lineWidth = 15;
+            ctx.stroke();
+
+            // Glow Pass 2 (Focused glow)
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = colorGlow1;
+            ctx.lineWidth = 7;
+            ctx.stroke();
+
+            // Core Line Pass
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = colorBase;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+        }
+
+        // 6. Draw current price active tracker horizontal bar
+        const latestPoint = coords[coords.length - 1];
+        const isUpNow = currentPrice >= prices[prices.length - 2];
+        const activeColor = isUpNow ? COLOR_UP_BASE : COLOR_DOWN_BASE;
+
+        // Horizontal dashed tracking pointer
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(latestPoint.x, latestPoint.y);
+        ctx.lineTo(width - rightMargin, latestPoint.y);
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]); // Reset dashed state
+
+        // Dynamic pulsing dot at lead price segment
+        const pulseScale = (Date.now() % 1200) / 1200; // repeating 0.0 -> 1.0 ramp
+        ctx.beginPath();
+        ctx.arc(latestPoint.x, latestPoint.y, 4 + (pulseScale * 8), 0, Math.PI * 2);
+        ctx.fillStyle = isUpNow ? 'rgba(0, 166, 81, ' + (0.35 * (1 - pulseScale)) + ')' : 'rgba(223, 34, 42, ' + (0.35 * (1 - pulseScale)) + ')';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(latestPoint.x, latestPoint.y, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = activeColor;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.fill();
+        ctx.stroke();
+
+        // Active right margin capsule indicator
+        const capsuleY = latestPoint.y;
+        ctx.fillStyle = activeColor;
+        
+        // Custom rounded capsule path
+        const capH = 22;
+        const capW = 75;
+        const capX = width - rightMargin + 10;
+        
+        ctx.beginPath();
+        ctx.roundRect(capX, capsuleY - (capH / 2), capW, capH, 5);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10.5px -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(currentPrice.toFixed(1), capX + (capW / 2), capsuleY);
+
+        // 7. Update HTML UI Card
+        priceLbl.innerText = formatCurrency(currentPrice);
+        
+        // Percent dynamic delta from initial starting session price
+        const rawChange = currentPrice - initialPrice;
+        const percentChange = (rawChange / initialPrice) * 100;
+        const changeSign = percentChange >= 0 ? '+' : '';
+        
+        changeLbl.innerText = `${changeSign}${percentChange.toFixed(2)}%`;
+        
+        if (percentChange >= 0) {
+            changeLbl.className = "price-change up";
+            liveDot.style.backgroundColor = COLOR_UP_BASE;
+        } else {
+            changeLbl.className = "price-change down";
+            liveDot.style.backgroundColor = COLOR_DOWN_BASE;
+        }
+
+        tickActivePrice();
+        requestAnimationFrame(draw);
+    }
+
+    // Set up canvas sizing listeners and start main engine loop
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    requestAnimationFrame(draw);
+</script>
+
 </body>
 </html>
