@@ -8,13 +8,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700;1,800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700;1,800&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        /* ===== BW GRADUAL LOCAL FONT ===== */
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Thin.otf') format('opentype'); font-weight:100; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ThinItalic.otf') format('opentype'); font-weight:100; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Light.otf') format('opentype'); font-weight:300; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-LightItalic.otf') format('opentype'); font-weight:300; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-RegularItalic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Medium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-MediumItalic.otf') format('opentype'); font-weight:500; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BoldItalic.otf') format('opentype'); font-weight:700; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBold.otf') format('opentype'); font-weight:800; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBoldItalic.otf') format('opentype'); font-weight:800; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BlackItalic.otf') format('opentype'); font-weight:900; font-style:italic; font-display:swap; }
+
         :root {
             --primary-bg: #FFFFFF;
             --secondary-bg: #F7F9FC;
@@ -38,7 +54,8 @@
             --color-blue-glow: rgba(27, 79, 255, 0.5);
             --gradient-button: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             --font-primary: 'Inter', sans-serif;
-            --font-headings: 'Plus Jakarta Sans', sans-serif;
+            --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'BwGradual', 'Urbanist', 'Plus Jakarta Sans', sans-serif;
             --font-nav: 'Inter', sans-serif;
         }
 
@@ -279,7 +296,7 @@
             border-radius: 999px;
             text-decoration: none;
             font-family: var(--font-nav);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -320,7 +337,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 30px;
+            padding: 12px 26px;
             opacity: 0;
             pointer-events: none;
             user-select: none;
@@ -334,7 +351,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px 30px;
+            padding: 12px 26px;
             white-space: nowrap;
             transition: transform 0.46s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
@@ -359,45 +376,79 @@
         /* ===== HEADER ===== */
         .header {
             position: fixed;
-            top: 24px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 95%;
-            max-width: 1440px;
+            width: 94%;
+            max-width: 1400px;
             z-index: 1000;
             background-color: transparent;
             border: 1px solid transparent;
-            padding: 15px 0;
+            border-radius: 50px;
+            padding: 14px 0;
             box-shadow: none !important;
-            transition: all 0.5s cubic-bezier(.2, .8, .2, 1);
+            /* Smooth per-property transitions */
+            transition:
+                top 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                max-width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                background-color 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                backdrop-filter 0.55s ease,
+                border-color 0.55s ease,
+                padding 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                box-shadow 0.55s ease;
         }
 
         .header.scrolled {
-            top: 20px;
-            width: 95%;
-            max-width: 1350px;
-            background-color: rgba(3, 7, 18, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            top: 14px;
+            width: 80%;
+            max-width: 1120px;
+            background-color: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
             border-radius: 50px;
-            padding: 10px 40px;
-            box-shadow: none !important;
+            padding: 6px 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4) !important;
+        }
+
+        .header.scrolled .container-fluid {
+            padding: 0;
+        }
+
+        .header.scrolled .col-12 {
+            padding: 0;
+        }
+
+        .header.scrolled .container-fluid--menu {
+            padding: 0;
         }
 
         .menu-item-link {
-            color: rgba(255, 255, 255, 0.65) !important;
-            font-size: 14px;
+            color: rgba(11, 15, 25, 0.6);
+            font-size: 13.5px;
             font-weight: 500;
             transition: color .3s ease;
         }
 
+        .header.scrolled .menu-item-link {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
         .menu-item-link:hover {
-            color: #FFFFFF !important;
+            color: #0B0F19;
+        }
+
+        .header.scrolled .menu-item-link:hover {
+            color: #FFFFFF;
         }
 
         .forward-sign {
-            color: rgba(255, 255, 255, 0.15) !important;
+            color: rgba(11, 15, 25, 0.2);
+        }
+
+        .header.scrolled .forward-sign {
+            color: rgba(255, 255, 255, 0.15);
         }
 
         .container-fluid--menu {
@@ -409,27 +460,33 @@
         .header--logo-link {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
         #header--logo img {
-            width: 35px;
-            height: 35px;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            width: 38px;
+            height: 38px;
+            transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .header.scrolled #header--logo img {
+            width: 30px;
+            height: 30px;
         }
 
         .logo-text-fallback {
-            font-family: var(--font-headings);
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
             color: #1B4FFF;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .header.scrolled .logo-text-fallback {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #FFFFFF;
         }
 
@@ -451,7 +508,7 @@
             display: flex;
             list-style: none;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .menu-item {
@@ -462,10 +519,10 @@
 
         .menu-item-link {
             font-family: var(--font-nav);
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
             color: var(--secondary-text);
-            padding: 10px 0;
+            padding: 8px 0;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -896,30 +953,34 @@
         }
 
         .demat-btn .wp-block-button__link {
-            background: #1B4FFF;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
-            border: 1.5px solid #1B4FFF;
-            box-shadow: 0 4px 16px rgba(27, 79, 255, 0.38);
+            border: 1.5px solid transparent;
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.45);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            padding: 11px 22px;
+            border-radius: 50px;
         }
 
         .demat-btn .wp-block-button__link:hover {
-            background: transparent;
-            color: #1B4FFF !important;
-            border-color: rgba(27, 79, 255, 0.6);
-            box-shadow: none;
+            box-shadow: 0 8px 28px rgba(27, 79, 255, 0.6);
+            transform: translateY(-1px);
         }
 
         .header.scrolled .demat-btn .wp-block-button__link {
-            background: #1B4FFF;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
-            border-color: #1B4FFF;
+            border-color: transparent;
+            padding: 13px 20px;
+            font-size: 11.5px;
+            border-radius: 44px;
         }
 
         .header.scrolled .demat-btn .wp-block-button__link:hover {
-            background: transparent;
-            color: #FFFFFF !important;
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: none;
+            box-shadow: 0 6px 22px rgba(27, 79, 255, 0.55);
+            transform: translateY(-1px);
         }
 
         /* ===== HERO SECTION ===== */
@@ -928,9 +989,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             text-align: center;
-            padding: 120px 40px 60px 40px;
+            padding: 90px 40px 60px 40px;
             position: relative;
             z-index: 10;
             box-sizing: border-box;
@@ -939,14 +1000,14 @@
 
         .hero-container {
             position: relative;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             z-index: 2;
             width: 100%;
         }
 
 
         .hero-screen h1 {
-            font-family: var(--font-headings);
+            font-family: var(--font-display);
             color: var(--primary-text);
             line-height: 1.05;
             opacity: 0;
@@ -963,23 +1024,24 @@
 
         h1 .light-text {
             font-weight: 300;
-            font-size: 3.4rem;
+            font-size: 2.9rem;
             letter-spacing: -0.5px;
             display: block;
-            font-family: var(--font-headings);
+            font-family: var(--font-display);
+            line-height: 1.15;
         }
 
         h1 .bold-italic-text {
-            font-weight: 800;
+            font-weight: 900;
             font-style: italic;
-            font-size: 5.2rem;
-            letter-spacing: -2px;
+            font-size: 4.6rem;
+            letter-spacing: -2.5px;
             display: block;
-            margin-top: 5px;
-            padding: 8px 0;
-            min-height: 110px;
+            margin-top: 2px;
+            padding: 6px 0;
+            min-height: 92px;
             overflow: visible !important;
-            font-family: var(--font-headings);
+            font-family: var(--font-display);
         }
 
         .rotating-word {
@@ -996,10 +1058,10 @@
         .hero-sub {
             color: var(--secondary-text);
             font-family: var(--font-primary);
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 400;
-            max-width: 760px;
-            margin: 15px auto 35px auto;
+            max-width: 620px;
+            margin: 14px auto 30px auto;
             line-height: 1.6;
             position: relative;
             z-index: 2;
@@ -1011,7 +1073,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 35px;
+            gap: 28px;
             width: 100%;
             max-width: 1200px;
             position: relative;
@@ -1033,8 +1095,8 @@
         }
 
         .stat-circle {
-            width: 58px;
-            height: 58px;
+            width: 50px;
+            height: 50px;
             background-color: var(--circle-bg);
             border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 50%;
@@ -1042,7 +1104,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             position: relative;
             font-family: var(--font-headings);
             color: #1B4FFF;
@@ -1066,7 +1128,7 @@
 
         .stat-text {
             text-align: left;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: var(--secondary-text);
             line-height: 1.35;
             font-weight: 500;
@@ -1095,20 +1157,27 @@
             align-items: center;
             justify-content: center;
             background: #FFFFFF;
+            /* Uniform gap so rounded corners are always visible on every side */
+            padding: 24px;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .vr-frame {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             width: 100%;
-            max-width: 1000px;
-            padding: 0 40px;
+            height: 100%;
+            max-width: 100%;
+            padding: 0;
         }
 
         .video-reveal-text-top {
             position: absolute;
-            top: calc(50% - 140px);
+            /* sits above the small video (video half-height ≈ 113px, text ≈ 65px tall, +24px gap) */
+            bottom: calc(50% + 126px);
             left: 0;
             right: 0;
             text-align: center;
@@ -1118,29 +1187,35 @@
         }
 
         .video-reveal-text-top span {
-            font-family: var(--font-headings);
-            font-size: 2.6rem;
+            font-family: var(--font-display);
+            font-size: 3.65rem;
             font-weight: 300;
             color: var(--primary-text);
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             line-height: 1.1;
             display: block;
         }
 
         .video-reveal-video-wrap {
-            width: 100%;
-            border-radius: 20px;
+            /* Initial: fills the padded viewport (24px gap on every side = the gap-border look).
+               GSAP will animate width+height to a small 16:9 card as the user scrolls. */
+            width: calc(100vw - 48px);
+            height: calc(100vh - 48px);
+            border-radius: 28px;
             overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: none;
+            outline: none;
             transform-origin: center center;
             flex-shrink: 0;
-            will-change: transform;
+            will-change: width, height;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.15);
         }
 
         /* Styled placeholder — replaces blank video element */
         .vr-placeholder {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            height: 100%;        /* fill parent — aspect ratio set by parent wrapper */
+            aspect-ratio: auto;
             background: linear-gradient(135deg, #0B1628 0%, #1C2F56 45%, #0D1F3C 100%);
             display: flex;
             align-items: center;
@@ -1222,7 +1297,8 @@
 
         .video-reveal-text-bottom {
             position: absolute;
-            top: calc(50% + 92px);
+            /* sits below the small video */
+            top: calc(50% + 126px);
             left: 0;
             right: 0;
             text-align: center;
@@ -1232,11 +1308,11 @@
         }
 
         .video-reveal-text-bottom span {
-            font-family: var(--font-headings);
-            font-size: 2.6rem;
-            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: 3.65rem;
+            font-weight: 700;
             color: #1B4FFF;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             line-height: 1.1;
             display: block;
         }
@@ -1701,9 +1777,12 @@
         .scroll-indicator {
             display: flex;
             gap: 8px;
-            margin-top: 20px;
-            margin-bottom: 0;
             z-index: 5;
+            /* Pin to the bottom of the sticky viewport */
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .indicator-dot {
@@ -2079,8 +2158,8 @@
 
         .stack-container {
             position: relative;
-            width: 90%;
-            max-width: 1150px;
+            width: 94%;
+            max-width: 1380px;
             height: 58vh;
             min-height: 480px;
             margin-top: 0;
@@ -2216,9 +2295,16 @@
             object-fit: contain;
             filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.45));
             transition: transform 0.4s ease;
+            animation: iconFloat 4.5s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
         .stack-card:hover .stack-right img {
+            animation-play-state: paused;
             transform: scale(1.05);
         }
 
@@ -2255,7 +2341,7 @@
             font-family: var(--font-headings);
             font-size: 2.8rem;
             font-weight: 300;
-            color: #FFFFFF;
+            color: #0B0F19;
             letter-spacing: -1px;
         }
 
@@ -2266,44 +2352,42 @@
         }
 
         .how-track-wrapper {
-            width: 100%;
-            max-width: 1200px;
+            width: 94%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
             overflow: hidden;
             position: relative;
         }
 
         .how-track {
             display: flex;
-            gap: 30px;
+            gap: 28px;
             width: 100%;
             position: relative;
             z-index: 5;
         }
 
         .how-card {
-            flex-shrink: 0;
-            width: calc(33.333% - 20px);
-            min-width: 320px;
+            flex: 1 1 0;
+            min-width: 260px;
             height: 350px;
-            background: linear-gradient(135deg, rgba(27, 79, 255, 0.08) 0%, rgba(15, 23, 42, 0.9) 100%);
-            border: 1px solid rgba(27, 79, 255, 0.12);
-            border-radius: 16px;
-            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(77, 111, 255, 0.06) 0%, #f8faff 100%);
+            border: 1px solid rgba(27, 79, 255, 0.14);
+            border-radius: 20px;
+            padding: 40px 32px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 32px rgba(27, 79, 255, 0.07), 0 2px 8px rgba(0,0,0,0.04);
             opacity: 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .how-card:hover {
-            border-color: rgba(27, 79, 255, 0.4);
+            border-color: rgba(27, 79, 255, 0.35);
             transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(27, 79, 255, 0.12), 0 4px 12px rgba(0,0,0,0.06);
         }
 
         .how-card .step-num {
@@ -2320,13 +2404,13 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 12px;
-            color: #FFFFFF;
+            color: #0B0F19;
         }
 
         .how-card p {
             font-size: 0.9rem;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: #5B6475;
         }
 
         /* ===== ABOUT SECTION ===== */
@@ -2383,14 +2467,62 @@
             z-index: 10;
         }
 
+        .mentor-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 1300px;
+        }
+
         .video-viewport {
             perspective: 1500px;
-            width: 100%;
+            flex: 1;
             max-width: 850px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 30px;
+        }
+
+        .mentor-mascot {
+            flex-shrink: 0;
+            width: 160px;
+            height: 260px;
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .mascot-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mascot-svg {
+            width: 72px;
+            height: 90px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .mascot-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .mascot-hint {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.03em;
         }
 
         .video-container {
@@ -2442,7 +2574,7 @@
 
         /* ===== RESULTS ===== */
         .results-section {
-            background-color: var(--bg-dark);
+            background-color: #ffffff;
             padding: 120px 40px;
             width: 100%;
             display: flex;
@@ -2453,7 +2585,7 @@
         }
 
         .results-section .section-hdr h2 {
-            color: #ffffff;
+            color: #0B0F19;
         }
 
         .results-grid {
@@ -2465,8 +2597,8 @@
         }
 
         .result-card {
-            background: var(--bg-dark-secondary);
-            border: 1px solid rgba(27, 79, 255, 0.12);
+            background: #f5f7ff;
+            border: 1px solid rgba(27, 79, 255, 0.15);
             border-radius: 16px;
             padding: 32px 24px;
             display: flex;
@@ -2484,8 +2616,8 @@
         .result-card .screenshot-placeholder {
             width: 100%;
             height: 150px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px dashed rgba(27, 79, 255, 0.2);
+            background: rgba(77, 111, 255, 0.04);
+            border: 1px dashed rgba(27, 79, 255, 0.25);
             border-radius: 8px;
             margin-bottom: 18px;
             display: flex;
@@ -2509,8 +2641,8 @@
         }
 
         .result-card .metric-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(27, 79, 255, 0.12);
+            background: rgba(77, 111, 255, 0.06);
+            border: 1px solid rgba(27, 79, 255, 0.18);
             padding: 8px 14px;
             border-radius: 6px;
             text-align: center;
@@ -2537,7 +2669,7 @@
 
         .result-card p {
             font-size: 0.88rem;
-            color: var(--text-secondary);
+            color: #6B7280;
             line-height: 1.6;
             margin-bottom: 18px;
         }
@@ -2681,7 +2813,7 @@
 
         /* ===== GALLERY ===== */
         .gallery-section {
-            background-color: var(--bg-dark);
+            background-color: #ffffff;
             padding: 120px 40px;
             width: 100%;
             display: flex;
@@ -2692,7 +2824,7 @@
         }
 
         .gallery-section .section-hdr h2 {
-            color: #ffffff;
+            color: #0B0F19;
         }
 
         .gallery-collage {
@@ -2763,9 +2895,9 @@
             gap: 10px;
             padding: 14px 36px;
             background: transparent;
-            border: 1.5px solid rgba(27, 79, 255, 0.4);
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
             border-radius: 50px;
-            color: #FFFFFF;
+            color: #1B4FFF;
             font-family: var(--font-nav);
             font-size: 12px;
             font-weight: 700;
@@ -3618,47 +3750,155 @@
         /* ===== FIXED BOTTOM DOCK ===== */
         .fixed-bottom-dock {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 36px;
+            right: 36px;
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
             gap: 12px;
             z-index: 9999;
         }
 
+        /* ── Review badge: no card, just content ── */
+        .trustpilot-badge {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 14px;
+            row-gap: 2px;
+            align-items: center;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .trustpilot-badge.hidden {
+            opacity: 0;
+            transform: translateY(8px);
+            pointer-events: none;
+        }
+
+        /* Left column — label above brand logo */
+        .tp-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .tp-label {
+            font-family: var(--font-nav);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #64748B;
+            white-space: nowrap;
+        }
+
+        /* Trustpilot logo row: star icon + wordmark */
+        .tp-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tp-logo-img {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        /* Right column — stars above count */
+        .tp-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3px;
+        }
+
+        .tp-stars {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .tp-star {
+            width: 18px;
+            height: 18px;
+            background: #00B67A;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .tp-star svg {
+            width: 11px;
+            height: 11px;
+            fill: #FFFFFF;
+        }
+
+        .tp-stars-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tp-rating {
+            font-family: var(--font-headings);
+            font-size: 14px;
+            font-weight: 800;
+            color: #191919;
+            line-height: 1;
+        }
+
+        .tp-count {
+            font-family: var(--font-nav);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #64748B;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ── Social icons row (horizontal) ── */
+        .social-icons-row {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            align-items: center;
+        }
+
         .social-dock-link {
-            width: 48px;
-            height: 48px;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(11, 15, 25, 0.1);
+            width: 52px;
+            height: 52px;
+            background-color: #111111;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 24px rgba(11, 15, 25, 0.1);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s, box-shadow 0.3s;
+            text-decoration: none;
         }
 
         .social-dock-link:hover {
             transform: translateY(-4px);
-            border-color: #1B4FFF;
             background-color: #1B4FFF;
-            box-shadow: 0 12px 28px rgba(27, 79, 255, 0.4);
+            box-shadow: 0 12px 28px rgba(27, 79, 255, 0.45);
         }
 
         .social-dock-link svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--primary-text);
+            width: 22px;
+            height: 22px;
+            fill: #FFFFFF;
             display: block;
             margin: auto;
-            transition: fill 0.3s ease;
         }
 
-        .social-dock-link:hover svg {
-            fill: #FFFFFF;
-        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
@@ -3737,11 +3977,12 @@
             }
 
             h1 .light-text {
-                font-size: 2rem;
+                font-size: 2.1rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 3rem;
+                font-size: 3.2rem;
+                letter-spacing: -2px;
                 min-height: auto;
             }
 
@@ -3756,8 +3997,27 @@
             }
 
             .fixed-bottom-dock {
-                bottom: 20px;
-                right: 20px;
+                bottom: 16px;
+                right: 16px;
+                gap: 8px;
+            }
+
+            .trustpilot-badge {
+                column-gap: 10px;
+            }
+
+            .tp-logo-img {
+                height: 20px;
+            }
+
+            .social-dock-link {
+                width: 44px;
+                height: 44px;
+            }
+
+            .social-dock-link svg {
+                width: 18px;
+                height: 18px;
             }
 
             .logo-slider-container {
@@ -3858,6 +4118,15 @@
                 padding: 60px 20px;
             }
 
+            .mentor-mascot {
+                display: none;
+            }
+
+            .mentor-layout {
+                flex-direction: column;
+                gap: 0;
+            }
+
             .results-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -3922,12 +4191,13 @@
 
             .video-reveal-text-top span,
             .video-reveal-text-bottom span {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
 
             .vr-frame {
                 padding: 0;
                 width: 100%;
+                height: auto;
             }
 
             .mega-menu-inner {
@@ -4055,17 +4325,17 @@
 
             .video-reveal-text-top span,
             .video-reveal-text-bottom span {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
         }
 
         @media (max-width: 480px) {
             h1 .light-text {
-                font-size: 1.6rem;
+                font-size: 1.65rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 2.4rem;
+                font-size: 2.5rem;
                 letter-spacing: -1.5px;
             }
 
@@ -4937,7 +5207,6 @@
                             <div class="vision-card-divider"></div>
                             <div class="vision-card-footer">
                                 <p>Built for traders who want consistency over shortcuts — and are ready to treat the market like a profession.</p>
-                                <a href="#courses" class="vision-card-link">Explore Programs <span>→</span></a>
                             </div>
                         </div>
                     </div>
@@ -4949,7 +5218,7 @@
                     <div class="course-card-left">
                         <div class="course-card-title">Algo Trading (Elgo System)</div>
                         <div class="course-card-desc">Remove Emotion. Execute Automatically. Scale Confidently.</div>
-                        <a href="#masterclass" class="course-card-btn">
+                        <a href="algo-trading.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
                             <span class="btn-row-sm btn-gh">Learn More</span>
@@ -4974,7 +5243,7 @@
                     <div class="course-card-left">
                         <div class="course-card-title">1-on-1 Mentorship</div>
                         <div class="course-card-desc">Personalized Strategy. Direct Accountability. Real Results.</div>
-                        <a href="#masterclass" class="course-card-btn">
+                        <a href="robotic.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
                             <span class="btn-row-sm btn-gh">Learn More</span>
@@ -4993,7 +5262,7 @@
                     <div class="course-card-left">
                         <div class="course-card-title">Option Selling &amp; Hedging</div>
                         <div class="course-card-desc">Consistent Income. Defined Risk. Institutional Execution.</div>
-                        <a href="#masterclass" class="course-card-btn">
+                        <a href="timeline.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
                             <span class="btn-row-sm btn-gh">Learn More</span>
@@ -5191,22 +5460,57 @@
             Kundan Prajapati has spent 9+ years studying markets, risk management, and institutional-style execution
             frameworks. His approach is built from years of live execution, real losses, and hard-won discipline.
         </p>
-        <div class="video-viewport">
-            <div class="video-container" id="mentor-video">
-                <iframe id="yt-player" src="https://www.youtube.com/embed/75J3rO9ZnIw?si=qmeSa-ov1bsSPa8Q"
-                    title="Mentor Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+        <div class="mentor-layout">
+            <!-- Bear placeholder — left side -->
+            <div class="mentor-mascot bear-mascot">
+                <div class="mascot-inner">
+                    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot-svg">
+                        <circle cx="40" cy="22" r="18" stroke="currentColor" stroke-width="2.5"/>
+                        <circle cx="24" cy="14" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <circle cx="56" cy="14" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M22 40 C22 52 16 62 12 74" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M58 40 C58 52 64 62 68 74" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="20" y="38" width="40" height="36" rx="14" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M28 58 L40 46 L52 58" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="mascot-label">Bear</span>
+                    <span class="mascot-hint">Placeholder</span>
+                </div>
             </div>
-            <!-- Replaced "Reserve Masterclass" with About page link -->
-            <a href="aboutus.html" class="about-page-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8v4M12 16h.01" />
-                </svg>
-                Read Full Story — About Kundan
-            </a>
+
+            <div class="video-viewport">
+                <div class="video-container" id="mentor-video">
+                    <iframe id="yt-player" src="https://www.youtube.com/embed/75J3rO9ZnIw?si=qmeSa-ov1bsSPa8Q"
+                        title="Mentor Video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <a href="aboutus.html" class="about-page-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4M12 16h.01" />
+                    </svg>
+                    Read Full Story — About Kundan
+                </a>
+            </div>
+
+            <!-- Bull placeholder — right side -->
+            <div class="mentor-mascot bull-mascot">
+                <div class="mascot-inner">
+                    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot-svg">
+                        <ellipse cx="40" cy="26" rx="20" ry="16" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M20 18 C12 10 8 6 6 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M60 18 C68 10 72 6 74 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M20 34 C18 50 14 64 12 76" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M60 34 C62 50 66 64 68 76" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="20" y="38" width="40" height="36" rx="14" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M28 58 L40 46 L52 58" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="mascot-label">Bull</span>
+                    <span class="mascot-hint">Placeholder</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -5236,7 +5540,7 @@
                         style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         RS</div>
                     <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#ffffff;font-size:0.95rem;font-weight:600;">Rohan Sharma</h4>
+                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Rohan Sharma</h4>
                         <span style="color:var(--text-secondary);font-size:0.75rem;">Mumbai | Algo Student</span>
                     </div>
                 </div>
@@ -5260,7 +5564,7 @@
                         style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         PP</div>
                     <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#ffffff;font-size:0.95rem;font-weight:600;">Priya Patel</h4>
+                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Priya Patel</h4>
                         <span style="color:var(--text-secondary);font-size:0.75rem;">Ahmedabad | 1-on-1
                             Mentorship</span>
                     </div>
@@ -5285,7 +5589,7 @@
                         style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         AJ</div>
                     <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#ffffff;font-size:0.95rem;font-weight:600;">Ankit Joshi</h4>
+                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Ankit Joshi</h4>
                         <span style="color:var(--text-secondary);font-size:0.75rem;">Jaipur | Options Course</span>
                     </div>
                 </div>
@@ -5909,18 +6213,44 @@
 
     <!-- Fixed Bottom Dock -->
     <div class="fixed-bottom-dock">
-        <a href="#" class="social-dock-link" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-            </svg>
-        </a>
-        <a href="#" class="social-dock-link" aria-label="Telegram">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-            </svg>
-        </a>
+
+        <!-- Review badge: left col = label+logo, right col = stars+count -->
+        <div class="trustpilot-badge" id="trustpilotBadge">
+            <div class="tp-left">
+                <span class="tp-label">Reviewed on</span>
+                <div class="tp-logo-row">
+                    <img src="trustpilot_logo.png" alt="Trustpilot" class="tp-logo-img">
+                </div>
+            </div>
+            <div class="tp-right">
+                <div class="tp-stars-row">
+                    <div class="tp-stars">
+                        <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                        <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                        <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                        <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                        <span class="tp-star" style="background:linear-gradient(90deg,#00B67A 70%,#DCDCE6 70%)"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                    </div>
+                    <span class="tp-rating">4.7</span>
+                </div>
+                <span class="tp-count">29 Reviews</span>
+            </div>
+        </div>
+
+        <!-- Social icons — horizontal row of 3 black circles -->
+        <div class="social-icons-row">
+            <a href="#" class="social-dock-link" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
+            </a>
+            <a href="#" class="social-dock-link" aria-label="Email">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+        </div>
+
     </div>
 
     <script>
@@ -5939,6 +6269,8 @@
         /* ===== NAVBAR SCROLL ===== */
         const navbar = document.getElementById('navbar');
         const brandLabel = document.getElementById('brandLabel');
+        const trustpilotBadge = document.getElementById('trustpilotBadge');
+        const heroSection = document.querySelector('.hero-screen');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 25) {
@@ -5947,6 +6279,16 @@
             } else {
                 navbar.classList.remove('scrolled');
                 brandLabel.textContent = "The Trading Scholar";
+            }
+
+            /* Hide Trustpilot badge once user scrolls past the hero section */
+            if (heroSection && trustpilotBadge) {
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+                if (heroBottom <= 0) {
+                    trustpilotBadge.classList.add('hidden');
+                } else {
+                    trustpilotBadge.classList.remove('hidden');
+                }
             }
         });
 
@@ -6200,10 +6542,17 @@
             const vrSec    = document.getElementById('video-reveal');
             const vrSticky = document.querySelector('.video-reveal-sticky');
 
-            gsap.set(vrVid,    { scale: 1 });
+            gsap.set(vrVid,    { clearProps: 'all' });
             gsap.set(vrTop,    { opacity: 0, y: -20 });
             gsap.set(vrBot,    { opacity: 0, y: 20 });
             gsap.set(vrSticky, { backgroundColor: '#ffffff' });
+
+            // Initial size: full viewport minus 24px gap on each side
+            // Final size: compact 16:9 card (400 × 225 px)
+            const vrW0 = window.innerWidth  - 48;
+            const vrH0 = window.innerHeight - 48;
+            const vrWf = 400;
+            const vrHf = Math.round(vrWf * 9 / 16); // 225
 
             const vrTl = gsap.timeline({
                 scrollTrigger: {
@@ -6216,10 +6565,10 @@
                 }
             });
 
-            // 0–55%: video shrinks
+            // 0–55%: video shrinks from full-viewport (any ratio) → small 16:9 card
             vrTl.fromTo(vrVid,
-                { scale: 1 },
-                { scale: 0.28, duration: 0.55, ease: 'power2.inOut' },
+                { width: vrW0, height: vrH0 },
+                { width: vrWf, height: vrHf, duration: 0.55, ease: 'power2.inOut' },
                 0
             );
             // 55–75%: text fades in from its absolute position
@@ -6253,8 +6602,8 @@
                 scrollTrigger: {
                     trigger: "#pin-section",
                     start: "top top",
-                    end: () => "+=" + (window.innerHeight * 1.8),
-                    pin: true, scrub: 1.2, anticipatePin: 1,
+                    end: () => "+=" + (window.innerHeight * 2.8),
+                    pin: true, scrub: 2, anticipatePin: 1,
                     onUpdate: self => {
                         const p = self.progress;
                         document.getElementById('dot-1').classList.toggle('active', p <= 0.5);
@@ -6266,14 +6615,14 @@
             cards.forEach((card, i) => {
                 flipTimeline.fromTo(card,
                     { x: `${100 + i * 30}vw`, y: `${10 + i * 10}vh`, rotate: 6 + i * 3, opacity: 0 },
-                    { x: "0vw", y: "0vh", rotate: 0, opacity: 1, duration: 1.5, ease: "power2.out" },
-                    i * 0.15
+                    { x: "0vw", y: "0vh", rotate: 0, opacity: 1, duration: 2, ease: "power2.out" },
+                    i * 0.2
                 );
             });
 
-            flipTimeline.to({}, { duration: 0.5 });
+            flipTimeline.to({}, { duration: 0.8 });
             cardInners.forEach((inner, i) => {
-                flipTimeline.to(inner, { rotateY: 180, duration: 1, ease: "back.out(1.1)" }, `flip+=${i * 0.2}`);
+                flipTimeline.to(inner, { rotateY: 180, duration: 1.4, ease: "back.out(1.1)" }, `flip+=${i * 0.28}`);
             });
             flipTimeline.to({}, { duration: 0.5 });
 
@@ -6283,7 +6632,7 @@
             });
 
             gsap.from(".vision-card-inner", {
-                opacity: 0, x: -50, duration: 1, ease: "power2.out",
+                opacity: 0, x: -60, duration: 2.4, ease: "power3.out",
                 scrollTrigger: { trigger: ".courses-section", start: "top 75%", toggleActions: "play none none none" }
             });
 
@@ -6310,14 +6659,16 @@
             });
 
             howTimeline
+                .fromTo("#how-viewport", { backgroundColor: "#030712" }, { backgroundColor: "#ffffff", duration: 0.6, ease: "none" }, 0)
                 .fromTo("#how-card-1", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 1.5, ease: "power2.out" }, 0)
                 .fromTo("#how-card-2", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 1.5, ease: "power2.out" }, 1.0)
-                .fromTo("#how-card-3", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 1.5, ease: "power2.out" }, 2.0);
+                .fromTo("#how-card-3", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 1.5, ease: "power2.out" }, 2.0)
+                .to("#how-viewport", { backgroundColor: "#030712", duration: 0.6, ease: "none" }, 2.9);
         });
 
         mm.add("(max-width: 1024px)", () => {
-            // Video reveal: no animation on mobile, show everything statically
-            gsap.set('#vr-video',  { clearProps: 'transform' });
+            // Video reveal: no animation on mobile, reset inline dimensions
+            gsap.set('#vr-video', { clearProps: 'width,height,transform' });
             gsap.set('#vr-top',    { opacity: 1, y: 0 });
             gsap.set('#vr-bottom', { opacity: 1, y: 0 });
             gsap.set('.video-reveal-sticky', { backgroundColor: '#ffffff' });
@@ -6328,6 +6679,16 @@
             gsap.set(".how-card", { x: 0, opacity: 1 });
             gsap.from(".card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#pin-section", start: "top 80%" } });
             gsap.from(".how-card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#how-viewport", start: "top 80%" } });
+
+            // How It Works background fade dark -> white -> dark (mobile, no pin)
+            gsap.fromTo("#how-viewport", { backgroundColor: "#030712" }, {
+                backgroundColor: "#ffffff", ease: "none",
+                scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 30%", scrub: true }
+            });
+            gsap.to("#how-viewport", {
+                backgroundColor: "#030712", ease: "none",
+                scrollTrigger: { trigger: "#how-viewport", start: "bottom 70%", end: "bottom top", scrub: true }
+            });
         });
 
         gsap.fromTo("#mentor-video",
@@ -6342,6 +6703,17 @@
         gsap.from(".podcast-grid", { opacity: 0, y: 40, duration: 1, ease: "power2.out", scrollTrigger: { trigger: ".podcast-section", start: "top 80%" } });
         gsap.from(".gallery-collage", { opacity: 0, y: 40, duration: 1, ease: "power2.out", scrollTrigger: { trigger: ".gallery-section", start: "top 80%" } });
         gsap.from(".main-container", { opacity: 0, scale: 0.95, duration: 1.2, ease: "power2.out", scrollTrigger: { trigger: ".masterclass-section", start: "top 75%" } });
+
+        // Smooth scroll-synced background transitions (replaces banded CSS gradients)
+        gsap.fromTo(".results-section", { backgroundColor: "#030712" }, {
+            backgroundColor: "#ffffff", ease: "none",
+            scrollTrigger: { trigger: ".results-section", start: "top bottom", end: "top 20%", scrub: true }
+        });
+
+        gsap.fromTo(".gallery-section", { backgroundColor: "#ffffff" }, {
+            backgroundColor: "#000000", ease: "none",
+            scrollTrigger: { trigger: ".gallery-section", start: "bottom bottom", end: "bottom top", scrub: true }
+        });
     </script>
 </body>
 
