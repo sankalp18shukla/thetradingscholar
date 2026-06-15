@@ -205,6 +205,20 @@
             }
         }
 
+        /* ===== HERO LIVE CHART BACKGROUND ===== */
+        .hero-graph-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+            display: block;
+            background: transparent;
+        }
+
         /* ===== LAYOUT HELPERS ===== */
         .container-fluid {
             width: 100%;
@@ -2373,14 +2387,14 @@
             flex: 1 1 0;
             min-width: 260px;
             height: 360px;
-            background: linear-gradient(135deg, rgba(77, 111, 255, 0.06) 0%, #f8faff 100%);
+            background: linear-gradient(145deg, #eef2fb 0%, #ffffff 100%);
             border: 1px solid rgba(27, 79, 255, 0.14);
             border-radius: 20px;
             padding: 44px 38px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 8px 32px rgba(27, 79, 255, 0.07), 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0,0,0,0.06);
             opacity: 0;
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -2388,7 +2402,7 @@
         .how-card:hover {
             border-color: rgba(27, 79, 255, 0.35);
             transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(27, 79, 255, 0.12), 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .how-card .step-num {
@@ -2411,7 +2425,7 @@
         .how-card p {
             font-size: 0.97rem;
             line-height: 1.65;
-            color: #5B6475;
+            color: #475569;
         }
 
         /* ===== ABOUT SECTION ===== */
@@ -2490,33 +2504,37 @@
 
         .mentor-mascot {
             flex-shrink: 0;
-            width: 420px;
-            height: 460px;
+            width: 520px;
+            height: 560px;
             display: flex;
             align-items: center;
         }
 
         .bear-mascot {
             justify-content: flex-start;
-            margin-left: -210px;
+            margin-left: -240px;
         }
 
         .bull-mascot {
             justify-content: flex-end;
-            margin-right: -210px;
+            margin-right: -240px;
         }
 
         .mascot-img {
             width: 100%;
             height: auto;
-            max-height: 460px;
+            max-height: 560px;
             object-fit: contain;
             opacity: 0.55;
             filter: saturate(1.25) brightness(1.05) drop-shadow(0 0 40px rgba(77, 111, 255, 0.35));
         }
 
+        .bear-mascot .mascot-img {
+            transform: rotate(-20deg);
+        }
+
         .bull-mascot .mascot-img {
-            transform: scaleX(-1);
+            transform: scaleX(-1) rotate(-20deg);
         }
 
         .video-container {
@@ -3923,6 +3941,12 @@
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             }
 
+            /* Remove desktop double-padding so logo/burger sit flush with the pill edges on mobile */
+            .header .container-fluid,
+            .header .col-12 {
+                padding: 0;
+            }
+
             #desktop,
             .demat-btn {
                 display: none !important;
@@ -4083,7 +4107,15 @@
             }
 
             .stack-right {
-                display: none;
+                order: -1;
+                height: auto;
+                max-height: 140px;
+            }
+
+            .stack-right img {
+                max-width: 140px;
+                max-height: 140px;
+                margin: 0 auto;
             }
 
             .how-works-section {
@@ -4194,6 +4226,13 @@
                 height: auto;
             }
 
+            .video-reveal-video-wrap {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+                border-radius: 16px;
+            }
+
             .mega-menu-inner {
                 grid-template-columns: 1fr;
             }
@@ -4255,6 +4294,19 @@
 
             .gallery-collage {
                 columns: 2;
+            }
+
+            .stack-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .logo-item {
+                width: 240px;
+                height: 110px;
+            }
+
+            .logo-item img {
+                max-height: 80px;
             }
 
             footer {
@@ -4404,6 +4456,43 @@
 
             .fvc-heading {
                 font-size: 1.45rem;
+            }
+
+            .stack-title h2 {
+                font-size: 1.85rem;
+            }
+
+            .stack-section {
+                padding-top: 80px;
+            }
+
+            .vision-card-inner {
+                padding: 32px 22px;
+            }
+
+            .how-card {
+                padding: 32px 24px;
+            }
+
+            .how-card .step-num {
+                font-size: 3rem;
+            }
+
+            .logo-item {
+                width: 170px;
+                height: 90px;
+            }
+
+            .logo-item img {
+                max-height: 65px;
+            }
+
+            .course-card {
+                padding: 24px 20px;
+            }
+
+            .podcast-card {
+                min-height: auto;
             }
         }
 
@@ -4919,6 +5008,8 @@
 
     <!-- HERO -->
     <section class="hero-screen">
+        <!-- Live chart-style animated background -->
+        <canvas class="hero-graph-bg" id="heroChartCanvas" aria-hidden="true"></canvas>
 <div class="hero-container">
 
             <h1>
@@ -6161,17 +6252,21 @@
         <div class="footer-bottom">
             <p>&copy; 2026 The Trading Scholar. All Rights Reserved. Education-only purposes.</p>
             <div class="footer-socials">
-                <a href="#" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24">
+                <a href="https://www.facebook.com/thetradingscholar" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                    </svg></a>
+                <a href="https://www.youtube.com/@thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24">
                         <path
                             d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                     </svg></a>
-                <a href="#" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                <a href="https://x.com/ScholarTrading" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg></a>
+                <a href="https://www.instagram.com/thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24">
                         <path
                             d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-                    </svg></a>
-                <a href="#" class="footer-social-link" aria-label="Telegram"><svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.03.51.16.13.11.17.27.19.38.02.09.02.21.01.31z" />
                     </svg></a>
             </div>
         </div>
@@ -6209,14 +6304,14 @@
 
         <!-- Social icons — horizontal row of 3 black circles -->
         <div class="social-icons-row">
-            <a href="#" class="social-dock-link" aria-label="WhatsApp">
+            <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="social-dock-link" aria-label="WhatsApp">
                 <svg viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
                 </svg>
             </a>
-            <a href="#" class="social-dock-link" aria-label="Email">
+            <a href="https://t.me/Thetradingscholar" target="_blank" rel="noopener" class="social-dock-link" aria-label="Telegram">
                 <svg viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.41-1.42-.87.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.26 3.61-1.5 4.36-1.76 4.85-1.77.11 0 .35.03.51.16.13.11.17.27.19.38.02.09.02.21.01.31z"/>
                 </svg>
             </a>
         </div>
@@ -6235,6 +6330,176 @@
             el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1.6)'; });
             el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
         });
+
+        /* ===== HERO LIVE CHART BACKGROUND ===== */
+        (function () {
+            const canvas = document.getElementById('heroChartCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const viewport = canvas.parentElement;
+
+            const TOTAL_POINTS = 1000;
+            const VIEWPORT_SIZE = 940;
+            const SCROLL_SPEED_RATE = 40;
+            const RIGHT_PADDING = 60;
+
+            let points = [];
+            let lastFrameTime = null;
+            let scrollIndex = 0;
+
+            const pathLandmarks = [
+                {x: 0.00, y: 0.65}, {x: 0.02, y: 0.40}, {x: 0.04, y: 0.48}, {x: 0.06, y: 0.44},
+                {x: 0.08, y: 0.62}, {x: 0.10, y: 0.58}, {x: 0.12, y: 0.55}, {x: 0.15, y: 0.70},
+                {x: 0.18, y: 0.65}, {x: 0.20, y: 0.68}, {x: 0.23, y: 0.46}, {x: 0.25, y: 0.50},
+                {x: 0.26, y: 0.48}, {x: 0.28, y: 0.75}, {x: 0.31, y: 0.81}, {x: 0.33, y: 0.85},
+                {x: 0.35, y: 0.68}, {x: 0.36, y: 0.78}, {x: 0.38, y: 0.84}, {x: 0.40, y: 0.88},
+                {x: 0.41, y: 0.73}, {x: 0.43, y: 0.75}, {x: 0.44, y: 0.72}, {x: 0.46, y: 0.79},
+                {x: 0.48, y: 0.77}, {x: 0.50, y: 0.62}, {x: 0.52, y: 0.52}, {x: 0.53, y: 0.54},
+                {x: 0.55, y: 0.51}, {x: 0.57, y: 0.42}, {x: 0.59, y: 0.41}, {x: 0.60, y: 0.33},
+                {x: 0.62, y: 0.31}, {x: 0.63, y: 0.23}, {x: 0.65, y: 0.29}, {x: 0.67, y: 0.24},
+                {x: 0.69, y: 0.34}, {x: 0.71, y: 0.20}, {x: 0.72, y: 0.18}, {x: 0.74, y: 0.25},
+                {x: 0.76, y: 0.38}, {x: 0.78, y: 0.35}, {x: 0.80, y: 0.38}, {x: 0.82, y: 0.32},
+                {x: 0.84, y: 0.34}, {x: 0.86, y: 0.33}, {x: 0.88, y: 0.22}, {x: 0.90, y: 0.31},
+                {x: 0.92, y: 0.21}, {x: 0.94, y: 0.24},
+                {x: 0.955, y: 0.30}, {x: 0.97, y: 0.42}, {x: 0.985, y: 0.54}, {x: 1.00, y: 0.65}
+            ];
+
+            function interpolate(x, p1, p2) {
+                const t = (x - p1.x) / (p2.x - p1.x);
+                return p1.y + t * (p2.y - p1.y);
+            }
+
+            function generateGraph() {
+                points = [];
+                for (let i = 0; i < TOTAL_POINTS; i++) {
+                    const x = i / (TOTAL_POINTS - 1);
+                    let p1 = pathLandmarks[0];
+                    let p2 = pathLandmarks[pathLandmarks.length - 1];
+                    for (let j = 0; j < pathLandmarks.length - 1; j++) {
+                        if (x >= pathLandmarks[j].x && x <= pathLandmarks[j + 1].x) {
+                            p1 = pathLandmarks[j];
+                            p2 = pathLandmarks[j + 1];
+                            break;
+                        }
+                    }
+                    let y = interpolate(x, p1, p2);
+                    const microNoise = Math.sin(x * 2 * Math.PI * 25) * 0.012 +
+                                       Math.cos(x * 2 * Math.PI * 75) * 0.005 +
+                                       Math.sin(x * 2 * Math.PI * 150) * 0.002;
+                    y += microNoise;
+                    y = Math.max(0.05, Math.min(0.95, y));
+                    points.push({ x, y });
+                }
+            }
+
+            function resizeCanvas() {
+                const rect = viewport.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.scale(dpr, dpr);
+                generateGraph();
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+
+            function draw(timestamp) {
+                if (!lastFrameTime) lastFrameTime = timestamp;
+
+                const deltaTime = (timestamp - lastFrameTime) / 1000;
+                lastFrameTime = timestamp;
+
+                const dpr = window.devicePixelRatio || 1;
+                const w = canvas.width / dpr;
+                const h = canvas.height / dpr;
+
+                ctx.clearRect(0, 0, w, h);
+
+                scrollIndex = (scrollIndex + (SCROLL_SPEED_RATE * deltaTime)) % TOTAL_POINTS;
+
+                const currentPointsCount = VIEWPORT_SIZE;
+
+                if (currentPointsCount > 1 && points.length) {
+                    const drawPoints = [];
+                    const startOffset = Math.floor(scrollIndex);
+
+                    for (let i = 0; i < currentPointsCount; i++) {
+                        const idx = (startOffset + i) % TOTAL_POINTS;
+                        const canvasX = (i / (VIEWPORT_SIZE - 1)) * (w - RIGHT_PADDING);
+                        const canvasY = h - (points[idx].y * h);
+                        drawPoints.push({ x: canvasX, y: canvasY });
+                    }
+
+                    const lastPoint = drawPoints[drawPoints.length - 1];
+
+                    /* Horizontal price line */
+                    ctx.strokeStyle = 'rgba(27, 79, 255, 0.04)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, lastPoint.y);
+                    ctx.lineTo(w, lastPoint.y);
+                    ctx.stroke();
+
+                    /* Gradient area under the curve */
+                    ctx.beginPath();
+                    ctx.moveTo(drawPoints[0].x, h);
+                    for (let i = 0; i < drawPoints.length; i++) ctx.lineTo(drawPoints[i].x, drawPoints[i].y);
+                    ctx.lineTo(lastPoint.x, h);
+                    ctx.closePath();
+
+                    const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                    gradient.addColorStop(0, 'rgba(27, 79, 255, 0.05)');
+                    gradient.addColorStop(0.5, 'rgba(27, 79, 255, 0.02)');
+                    gradient.addColorStop(1, 'rgba(27, 79, 255, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+
+                    /* Line stroke */
+                    ctx.strokeStyle = 'rgba(27, 79, 255, 0.18)';
+                    ctx.lineWidth = 1.5;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.shadowColor = 'rgba(27, 79, 255, 0.12)';
+                    ctx.shadowBlur = 3;
+
+                    ctx.beginPath();
+                    ctx.moveTo(drawPoints[0].x, drawPoints[0].y);
+                    for (let i = 1; i < drawPoints.length; i++) ctx.lineTo(drawPoints[i].x, drawPoints[i].y);
+                    ctx.stroke();
+
+                    ctx.shadowBlur = 0;
+
+                    /* Pulsing pointer node */
+                    const pulsePeriod = Date.now() / 250;
+                    const innerPulseRadius = 6 + Math.sin(pulsePeriod) * 1.2;
+                    const outerPulseRadius = 11 + Math.sin(pulsePeriod) * 1.6;
+
+                    ctx.fillStyle = 'rgba(27, 79, 255, 0.04)';
+                    ctx.beginPath();
+                    ctx.arc(lastPoint.x, lastPoint.y, outerPulseRadius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = 'rgba(27, 79, 255, 0.12)';
+                    ctx.beginPath();
+                    ctx.arc(lastPoint.x, lastPoint.y, innerPulseRadius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.strokeStyle = '#1B4FFF';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(lastPoint.x, lastPoint.y, 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            resizeCanvas();
+            requestAnimationFrame(draw);
+        })();
 
         /* ===== NAVBAR SCROLL ===== */
         const navbar = document.getElementById('navbar');

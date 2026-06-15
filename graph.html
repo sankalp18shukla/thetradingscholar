@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Financial Area Chart Animation</title>
+    <style>
+        :root {
+            --bg-color: #0b111e;
+            --primary-blue: #2699fb;
+            --primary-glow: rgba(38, 153, 251, 0.4);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 50%, #111a2e 0%, #070b12 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container keeping aspect ratio similar to source image */
+        .chart-viewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Overlay Price Tracker (Moves vertically with the active pointer) */
+        .price-tracker {
+            position: absolute;
+            left: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 5;
+            transition: opacity 0.3s ease;
+        }
+
+        .price-tracker.hidden {
+            opacity: 0;
+        }
+
+        /* Offset/layered stacked style text inspired by screenshot labels */
+        .coord-pill {
+            position: relative;
+            background: rgba(38, 153, 251, 0.18);
+            border: 1.5px solid rgba(38, 153, 251, 0.45);
+            border-radius: 20px;
+            padding: 6px 14px;
+            min-width: 98px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .layer-text {
+            position: absolute;
+            font-size: 13px;
+            font-family: monospace;
+            font-weight: 600;
+        }
+
+        .layer-bg-blue {
+            transform: translate(-2px, -3px);
+            color: rgba(38, 153, 251, 0.45);
+        }
+
+        .layer-bg-white {
+            transform: translate(1px, 2px);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .layer-fg {
+            transform: translate(0, 0);
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Green and Red Price Markers */
+        .price-stack {
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 12.5px;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: 0.3px;
+        }
+
+        .price-green {
+            color: #2ecc71;
+        }
+
+        .price-red {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chart-viewport" id="viewport">
+        <!-- Dynamic Overlay Price Box -->
+        <div class="price-tracker" id="priceTracker">
+            <div class="coord-pill">
+                <span class="layer-text layer-bg-blue" id="labelBgBlue">2016.615</span>
+                <span class="layer-text layer-bg-white" id="labelBgWhite">2016.615</span>
+                <span class="layer-text layer-fg" id="labelFg">2016.615</span>
+            </div>
+            <div class="price-stack">
+                <span class="price-green" id="priceGreen">$85.50</span>
+                <span class="price-red" id="priceRed">$85.50</span>
+            </div>
+        </div>
+
+        <!-- Canvas for Rendered Graph -->
+        <canvas id="chartCanvas"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('chartCanvas');
+        const ctx = canvas.getContext('2d');
+        const priceTracker = document.getElementById('priceTracker');
+        const viewport = document.getElementById('viewport');
+
+        const priceGreen = document.getElementById('priceGreen');
+        const priceRed = document.getElementById('priceRed');
+        const labelBgBlue = document.getElementById('labelBgBlue');
+        const labelBgWhite = document.getElementById('labelBgWhite');
+        const labelFg = document.getElementById('labelFg');
+
+        // Animation Configurations
+        const ANIMATION_DURATION = 6000; // Duration of initial draw (6 seconds)
+        const TOTAL_POINTS = 1000;       // Total resolution of the closed wave array
+        const VIEWPORT_SIZE = 940;       // Portion of points (94%) visible on screen
+        const SCROLL_SPEED_RATE = 40;    // Indices to scroll left per second
+
+        let points = [];                 // Seamless array of generated points
+        let progress = 0;                // 0 to 1 draw progress
+        let animationStartTime = null;
+        let lastFrameTime = null;
+        let animationState = 'drawing';  // 'drawing' or 'live'
+        let scrollIndex = 0;             // Tracks continuous viewport offset position
+
+        // Landmark points representing the preferred graph design.
+        // A clean, smooth transition is added at the end (0.94 to 1.00) to loop seamlessly back to the start.
+        const pathLandmarks = [
+            {x: 0.00, y: 0.65},
+            {x: 0.02, y: 0.40},
+            {x: 0.04, y: 0.48},
+            {x: 0.06, y: 0.44},
+            {x: 0.08, y: 0.62},
+            {x: 0.10, y: 0.58},
+            {x: 0.12, y: 0.55},
+            {x: 0.15, y: 0.70},
+            {x: 0.18, y: 0.65},
+            {x: 0.20, y: 0.68},
+            {x: 0.23, y: 0.46},
+            {x: 0.25, y: 0.50},
+            {x: 0.26, y: 0.48},
+            {x: 0.28, y: 0.75},
+            {x: 0.31, y: 0.81},
+            {x: 0.33, y: 0.85},
+            {x: 0.35, y: 0.68},
+            {x: 0.36, y: 0.78},
+            {x: 0.38, y: 0.84},
+            {x: 0.40, y: 0.88}, // First main double peak
+            {x: 0.41, y: 0.73},
+            {x: 0.43, y: 0.75},
+            {x: 0.44, y: 0.72},
+            {x: 0.46, y: 0.79},
+            {x: 0.48, y: 0.77},
+            {x: 0.50, y: 0.62},
+            {x: 0.52, y: 0.52},
+            {x: 0.53, y: 0.54},
+            {x: 0.55, y: 0.51},
+            {x: 0.57, y: 0.42},
+            {x: 0.59, y: 0.41},
+            {x: 0.60, y: 0.33},
+            {x: 0.62, y: 0.31},
+            {x: 0.63, y: 0.23},
+            {x: 0.65, y: 0.29},
+            {x: 0.67, y: 0.24},
+            {x: 0.69, y: 0.34},
+            {x: 0.71, y: 0.20}, // Trough area
+            {x: 0.72, y: 0.18},
+            {x: 0.74, y: 0.25},
+            {x: 0.76, y: 0.38},
+            {x: 0.78, y: 0.35},
+            {x: 0.80, y: 0.38},
+            {x: 0.82, y: 0.32},
+            {x: 0.84, y: 0.34},
+            {x: 0.86, y: 0.33},
+            {x: 0.88, y: 0.22},
+            {x: 0.90, y: 0.31},
+            {x: 0.92, y: 0.21},
+            {x: 0.94, y: 0.24}, // Target stop position (Pointer rest point)
+            
+            // Seamless transition back to the start height (0.65)
+            {x: 0.955, y: 0.30},
+            {x: 0.97, y: 0.42},
+            {x: 0.985, y: 0.54},
+            {x: 1.00, y: 0.65}  // Perfect wrap-around connection point
+        ];
+
+        function interpolate(x, p1, p2) {
+            const t = (x - p1.x) / (p2.x - p1.x);
+            return p1.y + t * (p2.y - p1.y);
+        }
+
+        // Generates the continuous master coordinate array
+        function generateGraph() {
+            points = [];
+            
+            for (let i = 0; i < TOTAL_POINTS; i++) {
+                const x = i / (TOTAL_POINTS - 1);
+
+                // Find corresponding landmarks
+                let p1 = pathLandmarks[0];
+                let p2 = pathLandmarks[pathLandmarks.length - 1];
+
+                for (let j = 0; j < pathLandmarks.length - 1; j++) {
+                    if (x >= pathLandmarks[j].x && x <= pathLandmarks[j + 1].x) {
+                        p1 = pathLandmarks[j];
+                        p2 = pathLandmarks[j + 1];
+                        break;
+                    }
+                }
+
+                let y = interpolate(x, p1, p2);
+
+                // Periodic micro-fluctuations (keeps noise perfectly aligned across wraps)
+                const microNoise = Math.sin(x * 2 * Math.PI * 25) * 0.012 + 
+                                   Math.cos(x * 2 * Math.PI * 75) * 0.005 + 
+                                   Math.sin(x * 2 * Math.PI * 150) * 0.002;
+                
+                y += microNoise;
+                y = Math.max(0.05, Math.min(0.95, y));
+
+                points.push({ x, y });
+            }
+        }
+
+        function updatePriceLabels(yValue) {
+            const computedPrice = (80.00 + yValue * 22.91).toFixed(2);
+            priceGreen.textContent = `$${computedPrice}`;
+            priceRed.textContent = `$${computedPrice}`;
+
+            const dateValue = (2016.600 + yValue * 0.06).toFixed(3);
+            labelFg.textContent = dateValue;
+            labelBgBlue.textContent = dateValue;
+            labelBgWhite.textContent = dateValue;
+        }
+
+        function resizeCanvas() {
+            const rect = viewport.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            
+            generateGraph();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        // Main Draw Step
+        function draw(timestamp) {
+            if (!animationStartTime) animationStartTime = timestamp;
+            if (!lastFrameTime) lastFrameTime = timestamp;
+
+            const elapsed = timestamp - animationStartTime;
+            const deltaTime = (timestamp - lastFrameTime) / 1000;
+            lastFrameTime = timestamp;
+
+            const w = canvas.width / (window.devicePixelRatio || 1);
+            const h = canvas.height / (window.devicePixelRatio || 1);
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Process State Transitions
+            if (animationState === 'drawing') {
+                progress = Math.min(elapsed / ANIMATION_DURATION, 1);
+                if (progress >= 1) {
+                    animationState = 'live';
+                }
+            } else if (animationState === 'live') {
+                // Continuous delta-time scroll
+                scrollIndex = (scrollIndex + (SCROLL_SPEED_RATE * deltaTime)) % TOTAL_POINTS;
+            }
+
+            // Slice visible elements
+            const currentPointsCount = animationState === 'drawing'
+                ? Math.floor(progress * VIEWPORT_SIZE)
+                : VIEWPORT_SIZE;
+
+            if (currentPointsCount > 1) {
+                const drawPoints = [];
+                const startOffset = Math.floor(scrollIndex);
+
+                for (let i = 0; i < currentPointsCount; i++) {
+                    const databaseIdx = (startOffset + i) % TOTAL_POINTS;
+                    // Render points mapped up to 94% of the container width (the original layout)
+                    const canvasX = (i / (VIEWPORT_SIZE - 1)) * 0.94 * w;
+                    const canvasY = h - (points[databaseIdx].y * h);
+                    drawPoints.push({ x: canvasX, y: canvasY });
+                }
+
+                const lastPoint = drawPoints[drawPoints.length - 1];
+
+                // 1. Draw horizontal price alignment bar
+                ctx.strokeStyle = 'rgba(38, 153, 251, 0.35)';
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(0, lastPoint.y);
+                ctx.lineTo(w, lastPoint.y);
+                ctx.stroke();
+
+                // 2. Fill gradient area under the curve
+                ctx.beginPath();
+                ctx.moveTo(drawPoints[0].x, h);
+                for (let i = 0; i < drawPoints.length; i++) {
+                    ctx.lineTo(drawPoints[i].x, drawPoints[i].y);
+                }
+                ctx.lineTo(lastPoint.x, h);
+                ctx.closePath();
+
+                const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                gradient.addColorStop(0, 'rgba(38, 153, 251, 0.22)');
+                gradient.addColorStop(0.5, 'rgba(38, 153, 251, 0.08)');
+                gradient.addColorStop(1, 'rgba(38, 153, 251, 0.00)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                // 3. Draw primary line stroke with 1.8px thickness
+                ctx.strokeStyle = '#2699fb';
+                ctx.lineWidth = 1.8;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                ctx.shadowColor = 'rgba(38, 153, 251, 0.4)';
+                ctx.shadowBlur = 6;
+
+                ctx.beginPath();
+                ctx.moveTo(drawPoints[0].x, drawPoints[0].y);
+                for (let i = 1; i < drawPoints.length; i++) {
+                    ctx.lineTo(drawPoints[i].x, drawPoints[i].y);
+                }
+                ctx.stroke();
+
+                ctx.shadowBlur = 0; // Reset shadows
+
+                // 4. Draw pointer pulsing nodes
+                const pulsePeriod = Date.now() / 250;
+                const innerPulseRadius = 8 + Math.sin(pulsePeriod) * 1.5;
+                const outerPulseRadius = 14 + Math.sin(pulsePeriod) * 2;
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.beginPath();
+                ctx.arc(lastPoint.x, lastPoint.y, outerPulseRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'rgba(38, 153, 251, 0.45)';
+                ctx.beginPath();
+                ctx.arc(lastPoint.x, lastPoint.y, innerPulseRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.strokeStyle = '#2699fb';
+                ctx.lineWidth = 2.0;
+                ctx.beginPath();
+                ctx.arc(lastPoint.x, lastPoint.y, 4.0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+
+                // 5. Update left-hand coordinate tracking overlays
+                priceTracker.style.top = `${lastPoint.y}px`;
+                priceTracker.classList.remove('hidden');
+
+                const activeMathY = points[(startOffset + currentPointsCount - 1) % TOTAL_POINTS].y;
+                updatePriceLabels(activeMathY);
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        // Setup execution on launch
+        resizeCanvas();
+        requestAnimationFrame(draw);
+    </script>
+</body>
+</html>
