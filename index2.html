@@ -579,7 +579,7 @@
             display: block;
             width: 100%;
             height: 2px;
-            background: #FFFFFF;
+            background: #0B0F19;
             border-radius: 2px;
             transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
                         opacity 0.2s ease, width 0.3s ease;
@@ -693,8 +693,6 @@
             fill: none;
             stroke-width: 2;
         }
-
-        .mega-link-text-wrap {}
 
         .mega-link-title {
             font-family: var(--font-headings);
@@ -1656,7 +1654,7 @@
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @media (min-width: 1301px) {
+        @media (min-width: 1025px) {
             .card:hover .card-inner {
                 transform: rotateY(180deg);
             }
@@ -1798,12 +1796,12 @@
             background: #1B4FFF;
         }
 
-        /* ===== COURSES SECTION ===== */
+        /* ===== GAPS STYLING (50% Spacing Increase) ===== */
         .courses-section {
             background-color: #030712 !important;
             width: 100%;
             position: relative;
-            padding: 100px 40px 120px 40px !important;
+            padding: 150px 40px 180px 40px !important; /* 50% increase */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -2123,7 +2121,8 @@
             justify-content: flex-start;
             background-color: var(--bg-dark);
             z-index: 10;
-            padding-top: 100px;
+            padding-top: 150px; /* 50% increase from 100px */
+            padding-bottom: 150px;
         }
 
         .stack-section-header {
@@ -2159,8 +2158,8 @@
 
         .stack-container {
             position: relative;
-            width: 92%;
-            max-width: 1500px;
+            width: 94%;
+            max-width: 1380px;
             height: 58vh;
             min-height: 480px;
             margin-top: 0;
@@ -2239,7 +2238,7 @@
 
         .stack-title h2 {
             font-family: var(--font-headings);
-            font-size: 2.9rem;
+            font-size: 2.4rem;
             font-weight: 300;
             line-height: 1.15;
             color: #FFFFFF !important;
@@ -2255,24 +2254,24 @@
         }
 
         .stack-desc {
-            font-size: 1.05rem;
-            line-height: 1.65;
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: #94A3B8 !important;
-            max-width: 600px;
+            max-width: 500px;
         }
 
         .stack-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
-            font-size: 0.85rem;
+            gap: 12px;
+            font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 15px;
         }
 
         .stack-tags span {
             background: rgba(27, 79, 255, 0.12);
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 20px;
             white-space: nowrap;
             color: #FFFFFF !important;
@@ -2312,7 +2311,7 @@
         /* ===== HOW IT WORKS ===== */
         .how-works-section {
             width: 100%;
-            height: 100vh;
+            height: auto; /* Allow auto height with custom paddings */
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -2320,6 +2319,8 @@
             position: relative;
             background-color: var(--bg-dark);
             z-index: 10;
+            padding-top: 180px; /* 50% increase */
+            padding-bottom: 180px; /* 50% increase */
         }
 
         .how-header {
@@ -2353,8 +2354,8 @@
         }
 
         .how-track-wrapper {
-            width: 92%;
-            max-width: 1500px;
+            width: 94%;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
             overflow: hidden;
@@ -2372,16 +2373,15 @@
         .how-card {
             flex: 1 1 0;
             min-width: 260px;
-            height: 360px;
+            height: 350px;
             background: linear-gradient(135deg, rgba(77, 111, 255, 0.06) 0%, #f8faff 100%);
             border: 1px solid rgba(27, 79, 255, 0.14);
             border-radius: 20px;
-            padding: 44px 38px;
+            padding: 40px 32px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 8px 32px rgba(27, 79, 255, 0.07), 0 2px 8px rgba(0,0,0,0.04);
-            opacity: 0;
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -2393,7 +2393,7 @@
 
         .how-card .step-num {
             font-family: var(--font-headings);
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: #4D6FFF;
             line-height: 1;
@@ -2402,15 +2402,15 @@
 
         .how-card h3 {
             font-family: var(--font-headings);
-            font-size: 1.65rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 12px;
             color: #0B0F19;
         }
 
         .how-card p {
-            font-size: 0.97rem;
-            line-height: 1.65;
+            font-size: 0.9rem;
+            line-height: 1.6;
             color: #5B6475;
         }
 
@@ -2423,9 +2423,8 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 150px 20px;
+            padding: 150px 20px; /* 50% increase */
             background-color: var(--bg-dark);
-            overflow-x: hidden;
             z-index: 10;
         }
 
@@ -2490,33 +2489,41 @@
 
         .mentor-mascot {
             flex-shrink: 0;
-            width: 420px;
-            height: 460px;
+            width: 160px;
+            height: 260px;
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .bear-mascot {
-            justify-content: flex-start;
-            margin-left: -210px;
+        .mascot-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
 
-        .bull-mascot {
-            justify-content: flex-end;
-            margin-right: -210px;
+        .mascot-svg {
+            width: 72px;
+            height: 90px;
+            color: rgba(255, 255, 255, 0.3);
         }
 
-        .mascot-img {
-            width: 100%;
-            height: auto;
-            max-height: 460px;
-            object-fit: contain;
-            opacity: 0.55;
-            filter: saturate(1.25) brightness(1.05) drop-shadow(0 0 40px rgba(77, 111, 255, 0.35));
+        .mascot-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
-        .bull-mascot .mascot-img {
-            transform: scaleX(-1);
+        .mascot-hint {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.03em;
         }
 
         .video-container {
@@ -2569,7 +2576,7 @@
         /* ===== RESULTS ===== */
         .results-section {
             background-color: #ffffff;
-            padding: 180px 40px;
+            padding: 180px 40px; /* 50% increase */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -2671,7 +2678,7 @@
         /* ===== PODCAST ===== */
         .podcast-section {
             background-color: #000000;
-            padding: 150px 40px 180px 40px;
+            padding: 150px 40px 180px 40px; /* 50% increase */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -2808,7 +2815,7 @@
         /* ===== GALLERY ===== */
         .gallery-section {
             background-color: #ffffff;
-            padding: 180px 40px;
+            padding: 180px 40px; /* 50% increase */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -2939,7 +2946,7 @@
         /* ===== MASTERCLASS ===== */
         .masterclass-section {
             background-color: #000000;
-            padding: 120px 40px;
+            padding: 180px 40px; /* 50% increase */
             width: 100%;
             display: flex;
             justify-content: center;
@@ -3050,6 +3057,16 @@
         }
 
         .stat-number {
+            font-family: var(--font-headings);
+            font-size: 3.1rem;
+            font-weight: 800;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .stat-number-next {
             font-family: var(--font-headings);
             font-size: 3.1rem;
             font-weight: 800;
@@ -3261,7 +3278,7 @@
             width: 100%;
             max-width: 1320px;
             margin: 0 auto;
-            padding: 120px 60px;
+            padding: 180px 60px; /* 50% increase */
             display: grid;
             grid-template-columns: 1fr 1.35fr;
             gap: 80px;
@@ -3895,7 +3912,7 @@
 
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1300px) {
+        @media (max-width: 1024px) {
             * {
                 cursor: auto !important;
             }
@@ -4039,7 +4056,7 @@
             }
 
             .courses-section {
-                padding: 80px 20px 100px 20px !important;
+                padding: 100px 20px 120px 20px !important;
             }
 
             .courses-grid-wrap {
@@ -4058,8 +4075,6 @@
             }
 
             .stack-container {
-                width: 100%;
-                max-width: none;
                 height: auto;
                 display: flex;
                 flex-direction: column;
@@ -4073,6 +4088,8 @@
                 flex-direction: column !important;
                 padding: 30px !important;
                 gap: 20px !important;
+                opacity: 1 !important;
+                transform: none !important;
                 top: auto !important;
                 left: auto !important;
             }
@@ -4088,12 +4105,10 @@
 
             .how-works-section {
                 height: auto;
-                padding: 120px 20px;
+                padding: 120px 20px; /* Increased 50% on mobile too */
             }
 
             .how-track-wrapper {
-                width: 100%;
-                max-width: none;
                 padding: 0;
             }
 
@@ -4106,10 +4121,12 @@
                 width: 100%;
                 min-width: unset;
                 height: auto;
+                opacity: 1 !important;
+                transform: none !important;
             }
 
             .about-section {
-                padding: 90px 20px;
+                padding: 100px 20px;
             }
 
             .mentor-mascot {
@@ -4931,7 +4948,17 @@
 
         <p class="hero-sub">
             Built for traders who seek consistency over chaos, systems over speculation, and long-term wealth over
-            short-term excitement. The Trading Scholar helps serious traders approach markets with institutional
+            short-term
+5m9.2s
+Model 4:37 AM
+ThinkingThoughts
+Expand to view model thoughts
+
+chevron_right
+Here is the continuation of your complete HTML and JS document, starting exactly where the code was interrupted.
+
+```html
+excitement. The Trading Scholar helps serious traders approach markets with institutional
             thinking, disciplined execution, and structured risk management.
         </p>
 
@@ -5457,7 +5484,19 @@
         <div class="mentor-layout">
             <!-- Bear placeholder — left side -->
             <div class="mentor-mascot bear-mascot">
-                <img src="bear.png" alt="Bear" class="mascot-img">
+                <div class="mascot-inner">
+                    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot-svg">
+                        <circle cx="40" cy="22" r="18" stroke="currentColor" stroke-width="2.5"/>
+                        <circle cx="24" cy="14" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <circle cx="56" cy="14" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M22 40 C22 52 16 62 12 74" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M58 40 C58 52 64 62 68 74" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="20" y="38" width="40" height="36" rx="14" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M28 58 L40 46 L52 58" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="mascot-label">Bear</span>
+                    <span class="mascot-hint">Placeholder</span>
+                </div>
             </div>
 
             <div class="video-viewport">
@@ -5479,7 +5518,19 @@
 
             <!-- Bull placeholder — right side -->
             <div class="mentor-mascot bull-mascot">
-                <img src="bull.png" alt="Bull" class="mascot-img">
+                <div class="mascot-inner">
+                    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot-svg">
+                        <ellipse cx="40" cy="26" rx="20" ry="16" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M20 18 C12 10 8 6 6 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M60 18 C68 10 72 6 74 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M20 34 C18 50 14 64 12 76" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M60 34 C62 50 66 64 68 76" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="20" y="38" width="40" height="36" rx="14" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M28 58 L40 46 L52 58" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="mascot-label">Bull</span>
+                    <span class="mascot-hint">Placeholder</span>
+                </div>
             </div>
         </div>
     </section>
@@ -5756,7 +5807,7 @@
                             <div class="stat-label">Years of Experience</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number" id="mc-counter-students">0</div>
+                            <div class="stat-number-next" id="mc-counter-students">0</div>
                             <div class="stat-label">Traders Mentored</div>
                         </div>
                     </div>
@@ -6408,7 +6459,7 @@
             const section = document.getElementById('stack-viewport');
             if (!section) return;
 
-            if (window.innerWidth <= 1300) {
+            if (window.innerWidth <= 1024) {
                 // Mobile: stack cards are in normal flow — scroll directly to card
                 setTimeout(() => {
                     const card = document.getElementById(serviceId);
@@ -6502,10 +6553,102 @@
             }
         );
 
+        /* ===== UNIFIED CUSTOM TRANSITIONS ENGINE ===== */
+        function createTransitionZone(prevSelector, currentSelector, nextSelector, currentElementsSelector, nextElementsSelector, currentHeaderSelector, nextHeaderSelector, darkBgColor) {
+            const SectionA = document.querySelector(prevSelector);
+            const SectionB = document.querySelector(currentSelector);
+            const SectionC = document.querySelector(nextSelector);
+
+            if (!SectionB) return;
+
+            const elementsB = gsap.utils.toArray(currentElementsSelector);
+            const elementsC = gsap.utils.toArray(nextElementsSelector);
+
+            // Establish standard transparent styling initially
+            gsap.set(elementsB, { opacity: 0, y: 25 });
+            gsap.set(elementsC, { opacity: 0, y: 25 });
+
+            // 1. Enter Timeline (Transition from Dark Section A to White Section B)
+            const enterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: SectionB,
+                    start: "top bottom+=100%",
+                    end: "top center",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // Lock original dark background initially
+            enterTl.set([SectionA, SectionB, document.body], { backgroundColor: darkBgColor }, 0);
+            enterTl.set(elementsB, { opacity: 0, y: 25 }, 0);
+
+            // Change background smoothly to white at 50% scroll through Section A (progress 0.5)
+            enterTl.to([SectionA, SectionB, document.body], {
+                backgroundColor: "#ffffff",
+                duration: 0.05,
+                ease: "none"
+            }, 0.5);
+
+            if (currentHeaderSelector) {
+                const h2 = document.querySelector(currentHeaderSelector);
+                if (h2) {
+                    enterTl.to(h2, { color: "#0B0F19", duration: 0.05, ease: "none" }, 0.5);
+                }
+            }
+
+            // Bring elements of Section B to light exactly 10% progress later (0.6 to 0.7 progress)
+            enterTl.to(elementsB, {
+                opacity: 1,
+                y: 0,
+                duration: 0.1,
+                ease: "power2.out",
+                stagger: 0.02
+            }, 0.6);
+
+            // 2. Leave Timeline (Transition from White Section B to Dark Section C)
+            const leaveTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: SectionB,
+                    start: "top top",
+                    end: "bottom center",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // Lock initial white background state
+            leaveTl.set([SectionB, SectionC, document.body], { backgroundColor: "#ffffff" }, 0);
+            leaveTl.set(elementsC, { opacity: 0, y: 25 }, 0);
+
+            // Change background smoothly back to black at 50% scroll through Section B (progress 0.5)
+            leaveTl.to([SectionB, SectionC, document.body], {
+                backgroundColor: darkBgColor,
+                duration: 0.05,
+                ease: "none"
+            }, 0.5);
+
+            if (nextHeaderSelector) {
+                const h2 = document.querySelector(nextHeaderSelector);
+                if (h2) {
+                    leaveTl.to(h2, { color: "#ffffff", duration: 0.05, ease: "none" }, 0.5);
+                }
+            }
+
+            // Bring elements of Section C to light precisely at 65% progress (0.65 to 0.75 progress)
+            leaveTl.to(elementsC, {
+                opacity: 1,
+                y: 0,
+                duration: 0.1,
+                ease: "power2.out",
+                stagger: 0.02
+            }, 0.65);
+        }
+
         let mm = gsap.matchMedia();
 
-        mm.add("(min-width: 1301px)", () => {
-            /* ---- VIDEO REVEAL (must be first: it's earliest in the DOM) ---- */
+        mm.add("(min-width: 1025px)", () => {
+            /* ---- VIDEO REVEAL (pinned desktop flow) ---- */
             const vrTop    = document.getElementById('vr-top');
             const vrBot    = document.getElementById('vr-bottom');
             const vrVid    = document.getElementById('vr-video');
@@ -6517,12 +6660,10 @@
             gsap.set(vrBot,    { opacity: 0, y: 20 });
             gsap.set(vrSticky, { backgroundColor: '#ffffff' });
 
-            // Initial size: full viewport minus 24px gap on each side
-            // Final size: compact 16:9 card (400 × 225 px)
             const vrW0 = window.innerWidth  - 48;
             const vrH0 = window.innerHeight - 48;
             const vrWf = 400;
-            const vrHf = Math.round(vrWf * 9 / 16); // 225
+            const vrHf = Math.round(vrWf * 9 / 16);
 
             const vrTl = gsap.timeline({
                 scrollTrigger: {
@@ -6535,13 +6676,11 @@
                 }
             });
 
-            // 0–55%: video shrinks from full-viewport (any ratio) → small 16:9 card
             vrTl.fromTo(vrVid,
                 { width: vrW0, height: vrH0, borderRadius: 28 },
                 { width: vrWf, height: vrHf, borderRadius: 14, duration: 0.55, ease: 'power2.inOut' },
                 0
             );
-            // 55–75%: text fades in from its absolute position
             vrTl.fromTo(vrTop,
                 { opacity: 0, y: -20 },
                 { opacity: 1, y: 0, duration: 0.2, ease: 'power2.out' },
@@ -6552,9 +6691,7 @@
                 { opacity: 1, y: 0, duration: 0.2, ease: 'power2.out' },
                 0.55
             );
-            // 75–85%: hold
             vrTl.to({}, { duration: 0.1 }, 0.75);
-            // 85–100%: fade bg to dark + top text to white
             vrTl.to(vrSticky,
                 { backgroundColor: '#030712', duration: 0.15, ease: 'none' },
                 0.85
@@ -6563,7 +6700,7 @@
                 { color: '#ffffff', duration: 0.15, ease: 'none' },
                 0.85
             );
-            /* ---------------------------------------------------------------- */
+            /* ------------------------------------------- */
 
             const cards = gsap.utils.toArray(".card");
             const cardInners = gsap.utils.toArray(".card-inner");
@@ -6623,24 +6760,9 @@
                 stackTimeline.to(card, { y: "0vh", ease: "power1.inOut", duration: 1.5 }, `card-${i}`);
                 stackTimeline.to({}, { duration: 0.8 });
             });
-
-            const howTimeline = gsap.timeline({
-                scrollTrigger: { trigger: "#how-viewport", start: "top top", end: "+=2250", pin: true, scrub: 1, anticipatePin: 1 }
-            });
-
-            howTimeline
-                .fromTo("#how-viewport", { backgroundColor: "#030712" }, { backgroundColor: "#ffffff", duration: 0.3, ease: "none" }, 0)
-                .fromTo(".how-header h2", { color: "#ffffff" }, { color: "#0B0F19", duration: 0.3, ease: "none" }, 0)
-                .fromTo("#how-card-1", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0)
-                .fromTo("#how-card-2", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0.4)
-                .fromTo("#how-card-3", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0.8)
-                .to("#how-viewport", { backgroundColor: "#030712", duration: 0.3, ease: "none" }, 1.75)
-                .to(".how-header h2", { color: "#ffffff", duration: 0.3, ease: "none" }, 1.75)
-                .to({}, { duration: 1.45 });
         });
 
-        mm.add("(max-width: 1300px)", () => {
-            // Video reveal: no animation on mobile, reset inline dimensions
+        mm.add("(max-width: 1024px)", () => {
             gsap.set('#vr-video', { clearProps: 'width,height,transform' });
             gsap.set('#vr-top',    { opacity: 1, y: 0 });
             gsap.set('#vr-bottom', { opacity: 1, y: 0 });
@@ -6651,29 +6773,41 @@
             gsap.set(".stack-card", { y: 0, opacity: 1 });
             gsap.set(".how-card", { x: 0, opacity: 1 });
             gsap.from(".card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#pin-section", start: "top 80%" } });
-            gsap.from(".how-card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#how-viewport", start: "top 80%" } });
-            gsap.from(".stack-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: "#stack-viewport", start: "top 80%" } });
-            gsap.from(".course-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
-            gsap.from(".vision-card-inner", { opacity: 0, y: 40, duration: 0.9, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
-
-            // How It Works background fade dark -> white -> dark (mobile, no pin)
-            gsap.fromTo("#how-viewport", { backgroundColor: "#030712" }, {
-                backgroundColor: "#ffffff", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 62%", scrub: true }
-            });
-            gsap.fromTo(".how-header h2", { color: "#ffffff" }, {
-                color: "#0B0F19", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 62%", scrub: true }
-            });
-            gsap.to("#how-viewport", {
-                backgroundColor: "#030712", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "bottom 38%", end: "bottom top", scrub: true }
-            });
-            gsap.to(".how-header h2", {
-                color: "#ffffff", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "bottom 38%", end: "bottom top", scrub: true }
-            });
         });
+
+        // Initialize Transition Zones Across Screen Widths (Desktop and Mobile)
+        createTransitionZone(
+            "#stack-viewport", 
+            "#how-viewport", 
+            "#about-viewport", 
+            ["#how-viewport .how-header", "#how-viewport .how-card"], 
+            ["#about-viewport .about-header", "#about-viewport .about-desc-preview", "#about-viewport .mentor-layout"],
+            "#how-viewport .how-header h2", 
+            "#about-viewport .about-header h2", 
+            "#030712"
+        );
+
+        createTransitionZone(
+            "#about-viewport", 
+            "#results", 
+            "#podcast-viewport", 
+            ["#results .section-hdr", "#results .result-card"], 
+            ["#podcast-viewport .section-hdr", "#podcast-viewport .podcast-grid", "#podcast-viewport .podcast-view-all-btn"],
+            "#results .section-hdr h2", 
+            "#podcast-viewport .section-hdr h2", 
+            "#000000"
+        );
+
+        createTransitionZone(
+            "#podcast-viewport", 
+            "#gallery-viewport", 
+            "#masterclass", 
+            ["#gallery-viewport .section-hdr", "#gallery-viewport .gallery-collage", "#gallery-viewport #galleryShowMore"], 
+            ["#masterclass .hero-title", "#masterclass .hero-subtitle", "#masterclass .bullet-list", "#masterclass .stats-grid", "#masterclass .form-card"],
+            "#gallery-viewport .section-hdr h2", 
+            "#masterclass .hero-title", 
+            "#000000"
+        );
 
         gsap.fromTo("#mentor-video",
             { transform: "rotateY(-15deg) rotateX(8deg) scale(0.9)" },
@@ -6683,74 +6817,7 @@
             }
         );
 
-        // B1: How It Works header reveal on entry (dark -> dark, reveal only)
-        gsap.fromTo(".how-header", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 87.5%", scrub: true }
-        });
-
-        // B2: About section header reveal on entry (leaving How It Works, dark -> dark, reveal only)
-        gsap.fromTo(".about-header, .about-desc-preview, .mentor-layout", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: "#about-viewport", start: "top bottom", end: "top 87.5%", scrub: true }
-        });
-
-        // B3: Results entry (about -> results, dark -> white)
-        gsap.fromTo(["#about-viewport", ".results-section"], { backgroundColor: "#030712" }, {
-            backgroundColor: "#ffffff", ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "top bottom", end: "top 81%", scrub: true }
-        });
-        gsap.fromTo(".results-section .section-hdr h2", { color: "#ffffff" }, {
-            color: "#0B0F19", ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "top bottom", end: "top 81%", scrub: true }
-        });
-        gsap.fromTo(".results-section .section-hdr, .results-grid", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "top 81%", end: "top 62%", scrub: true }
-        });
-
-        // B4: Results exit / Podcast entry (white -> black)
-        gsap.fromTo([".results-section", ".podcast-section"], { backgroundColor: "#ffffff" }, {
-            backgroundColor: "#000000", ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "bottom bottom", end: "bottom 81%", scrub: true }
-        });
-        gsap.fromTo(".results-section .section-hdr h2", { color: "#0B0F19" }, {
-            color: "#ffffff", ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "bottom bottom", end: "bottom 81%", scrub: true }
-        });
-        gsap.fromTo(".podcast-section .section-hdr, .podcast-grid, .podcast-view-all-btn", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: ".results-section", start: "bottom 81%", end: "bottom 62%", scrub: true }
-        });
-
-        // B5: Gallery entry / Podcast exit (black -> white)
-        gsap.fromTo([".podcast-section", ".gallery-section"], { backgroundColor: "#000000" }, {
-            backgroundColor: "#ffffff", ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "top bottom", end: "top 81%", scrub: true }
-        });
-        gsap.fromTo(".gallery-section .section-hdr h2", { color: "#ffffff" }, {
-            color: "#0B0F19", ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "top bottom", end: "top 81%", scrub: true }
-        });
-        gsap.fromTo(".gallery-section .section-hdr, .gallery-collage", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "top 81%", end: "top 62%", scrub: true }
-        });
-
-        // B6: Gallery exit / Masterclass entry (white -> black)
-        gsap.fromTo([".gallery-section", ".masterclass-section"], { backgroundColor: "#ffffff" }, {
-            backgroundColor: "#000000", ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "bottom bottom", end: "bottom 81%", scrub: true }
-        });
-        gsap.fromTo(".gallery-section .section-hdr h2", { color: "#0B0F19" }, {
-            color: "#ffffff", ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "bottom bottom", end: "bottom 81%", scrub: true }
-        });
-        gsap.fromTo(".masterclass-section .main-container", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: ".gallery-section", start: "bottom 81%", end: "bottom 62%", scrub: true }
-        });
+        gsap.from(".main-container", { opacity: 0, scale: 0.95, duration: 1.2, ease: "power2.out", scrollTrigger: { trigger: ".masterclass-section", start: "top 75%" } });
     </script>
 </body>
-
 </html>
