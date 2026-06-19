@@ -8,23 +8,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Lexend:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700;1,800&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        /* ===== BW GRADUAL LOCAL FONT ===== */
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Thin.otf') format('opentype'); font-weight:100; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ThinItalic.otf') format('opentype'); font-weight:100; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Light.otf') format('opentype'); font-weight:300; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-LightItalic.otf') format('opentype'); font-weight:300; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-RegularItalic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Medium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-MediumItalic.otf') format('opentype'); font-weight:500; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BoldItalic.otf') format('opentype'); font-weight:700; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBold.otf') format('opentype'); font-weight:800; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBoldItalic.otf') format('opentype'); font-weight:800; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BlackItalic.otf') format('opentype'); font-weight:900; font-style:italic; font-display:swap; }
+
         :root {
             --primary-bg: #FFFFFF;
             --secondary-bg: #F7F9FC;
-            --primary-accent: #2563EB;
-            --secondary-accent: #2563EB;
-            --soft-accent: #4F7DF3;
+            --primary-accent: #1B4FFF;
+            --secondary-accent: #1B4FFF;
+            --soft-accent: #4D6FFF;
             --primary-text: #0B0F19;
             --secondary-text: #5B6475;
             --border-color: #E2E8F0;
-            --circle-bg: #EFF6FF;
+            --circle-bg: #EEF2FF;
             --bg-dark: #030712;
             --bg-dark-secondary: #0B0F19;
             --border-dark: rgba(255, 255, 255, 0.08);
@@ -34,12 +50,13 @@
             --color-black: #030712;
             --color-white: #ffffff;
             --color-dark: #101820;
-            --color-blue: #2563EB;
-            --color-blue-glow: rgba(37, 99, 235, 0.5);
-            --gradient-button: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --color-blue: #1B4FFF;
+            --color-blue-glow: rgba(27, 79, 255, 0.5);
+            --gradient-button: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             --font-primary: 'Inter', sans-serif;
-            --font-headings: 'Outfit', sans-serif;
-            --font-nav: 'Lexend', sans-serif;
+            --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'BwGradual', 'Urbanist', 'Plus Jakarta Sans', sans-serif;
+            --font-nav: 'Inter', sans-serif;
         }
 
         /* ===== RESET & BASE ===== */
@@ -81,7 +98,7 @@
         .custom-cursor {
             width: 10px;
             height: 10px;
-            background-color: #2563EB;
+            background-color: #1B4FFF;
             border-radius: 50%;
             position: fixed;
             top: 0;
@@ -90,64 +107,6 @@
             z-index: 9999;
             transform: translate(-50%, -50%);
             transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
-        }
-
-        /* ===== TRADING GRAPH BACKGROUND ===== */
-        .bg-chart-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .bg-chart-lines svg {
-            width: 100%;
-            height: 100%;
-            min-height: 2000px;
-        }
-
-        .chart-grid {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.015);
-            stroke-width: 1;
-        }
-
-        .chart-line-green {
-            fill: none;
-            stroke: #10B981;
-            stroke-width: 2;
-            opacity: 0.12;
-            filter: drop-shadow(0 0 6px #10B981);
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 2000;
-            animation: drawGreenPath 24s linear infinite;
-        }
-
-        .chart-line-red {
-            fill: none;
-            stroke: #EF4444;
-            stroke-width: 2;
-            opacity: 0.1;
-            filter: drop-shadow(0 0 6px #EF4444);
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 2000;
-            animation: drawRedPath 28s linear infinite;
-        }
-
-        @keyframes drawGreenPath {
-            0% { stroke-dashoffset: 2000; }
-            50% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
-        }
-
-        @keyframes drawRedPath {
-            0% { stroke-dashoffset: -2000; }
-            50% { stroke-dashoffset: -1000; }
-            100% { stroke-dashoffset: 0; }
         }
 
         /* ===== GLOW BORDER ANIMATION ===== */
@@ -174,11 +133,11 @@
             border-radius: 28px;
             padding: 1.5px;
             background: linear-gradient(90deg, 
-                #2563EB 0%, 
-                #60A5FA 25%, 
-                #2563EB 50%, 
-                #60A5FA 75%, 
-                #2563EB 100%);
+                #1B4FFF 0%, 
+                #4D6FFF 25%, 
+                #1B4FFF 50%, 
+                #4D6FFF 75%, 
+                #1B4FFF 100%);
             background-size: 200% 100%;
             animation: glowFlow 4s linear infinite;
             -webkit-mask: 
@@ -226,25 +185,25 @@
             background: var(--gradient-button);
             color: var(--color-white) !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.4);
         }
 
         .is-style-fill .wp-block-button__link:hover {
-            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.55);
+            box-shadow: 0 8px 28px rgba(27, 79, 255, 0.55);
             transform: translateY(-2px);
         }
 
         .is-style-outline-alt .wp-block-button__link {
             background: transparent;
-            color: #2563EB;
-            border: 1.5px solid rgba(37, 99, 235, 0.5);
+            color: #1B4FFF;
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
         }
 
         .is-style-outline-alt .wp-block-button__link:hover {
-            background: #2563EB;
+            background: #1B4FFF;
             color: var(--color-white) !important;
-            border-color: #2563EB;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+            border-color: #1B4FFF;
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.35);
         }
 
         .gp-arrow {
@@ -279,37 +238,24 @@
             background: var(--gradient-button);
             color: #ffffff !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.4);
         }
 
         .hero-cta-btn.filled:hover {
-            box-shadow: 0 10px 32px rgba(37, 99, 235, 0.6);
+            box-shadow: 0 10px 32px rgba(27, 79, 255, 0.6);
         }
 
         .hero-cta-btn.outline {
             background: transparent;
-            color: #2563EB !important;
-            border: 1.5px solid rgba(37, 99, 235, 0.5);
+            color: #1B4FFF !important;
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
         }
 
         .hero-cta-btn.outline:hover {
-            background: #2563EB;
+            background: #1B4FFF;
             color: #ffffff !important;
-            border-color: #2563EB;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
-        }
-
-        .hero-cta-btn.black-style {
-            background: #030712;
-            color: #ffffff !important;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .hero-cta-btn.black-style:hover {
-            background: #ffffff;
-            color: #030712 !important;
-            border-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+            border-color: #1B4FFF;
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.35);
         }
 
         .hero-cta-btn.white-style {
@@ -320,9 +266,9 @@
         }
 
         .hero-cta-btn.white-style:hover {
-            background: #2563EB;
+            background: #1B4FFF;
             color: #ffffff !important;
-            box-shadow: 0 10px 32px rgba(37, 99, 235, 0.5);
+            box-shadow: 0 10px 32px rgba(27, 79, 255, 0.5);
         }
 
         .hero-cta-btn:active {
@@ -372,45 +318,43 @@
         /* ===== HEADER ===== */
         .header {
             position: fixed;
-            top: 24px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 95%;
-            max-width: 1440px;
+            width: 94%;
+            max-width: 1400px;
             z-index: 1000;
             background-color: transparent;
             border: 1px solid transparent;
-            padding: 15px 0;
+            border-radius: 50px;
+            padding: 14px 0;
             box-shadow: none !important;
-            transition: all 0.5s cubic-bezier(.2, .8, .2, 1);
+            transition:
+                top 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                max-width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                background-color 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                backdrop-filter 0.55s ease,
+                border-color 0.55s ease,
+                padding 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                box-shadow 0.55s ease;
         }
 
         .header.scrolled {
-            top: 20px;
-            width: 95%;
-            max-width: 1350px;
-            background-color: rgba(3, 7, 18, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            top: 14px;
+            width: 80%;
+            max-width: 1120px;
+            background-color: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
             border-radius: 50px;
-            padding: 10px 40px;
-            box-shadow: none !important;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
         }
 
-        .menu-item-link {
-            color: rgba(255, 255, 255, 0.65) !important;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color .3s ease;
-        }
-
-        .menu-item-link:hover {
-            color: #FFFFFF !important;
-        }
-
-        .forward-sign {
-            color: rgba(255, 255, 255, 0.15) !important;
+        .header.scrolled .container-fluid--menu {
+            padding: 0;
         }
 
         .container-fluid--menu {
@@ -422,33 +366,35 @@
         .header--logo-link {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
         #header--logo img {
-            width: 35px;
-            height: 35px;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            filter: invert(31%) sepia(98%) saturate(1832%) hue-rotate(213deg) brightness(94%) contrast(96%);
+            width: 46px;
+            height: 38px;
+            object-fit: contain;
+            filter: invert(100%);
+            transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .header.scrolled #header--logo img {
+            width: 36px;
+            height: 30px;
         }
 
         .logo-text-fallback {
             font-family: var(--font-headings);
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #2563EB;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #FFFFFF;
+            transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .header.scrolled .logo-text-fallback {
-            font-size: 1.25rem;
-            color: #FFFFFF;
-        }
-
-        .header.scrolled #header--logo img {
-            filter: invert(100%);
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .nav-main {
@@ -460,7 +406,7 @@
             display: flex;
             list-style: none;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .menu-item {
@@ -471,19 +417,18 @@
 
         .menu-item-link {
             font-family: var(--font-nav);
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
-            color: var(--secondary-text);
-            padding: 10px 0;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 8px 0;
             display: flex;
             align-items: center;
             gap: 4px;
             transition: color 0.3s ease;
         }
 
-        .menu-item-link:hover,
-        .menu-item.active .menu-item-link {
-            color: #2563EB;
+        .menu-item-link:hover {
+            color: #FFFFFF;
         }
 
         .menu-item-arv svg {
@@ -495,7 +440,7 @@
         }
 
         .forward-sign {
-            color: var(--border-color);
+            color: rgba(255, 255, 255, 0.15);
             margin-left: 15px;
             font-weight: 300;
             font-size: 13px;
@@ -508,215 +453,57 @@
             position: relative;
         }
 
-        /* BURGER */
+        /* ===== BURGER ===== */
         .header--burger {
             display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
             background: transparent;
             border: none;
-            cursor: pointer;
             padding: 0;
             outline: none;
             z-index: 10001;
         }
 
-        .header--burger svg {
-            width: 40px;
-            height: 40px;
-        }
-
-        .header--burger .line {
-            fill: none;
-            stroke: #2563EB;
-            stroke-width: 5.5;
-            stroke-linecap: round;
-            transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-        }
-
-        .header.scrolled .header--burger .line {
-            stroke: #FFFFFF;
-        }
-
-        .header--burger .line1 { stroke-dasharray: 40 139; }
-        .header--burger .line2 { stroke-dasharray: 40 139; }
-        .header--burger .line3 { stroke-dasharray: 40 139; }
-
-        .header--burger.active .line1 {
-            stroke-dasharray: 90 207;
-            stroke-dashoffset: -134;
-        }
-
-        .header--burger.active .line2 {
-            stroke-dasharray: 1 60;
-            stroke-dashoffset: -30;
-        }
-
-        .header--burger.active .line3 {
-            stroke-dasharray: 90 207;
-            stroke-dashoffset: -134;
-        }
-
-        /* ===== DEMAT DROPDOWN ===== */
-        .demat-dropdown {
-            position: absolute;
-            top: calc(100% + 18px);
-            right: 0;
-            width: 980px;
-            max-width: calc(100vw - 40px);
-            background: rgba(5, 8, 22, 0.98);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(37, 99, 235, 0.25);
-            border-radius: 24px;
-            padding: 28px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1001;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(37, 99, 235, 0.08);
-        }
-
-        .demat-dropdown.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 26px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 18px;
-            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-        }
-
-        .dropdown-box:hover {
-            border-color: rgba(37, 99, 235, 0.4);
-            background: rgba(37, 99, 235, 0.05);
-            transform: translateY(-3px);
-        }
-
-        .dropdown-box.highlighted {
-            background: rgba(37, 99, 235, 0.08);
-            border-color: rgba(37, 99, 235, 0.35);
-        }
-
-        .dropdown-box.highlighted:hover {
-            border-color: rgba(37, 99, 235, 0.6);
-            background: rgba(37, 99, 235, 0.12);
-        }
-
-        .box-header {
-            margin-bottom: 2px;
-        }
-
-        .box-title {
-            font-family: var(--font-headings);
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #FFFFFF !important;
-            margin-bottom: 4px;
-        }
-
-        .box-subtitle {
-            font-size: 0.73rem;
-            color: #3B82F6;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-        }
-
-        .box-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            flex: 1;
-        }
-
-        .box-list li {
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.6);
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            line-height: 1.35;
-        }
-
-        .box-list li span.check-icon {
-            color: #3B82F6;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .dropdown-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 11px 18px;
-            border-radius: 30px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+        .burger-bar {
+            display: block;
             width: 100%;
-            text-align: center;
-            transition: all 0.3s ease;
+            height: 2px;
+            background: #FFFFFF;
+            border-radius: 2px;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease, width 0.3s ease;
+            transform-origin: center;
         }
 
-        .accent-color-link {
-            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-            color: #FFFFFF !important;
-            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+        .burger-bar:nth-child(3) {
+            width: 65%;
         }
 
-        .accent-color-link:hover {
-            box-shadow: 0 6px 26px rgba(37, 99, 235, 0.6);
-            transform: translateY(-2px);
+        .header--burger:hover .burger-bar:nth-child(3) {
+            width: 100%;
         }
 
-        .light-outline-link {
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.85) !important;
-            background: rgba(255, 255, 255, 0.04);
+        .header--burger.active .burger-bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
         }
 
-        .light-outline-link:hover {
-            background: rgba(37, 99, 235, 0.15);
-            border-color: rgba(37, 99, 235, 0.5);
-            color: #FFFFFF !important;
+        .header--burger.active .burger-bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
         }
 
-        .demat-btn .wp-block-button__link {
-            background: transparent;
-            color: #2563EB !important;
-            border: 1.5px solid rgba(37, 99, 235, 0.5);
+        .header--burger.active .burger-bar:nth-child(3) {
+            width: 100%;
+            transform: translateY(-9px) rotate(-45deg);
         }
 
-        .demat-btn .wp-block-button__link:hover {
-            background: #2563EB;
-            color: #FFFFFF !important;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        .header.scrolled .demat-btn .wp-block-button__link {
-            color: #FFFFFF !important;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .header.scrolled .demat-btn .wp-block-button__link:hover {
-            background: #2563EB;
-            border-color: #2563EB;
+        /* Nav CTA — reuses hero-cta-btn, sized down to match other pages' nav button */
+        .header-actions-group .hero-cta-btn .btn-sizer,
+        .header-actions-group .hero-cta-btn .btn-row {
+            padding: 11px 22px;
+            font-size: 12px;
         }
 
         /* ===== MEGA MENU CONTAINER ===== */
@@ -728,7 +515,7 @@
             background: rgba(6, 8, 22, 0.97);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(37, 99, 235, 0.18);
+            border: 1px solid rgba(27, 79, 255, 0.18);
             border-radius: 20px;
             opacity: 0;
             visibility: hidden;
@@ -736,7 +523,7 @@
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             padding: 32px 48px;
             z-index: 998;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 99, 235, 0.06);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(27, 79, 255, 0.06);
         }
 
         .header.mega-menu-open .header--mega-menu-container {
@@ -778,14 +565,14 @@
         }
 
         .mega-menu-link-item:hover {
-            background: rgba(37, 99, 235, 0.08);
+            background: rgba(27, 79, 255, 0.08);
         }
 
         .mega-link-icon {
             width: 36px;
             height: 36px;
-            background: rgba(37, 99, 235, 0.12);
-            border: 1px solid rgba(37, 99, 235, 0.2);
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -797,7 +584,7 @@
         .mega-link-icon svg {
             width: 16px;
             height: 16px;
-            stroke: #60A5FA;
+            stroke: #4D6FFF;
             fill: none;
             stroke-width: 2;
         }
@@ -838,8 +625,8 @@
         .mega-collage-img {
             border-radius: 10px;
             overflow: hidden;
-            background: rgba(37, 99, 235, 0.08);
-            border: 1px solid rgba(37, 99, 235, 0.12);
+            background: rgba(27, 79, 255, 0.08);
+            border: 1px solid rgba(27, 79, 255, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -854,7 +641,7 @@
             width: 100%;
             height: 100%;
             min-height: 80px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -898,7 +685,7 @@
             align-items: center;
             gap: 6px;
             padding: 9px 18px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            background: linear-gradient(135deg, #4D6FFF, #1B4FFF);
             color: #FFFFFF !important;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -911,7 +698,7 @@
         }
 
         .mega-cta-link:hover {
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.5);
             transform: translateY(-1px);
         }
 
@@ -968,7 +755,7 @@
         }
 
         .mobile-nav a:hover {
-            color: #3B82F6;
+            color: #4D6FFF;
         }
 
         .mobile-cta-btn {
@@ -976,7 +763,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px 32px;
-            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF;
             border-radius: 50px;
             font-family: var(--font-nav);
@@ -984,7 +771,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 6px 24px rgba(27, 79, 255, 0.4);
             transition: all 0.3s ease;
         }
 
@@ -1005,9 +792,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(37, 99, 235, 0.12);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            color: #60A5FA;
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.3);
+            color: #4D6FFF;
             padding: 8px 16px;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -1031,7 +818,7 @@
         .podcast-hero h1 span.accent {
             font-weight: 800;
             font-style: italic;
-            color: #60A5FA;
+            color: #4D6FFF;
         }
 
         .podcast-hero p {
@@ -1040,15 +827,6 @@
             max-width: 700px;
             margin: 0 auto 40px auto;
             line-height: 1.6;
-        }
-
-        /* Platform buttons */
-        .podcast-platforms {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
         }
 
         /* ===== PODCASTS GRID ===== */
@@ -1079,7 +857,7 @@
 
         .podcast-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(37, 99, 235, 0.4);
+            border-color: rgba(27, 79, 255, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
@@ -1130,9 +908,9 @@
         }
 
         .podcast-card:hover .play-overlay {
-            background: #2563EB;
+            background: #1B4FFF;
             transform: translate(-50%, -50%) scale(1.08);
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+            box-shadow: 0 0 20px rgba(27, 79, 255, 0.6);
         }
 
         .duration-badge {
@@ -1185,7 +963,7 @@
             margin-bottom: 12px;
             font-size: 0.78rem;
             font-weight: 600;
-            color: #60A5FA;
+            color: #4D6FFF;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -1201,7 +979,7 @@
         }
 
         .podcast-card:hover .podcast-info h3 {
-            color: #60A5FA;
+            color: #4D6FFF;
         }
 
         .podcast-info p {
@@ -1242,8 +1020,8 @@
         }
 
         .icon-link:hover {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             transform: translateY(-2px);
         }
 
@@ -1287,7 +1065,7 @@
         .cta-banner-content h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #60A5FA;
+            color: #4D6FFF;
         }
 
         .cta-banner-content p {
@@ -1326,7 +1104,7 @@
             border-radius: 24px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(27, 79, 255, 0.15);
             transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -1407,7 +1185,7 @@
             margin-bottom: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #3B82F6;
+            color: #4D6FFF;
         }
 
         .footer-links ul {
@@ -1463,8 +1241,8 @@
         }
 
         .footer-social-link:hover {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             transform: translateY(-2px);
         }
 
@@ -1535,9 +1313,9 @@
 
         .social-dock-link:hover {
             transform: translateY(-4px);
-            border-color: #2563EB;
-            background-color: #2563EB;
-            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+            border-color: #1B4FFF;
+            background-color: #1B4FFF;
+            box-shadow: 0 12px 28px rgba(27, 79, 255, 0.4);
         }
 
         .social-dock-link svg {
@@ -1576,17 +1354,17 @@
                 top: 12px;
             }
 
+            .header .container-fluid--menu {
+                padding: 0;
+            }
+
             #desktop,
-            .demat-btn {
+            .header-actions-group .hero-cta-btn {
                 display: none !important;
             }
 
             .header--burger {
-                display: block !important;
-            }
-
-            .demat-dropdown {
-                display: none !important;
+                display: flex !important;
             }
 
             .logo-text-fallback,
@@ -1666,157 +1444,73 @@
 <body>
     <div class="custom-cursor" id="cursor"></div>
 
-    <!-- Background Loop Chart -->
-    <div class="bg-chart-lines">
-        <svg viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="grid-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
-                    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1"/>
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-            
-            <!-- Dynamic Green Trend Path (Looping) -->
-            <path class="chart-line-green" d="M -100,500 C 150,300 250,600 500,400 C 750,200 950,550 1200,350 C 1450,150 1550,450 1800,300" />
-            <!-- Dynamic Red Trend Path (Looping) -->
-            <path class="chart-line-red" d="M -100,700 C 200,850 350,600 650,750 C 950,900 1100,650 1350,800 C 1600,950 1700,700 1900,850" />
-        </svg>
-    </div>
-
     <!-- HEADER -->
     <header class="header" data-header id="navbar">
-        <div class="container-fluid">
-            <div class="row align-items-center header--frow">
-                <div class="col-12">
-                    <div class="container-fluid--menu">
+        <div class="container-fluid--menu">
 
-                        <a href="index.html" class="header--logo-link">
-                            <div id="header--logo">
-                                <img src="logo.png" alt="The Trading Scholar"
-                                    style="width: 45px; height: 38px; display: block; object-fit: contain;">
-                            </div>
-                            <div class="header--logo-two">
-                                <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
-                            </div>
+            <a href="index.html" class="header--logo-link" id="header--logo">
+                <img src="logo.png" alt="The Trading Scholar"
+                    style="width: 45px; height: 38px; display: block; object-fit: contain;">
+                <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
+            </a>
+
+            <nav id="nav-main" class="nav-main">
+                <ul class="menu" id="desktop">
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="index.html">Home</a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="courses-menu">
+                        <a class="menu-item-link" href="index.html#courses">Courses
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
                         </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="services-menu">
+                        <a class="menu-item-link" href="index.html#stack-viewport">Services
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="about-menu">
+                        <a class="menu-item-link" href="index.html#about-viewport">About
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="podcasts.html">Podcast</a>
+                    </li>
+                </ul>
+            </nav>
 
-                        <nav id="nav-main" class="nav-main">
-                            <ul class="menu" id="desktop">
-                                <li class="menu-item">
-                                    <a class="menu-item-link" href="index.html">Home</a>
-                                    <span class="forward-sign">/</span>
-                                </li>
-                                <li class="menu-item menu-item-has-menu" data-menu-target="courses-menu">
-                                    <a class="menu-item-link" href="index.html#courses">Courses
-                                        <span class="menu-item-arv">
-                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="forward-sign">/</span>
-                                </li>
-                                <li class="menu-item menu-item-has-menu" data-menu-target="services-menu">
-                                    <a class="menu-item-link" href="index.html#stack-viewport">Services
-                                        <span class="menu-item-arv">
-                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="forward-sign">/</span>
-                                </li>
-                                <li class="menu-item menu-item-has-menu" data-menu-target="about-menu">
-                                    <a class="menu-item-link" href="aboutus.html">About
-                                        <span class="menu-item-arv">
-                                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="forward-sign">/</span>
-                                </li>
-                                <li class="menu-item">
-                                    <a class="menu-item-link" href="algo-trading.html">Algo Trading</a>
-                                    <span class="forward-sign">/</span>
-                                </li>
-                                <li class="menu-item active">
-                                    <a class="menu-item-link" href="podcasts.html">Podcast</a>
-                                </li>
-                            </ul>
-                        </nav>
+            <div class="header-actions-group">
+                <a href="index.html#masterclass" class="hero-cta-btn filled">
+                    <span class="btn-sizer">Join Free Masterclass</span>
+                    <span class="btn-row btn-visible">Join Free Masterclass</span>
+                    <span class="btn-row btn-ghost">Join Free Masterclass</span>
+                </a>
 
-                        <div class="header-actions-group">
-                            <div class="wp-block-button is-style-outline-alt header-btn demat-btn">
-                                <span class="wp-block-button__link" id="dematTrigger">
-                                    <span class="btn-text">Open Free Demat Account</span>
-                                    <span class="gp-arrow">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="3">
-                                            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="demat-dropdown" id="dematDropdown">
-                                <div class="dropdown-box">
-                                    <div class="box-header">
-                                        <div class="box-title">5Paisa</div>
-                                        <div class="box-subtitle">India's Flat-Fee Broker</div>
-                                    </div>
-                                    <ul class="box-list">
-                                        <li><span class="check-icon">✓</span>Flat ₹20/order all segments</li>
-                                        <li><span class="check-icon">✓</span>Free equity delivery</li>
-                                        <li><span class="check-icon">✓</span>Easy mobile app</li>
-                                        <li><span class="check-icon">✓</span>Zero AMC first year</li>
-                                    </ul>
-                                    <a href="#" class="dropdown-link light-outline-link">Open Free Account →</a>
-                                </div>
-                                <div class="dropdown-box">
-                                    <div class="box-header">
-                                        <div class="box-title">Zerodha</div>
-                                        <div class="box-subtitle">India's No.1 Stock Broker</div>
-                                    </div>
-                                    <ul class="box-list">
-                                        <li><span class="check-icon">✓</span>Zero brokerage equity delivery</li>
-                                        <li><span class="check-icon">✓</span>Flat ₹20/order F&amp;O</li>
-                                        <li><span class="check-icon">✓</span>Trusted by 1 Cr+ traders</li>
-                                        <li><span class="check-icon">✓</span>Kite — best-in-class platform</li>
-                                    </ul>
-                                    <a href="#" class="dropdown-link light-outline-link">Open Free Account →</a>
-                                </div>
-                                <div class="dropdown-box highlighted">
-                                    <div class="box-header">
-                                        <div class="box-title">Free Masterclass</div>
-                                        <div class="box-subtitle">With Chandan Prajapati</div>
-                                    </div>
-                                    <ul class="box-list">
-                                        <li><span class="check-icon">✓</span>Institutional hedging framework</li>
-                                        <li><span class="check-icon">✓</span>Why 90% of traders fail</li>
-                                        <li><span class="check-icon">✓</span>Build a systematic approach</li>
-                                        <li><span class="check-icon">✓</span>Live Q&amp;A with Chandan</li>
-                                    </ul>
-                                    <a href="index.html#masterclass" class="dropdown-link accent-color-link">Reserve My Free Seat
-                                        →</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button aria-label="Burger Icon" class="header--burger" id="menuToggle">
-                            <svg width="40" height="40" viewBox="0 0 100 100">
-                                <path class="line line1"
-                                    d="M 20,29 H 80 C 80,29 94,28 94,66 94,77 90,81 85,81 79,81 75,75 75,75 L 25,25" />
-                                <path class="line line2" d="M 20,50 H 80" />
-                                <path class="line line3"
-                                    d="M 20,70 H 80 C 80,70 94,71 94,33 94,22 90,18 85,18 79,18 75,25 75,25 L 25,75" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                <button aria-label="Menu" class="header--burger" id="menuToggle">
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                </button>
             </div>
         </div>
 
@@ -1825,7 +1519,7 @@
             <div class="header--mega-menu-item" data-menu-id="courses-menu">
                 <div class="mega-menu-inner">
                     <div class="mega-menu-links-col">
-                        <a href="algo-trading.html" class="mega-menu-link-item">
+                        <a href="course1.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
@@ -1837,7 +1531,7 @@
                                 <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with precision.</span>
                             </div>
                         </a>
-                        <a href="index.html#courses" class="mega-menu-link-item">
+                        <a href="course2.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
                                     <circle cx="12" cy="8" r="4" />
@@ -1847,10 +1541,10 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">1-on-1 Live Mentorship</span>
-                                <span class="mega-link-desc">Direct coaching with Chandan. Personalised systems built around your capital.</span>
+                                <span class="mega-link-desc">Direct coaching with Kundan. Personalised systems built around your capital.</span>
                             </div>
                         </a>
-                        <a href="index.html#courses" class="mega-menu-link-item">
+                        <a href="course3.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
                                     <circle cx="12" cy="12" r="10" />
@@ -1895,7 +1589,7 @@
                 </div>
                 <div class="mega-cta-bottom">
                     <span class="mega-cta-bottom-text">Explore all academy programs and find your path</span>
-                    <a href="index.html#courses" class="mega-cta-link">View All Programs →</a>
+                    <a href="index.html#courses" class="mega-cta-link">View All Programs</a>
                 </div>
             </div>
 
@@ -1937,6 +1631,29 @@
                                 <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
                             </div>
                         </a>
+                        <a href="index.html#service-4" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Pre-IPO Unlisted Shares</span>
+                                <span class="mega-link-desc">Early-stage equity access. Institutional wealth-building before listing.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-5" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1:1 Consultation — Kundan Prajapati</span>
+                                <span class="mega-link-desc">Direct mentorship tailored to your capital, psychology, and trading goals.</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="mega-collage-panel">
                         <div class="mega-collage-grid">
@@ -1956,19 +1673,28 @@
                                     <span class="mega-collage-label">Workshops</span>
                                 </div>
                             </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                        <path d="M16 8l-8 8M8 8l8 8" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Dedicated Support</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="mega-cta-bottom">
                     <span class="mega-cta-bottom-text">Professional-grade services tailored to your goals</span>
-                    <a href="index.html#stack-viewport" class="mega-cta-link">Explore Services →</a>
+                    <a href="index.html#stack-viewport" class="mega-cta-link">Explore Services</a>
                 </div>
             </div>
 
             <div class="header--mega-menu-item" data-menu-id="about-menu">
                 <div class="mega-menu-inner">
                     <div class="mega-menu-links-col">
-                        <a href="aboutus.html" class="mega-menu-link-item">
+                        <a href="index.html#about-viewport" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
                                     <circle cx="12" cy="8" r="4" />
@@ -1977,7 +1703,7 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Meet Your Mentor</span>
-                                <span class="mega-link-desc">Chandan Prajapati — 9+ years, 1000+ traders mentored across India.</span>
+                                <span class="mega-link-desc">Kundan Prajapati — 9+ years, 1000+ traders mentored across India.</span>
                             </div>
                         </a>
                         <a href="index.html#results" class="mega-menu-link-item">
@@ -1991,11 +1717,63 @@
                                 <span class="mega-link-desc">Real P&amp;L statements. Verified broker results. No claims without proof.</span>
                             </div>
                         </a>
+                        <a href="index.html#gallery-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5" />
+                                    <polyline points="21 15 16 10 5 21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Gallery</span>
+                                <span class="mega-link-desc">Workshops, live sessions, and student meetup moments across India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#masterclass" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Contact Us</span>
+                                <span class="mega-link-desc">Reach out directly. Reserve a masterclass seat or book a consultation.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Community</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Mumbai Hub</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Verified Results</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mega-cta-bottom">
                     <span class="mega-cta-bottom-text">Learn more about the team and our trading philosophy</span>
-                    <a href="aboutus.html" class="mega-cta-link">Read Our Story →</a>
+                    <a href="index.html#about-viewport" class="mega-cta-link">Read Our Story</a>
                 </div>
             </div>
         </div>
@@ -2007,11 +1785,9 @@
             <nav class="mobile-nav">
                 <ul>
                     <li><a href="index.html" class="mobile-link">Home</a></li>
+                    <li><a href="index.html#about-viewport" class="mobile-link">About Us</a></li>
                     <li><a href="index.html#courses" class="mobile-link">Academy Programs</a></li>
-                    <li><a href="algo-trading.html" class="mobile-link">Algo Trading</a></li>
                     <li><a href="index.html#stack-viewport" class="mobile-link">Services</a></li>
-                    <li><a href="aboutus.html" class="mobile-link">About Us</a></li>
-                    <li><a href="podcasts.html" class="mobile-link">Podcast</a></li>
                     <li><a href="index.html#results" class="mobile-link">Student Results</a></li>
                     <li><a href="index.html#masterclass" class="mobile-link">Contact</a></li>
                 </ul>
@@ -2031,25 +1807,6 @@
             </div>
             <h1>The Trading Scholar <span class="accent">Podcast Hub</span></h1>
             <p>Unfiltered conversations on algorithmic frameworks, options hedging mechanics, and structural psychology featuring Chandan Prajapati. Discover setups built around institutional risk principles.</p>
-
-            <!-- Quick Platforms Links with Slide Animation -->
-            <div class="podcast-platforms">
-                <a href="#" class="hero-cta-btn black-style">
-                    <span class="btn-sizer">YouTube Channel</span>
-                    <span class="btn-row btn-visible">YouTube Channel</span>
-                    <span class="btn-row btn-ghost">YouTube Channel</span>
-                </a>
-                <a href="#" class="hero-cta-btn black-style">
-                    <span class="btn-sizer">Spotify Podcast</span>
-                    <span class="btn-row btn-visible">Spotify Podcast</span>
-                    <span class="btn-row btn-ghost">Spotify Podcast</span>
-                </a>
-                <a href="#" class="hero-cta-btn black-style">
-                    <span class="btn-sizer">Telegram Community</span>
-                    <span class="btn-row btn-visible">Telegram Community</span>
-                    <span class="btn-row btn-ghost">Telegram Community</span>
-                </a>
-            </div>
         </div>
     </section>
 
@@ -2476,22 +2233,6 @@
                 menuToggle.classList.remove('active');
                 mobileMenuOverlay.classList.remove('open');
             });
-        });
-
-        /* ===== DEMAT DROPDOWN ===== */
-        const dematTrigger = document.getElementById('dematTrigger');
-        const dematDropdown = document.getElementById('dematDropdown');
-
-        dematTrigger.addEventListener('click', e => {
-            e.stopPropagation();
-            dematDropdown.classList.toggle('show');
-        });
-
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') dematDropdown.classList.remove('show'); });
-        document.addEventListener('click', e => {
-            if (!dematDropdown.contains(e.target) && !dematTrigger.contains(e.target)) {
-                dematDropdown.classList.remove('show');
-            }
         });
 
         /* ===== MEGA MENU MOUSE HOVER ===== */

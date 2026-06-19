@@ -16,9 +16,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Thin.otf') format('opentype'); font-weight:100; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ThinItalic.otf') format('opentype'); font-weight:100; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Light.otf') format('opentype'); font-weight:300; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-LightItalic.otf') format('opentype'); font-weight:300; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-RegularItalic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Medium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-MediumItalic.otf') format('opentype'); font-weight:500; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BoldItalic.otf') format('opentype'); font-weight:700; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBold.otf') format('opentype'); font-weight:800; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBoldItalic.otf') format('opentype'); font-weight:800; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BlackItalic.otf') format('opentype'); font-weight:900; font-style:italic; font-display:swap; }
+
         :root {
             --bg-dark: #030712;
-            --bg-dark-secondary: #070b19;
+            --bg-dark-secondary: #0B0F19;
             --primary-accent: #2563EB;
             --secondary-accent: #2563EB;
             --soft-accent: #4F7DF3;
@@ -34,8 +49,8 @@
             --glass-blur: blur(16px);
             --glass-glow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
             --font-primary: 'Inter', sans-serif;
-            --font-headings: 'Outfit', sans-serif;
-            --font-nav: 'Lexend', sans-serif;
+            --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
+            --font-nav: 'Inter', sans-serif;
         }
 
         * {
@@ -50,7 +65,7 @@
             background-color: var(--bg-dark);
             color: var(--text-primary);
             overflow-x: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: var(--font-primary);
             scroll-behavior: smooth;
             width: 100%;
         }
@@ -216,85 +231,313 @@
             box-shadow: 0 10px 32px rgba(37, 99, 235, 0.3);
         }
 
-        /* ─── HEADER & NAV ─── */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 60px;
+        /* ─── HEADER & NAV (shared across site) ─── */
+        .header {
             position: fixed;
-            top: 0;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
+            width: 94%;
+            max-width: 1400px;
             z-index: 1000;
             background-color: transparent;
-            transition: all 0.5s cubic-bezier(.2, .8, .2, 1);
-        }
-
-        header.scrolled {
-            top: 20px;
-            width: calc(100% - 80px);
-            max-width: 1300px;
-            background-color: rgba(3, 7, 18, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-light);
+            border: 1px solid transparent;
             border-radius: 50px;
-            padding: 14px 40px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            padding: 14px 0;
+            box-shadow: none !important;
+            transition:
+                top 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                max-width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                background-color 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                backdrop-filter 0.55s ease,
+                border-color 0.55s ease,
+                padding 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                box-shadow 0.55s ease;
         }
 
-        .logo {
+        .header.scrolled {
+            top: 14px;
+            width: 80%;
+            max-width: 1120px;
+            background-color: rgba(3,7,18,0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 50px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4) !important;
+        }
+
+        .header.scrolled .container-fluid--menu { padding: 0; }
+
+        .container-fluid--menu {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .header--logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
         }
 
-        .logo-img {
+        .header--logo-link .logo-img {
+            width: 46px;
             height: 38px;
-            width: auto;
-            filter: brightness(0) saturate(100%) invert(100%);
+            object-fit: contain;
+            filter: invert(100%);
+            transition: all 0.45s cubic-bezier(0.2,0.8,0.2,1);
         }
 
-        .logo-text span {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: -.5px;
+        .header.scrolled .logo-img { width: 36px; height: 30px; }
+
+        .logo-text-fallback {
+            font-family: var(--font-headings);
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
             color: #FFFFFF;
+            transition: all 0.45s cubic-bezier(0.2,0.8,0.2,1);
         }
 
-        nav ul {
+        .header.scrolled .logo-text-fallback { font-size: 1.1rem; font-weight: 600; }
+
+        .nav-main { display: flex; align-items: center; }
+
+        .menu {
             display: flex;
             list-style: none;
-            gap: 15px;
             align-items: center;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-light);
-            padding: 8px 20px;
-            border-radius: 35px;
-            backdrop-filter: blur(10px);
+            gap: 12px;
         }
 
-        nav a {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: .95rem;
+        .menu-item { position: relative; display: flex; align-items: center; }
+
+        .menu-item-link {
+            font-family: var(--font-nav);
+            font-size: 13.5px;
             font-weight: 500;
-            transition: color .3s;
+            color: rgba(255,255,255,0.65);
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+            text-decoration: none;
         }
 
-        nav a:hover,
-        nav a.active {
-            color: #FFFFFF;
-        }
+        .menu-item-link:hover { color: #fff; }
 
-        nav .slash {
-            color: rgba(255, 255, 255, 0.15);
+        .forward-sign {
+            color: rgba(255,255,255,0.15);
+            margin-left: 15px;
             font-weight: 300;
-            pointer-events: none;
+            font-size: 13px;
         }
+
+        .menu-item-arv svg { transition: transform 0.3s ease; }
+        .menu-item-link:hover .menu-item-arv svg { transform: translateY(2px); }
+
+        .header-actions-group { display: flex; align-items: center; gap: 15px; position: relative; }
+
+        /* ===== MEGA MENU ===== */
+        .header--mega-menu-container {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            width: 100%;
+            background: rgba(6, 8, 22, 0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(27, 79, 255, 0.18);
+            border-radius: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            padding: 32px 48px;
+            z-index: 998;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(27, 79, 255, 0.06);
+        }
+
+        .header.mega-menu-open .header--mega-menu-container {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .header--mega-menu-item { display: none; }
+        .header--mega-menu-item.active { display: block; }
+
+        .mega-menu-inner {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .mega-menu-links-col { display: flex; flex-direction: column; gap: 6px; }
+
+        .mega-menu-link-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            transition: background 0.25s ease;
+            text-decoration: none;
+        }
+
+        .mega-menu-link-item:hover { background: rgba(27, 79, 255, 0.08); }
+
+        .mega-link-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .mega-link-icon svg { width: 16px; height: 16px; stroke: #4D6FFF; fill: none; stroke-width: 2; }
+
+        .mega-link-title {
+            font-family: var(--font-headings);
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .mega-link-desc {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.75);
+            line-height: 1.4;
+            display: block;
+        }
+
+        .mega-collage-panel {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .mega-collage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .mega-collage-img {
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(27, 79, 255, 0.08);
+            border: 1px solid rgba(27, 79, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mega-collage-img.tall { grid-row: span 2; }
+
+        .mega-collage-img-inner {
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+        }
+
+        .mega-collage-label {
+            font-size: 10px;
+            color: rgba(148, 163, 184, 0.6);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .mega-collage-icon { width: 24px; height: 24px; stroke: rgba(96, 165, 250, 0.5); fill: none; }
+
+        .mega-cta-bottom {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mega-cta-bottom-text { font-size: 13px; color: rgba(148, 163, 184, 0.7); }
+
+        .mega-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: linear-gradient(135deg, #4D6FFF, #1B4FFF);
+            color: #FFFFFF !important;
+            border-radius: 30px;
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mega-cta-link:hover { box-shadow: 0 6px 20px rgba(27, 79, 255, 0.5); transform: translateY(-1px); }
+
+        @media (max-width: 1024px) {
+            .mega-menu-inner { grid-template-columns: 1fr; }
+            .mega-collage-panel { display: none; }
+        }
+
+        /* ===== BURGER ===== */
+        .header--burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px; height: 20px;
+            background: transparent;
+            border: none; padding: 0; outline: none;
+            z-index: 10001;
+        }
+
+        .burger-bar {
+            display: block;
+            width: 100%; height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform .35s cubic-bezier(.25,1,.5,1), opacity .2s, width .3s;
+            transform-origin: center;
+        }
+
+        .burger-bar:nth-child(3) { width: 65%; }
+        .header--burger:hover .burger-bar:nth-child(3) { width: 100%; }
+        .header--burger.active .burger-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .header--burger.active .burger-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .header--burger.active .burger-bar:nth-child(3) { width: 100%; transform: translateY(-9px) rotate(-45deg); }
 
         /* Navigation compact button layout */
         .btn-nav-wrapper .cta-sizer {
@@ -306,6 +549,38 @@
             padding: 0.6rem 1.6rem;
             font-size: .88rem;
         }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(5,8,22,0.97);
+            backdrop-filter: blur(25px);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity .4s, visibility .4s;
+        }
+
+        .mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-menu-content {
+            text-align: center;
+            width: 100%; max-width: 400px;
+            padding: 40px;
+            display: flex; flex-direction: column; gap: 40px;
+        }
+
+        .mobile-nav ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 28px; }
+
+        .mobile-nav a {
+            font-family: var(--font-headings);
+            font-size: 1.8rem; font-weight: 600;
+            color: #fff; text-decoration: none;
+            transition: color .3s;
+        }
+
+        .mobile-nav a:hover { color: #4D6FFF; }
 
         /* ─── HERO SECTION ─── */
         .page-hero {
@@ -349,7 +624,7 @@
         }
 
         .hero-h1 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(2rem, 5vw, 4.4rem);
             font-weight: 300;
             line-height: 1.2;
@@ -447,7 +722,7 @@
         }
 
         .section-h2 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(2.2rem, 4vw, 3.4rem);
             font-weight: 300;
             letter-spacing: -1.5px;
@@ -531,7 +806,7 @@
         }
 
         .portrait-caption h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.7rem;
             font-weight: 800;
             color: #FFFFFF;
@@ -552,7 +827,7 @@
             border: 1px solid rgba(37, 99, 235, 0.35);
             border-radius: 12px;
             padding: 10px 16px;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.4rem;
             font-weight: 800;
             color: #FFFFFF;
@@ -591,7 +866,7 @@
         }
 
         .journey-block .block-num {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: .75rem;
             font-weight: 700;
             letter-spacing: 2px;
@@ -601,7 +876,7 @@
         }
 
         .journey-block h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 2.4rem;
             font-weight: 300;
             color: #FFFFFF;
@@ -629,7 +904,7 @@
         .philosophy-section::after {
             content: "PHILOSOPHY";
             position: absolute;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 13vw;
             font-weight: 900;
             color: rgba(255, 255, 255, 0.025);
@@ -658,7 +933,7 @@
         }
 
         .philosophy-quote {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(1.8rem, 3vw, 2.6rem);
             font-weight: 300;
             line-height: 1.25;
@@ -717,14 +992,14 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            overflow: hidden;
         }
 
-        .principle-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--soft-accent);
-            fill: none;
-            stroke-width: 2.5;
+        .principle-icon img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(1);
         }
 
         .principle-num {
@@ -736,7 +1011,7 @@
         }
 
         .principle-card h4 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.1rem;
             font-weight: 700;
             color: #FFFFFF;
@@ -765,21 +1040,42 @@
 
         .diff-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 190px;
+            gap: 18px;
         }
 
         .diff-card {
+            --mx: 50%;
+            --my: 50%;
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid var(--border-light);
             box-shadow: var(--glass-glow);
-            border-radius: 16px;
-            padding: 35px 28px;
-            transition: all 0.4s cubic-bezier(.2, .8, .2, 1);
+            border-radius: 18px;
+            padding: 32px 28px;
+            transition: transform .5s cubic-bezier(.2, .8, .2, 1), border-color .4s ease, box-shadow .4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Cursor-tracked spotlight glow */
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(420px circle at var(--mx) var(--my), rgba(37, 99, 235, 0.16), transparent 60%);
+            opacity: 0;
+            transition: opacity .4s ease;
+            pointer-events: none;
+        }
+
+        .diff-card:hover::before {
+            opacity: 1;
         }
 
         .diff-card::after {
@@ -787,48 +1083,116 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--secondary-accent);
-            transition: height .4s ease;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-accent), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s cubic-bezier(.2, .8, .2, 1);
         }
 
         .diff-card:hover::after {
-            height: 100%;
+            transform: scaleX(1);
         }
 
         .diff-card:hover {
             border-color: var(--border-active);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(37, 99, 235, 0.08);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(37, 99, 235, 0.1);
         }
 
         .diff-card-num {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 3.5rem;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.05);
             line-height: 1;
-            margin-bottom: -15px;
+            position: absolute;
+            top: 22px;
+            right: 26px;
+            transition: color .4s ease, transform .4s ease;
+            z-index: 1;
+        }
+
+        .diff-card:hover .diff-card-num {
+            color: rgba(79, 125, 243, 0.25);
+            transform: translateY(-4px);
         }
 
         .diff-card h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.35rem;
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
             font-weight: 700;
             color: #FFFFFF;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .diff-card p {
-            font-size: .95rem;
+            font-size: .92rem;
             color: var(--text-secondary);
-            line-height: 1.65;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height .45s ease, opacity .35s ease;
         }
 
+        .diff-card:hover p,
+        .diff-card.diff-card-feature p {
+            max-height: 140px;
+            opacity: 1;
+        }
+
+        /* Featured card — large bento tile, top-left, spans 2x2 */
+        .diff-card-feature {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: flex-end;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.14) 0%, var(--glass-bg) 60%);
+        }
+
+        .diff-card-feature .diff-card-num {
+            font-size: 6rem;
+            color: rgba(79, 125, 243, 0.12);
+        }
+
+        .diff-card-feature h3 {
+            font-size: 1.7rem;
+        }
+
+        /* Wide CTA tile — spans full width as its own row */
         .diff-card.cta-card {
+            grid-column: 1 / -1;
+            grid-row: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(11, 15, 25, 0.6) 100%);
             border-color: rgba(37, 99, 235, 0.35);
+            padding: 28px 36px;
+        }
+
+        .diff-card.cta-card .diff-card-num {
+            position: static;
+            font-size: 2rem;
+            color: var(--soft-accent);
+            margin-bottom: 0;
+        }
+
+        .diff-card.cta-card p {
+            max-height: none;
+            opacity: 1;
+        }
+
+        .diff-card.cta-card .cta-card-text {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         /* ─── METHODOLOGY TRACK (HORIZONTAL) ─── */
@@ -857,6 +1221,22 @@
             top: 50px;
             left: 60px;
             z-index: 10;
+            max-width: 360px;
+        }
+
+        .timeline-title {
+            font-family: var(--font-headings);
+            font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .timeline-title em {
+            font-style: italic;
+            font-weight: 800;
+            color: var(--soft-accent);
         }
 
         .tl-col {
@@ -878,7 +1258,7 @@
         }
 
         .tl-step {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: .78rem;
             font-weight: 700;
             letter-spacing: 2.5px;
@@ -897,7 +1277,7 @@
         }
 
         .tl-col h2 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(2rem, 3.5vw, 3.2rem);
             font-weight: 800;
             letter-spacing: -1.5px;
@@ -945,7 +1325,7 @@
             position: absolute;
             right: 50px;
             bottom: 60px;
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 8rem;
             font-weight: 900;
             color: rgba(255, 255, 255, 0.02);
@@ -995,7 +1375,7 @@
         }
 
         .impact-cell .big-stat {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(3.2rem, 6vw, 4.5rem);
             font-weight: 900;
             font-style: italic;
@@ -1027,7 +1407,7 @@
         }
 
         .logo-marquee-title {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: .85rem;
             font-weight: 700;
             letter-spacing: 2px;
@@ -1138,13 +1518,35 @@
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
             border: 1px solid var(--border-light);
+            border-left: 1px solid var(--border-light);
             border-radius: 16px;
-            transition: all .3s;
+            transition: border-color .35s ease, background .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-row::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--secondary-accent), var(--soft-accent));
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .service-row:hover::before {
+            transform: scaleY(1);
         }
 
         .service-row:hover {
             border-color: var(--border-active);
-            background: rgba(37, 99, 235, 0.03);
+            background: rgba(37, 99, 235, 0.04);
+            transform: translateX(6px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
         }
 
         .service-row-left {
@@ -1154,14 +1556,14 @@
         }
 
         .service-row-num {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: .8rem;
             font-weight: 700;
             color: var(--secondary-accent);
         }
 
         .service-row-info h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.35rem;
             font-weight: 700;
             color: #FFFFFF;
@@ -1190,22 +1592,18 @@
         }
 
         .service-row-arrow {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.35);
-            transition: all .3s;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color .4s ease, transform .4s cubic-bezier(.2, .8, .2, 1), filter .4s ease;
+            flex-shrink: 0;
         }
 
         .service-row:hover .service-row-arrow {
-            background: var(--secondary-accent);
-            border-color: var(--secondary-accent);
-            color: #FFFFFF;
-            transform: rotate(-45deg);
+            color: var(--soft-accent);
+            transform: translateX(10px);
+            filter: drop-shadow(0 0 10px rgba(79, 125, 243, 0.7));
         }
 
         /* ─── HOW IT WORKS (PINNED SLIDE REVEAL) ─── */
@@ -1263,7 +1661,7 @@
         }
 
         .how-step-num {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 3rem;
             font-weight: 800;
             color: var(--secondary-accent);
@@ -1272,7 +1670,7 @@
         }
 
         .how-step-card h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.8rem;
             font-weight: 700;
             color: #FFFFFF;
@@ -1296,7 +1694,7 @@
         }
 
         .cta-h2 {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: clamp(2.4rem, 5vw, 3.8rem);
             font-weight: 300;
             letter-spacing: -1.5px;
@@ -1353,7 +1751,7 @@
         }
 
         .footer-logo {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-headings);
             font-size: 1.15rem;
             font-weight: 800;
             color: rgba(255, 255, 255, 0.4);
@@ -1439,34 +1837,35 @@
                 padding: 80px 24px;
             }
 
-            header {
-                padding: 15px 24px !important;
-                width: 100%;
-                left: 50%;
-                transform: translateX(-50%);
+            .header {
+                padding: 12px 20px;
+                width: calc(100% - 20px);
+                border-radius: 30px;
+                background-color: rgba(3,7,18,0.92);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255,255,255,0.08);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+                top: 12px;
             }
 
-            header.scrolled {
-                top: 0;
-                width: 100%;
-                max-width: 100%;
-                border-radius: 0;
-                border-left: none;
-                border-right: none;
-                border-top: none;
-                padding: 12px 24px;
+            .header.scrolled {
+                background-color: rgba(3,7,18,0.96);
+                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
             }
 
-            nav ul {
-                display: none;
-                /* Collapses the redundant links for cleaner header footprint */
-            }
+            .header.scrolled .container-fluid--menu { padding: 0; }
 
-            .logo-text span {
+            #desktop-nav { display: none !important; }
+            #desktop-cta { display: none !important; }
+            .header--burger { display: flex; }
+
+            .logo-text-fallback {
                 font-size: 1.15rem;
             }
 
-            .logo-img {
+            .header--logo-link .logo-img {
                 height: 30px;
             }
 
@@ -1570,7 +1969,19 @@
 
             .diff-cards {
                 grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: auto;
                 gap: 16px;
+            }
+
+            .diff-card-feature {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .diff-card-feature p,
+            .diff-card p {
+                max-height: none;
+                opacity: 1;
             }
 
             .timeline-scroll-wrapper {
@@ -1581,6 +1992,13 @@
                 position: static;
                 height: auto;
                 overflow: visible;
+            }
+
+            .timeline-section-label {
+                position: static;
+                max-width: none;
+                padding: 50px 24px 0;
+                text-align: center;
             }
 
             .timeline-track {
@@ -1671,6 +2089,21 @@
                 grid-template-columns: 1fr;
             }
 
+            .diff-card-feature,
+            .diff-card.cta-card {
+                grid-column: 1 / -1;
+            }
+
+            .diff-card.cta-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .diff-card.cta-card .cta-btn {
+                width: 100%;
+            }
+
             .impact-grid {
                 grid-template-columns: 1fr;
             }
@@ -1728,58 +2161,427 @@
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="cursor"></div>
 
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="index.html" class="mobile-link">Home</a></li>
+                    <li><a href="index.html#about-viewport" class="mobile-link">About Us</a></li>
+                    <li><a href="index.html#courses" class="mobile-link">Academy Programs</a></li>
+                    <li><a href="index.html#stack-viewport" class="mobile-link">Services</a></li>
+                    <li><a href="index.html#results" class="mobile-link">Student Results</a></li>
+                    <li><a href="index.html#masterclass" class="mobile-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="index.html#masterclass" class="cta-btn accent-style mobile-link" style="justify-content:center;">
+                <span class="cta-sizer">
+                    Join Free Masterclass
+                    <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                        <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span class="cta-row cta-visible">
+                    <span>Join Free Masterclass</span>
+                    <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                        <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+                <span class="cta-row cta-ghost">
+                    <span>Join Free Masterclass</span>
+                    <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                        <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+
     <!-- ─── HEADER ─── -->
-    <header id="navbar">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="The Trading Scholar Logo" class="logo-img">
-            <div class="logo-text">
-                <span id="brandLabel">The Trading Scholar</span>
+    <header class="header" id="navbar" data-header>
+        <div class="container-fluid--menu">
+            <a href="index.html" class="header--logo-link" id="header--logo">
+                <img src="logo.png" alt="The Trading Scholar" class="logo-img">
+                <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
+            </a>
+
+            <nav class="nav-main" id="desktop-nav">
+                <ul class="menu" id="desktop">
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="index.html">Home</a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="courses-menu">
+                        <a class="menu-item-link" href="index.html#courses">Courses
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="services-menu">
+                        <a class="menu-item-link" href="index.html#stack-viewport">Services
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="about-menu">
+                        <a class="menu-item-link" href="index.html#about-viewport">About
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="index.html#podcast-viewport">Podcast</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-actions-group">
+                <!-- Dynamic button structure -->
+                <a href="index.html#masterclass" class="cta-btn accent-style btn-nav-wrapper" id="desktop-cta">
+                    <span class="cta-sizer">
+                        Join Free Masterclass
+                        <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span class="cta-row cta-visible">
+                        <span>Join Free Masterclass</span>
+                        <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span class="cta-row cta-ghost">
+                        <span>Join Free Masterclass</span>
+                        <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+
+                <button aria-label="Menu" class="header--burger" id="menuToggle">
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                </button>
             </div>
-        </a>
+        </div>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <span class="slash">/</span>
-                <li><a href="#origin">Origin</a></li>
-                <span class="slash">/</span>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <span class="slash">/</span>
-                <li><a href="#differentiation">Systems</a></li>
-                <span class="slash">/</span>
-                <li><a href="#methodology">Methodology</a></li>
-                <span class="slash">/</span>
-                <li><a href="#services">Services</a></li>
-            </ul>
-        </nav>
+        <!-- MEGA MENU -->
+        <div class="header--mega-menu-container">
+            <div class="header--mega-menu-item" data-menu-id="courses-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="course1.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algo Trading — Elgo System</span>
+                                <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with
+                                    precision.</span>
+                            </div>
+                        </a>
+                        <a href="course2.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1-on-1 Live Mentorship</span>
+                                <span class="mega-link-desc">Direct coaching with Kundan. Personalised systems built
+                                    around your capital.</span>
+                            </div>
+                        </a>
+                        <a href="course3.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Option Selling &amp; Hedging</span>
+                                <span class="mega-link-desc">Consistent monthly income. Defined risk.
+                                    Institutional-style execution.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Trading Desk</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"
+                                            fill="rgba(96,165,250,0.4)" />
+                                    </svg>
+                                    <span class="mega-collage-label">Student Results</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">1000+ Traders</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Explore all academy programs and find your path</span>
+                    <a href="index.html#courses" class="mega-cta-link">View All Programs</a>
+                </div>
+            </div>
 
-        <!-- Dynamic button structure -->
-        <a href="index.html#masterclass" class="cta-btn accent-style btn-nav-wrapper">
-            <span class="cta-sizer">
-                Join Free Masterclass
-                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-                    <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </span>
-            <span class="cta-row cta-visible">
-                <span>Join Free Masterclass</span>
-                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-                    <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </span>
-            <span class="cta-row cta-ghost">
-                <span>Join Free Masterclass</span>
-                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-                    <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </span>
-        </a>
+            <div class="header--mega-menu-item" data-menu-id="services-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#service-1" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Expert Mutual Funds Structuring</span>
+                                <span class="mega-link-desc">Goal-aligned portfolios, risk calibration, and long-term wealth building.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-2" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Custom Strategy Automation</span>
+                                <span class="mega-link-desc">Python-powered algo systems built exactly to your logic and API specs.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-3" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algorithmic Trading — Elgo System</span>
+                                <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-4" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Pre-IPO Unlisted Shares</span>
+                                <span class="mega-link-desc">Early-stage equity access. Institutional wealth-building before listing.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-5" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1:1 Consultation — Kundan Prajapati</span>
+                                <span class="mega-link-desc">Direct mentorship tailored to your capital, psychology, and trading goals.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Strategies</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M2 20h20M5 20V8l7-5 7 5v12" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Workshops</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                        <path d="M16 8l-8 8M8 8l8 8" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Dedicated Support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Professional-grade services tailored to your goals</span>
+                    <a href="index.html#stack-viewport" class="mega-cta-link">Explore Services</a>
+                </div>
+            </div>
+
+            <div class="header--mega-menu-item" data-menu-id="about-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#about-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Meet Your Mentor</span>
+                                <span class="mega-link-desc">Kundan Prajapati — 9+ years, 1000+ traders mentored across
+                                    India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#results" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Student Verification</span>
+                                <span class="mega-link-desc">Real P&amp;L statements. Verified broker results. No claims
+                                    without proof.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#gallery-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5" />
+                                    <polyline points="21 15 16 10 5 21" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Gallery</span>
+                                <span class="mega-link-desc">Workshops, live sessions, and student meetup moments across
+                                    India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#masterclass" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Contact Us</span>
+                                <span class="mega-link-desc">Reach out directly. Reserve a masterclass seat or book a
+                                    consultation.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Community</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Mumbai Hub</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Verified Results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Learn more about the team and our trading philosophy</span>
+                    <a href="index.html#about-viewport" class="mega-cta-link">Read Our Story</a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- ─── PAGE HERO ─── -->
@@ -1956,9 +2758,7 @@
             <div class="principles-grid">
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
+                        <img src="service2.png" alt="Preservation First">
                     </div>
                     <div class="principle-num">01</div>
                     <h4>Preservation First</h4>
@@ -1967,10 +2767,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10" />
-                        </svg>
+                        <img src="service2.png" alt="Systematic Edge">
                     </div>
                     <div class="principle-num">02</div>
                     <h4>Systematic Edge</h4>
@@ -1979,9 +2776,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
+                        <img src="service2.png" alt="Structured Habits">
                     </div>
                     <div class="principle-num">03</div>
                     <h4>Structured Habits</h4>
@@ -1990,9 +2785,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                        </svg>
+                        <img src="service2.png" alt="Integrated Risk">
                     </div>
                     <div class="principle-num">04</div>
                     <h4>Integrated Risk</h4>
@@ -2001,9 +2794,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                        <img src="service2.png" alt="Scalable Units">
                     </div>
                     <div class="principle-num">05</div>
                     <h4>Scalable Units</h4>
@@ -2032,8 +2823,8 @@
             </div>
 
             <div class="diff-cards">
-                <!-- Card 1 -->
-                <div class="diff-card reveal">
+                <!-- Card 1 — Featured -->
+                <div class="diff-card diff-card-feature reveal">
                     <div class="diff-card-num">01</div>
                     <h3>Institutional Mindset</h3>
                     <p>Trade with structured systems instead of emotional speculation. Learn to think and act like a
@@ -2044,56 +2835,55 @@
                 <div class="diff-card reveal">
                     <div class="diff-card-num">02</div>
                     <h3>Hedging Systems</h3>
-                    <p>Learn strategies specifically designed to reduce unnecessary drawdowns and protect capital across
-                        all market conditions — rising, falling, and sideways.</p>
+                    <p>Strategies designed to reduce unnecessary drawdowns and protect capital across all market
+                        conditions — rising, falling, and sideways.</p>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="diff-card reveal">
                     <div class="diff-card-num">03</div>
                     <h3>Systematic Execution</h3>
-                    <p>Clear frameworks, repeatable processes, and predefined setups remove emotion from every trade
-                        decision before the market even opens for the day.</p>
+                    <p>Clear frameworks and predefined setups remove emotion from every trade decision before the
+                        market even opens for the day.</p>
                 </div>
 
                 <!-- Card 4 -->
                 <div class="diff-card reveal">
                     <div class="diff-card-num">04</div>
                     <h3>Long-Term Consistency</h3>
-                    <p>Focus on sustainable wealth creation instead of short-term gambling. Build a trading career with
-                        measurable, repeatable performance — not lucky streaks.</p>
+                    <p>Sustainable wealth creation instead of short-term gambling — a trading career with measurable,
+                        repeatable performance.</p>
                 </div>
 
                 <!-- Card 5 -->
                 <div class="diff-card reveal">
                     <div class="diff-card-num">05</div>
                     <h3>Mentorship &amp; Guidance</h3>
-                    <p>Direct learning from 9+ years of real market experience and live execution — not theoretical
-                        textbook knowledge or recycled YouTube content.</p>
+                    <p>Direct learning from 9+ years of real market experience — not theoretical textbook knowledge or
+                        recycled YouTube content.</p>
                 </div>
 
                 <!-- Card 6 CTA -->
-                <div class="diff-card cta-card reveal"
-                    style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
+                <div class="diff-card cta-card reveal">
+                    <div class="cta-card-text">
                         <div class="diff-card-num">→</div>
-                        <h3 style="color: var(--soft-accent);">Ready to Start?</h3>
-                        <p>Join the free masterclass to experience the methodology firsthand. No cost, no obligation.
-                        </p>
+                        <div>
+                            <h3 style="color: var(--soft-accent); margin-bottom: 4px;">Ready to Start?</h3>
+                            <p style="margin: 0;">Join the free masterclass to experience the methodology firsthand. No
+                                cost, no obligation.</p>
+                        </div>
                     </div>
-                    <div style="margin-top: 24px;">
-                        <a href="index.html#masterclass" class="cta-btn accent-style" style="width: 100%;">
-                            <span class="cta-sizer">
-                                Reserve Free Seat →
-                            </span>
-                            <span class="cta-row cta-visible">
-                                <span>Reserve Free Seat →</span>
-                            </span>
-                            <span class="cta-row cta-ghost">
-                                <span>Reserve Free Seat →</span>
-                            </span>
-                        </a>
-                    </div>
+                    <a href="index.html#masterclass" class="cta-btn accent-style" style="flex-shrink: 0;">
+                        <span class="cta-sizer">
+                            Reserve Free Seat →
+                        </span>
+                        <span class="cta-row cta-visible">
+                            <span>Reserve Free Seat →</span>
+                        </span>
+                        <span class="cta-row cta-ghost">
+                            <span>Reserve Free Seat →</span>
+                        </span>
+                    </a>
                 </div>
             </div>
 
@@ -2107,6 +2897,7 @@
 
             <div class="timeline-section-label">
                 <span class="section-label">The Methodology</span>
+                <h2 class="timeline-title">Three Steps.<br><em>Zero Guesswork.</em></h2>
             </div>
 
             <div class="timeline-track" id="tl-track">
@@ -2233,7 +3024,7 @@
 
             <div class="services-list">
                 <!-- Service 1 -->
-                <div class="service-row reveal">
+                <div class="service-row">
                     <div class="service-row-left">
                         <div class="service-row-num">01</div>
                         <div class="service-row-info">
@@ -2247,15 +3038,15 @@
                         <span class="service-tag">Asset Allocation</span>
                     </div>
                     <div class="service-row-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M5 12h12M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>
 
                 <!-- Service 2 -->
-                <div class="service-row reveal">
+                <div class="service-row">
                     <div class="service-row-left">
                         <div class="service-row-num">02</div>
                         <div class="service-row-info">
@@ -2269,15 +3060,15 @@
                         <span class="service-tag">Backtests</span>
                     </div>
                     <div class="service-row-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M5 12h12M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>
 
                 <!-- Service 3 -->
-                <div class="service-row reveal">
+                <div class="service-row">
                     <div class="service-row-left">
                         <div class="service-row-num">03</div>
                         <div class="service-row-info">
@@ -2291,15 +3082,15 @@
                         <span class="service-tag">Risk Systems</span>
                     </div>
                     <div class="service-row-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M5 12h12M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>
 
                 <!-- Service 4 -->
-                <div class="service-row reveal">
+                <div class="service-row">
                     <div class="service-row-left">
                         <div class="service-row-num">04</div>
                         <div class="service-row-info">
@@ -2313,15 +3104,15 @@
                         <span class="service-tag">Pre-IPO</span>
                     </div>
                     <div class="service-row-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M5 12h12M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>
 
                 <!-- Service 5 -->
-                <div class="service-row reveal">
+                <div class="service-row">
                     <div class="service-row-left">
                         <div class="service-row-num">05</div>
                         <div class="service-row-info">
@@ -2335,9 +3126,9 @@
                         <span class="service-tag">Audit</span>
                     </div>
                     <div class="service-row-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6">
+                            <path d="M5 12h12M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>
@@ -2519,6 +3310,17 @@
             cursor.style.display = 'none';
         }
 
+        /* "What Sets Us Apart" — cursor-tracked spotlight glow per card */
+        if (isDesktop()) {
+            document.querySelectorAll('.diff-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+                });
+            });
+        }
+
         /* Header control scrolling class modifier */
         const navbar = document.getElementById('navbar');
         const brandLabel = document.getElementById('brandLabel');
@@ -2534,6 +3336,38 @@
                     brandLabel.textContent = 'The Trading Scholar';
                 }
             }
+        });
+
+        /* ===== MOBILE MENU ===== */
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-link').forEach(l => {
+            l.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenuOverlay.classList.remove('open');
+            });
+        });
+
+        /* ===== DESKTOP MEGA MENU ===== */
+        const headerEl = document.querySelector('[data-header]');
+        const menuTriggers = document.querySelectorAll('#desktop [data-menu-target]');
+        const megaMenuItems = document.querySelectorAll('.header--mega-menu-item');
+
+        menuTriggers.forEach(t => {
+            t.addEventListener('mouseenter', () => {
+                const target = t.getAttribute('data-menu-target');
+                headerEl.classList.add('mega-menu-open');
+                megaMenuItems.forEach(item => item.classList.toggle('active', item.getAttribute('data-menu-id') === target));
+            });
+        });
+
+        headerEl.addEventListener('mouseleave', () => {
+            headerEl.classList.remove('mega-menu-open');
+            megaMenuItems.forEach(item => item.classList.remove('active'));
         });
 
         /* Back to top click handler */

@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option Selling &amp; Hedging Strategy — The Trading Scholar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700;1,800&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* ===== BW GRADUAL LOCAL FONT ===== */
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Thin.otf') format('opentype'); font-weight:100; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ThinItalic.otf') format('opentype'); font-weight:100; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Light.otf') format('opentype'); font-weight:300; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-LightItalic.otf') format('opentype'); font-weight:300; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-RegularItalic.otf') format('opentype'); font-weight:400; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Medium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-MediumItalic.otf') format('opentype'); font-weight:500; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BoldItalic.otf') format('opentype'); font-weight:700; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBold.otf') format('opentype'); font-weight:800; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-ExtraBoldItalic.otf') format('opentype'); font-weight:800; font-style:italic; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-Black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+        @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BlackItalic.otf') format('opentype'); font-weight:900; font-style:italic; font-display:swap; }
+
+        :root {
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #F7F9FC;
+            --primary-accent: #1B4FFF;
+            --soft-accent: #4D6FFF;
+            --primary-text: #0B0F19;
+            --secondary-text: #5B6475;
+            --border-color: #E2E8F0;
+            --circle-bg: #EEF2FF;
+            --bg-dark: #030712;
+            --bg-dark-secondary: #0B0F19;
+            --accent-gold: #C9A84C;
+            --text-secondary: #94A3B8;
+            --color-black: #030712;
+            --color-white: #ffffff;
+            --color-blue: #1B4FFF;
+            --gradient-button: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
+            --font-primary: 'Inter', sans-serif;
+            --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'BwGradual', 'Urbanist', 'Plus Jakarta Sans', sans-serif;
+            --font-nav: 'Inter', sans-serif;
+        }
+
+        @property --glow-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes rotateGlow {
+            to { --glow-angle: 360deg; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.65); }
+        }
+
+        @keyframes scrollDrop {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* ===== GLOW BORDER ===== */
+        .glow-border-wrapper {
+            position: relative;
+            border-radius: 20px;
+            padding: 1.5px;
+            background: rgba(255,255,255,0.04);
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+        }
+
+        .glow-border-wrapper.glowing::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from var(--glow-angle) at 50% 50%, rgba(27,79,255,0) 0%, rgba(27,79,255,0) 22%, #4D6FFF 48%, #1B4FFF 60%, rgba(27,79,255,0) 82%);
+            animation: rotateGlow 4s linear infinite;
+            z-index: 1;
+        }
+
+        .glow-border-inner {
+            position: relative;
+            background: #050507;
+            border-radius: 18px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        html, body {
+            background-color: var(--color-black);
+            color: var(--primary-text);
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            font-family: var(--font-primary);
+        }
+
+        html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+        a { cursor: none; text-decoration: none; font-family: inherit; }
+
+        /* ===== CURSOR ===== */
+        .custom-cursor {
+            width: 10px;
+            height: 10px;
+            background: #1B4FFF;
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .15s, height .15s, background .15s, transform .15s;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 1400px;
+            z-index: 1000;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 50px;
+            padding: 14px 0;
+            box-shadow: none !important;
+            transition:
+                top 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                max-width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                background-color 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                backdrop-filter 0.55s ease,
+                border-color 0.55s ease,
+                padding 0.55s cubic-bezier(0.25, 1, 0.35, 1),
+                box-shadow 0.55s ease;
+        }
+
+        .header.scrolled {
+            top: 14px;
+            width: 80%;
+            max-width: 1120px;
+            background-color: rgba(3,7,18,0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 50px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4) !important;
+        }
+
+        .header.scrolled .container-fluid--menu { padding: 0; }
+
+        .container-fluid--menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header--logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        #header--logo img {
+            width: 46px;
+            height: 38px;
+            object-fit: contain;
+            filter: invert(100%);
+            transition: all 0.45s cubic-bezier(0.2,0.8,0.2,1);
+        }
+
+        .header.scrolled #header--logo img { width: 36px; height: 30px; }
+
+        .logo-text-fallback {
+            font-family: var(--font-headings);
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #FFFFFF;
+            transition: all 0.45s cubic-bezier(0.2,0.8,0.2,1);
+        }
+
+        .header.scrolled .logo-text-fallback { font-size: 1.1rem; font-weight: 600; }
+
+        .nav-main { display: flex; align-items: center; }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-item { position: relative; display: flex; align-items: center; }
+
+        .menu-item-link {
+            font-family: var(--font-nav);
+            font-size: 13.5px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.65);
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .menu-item-link:hover { color: #fff; }
+
+        .forward-sign {
+            color: rgba(255,255,255,0.15);
+            margin-left: 15px;
+            font-weight: 300;
+            font-size: 13px;
+        }
+
+        .menu-item-arv svg { transition: transform 0.3s ease; }
+        .menu-item-link:hover .menu-item-arv svg { transform: translateY(2px); }
+
+        .header-actions-group { display: flex; align-items: center; gap: 15px; position: relative; }
+
+        /* ===== MEGA MENU ===== */
+        .header--mega-menu-container {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            width: 100%;
+            background: rgba(6, 8, 22, 0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(27, 79, 255, 0.18);
+            border-radius: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            padding: 32px 48px;
+            z-index: 998;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(27, 79, 255, 0.06);
+        }
+
+        .header.mega-menu-open .header--mega-menu-container {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .header--mega-menu-item { display: none; }
+        .header--mega-menu-item.active { display: block; }
+
+        .mega-menu-inner {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .mega-menu-links-col { display: flex; flex-direction: column; gap: 6px; }
+
+        .mega-menu-link-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            transition: background 0.25s ease;
+            text-decoration: none;
+        }
+
+        .mega-menu-link-item:hover { background: rgba(27, 79, 255, 0.08); }
+
+        .mega-link-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .mega-link-icon svg { width: 16px; height: 16px; stroke: #4D6FFF; fill: none; stroke-width: 2; }
+
+        .mega-link-title {
+            font-family: var(--font-headings);
+            font-size: 15px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .mega-link-desc {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.75);
+            line-height: 1.4;
+            display: block;
+        }
+
+        .mega-collage-panel {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .mega-collage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .mega-collage-img {
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(27, 79, 255, 0.08);
+            border: 1px solid rgba(27, 79, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mega-collage-img.tall { grid-row: span 2; }
+
+        .mega-collage-img-inner {
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+        }
+
+        .mega-collage-label {
+            font-size: 10px;
+            color: rgba(148, 163, 184, 0.6);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .mega-collage-icon { width: 24px; height: 24px; stroke: rgba(96, 165, 250, 0.5); fill: none; }
+
+        .mega-cta-bottom {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mega-cta-bottom-text { font-size: 13px; color: rgba(148, 163, 184, 0.7); }
+
+        .mega-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: linear-gradient(135deg, #4D6FFF, #1B4FFF);
+            color: #FFFFFF !important;
+            border-radius: 30px;
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mega-cta-link:hover { box-shadow: 0 6px 20px rgba(27, 79, 255, 0.5); transform: translateY(-1px); }
+
+        @media (max-width: 1024px) {
+            .mega-menu-inner { grid-template-columns: 1fr; }
+            .mega-collage-panel { display: none; }
+        }
+
+        /* ===== BURGER ===== */
+        .header--burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px; height: 20px;
+            background: transparent;
+            border: none; padding: 0; outline: none;
+            z-index: 10001;
+        }
+
+        .burger-bar {
+            display: block;
+            width: 100%; height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform .35s cubic-bezier(.25,1,.5,1), opacity .2s, width .3s;
+            transform-origin: center;
+        }
+
+        .burger-bar:nth-child(3) { width: 65%; }
+        .header--burger:hover .burger-bar:nth-child(3) { width: 100%; }
+        .header--burger.active .burger-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .header--burger.active .burger-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .header--burger.active .burger-bar:nth-child(3) { width: 100%; transform: translateY(-9px) rotate(-45deg); }
+
+        /* ===== SLIDE BUTTONS ===== */
+        .course-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            text-decoration: none;
+            font-family: var(--font-nav);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: box-shadow 0.4s cubic-bezier(.16,1,.3,1), transform .15s;
+        }
+
+        .course-btn.filled {
+            background: var(--gradient-button);
+            color: #fff !important;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 18px rgba(27,79,255,0.4);
+        }
+
+        .course-btn.filled:hover { box-shadow: 0 10px 32px rgba(27,79,255,0.65); }
+
+        .course-btn.outline {
+            background: transparent;
+            color: rgba(255,255,255,0.8) !important;
+            border: 1.5px solid rgba(255,255,255,0.22);
+        }
+
+        .course-btn.outline:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.4);
+            color: #fff !important;
+        }
+
+        .course-btn:active { transform: scale(0.98); }
+
+        .btn-sizer {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            opacity: 0;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .btn-row {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 32px;
+            white-space: nowrap;
+            transition: transform 0.46s cubic-bezier(.16,1,.3,1);
+            will-change: transform;
+        }
+
+        .btn-visible { transform: translateY(0%); }
+        .course-btn:hover .btn-visible { transform: translateY(-105%); }
+        .btn-ghost { transform: translateY(105%); }
+        .course-btn:hover .btn-ghost { transform: translateY(0%); }
+
+        .gp-arrow {
+            display: inline-flex;
+            transition: transform 0.3s;
+        }
+
+        /* Nav CTA */
+        .nav-cta-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: var(--gradient-button);
+            color: #fff !important;
+            font-family: var(--font-nav);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            box-shadow: 0 4px 18px rgba(27,79,255,0.4);
+            transition: box-shadow 0.3s, transform .15s;
+            text-decoration: none;
+        }
+
+        .nav-cta-btn:hover { box-shadow: 0 8px 28px rgba(27,79,255,0.6); }
+
+        .nav-cta-btn .btn-sizer { padding: 11px; font-size: 12px; }
+        .nav-cta-btn .btn-row { padding: 11px; font-size: 12px; }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(5,8,22,0.97);
+            backdrop-filter: blur(25px);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity .4s, visibility .4s;
+        }
+
+        .mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-menu-content {
+            text-align: center;
+            width: 100%; max-width: 400px;
+            padding: 40px;
+            display: flex; flex-direction: column; gap: 40px;
+        }
+
+        .mobile-nav ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 28px; }
+
+        .mobile-nav a {
+            font-family: var(--font-headings);
+            font-size: 1.8rem; font-weight: 600;
+            color: #fff; text-decoration: none;
+            transition: color .3s;
+        }
+
+        .mobile-nav a:hover { color: #4D6FFF; }
+
+        /* ===== HERO ===== */
+        .course-hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            padding: 140px 40px 80px;
+            position: relative;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.018) 49%, rgba(255,255,255,0.018) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.018) 49%, rgba(255,255,255,0.018) 51%, transparent 52%);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .course-hero::after {
+            content: '';
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 900px; height: 550px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(27,79,255,0.22) 0%, transparent 68%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 18px;
+            background: rgba(27,79,255,0.1);
+            border: 1px solid rgba(27,79,255,0.28);
+            border-radius: 50px;
+            font-family: var(--font-nav);
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px;
+            color: #4D6FFF;
+            margin-bottom: 28px;
+            position: relative; z-index: 2;
+            opacity: 0;
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            background: #4D6FFF; border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .course-hero h1 {
+            font-family: var(--font-headings);
+            font-size: 4.8rem; font-weight: 300;
+            line-height: 1.08; letter-spacing: -2.5px;
+            color: #fff;
+            max-width: 900px;
+            position: relative; z-index: 2;
+            opacity: 0;
+        }
+
+        .course-hero h1 em {
+            font-style: italic; font-weight: 800;
+            color: #4D6FFF; display: block;
+        }
+
+        .course-hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7; max-width: 660px;
+            margin: 22px auto 40px;
+            position: relative; z-index: 2;
+            opacity: 0;
+        }
+
+        .hero-actions {
+            display: flex; gap: 14px;
+            align-items: center; justify-content: center;
+            flex-wrap: wrap;
+            position: relative; z-index: 2;
+            opacity: 0;
+        }
+
+        .hero-scroll-hint {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 8px;
+            margin-top: 60px;
+            position: relative; z-index: 2;
+            opacity: 0.35;
+        }
+
+        .hero-scroll-hint span {
+            font-size: 10px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .scroll-bar {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, #fff, transparent);
+            animation: scrollDrop 2s ease-in-out infinite;
+        }
+
+        /* ===== VIDEO REVEAL ===== */
+        .vr-section {
+            width: 100%;
+            position: relative;
+            background: var(--bg-dark);
+            z-index: 10;
+        }
+
+        .vr-sticky {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-dark);
+            overflow: hidden;
+            perspective: 1800px;
+        }
+
+        .vr-sticky::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.015) 49%, rgba(255,255,255,0.015) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.015) 49%, rgba(255,255,255,0.015) 51%, transparent 52%);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .vr-text-top {
+            position: absolute;
+            top: calc(50% - 160px);
+            left: 0; right: 0;
+            text-align: center;
+            opacity: 0; pointer-events: none;
+            will-change: opacity, transform;
+        }
+
+        .vr-text-top span {
+            font-family: var(--font-headings);
+            font-size: 2.6rem; font-weight: 300;
+            color: #fff; letter-spacing: -1px;
+            display: block;
+        }
+
+        .vr-frame {
+            width: 88%;
+            max-width: 980px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            will-change: transform, opacity;
+            transform-origin: center center;
+            transform-style: preserve-3d;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+        }
+
+        .vr-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #0B1628 0%, #1C2F56 45%, #0D1F3C 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+
+        .vr-placeholder::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 60% 40%, rgba(27,79,255,0.2) 0%, transparent 65%);
+            z-index: 1;
+        }
+
+        .vr-placeholder::after {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.02) 49%, rgba(255,255,255,0.02) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.02) 49%, rgba(255,255,255,0.02) 51%, transparent 52%);
+            background-size: 50px 50px;
+        }
+
+        .vr-play-btn {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.28);
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(8px);
+            position: relative; z-index: 10;
+            transition: all .3s;
+        }
+
+        .vr-play-btn:hover {
+            background: rgba(27,79,255,0.5);
+            border-color: #1B4FFF;
+            transform: scale(1.1);
+        }
+
+        .vr-play-btn svg { width: 28px; height: 28px; fill: #fff; margin-left: 4px; }
+
+        .vr-placeholder-label {
+            position: absolute; bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-nav);
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap; z-index: 10;
+        }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 3px; color: #4D6FFF;
+            text-transform: uppercase;
+            display: block; margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-family: var(--font-headings);
+            font-size: 2.8rem; font-weight: 300;
+            letter-spacing: -1px; line-height: 1.15;
+        }
+
+        .section-heading em {
+            font-style: italic; font-weight: 800; color: #4D6FFF;
+        }
+
+        /* ===== TRANSFORMATION ===== */
+        .transformation-section {
+            background: #000;
+            padding: 150px 40px;
+            display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
+        }
+
+        .transformation-section .section-heading {
+            color: #fff; text-align: center; margin-bottom: 60px;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            width: 100%; max-width: 1100px;
+        }
+
+        .transform-card {
+            border-radius: 24px;
+            padding: 48px 44px;
+            position: relative; overflow: hidden;
+        }
+
+        .transform-card.before {
+            background: linear-gradient(135deg, #0f0505 0%, #1a0a0a 100%);
+            border: 1px solid rgba(239,68,68,0.18);
+        }
+
+        .transform-card.after {
+            background: linear-gradient(135deg, #030f1a 0%, #041425 100%);
+            border: 1px solid rgba(27,79,255,0.25);
+        }
+
+        .transform-card::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .transform-card.before::before {
+            background: radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 70%);
+        }
+
+        .transform-card.after::before {
+            background: radial-gradient(circle, rgba(27,79,255,0.12) 0%, transparent 70%);
+        }
+
+        .transform-label {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 3px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 20px;
+            display: inline-block; margin-bottom: 24px;
+        }
+
+        .transform-card.before .transform-label {
+            color: #EF4444;
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+        }
+
+        .transform-card.after .transform-label {
+            color: #34D399;
+            background: rgba(52,211,153,0.08);
+            border: 1px solid rgba(52,211,153,0.2);
+        }
+
+        .transform-title {
+            font-family: var(--font-headings);
+            font-size: 1.65rem; font-weight: 700;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 28px; letter-spacing: -0.5px;
+        }
+
+        .transform-card.after .transform-title { color: #fff; }
+
+        .transform-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+
+        .transform-list li {
+            display: flex; align-items: center; gap: 14px;
+            font-size: 0.93rem; font-weight: 500; line-height: 1.4;
+        }
+
+        .transform-card.before .transform-list li { color: rgba(255,255,255,0.5); }
+        .transform-card.after .transform-list li { color: rgba(255,255,255,0.85); }
+
+        .list-dot-before, .list-dot-after {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .list-dot-before {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+
+        .list-dot-before svg { width: 10px; height: 10px; stroke: #EF4444; fill: none; stroke-width: 2.5; }
+
+        .list-dot-after {
+            background: rgba(52,211,153,0.1);
+            border: 1px solid rgba(52,211,153,0.3);
+        }
+
+        .list-dot-after svg {
+            width: 10px; height: 10px; stroke: #34D399; fill: none;
+            stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* ===== OVERVIEW ===== */
+        .overview-section {
+            background: var(--primary-bg);
+            padding: 150px 40px;
+            display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
+        }
+
+        .overview-header {
+            width: 100%; max-width: 700px;
+            text-align: center; margin-bottom: 60px;
+        }
+
+        .overview-header .section-label { color: #4D6FFF; }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            width: 100%; max-width: 1100px;
+        }
+
+        .overview-card {
+            background: var(--secondary-bg);
+            border: none;
+            border-radius: 20px; padding: 38px 24px;
+            min-height: 256px;
+            transition: transform .3s, box-shadow .3s;
+            position: relative; overflow: visible;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 32px rgba(27,79,255,0.1);
+        }
+
+        .overview-card-icon {
+            width: 96px; height: 96px;
+            margin: -64px 0 18px 0;
+            display: flex; align-items: center; justify-content: center;
+            filter: drop-shadow(0 14px 22px rgba(27,79,255,0.35));
+            transition: transform .35s ease;
+        }
+
+        .overview-card-icon img {
+            width: 100%; height: 100%; object-fit: contain;
+        }
+
+        .overview-card:hover .overview-card-icon {
+            transform: scale(1.18) translateY(-4px);
+        }
+
+        .overview-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.02rem; font-weight: 700;
+            color: var(--primary-text); margin-bottom: 10px; line-height: 1.3;
+        }
+
+        .overview-card p { font-size: 0.85rem; color: var(--secondary-text); line-height: 1.6; }
+
+        /* ===== BENEFITS ===== */
+        .benefits-section {
+            background: var(--bg-dark);
+            padding: 150px 40px;
+            display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%; max-width: 1100px;
+        }
+
+        .benefit-card {
+            background: var(--bg-dark-secondary);
+            border: none;
+            border-radius: 20px; padding: 32px 28px;
+            transition: transform .3s, background .3s;
+            position: relative; overflow: visible;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute; top: -40px; right: -40px;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(27,79,255,0.07) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .benefit-card:hover {
+            background: #0C1222;
+            transform: translateY(-5px);
+        }
+
+        .benefit-card:hover::before { opacity: 1; }
+
+        .benefit-icon {
+            width: 84px; height: 84px;
+            margin: -58px 0 18px 0;
+            display: flex; align-items: center; justify-content: center;
+            filter: drop-shadow(0 12px 20px rgba(27,79,255,0.4));
+            transition: transform .35s ease;
+        }
+
+        .benefit-icon img {
+            width: 100%; height: 100%; object-fit: contain;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.18) translateY(-4px);
+        }
+
+        .benefit-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.05rem; font-weight: 700;
+            color: #fff; margin-bottom: 10px; line-height: 1.3;
+        }
+
+        .benefit-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+        /* ===== AUDIENCE ===== */
+        .audience-section {
+            background: var(--primary-bg);
+            padding: 150px 40px;
+            display: flex; justify-content: center;
+            overflow: hidden;
+        }
+
+        .audience-inner {
+            width: 100%; max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px; align-items: center;
+        }
+
+        .audience-left .section-heading { color: var(--primary-text); margin-bottom: 20px; }
+
+        .audience-left p { font-size: 0.95rem; color: var(--secondary-text); line-height: 1.7; }
+
+        .audience-right { display: flex; flex-direction: column; gap: 28px; }
+
+        .audience-item {
+            position: relative;
+            padding: 44px 26px 24px;
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: 0 1px 0 rgba(11,15,25,0.03);
+            transition: transform .3s, box-shadow .3s, background .3s;
+        }
+
+        .audience-item:hover {
+            transform: translateX(6px);
+            background: #F0F4FF;
+            box-shadow: 0 12px 30px rgba(27,79,255,0.1);
+        }
+
+        .audience-num {
+            position: absolute;
+            top: -20px; left: 24px;
+            font-family: var(--font-headings);
+            font-size: 3.1rem; font-style: italic; font-weight: 800;
+            line-height: 1; letter-spacing: -2px;
+            color: #1B4FFF;
+            z-index: 2;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .audience-item p {
+            position: relative; z-index: 1;
+            font-size: 0.9rem; color: var(--primary-text);
+            line-height: 1.55; font-weight: 500;
+        }
+
+        /* ===== CURRICULUM ===== */
+        .curriculum-section {
+            background: var(--bg-dark);
+            padding: 110px 0 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .curriculum-header {
+            text-align: center; margin-bottom: 60px;
+            max-width: 640px;
+            padding: 0 40px;
+        }
+
+        .curriculum-header .section-heading { color: #fff; }
+
+        .curriculum-header p {
+            font-size: 0.95rem; color: var(--text-secondary);
+            margin: 16px auto 0; line-height: 1.7;
+        }
+
+        /* Horizontal-scrolling timeline */
+        .curriculum-timeline-wrapper {
+            width: 100%;
+            height: 750vh;
+            position: relative;
+        }
+
+        .curriculum-sticky {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: var(--bg-dark);
+        }
+
+        .curriculum-track {
+            display: flex;
+            flex-direction: column;
+            width: max-content;
+            padding: 0 8vw;
+            will-change: transform;
+        }
+
+        .curriculum-columns {
+            display: flex;
+            gap: 380px;
+        }
+
+        .process-col {
+            width: 600px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            padding-top: 56px;
+        }
+
+        .process-node-row {
+            position: absolute;
+            top: 0; left: 0;
+            width: calc(100% + 380px);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .process-col:last-child .process-node-row { width: 100%; }
+
+        .process-dot {
+            width: 14px; height: 14px;
+            background-color: var(--primary-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(27,79,255,0.15);
+        }
+
+        .process-line-after {
+            height: 1px;
+            background-color: var(--primary-accent);
+            flex-grow: 1;
+        }
+
+        .process-col:last-child .process-line-after { display: none; }
+
+        .process-phase-label {
+            font-family: var(--font-headings);
+            font-size: 0.95rem; font-weight: 600;
+            color: #fff;
+            margin: 0 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .process-num {
+            font-family: var(--font-headings);
+            font-size: 0.72rem; font-weight: 800;
+            color: #4D6FFF;
+            background: rgba(27,79,255,0.12);
+            border: 1px solid rgba(27,79,255,0.25);
+            border-radius: 8px; padding: 5px 10px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .process-col h2 {
+            font-family: var(--font-headings);
+            font-size: 1.7rem; font-weight: 700;
+            letter-spacing: -0.5px; line-height: 1.25;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .process-desc {
+            font-size: 0.95rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 28px;
+        }
+
+        .process-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .process-tag {
+            background-color: rgba(27,79,255,0.1);
+            color: rgba(255,255,255,0.75);
+            border: 1px solid rgba(27,79,255,0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.82rem; font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .process-tag:hover {
+            background-color: var(--primary-accent);
+            color: white;
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section-outer { background: #000; width: 100%; }
+
+        .faq-section {
+            width: 100%; max-width: 860px;
+            margin: 0 auto; padding: 110px 40px;
+        }
+
+        .faq-header { text-align: center; margin-bottom: 50px; }
+        .faq-header .section-heading { color: #fff; }
+
+        .faq-items { display: flex; flex-direction: column; gap: 10px; }
+
+        .faq-item-wrapper { border-radius: 16px; }
+        .faq-item-wrapper .glow-border-inner { border-radius: 14px; }
+
+        .accordion-inner-content-box { width: 100%; }
+
+        .accordion-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 22px 26px; cursor: pointer; gap: 20px; user-select: none;
+        }
+
+        .accordion-question {
+            font-family: var(--font-headings);
+            font-size: 0.97rem; font-weight: 600; color: #fff; line-height: 1.4;
+        }
+
+        .accordion-toggle {
+            width: 28px; height: 28px;
+            background: rgba(255,255,255,0.06); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background .3s;
+        }
+
+        .accordion-toggle svg {
+            width: 14px; height: 14px;
+            stroke: rgba(255,255,255,0.6); fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+            transition: transform .3s;
+        }
+
+        .faq-item-wrapper.active .accordion-toggle { background: rgba(27,79,255,0.2); }
+        .faq-item-wrapper.active .accordion-toggle svg { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height .4s cubic-bezier(.16,1,.3,1);
+        }
+
+        .faq-item-wrapper.active .accordion-content { max-height: 300px; }
+
+        .accordion-inner-desc {
+            padding: 0 26px 22px;
+            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: var(--bg-dark);
+            padding: 110px 40px;
+            display: flex; justify-content: center;
+            overflow: hidden;
+        }
+
+        .cta-card {
+            width: 100%; max-width: 1060px;
+            background: linear-gradient(135deg, #020205 0%, #031445 40%, #0040e6 100%);
+            border-radius: 28px; padding: 90px 70px;
+            text-align: center;
+            position: relative; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(27,79,255,0.12);
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.02) 49%, rgba(255,255,255,0.02) 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.02) 49%, rgba(255,255,255,0.02) 51%, transparent 52%);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .cta-card::after {
+            content: '';
+            position: absolute; top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 400px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(77,111,255,0.18) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cta-card h2 {
+            font-family: var(--font-headings);
+            font-size: 3.2rem; font-weight: 300;
+            color: #fff; line-height: 1.1;
+            letter-spacing: -1.5px; margin-bottom: 16px;
+            position: relative; z-index: 2;
+        }
+
+        .cta-card h2 em { font-style: italic; font-weight: 800; color: #4D6FFF; }
+
+        .cta-card p {
+            font-size: 1rem; color: rgba(255,255,255,0.62);
+            line-height: 1.65; max-width: 560px;
+            margin: 0 auto 44px;
+            position: relative; z-index: 2;
+        }
+
+        .cta-actions {
+            display: flex; gap: 14px;
+            align-items: center; justify-content: center;
+            flex-wrap: wrap;
+            position: relative; z-index: 2;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            padding: 80px 60px 40px;
+            position: relative; overflow: hidden;
+            width: 100%; z-index: 10;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            position: relative; z-index: 5;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--font-headings);
+            font-size: 1.5rem; font-weight: 800;
+            margin-bottom: 15px; letter-spacing: -0.5px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.88rem; line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem; font-weight: 700;
+            margin-bottom: 18px;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: #4D6FFF;
+        }
+
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none; font-size: 0.88rem;
+            transition: color .2s;
+        }
+
+        .footer-links ul li a:hover { color: #fff; }
+
+        .footer-bottom {
+            max-width: 1200px; margin: 60px auto 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; z-index: 5;
+        }
+
+        .footer-bottom p { font-size: 0.8rem; color: #64748B; }
+
+        .footer-socials { display: flex; gap: 16px; }
+
+        .footer-social-link {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            transition: all .3s;
+        }
+
+        .footer-social-link:hover {
+            background: #1B4FFF; border-color: #1B4FFF;
+            transform: translateY(-2px);
+        }
+
+        .footer-social-link svg {
+            width: 16px; height: 16px;
+            fill: var(--text-secondary); display: block; margin: auto;
+            transition: fill .3s ease;
+        }
+
+        .footer-social-link:hover svg { fill: #fff; }
+
+        .giant-footer-logo-container {
+            position: relative; width: 100%; margin-top: 50px;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .giant-footer-logo img {
+            height: 150px; width: auto; object-fit: contain;
+            opacity: 0.15; filter: brightness(0) invert(1);
+        }
+
+        .giant-footer-fade {
+            position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 60%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, rgba(3,7,18,0) 100%);
+            pointer-events: none;
+        }
+
+        /* ===== SOCIAL DOCK (left) ===== */
+        .social-dock {
+            position: fixed;
+            bottom: 28px; left: 28px;
+            display: flex; flex-direction: column; gap: 12px;
+            z-index: 500;
+        }
+
+        .social-dock-link {
+            width: 52px; height: 52px; border-radius: 50%;
+            background-color: #111111;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: transform .3s cubic-bezier(.16,1,.3,1), background-color .3s, box-shadow .3s;
+        }
+
+        .social-dock-link:hover {
+            background-color: #1B4FFF;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(27,79,255,0.45);
+        }
+
+        .social-dock-link svg { width: 22px; height: 22px; fill: #fff; }
+
+        /* ===== STICKY PRICING CARD ===== */
+        .sticky-price-card {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 290px;
+            z-index: 800;
+            border-radius: 22px;
+            padding: 1.5px;
+            overflow: hidden;
+            transform: translateY(120%);
+            opacity: 0;
+            transition: transform 0.55s cubic-bezier(.16,1,.3,1), opacity 0.4s ease;
+        }
+
+        .sticky-price-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .sticky-price-card.dismissed {
+            transform: translateY(130%) !important;
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* Rotating glow border */
+        .sticky-price-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: conic-gradient(from var(--glow-angle) at 50% 50%,
+                rgba(27,79,255,0) 0%,
+                rgba(27,79,255,0) 18%,
+                #4D6FFF 42%,
+                #1B4FFF 56%,
+                rgba(27,79,255,0) 78%
+            );
+            animation: rotateGlow 3.5s linear infinite;
+            z-index: 0;
+            border-radius: 22px;
+        }
+
+        .spc-inner {
+            position: relative; z-index: 1;
+            background: linear-gradient(145deg, #060814 0%, #081040 45%, #060c2a 100%);
+            border-radius: 20px;
+            padding: 22px 22px 18px;
+        }
+
+        .spc-close {
+            position: absolute; top: 14px; right: 14px;
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px; line-height: 1;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .spc-close:hover { background: rgba(239,68,68,0.2); color: #EF4444; border-color: rgba(239,68,68,0.3); }
+
+        .spc-course-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px;
+            background: rgba(27,79,255,0.12);
+            border: 1px solid rgba(27,79,255,0.25);
+            border-radius: 20px;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: #4D6FFF; margin-bottom: 12px;
+        }
+
+        .spc-badge-dot {
+            width: 5px; height: 5px;
+            background: #4D6FFF; border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .spc-title {
+            font-family: var(--font-headings);
+            font-size: 1.05rem; font-weight: 700;
+            color: #fff; line-height: 1.25;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .spc-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+            margin-bottom: 16px;
+        }
+
+        .spc-price-row {
+            display: flex; align-items: baseline; gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .spc-price-label {
+            font-size: 0.75rem; font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .spc-price-amount {
+            font-family: var(--font-headings);
+            font-size: 1.7rem; font-weight: 800; font-style: italic;
+            color: #fff; letter-spacing: -1px; line-height: 1;
+        }
+
+        .spc-price-amount span {
+            font-size: 0.95rem; font-weight: 600;
+            font-style: normal; color: rgba(255,255,255,0.5);
+            text-decoration: line-through; margin-left: 6px;
+        }
+
+        .spc-btn {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; border-radius: 50px;
+            background: var(--gradient-button);
+            color: #fff !important;
+            font-family: var(--font-nav);
+            font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.07em;
+            text-decoration: none;
+            box-shadow: 0 4px 18px rgba(27,79,255,0.45);
+            transition: box-shadow .3s;
+            margin-bottom: 12px;
+        }
+
+        .spc-btn:hover { box-shadow: 0 8px 28px rgba(27,79,255,0.65); }
+
+        .spc-btn .btn-sizer { padding: 13px 20px; font-size: 12px; width: 100%; justify-content: center; }
+        .spc-btn .btn-row { padding: 13px 20px; font-size: 12px; }
+
+        .spc-advisor {
+            text-align: center;
+            font-size: 0.75rem; color: rgba(255,255,255,0.4);
+            font-weight: 500;
+        }
+
+        .spc-advisor a {
+            color: rgba(77,111,255,0.8);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .spc-advisor a:hover { color: #4D6FFF; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 12px 20px;
+                width: calc(100% - 20px);
+                border-radius: 30px;
+                background-color: rgba(3,7,18,0.92);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255,255,255,0.08);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+                top: 12px;
+            }
+            .header.scrolled {
+                background-color: rgba(3,7,18,0.96);
+                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+            }
+            .header.scrolled .container-fluid--menu { padding: 0; }
+            .logo-text-fallback { font-size: 1.4rem; }
+            .header.scrolled .logo-text-fallback { font-size: 1.25rem; }
+            .course-hero h1 { font-size: 3.2rem; }
+            .section-heading { font-size: 2.2rem; }
+            .transformation-grid,
+            .audience-inner { grid-template-columns: 1fr; gap: 30px; }
+            .overview-grid { grid-template-columns: 1fr 1fr; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+            .footer-container { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .cta-card { padding: 60px 40px; }
+            .cta-card h2 { font-size: 2.4rem; }
+            #desktop-nav { display: none !important; }
+            #desktop-cta { display: none !important; }
+            .header--burger { display: flex; }
+            .sticky-price-card { display: none; }
+            .vr-text-top span { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .course-hero { padding: 120px 24px 60px; }
+            .course-hero h1 { font-size: 2.4rem; letter-spacing: -1px; }
+            .transformation-section, .overview-section, .benefits-section,
+            .audience-section, .curriculum-section, .cta-section { padding: 70px 24px; }
+            .faq-section { padding: 70px 24px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            footer { padding: 40px 20px; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .cta-card { padding: 48px 28px; }
+            .cta-card h2 { font-size: 1.9rem; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .giant-footer-logo img { height: 90px; }
+            .transform-card { padding: 32px 28px; }
+            .curriculum-section { padding: 70px 0; }
+            .curriculum-header { padding: 0 24px; }
+            .curriculum-timeline-wrapper { height: auto; }
+            .curriculum-sticky { position: static; height: auto; overflow: visible; }
+            .curriculum-track { transform: none !important; flex-direction: column; width: 100%; padding: 0 24px; }
+            .process-node-row { display: none; }
+            .curriculum-columns { flex-direction: column; gap: 40px; }
+            .process-col { width: 100%; padding-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="index.html" class="mobile-link">Home</a></li>
+                    <li><a href="index.html#about-viewport" class="mobile-link">About Us</a></li>
+                    <li><a href="index.html#courses" class="mobile-link">Academy Programs</a></li>
+                    <li><a href="index.html#stack-viewport" class="mobile-link">Services</a></li>
+                    <li><a href="index.html#results" class="mobile-link">Student Results</a></li>
+                    <li><a href="index.html#masterclass" class="mobile-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#enroll" class="course-btn filled mobile-link" style="justify-content:center;">
+                <span class="btn-sizer">Enroll Now</span>
+                <span class="btn-row btn-visible">Enroll Now</span>
+                <span class="btn-row btn-ghost">Enroll Now</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="navbar" data-header>
+        <div class="container-fluid--menu">
+            <a href="index.html" class="header--logo-link" id="header--logo">
+                <img src="logo.png" alt="The Trading Scholar" onerror="this.style.display='none'">
+                <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
+            </a>
+            <nav class="nav-main" id="desktop-nav">
+                <ul class="menu" id="desktop">
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="index.html">Home</a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="courses-menu">
+                        <a class="menu-item-link" href="index.html#courses">Courses
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="services-menu">
+                        <a class="menu-item-link" href="index.html#stack-viewport">Services
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item menu-item-has-menu" data-menu-target="about-menu">
+                        <a class="menu-item-link" href="index.html#about-viewport">About
+                            <span class="menu-item-arv">
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                        <span class="forward-sign">/</span>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-item-link" href="index.html#podcast-viewport">Podcast</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-actions-group">
+                <a href="#enroll" class="nav-cta-btn" id="desktop-cta">
+                    <span class="btn-sizer" style="padding:11px;font-size:12px;">Enroll Now</span>
+                    <span class="btn-row btn-visible" style="padding:11px;font-size:12px;">Enroll Now</span>
+                    <span class="btn-row btn-ghost" style="padding:11px;font-size:12px;">Enroll Now</span>
+                </a>
+                <button class="header--burger" id="menuToggle" aria-label="Menu">
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                    <span class="burger-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- MEGA MENU -->
+        <div class="header--mega-menu-container">
+            <div class="header--mega-menu-item" data-menu-id="courses-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="course1.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algo Trading — Elgo System</span>
+                                <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with
+                                    precision.</span>
+                            </div>
+                        </a>
+                        <a href="course2.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1-on-1 Live Mentorship</span>
+                                <span class="mega-link-desc">Direct coaching with Kundan. Personalised systems built
+                                    around your capital.</span>
+                            </div>
+                        </a>
+                        <a href="course3.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Option Selling &amp; Hedging</span>
+                                <span class="mega-link-desc">Consistent monthly income. Defined risk.
+                                    Institutional-style execution.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Trading Desk</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"
+                                            fill="rgba(96,165,250,0.4)" />
+                                    </svg>
+                                    <span class="mega-collage-label">Student Results</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">1000+ Traders</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Explore all academy programs and find your path</span>
+                    <a href="index.html#courses" class="mega-cta-link">View All Programs</a>
+                </div>
+            </div>
+
+            <div class="header--mega-menu-item" data-menu-id="services-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#service-1" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Expert Mutual Funds Structuring</span>
+                                <span class="mega-link-desc">Goal-aligned portfolios, risk calibration, and long-term wealth building.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-2" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Custom Strategy Automation</span>
+                                <span class="mega-link-desc">Python-powered algo systems built exactly to your logic and API specs.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-3" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algorithmic Trading — Elgo System</span>
+                                <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-4" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Pre-IPO Unlisted Shares</span>
+                                <span class="mega-link-desc">Early-stage equity access. Institutional wealth-building before listing.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#service-5" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">1:1 Consultation — Kundan Prajapati</span>
+                                <span class="mega-link-desc">Direct mentorship tailored to your capital, psychology, and trading goals.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Live Strategies</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M2 20h20M5 20V8l7-5 7 5v12" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Workshops</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                        <path d="M16 8l-8 8M8 8l8 8" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Dedicated Support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Professional-grade services tailored to your goals</span>
+                    <a href="index.html#stack-viewport" class="mega-cta-link">Explore Services</a>
+                </div>
+            </div>
+
+            <div class="header--mega-menu-item" data-menu-id="about-menu">
+                <div class="mega-menu-inner">
+                    <div class="mega-menu-links-col">
+                        <a href="index.html#about-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Meet Your Mentor</span>
+                                <span class="mega-link-desc">Kundan Prajapati — 9+ years, 1000+ traders mentored across
+                                    India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#results" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Student Verification</span>
+                                <span class="mega-link-desc">Real P&amp;L statements. Verified broker results. No claims
+                                    without proof.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#gallery-viewport" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5" />
+                                    <polyline points="21 15 16 10 5 21" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Gallery</span>
+                                <span class="mega-link-desc">Workshops, live sessions, and student meetup moments across
+                                    India.</span>
+                            </div>
+                        </a>
+                        <a href="index.html#masterclass" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Contact Us</span>
+                                <span class="mega-link-desc">Reach out directly. Reserve a masterclass seat or book a
+                                    consultation.</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mega-collage-panel">
+                        <div class="mega-collage-grid">
+                            <div class="mega-collage-img tall">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Community</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Mumbai Hub</span>
+                                </div>
+                            </div>
+                            <div class="mega-collage-img">
+                                <div class="mega-collage-img-inner">
+                                    <svg class="mega-collage-icon" viewBox="0 0 24 24">
+                                        <polygon
+                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span class="mega-collage-label">Verified Results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mega-cta-bottom">
+                    <span class="mega-cta-bottom-text">Learn more about the team and our trading philosophy</span>
+                    <a href="index.html#about-viewport" class="mega-cta-link">Read Our Story</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="course-hero">
+        <span class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Course 3 — Option Selling
+        </span>
+        <h1>
+            Option Selling &amp;
+            <em>Hedging Strategy</em>
+        </h1>
+        <p class="course-hero-sub">
+            Master the most consistent income-generating approach in the Indian options market — with built-in capital protection. Stop buying options and hoping. Learn hedged option selling with institutional position management at scale.
+        </p>
+        <div class="hero-actions">
+            <a href="#enroll" class="course-btn filled">
+                <span class="btn-sizer">Enroll in This Course</span>
+                <span class="btn-row btn-visible">Enroll in This Course</span>
+                <span class="btn-row btn-ghost">Enroll in This Course</span>
+            </a>
+            <a href="#curriculum" class="course-btn outline">
+                <span class="btn-sizer">View Curriculum</span>
+                <span class="btn-row btn-visible">View Curriculum</span>
+                <span class="btn-row btn-ghost">View Curriculum</span>
+            </a>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-bar"></div>
+        </div>
+    </section>
+
+    <!-- VIDEO REVEAL -->
+    <section class="vr-section" id="video-reveal">
+        <div class="vr-sticky" id="vr-sticky">
+            <div class="vr-text-top" id="vr-top">
+                <span>See the strategy in action</span>
+            </div>
+            <div class="vr-frame" id="vr-frame">
+                <div class="vr-placeholder">
+                    <div class="vr-play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="vr-placeholder-label">Course Preview</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="curriculum-section" id="curriculum">
+        <div class="curriculum-header">
+            <span class="section-label">Curriculum</span>
+            <h2 class="section-heading" style="color:#fff;">Eight modules. <em>One complete system.</em></h2>
+            <p>From core option dynamics and mathematical edges to institutional position management and live market execution.</p>
+        </div>
+        <div class="curriculum-timeline-wrapper" id="curriculumTimelineWrapper">
+            <div class="curriculum-sticky">
+                <div class="curriculum-track" id="curriculumTrack">
+                    <div class="curriculum-columns">
+                        
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-phase-label">Foundations &amp; Stragtegy setups</span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 01</span>
+                            <h2>Option Selling Fundamentals &amp; Institutional Mindset</h2>
+                            <p class="process-desc">Why option sellers have a statistical edge, how theta decay works in your favour as a seller, and why most retail traders lose by buying options. The professional perspective on options.</p>
+                            <div class="process-tags"><span class="process-tag">Option dynamics</span><span class="process-tag">Theta decay</span><span class="process-tag">Probability edge</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 02</span>
+                            <h2>Core Selling Strategies — Short Straddle &amp; Short Strangle</h2>
+                            <p class="process-desc">How to structure and execute Short Straddles and Short Strangles. Strike selection, expiry selection, premium collection, and initial position management.</p>
+                            <div class="process-tags"><span class="process-tag">Straddles</span><span class="process-tag">Strangles</span><span class="process-tag">Strike selection</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 03</span>
+                            <h2>Hedging Frameworks — Naked to Defined Risk</h2>
+                            <p class="process-desc">How to add hedges to every selling strategy to convert unlimited risk into defined, manageable risk. Credit Spreads, Iron Condors, and ratio hedging explained.</p>
+                            <div class="process-tags"><span class="process-tag">Hedging rules</span><span class="process-tag">Credit Spreads</span><span class="process-tag">Risk definition</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 04</span>
+                            <h2>Iron Condor — The Structured Range Strategy</h2>
+                            <p class="process-desc">Full Iron Condor setup — entry logic, strike selection, premium targets, adjustment rules, and exit criteria for profit and loss scenarios.</p>
+                            <div class="process-tags"><span class="process-tag">Iron Condors</span><span class="process-tag">Range trading</span><span class="process-tag">Adjustment triggers</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-phase-label">Position Management &amp; Risk</span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 05</span>
+                            <h2>Position Management &amp; Adjustment Strategies</h2>
+                            <p class="process-desc">What to do when a position goes against you. When to adjust, how to roll, when to take loss and exit, and how to never let a small loss become a large one.</p>
+                            <div class="process-tags"><span class="process-tag">Position rolling</span><span class="process-tag">Defensive adjustments</span><span class="process-tag">Loss mitigation</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 06</span>
+                            <h2>Greeks Management — Delta, Theta, Vega in Practice</h2>
+                            <p class="process-desc">How to read and manage position Greeks in live trading. Delta neutrality, Vega exposure during events (budget, expiry, results), and Theta collection optimisation.</p>
+                            <div class="process-tags"><span class="process-tag">Delta neutrality</span><span class="process-tag">Vega risk</span><span class="process-tag">Theta tracking</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">M 07</span>
+                            <h2>Risk Management &amp; Capital Allocation</h2>
+                            <p class="process-desc">How much capital to deploy per trade, margin requirements, daily and weekly loss limits, and portfolio-level risk management for consistent compounding.</p>
+                            <div class="process-tags"><span class="process-tag">Capital allocation</span><span class="process-tag">Margin optimization</span><span class="process-tag">Risk rules</span></div>
+                        </div>
+
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                            </div>
+                            <span class="process-num">M 08</span>
+                            <h2>Live Market Sessions &amp; Strategy Review</h2>
+                            <p class="process-desc">Supervised live sessions during market hours. Real-time strategy application, trade review, Q&amp;A, and ongoing performance analysis.</p>
+                            <div class="process-tags"><span class="process-tag">Live trading</span><span class="process-tag">Strategy application</span><span class="process-tag">Q&amp;A support</span></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section class="transformation-section">
+        <span class="section-label" style="text-align:center;">The Transformation</span>
+        <h2 class="section-heading" style="color:#fff;text-align:center;margin-bottom:60px;">Before <em>and After</em></h2>
+        <div class="transformation-grid">
+            <div class="transform-card before">
+                <span class="transform-label">Before the System</span>
+                <h3 class="transform-title">How most retail traders operate</h3>
+                <ul class="transform-list">
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Buying options and watching theta decay eat premium daily</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Trading with undefined risk on naked positions</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Blowing accounts on wild directional assumptions</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Scared to sell options because of feared "unlimited risk"</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Single bad days wiping out weeks of hard-earned gains</li>
+                </ul>
+            </div>
+            <div class="transform-card after">
+                <span class="transform-label">After Hedged Option Selling</span>
+                <h3 class="transform-title">How professional sellers trade</h3>
+                <ul class="transform-list">
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Generating consistent weekly and monthly income</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Defined, capped risk on every single position via hedges</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Trading with statistical mathematical advantages</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Pre-calculated risk profiles before any trade is executed</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Steadily building capital instead of directional gambling</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="overview-section">
+        <div class="overview-header">
+            <span class="section-label">Course Overview</span>
+            <h2 class="section-heading" style="color:var(--primary-text);">What this <em>course delivers</em></h2>
+        </div>
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="overview-card-icon"><img src="service3.png" alt=""></div>
+                <h3>Structured Credit Spreads</h3>
+                <p>Master how to write calls and puts with integrated safety wings to lock in your max risk instantly.</p>
+            </div>
+            <div class="overview-card">
+                <div class="overview-card-icon"><img src="service3.png" alt=""></div>
+                <h3>Dynamic Greek Neutrality</h3>
+                <p>Learn to actively manage Delta and Vega to shield positions against volatile market shifts.</p>
+            </div>
+            <div class="overview-card">
+                <div class="overview-card-icon"><img src="service3.png" alt=""></div>
+                <h3>Defensive Adjustments</h3>
+                <p>Acquire exact rules for rolling strikes and adjusting spreads when prices breach key thresholds.</p>
+            </div>
+            <div class="overview-card">
+                <div class="overview-card-icon"><img src="service3.png" alt=""></div>
+                <h3>Capital Compounding</h3>
+                <p>Deploy institutional risk management protocols to preserve capital and compound account size steadily.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+        <span class="section-label">Key Benefits</span>
+        <h2 class="section-heading" style="color:#fff;text-align:center;margin-bottom:60px;">What you walk away <em>with</em></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Consistent Premium Collection</h3>
+                <p>Develop structured setups to consistently collect decay from weekly and monthly option expiries.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Multi-Strategy Frameworks</h3>
+                <p>Acquire structured plans for Straddles, Strangles, Iron Condors, and Credit Spreads.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Structured Position Hedges</h3>
+                <p>Eliminate catastrophic risk by learning to define, structure, and cap every risk exposure.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Precise Entry &amp; Exit Rules</h3>
+                <p>Know exactly when to enter, when to exit, and precisely when to adjust your options structure.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Volatility-Shielded Setups</h3>
+                <p>Understand how to hedge position Greeks to withstand heavy news flow and black-swan events.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><img src="service3.png" alt=""></div>
+                <h3>Compounding Capital Allocation</h3>
+                <p>Learn efficient margin utilization methods to optimize capital distribution across accounts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO IS THIS FOR -->
+    <section class="audience-section">
+        <div class="audience-inner">
+            <div class="audience-left">
+                <span class="section-label">Who Is This For</span>
+                <h2 class="section-heading" style="color:var(--primary-text);margin-bottom:20px;">Built for <em>traders who are ready</em></h2>
+                <p>This is for individuals ready to leave behind speculative directional bets and step into systematic, data-driven option writing.</p>
+            </div>
+            <div class="audience-right">
+                <div class="audience-item"><span class="audience-num">01</span><p>Option buyers consistently losing capital to time decay (theta) who want to flip the mathematical edge in their favour</p></div>
+                <div class="audience-item"><span class="audience-num">02</span><p>Traders seeking an income-based, structured strategy rather than chasing erratic directional moves</p></div>
+                <div class="audience-item"><span class="audience-num">03</span><p>Retail traders looking to transition to risk-defined, professional-grade option selling methods</p></div>
+                <div class="audience-item"><span class="audience-num">04</span><p>Anyone looking to learn proper risk structures for Straddles, Strangles, Iron Condors, and Spreads</p></div>
+                <div class="audience-item"><span class="audience-num">05</span><p>Traders with basic option terminology who want to learn professional position management and adjustments</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <div class="faq-section-outer" id="faq">
+        <div class="faq-section">
+            <div class="faq-header">
+                <span class="section-label" style="text-align:center;display:block;">FAQs</span>
+                <h2 class="section-heading" style="color:#fff;text-align:center;">Common <em>questions answered</em></h2>
+            </div>
+            <div class="faq-items">
+                <div class="glow-border-wrapper faq-item-wrapper active glowing">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">Do I need prior option knowledge to enroll?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">A basic understanding of options is recommended. You should be familiar with calls, puts, and contract expiries. Full beginners are advised to build foundational knowledge before registering.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glow-border-wrapper faq-item-wrapper">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">Is option selling highly risky?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">Naked option selling does carry unlimited risk. However, this course exclusively teaches hedged option selling methods. Every position is structured with defined offsets, ensuring your maximum risk is capped and known upfront.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glow-border-wrapper faq-item-wrapper">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">What is the minimum capital required to trade these setups?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">While basic credit spread strategies can be initiated with approximately ₹2 Lakhs, a capital base of ₹5 Lakhs or above is recommended to comfortably execute full range-based structures like Iron Condors.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glow-border-wrapper faq-item-wrapper">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">What instruments do we focus on?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">The strategies primarily focus on liquid indices like Nifty and BankNifty, utilizing weekly and monthly contracts to optimize theta decay collection.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section" id="enroll">
+        <div class="cta-card">
+            <h2>Ready to start earning from <em>Options?</em></h2>
+            <p>Join traders who have systematized their approach with The Trading Scholar's Option Selling &amp; Hedging Strategy. Learn to collect premium like a market maker.</p>
+            <div class="cta-actions">
+                <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="course-btn filled" style="font-size:14px;">
+                    <span class="btn-sizer" style="padding:17px 42px;font-size:14px;">Enroll in Options Course</span>
+                    <span class="btn-row btn-visible" style="padding:17px 42px;font-size:14px;">Enroll in Options Course</span>
+                    <span class="btn-row btn-ghost" style="padding:17px 42px;font-size:14px;">Enroll in Options Course</span>
+                </a>
+                <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="course-btn outline">
+                    <span class="btn-sizer">Speak to an Advisor</span>
+                    <span class="btn-row btn-visible">Speak to an Advisor</span>
+                    <span class="btn-row btn-ghost">Speak to an Advisor</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>The Trading Scholar</h3>
+                <p>Building disciplined, systematic, and institutional thinkers in the Indian financial markets. Learn strategies built for capital preservation first.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#problems">Why Us</a></li>
+                    <li><a href="index.html#courses">Our Programs</a></li>
+                    <li><a href="index.html#about-viewport">The Mentor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="index.html#results">Student Proof</a></li>
+                    <li><a href="index.html#masterclass">Free Masterclass</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Risk Disclaimer</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Trading Scholar. All Rights Reserved. Education-only purposes.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/thetradingscholar" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+                <a href="https://www.youtube.com/@thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="https://x.com/ScholarTrading" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.instagram.com/thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            </div>
+        </div>
+        <div class="giant-footer-logo-container">
+            <div class="giant-footer-logo"><img src="logo.png" alt="The Trading Scholar Logo" onerror="this.parentElement.textContent='The Trading Scholar'"></div>
+            <div class="giant-footer-fade"></div>
+        </div>
+    </footer>
+
+    <!-- SOCIAL DOCK (left) -->
+    <div class="social-dock">
+        <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="social-dock-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+        <a href="https://t.me/Thetradingscholar" target="_blank" rel="noopener" class="social-dock-link" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    </div>
+
+    <!-- STICKY PRICING CARD -->
+    <div class="sticky-price-card" id="stickyCard">
+        <div class="spc-inner">
+            <button class="spc-close" id="spcClose" aria-label="Close">&#x2715;</button>
+            <div class="spc-course-badge">
+                <span class="spc-badge-dot"></span>
+                Course 3
+            </div>
+            <h3 class="spc-title">Option Selling &amp; Hedging</h3>
+            <div class="spc-divider"></div>
+            <div class="spc-price-row">
+                <span class="spc-price-label">From</span>
+                <span class="spc-price-amount">&#8377;29,999 <span>&#8377;45,000</span></span>
+            </div>
+            <a href="#enroll" class="spc-btn">
+                <span class="btn-sizer" style="padding:13px 20px;font-size:12px;width:100%;justify-content:center;">Enroll Now &rarr;</span>
+                <span class="btn-row btn-visible" style="padding:13px 20px;font-size:12px;">Enroll Now &rarr;</span>
+                <span class="btn-row btn-ghost" style="padding:13px 20px;font-size:12px;">Enroll Now &rarr;</span>
+            </a>
+            <p class="spc-advisor">Questions? <a href="https://wa.me/918376851169" target="_blank" rel="noopener">Speak to an advisor</a></p>
+        </div>
+    </div>
+
+    <script>
+        /* ===== CURSOR ===== */
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, .process-tag, .accordion-header, .audience-item, .benefit-card, .overview-card, .transform-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1.6)'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+        });
+
+        /* ===== NAVBAR ===== */
+        const navbar = document.getElementById('navbar');
+        const brandLabel = document.getElementById('brandLabel');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 25) {
+                navbar.classList.add('scrolled');
+                brandLabel.textContent = 'TTS';
+            } else {
+                navbar.classList.remove('scrolled');
+                brandLabel.textContent = 'The Trading Scholar';
+            }
+        });
+
+        /* ===== MOBILE MENU ===== */
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-link').forEach(l => {
+            l.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenuOverlay.classList.remove('open');
+            });
+        });
+
+        /* ===== DESKTOP MEGA MENU ===== */
+        const header = document.querySelector('[data-header]');
+        const menuTriggers = document.querySelectorAll('#desktop [data-menu-target]');
+        const megaMenuItems = document.querySelectorAll('.header--mega-menu-item');
+
+        menuTriggers.forEach(t => {
+            t.addEventListener('mouseenter', () => {
+                const target = t.getAttribute('data-menu-target');
+                header.classList.add('mega-menu-open');
+                megaMenuItems.forEach(item => item.classList.toggle('active', item.getAttribute('data-menu-id') === target));
+            });
+        });
+
+        header.addEventListener('mouseleave', () => {
+            header.classList.remove('mega-menu-open');
+            megaMenuItems.forEach(item => item.classList.remove('active'));
+        });
+
+        /* ===== CURRICULUM TIMELINE (horizontal scroll) ===== */
+        const curriculumWrapper = document.getElementById('curriculumTimelineWrapper');
+        const curriculumSticky = curriculumWrapper ? curriculumWrapper.querySelector('.curriculum-sticky') : null;
+        const curriculumTrack = document.getElementById('curriculumTrack');
+
+        if (curriculumWrapper && curriculumSticky && curriculumTrack) {
+            window.addEventListener('scroll', () => {
+                if (window.innerWidth <= 768) return;
+
+                const wrapperRect = curriculumWrapper.getBoundingClientRect();
+                const wrapperTop = wrapperRect.top;
+                const wrapperHeight = wrapperRect.height;
+                const windowHeight = window.innerHeight;
+                const lastCol = curriculumTrack.querySelector('.process-col:last-child');
+                const maxTranslate = lastCol.offsetLeft - 96;
+                const maxScrollWithinWrapper = wrapperHeight - windowHeight;
+
+                if (wrapperTop <= 0 && wrapperTop > -maxScrollWithinWrapper) {
+                    curriculumSticky.style.position = 'fixed';
+                    curriculumSticky.style.top = '0px';
+                    let progress = Math.abs(wrapperTop) / maxScrollWithinWrapper;
+                    progress = Math.min(Math.max(progress, 0), 1);
+                    curriculumTrack.style.transform = `translateX(-${progress * maxTranslate}px)`;
+                } else if (wrapperTop > 0) {
+                    curriculumSticky.style.position = 'absolute';
+                    curriculumSticky.style.top = '0px';
+                    curriculumTrack.style.transform = `translateX(0px)`;
+                } else {
+                    curriculumSticky.style.position = 'absolute';
+                    curriculumSticky.style.top = `${maxScrollWithinWrapper}px`;
+                    curriculumTrack.style.transform = `translateX(-${maxTranslate}px)`;
+                }
+            });
+        }
+
+        /* ===== FAQ ACCORDION ===== */
+        function toggleFaq(headerEl) {
+            const wrapper = headerEl.closest('.faq-item-wrapper');
+            const isActive = wrapper.classList.contains('active');
+            document.querySelectorAll('.faq-item-wrapper').forEach(w => w.classList.remove('active', 'glowing'));
+            if (!isActive) wrapper.classList.add('active', 'glowing');
+        }
+
+        /* ===== STICKY PRICE CARD ===== */
+        const stickyCard = document.getElementById('stickyCard');
+        let stickyDismissed = false;
+
+        document.getElementById('spcClose').addEventListener('click', () => {
+            stickyDismissed = true;
+            stickyCard.classList.add('dismissed');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (stickyDismissed) return;
+            if (window.scrollY > window.innerHeight * 0.65) {
+                stickyCard.classList.add('visible');
+            } else {
+                stickyCard.classList.remove('visible');
+            }
+        });
+
+        /* ===== GSAP ===== */
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* Hero entrance */
+        const heroTl = gsap.timeline({ delay: 0.25 });
+        heroTl
+            .to('.hero-badge',       { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', fromVars: { y: 20 } })
+            .fromTo('.course-hero h1',       { opacity: 0, y: 36, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, ease: 'power3.out' }, '-=0.3')
+            .fromTo('.course-hero-sub',      { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.55')
+            .fromTo('.hero-actions',         { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5');
+
+        gsap.fromTo('.hero-badge', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.25 });
+
+        /* Video reveal */
+        const mm = gsap.matchMedia();
+
+        mm.add('(min-width: 1025px)', () => {
+            gsap.set('#vr-frame', { rotateX: 38, rotateY: -28, scale: 0.62, opacity: 0.55, transformPerspective: 1800 });
+            gsap.set('#vr-top',   { opacity: 0, y: -24 });
+
+            const vrTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#video-reveal',
+                    start: 'top top',
+                    end: () => '+=' + (window.innerHeight * 3),
+                    pin: true, scrub: 1, anticipatePin: 1
+                }
+            });
+
+            vrTl
+                .to('#vr-top',   { opacity: 1, y: 0, duration: 0.12, ease: 'power2.out' }, 0)
+                .to('#vr-top',   { opacity: 0, y: -16, duration: 0.1, ease: 'power2.in' }, 0.22)
+                .to('#vr-frame', { rotateX: 0, rotateY: 0, scale: 1, opacity: 1, duration: 0.42, ease: 'power2.out' }, 0.06)
+                .to('#vr-frame', { duration: 0.28 }, 0.5)
+                .to('#vr-frame', { y: () => window.innerHeight * 0.7, rotateX: -18, opacity: 0, scale: 0.92, duration: 0.32, ease: 'power2.in' }, 0.78);
+        });
+
+        mm.add('(max-width: 1024px)', () => {
+            gsap.set('#vr-frame', { clearProps: 'all' });
+            gsap.set('#vr-top',   { opacity: 1, y: 0 });
+        });
+
+        /* Transformation */
+        gsap.from('.transformation-section .section-label', {
+            opacity: 0, y: 16, duration: 0.7,
+            scrollTrigger: { trigger: '.transformation-section', start: 'top 82%' }
+        });
+        gsap.from('.transformation-section .section-heading', {
+            opacity: 0, clipPath: 'inset(0 0 100% 0)', y: 10, duration: 0.9, ease: 'power3.out',
+            scrollTrigger: { trigger: '.transformation-section', start: 'top 80%' }
+        });
+        const transformTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.transformation-grid',
+                start: 'top 88%',
+                end: 'top 18%',
+                scrub: 1
+            }
+        });
+        transformTl
+            .fromTo('.transform-card.before', { opacity: 0, y: 70 },  { opacity: 1, y: 0, ease: 'power1.out' })
+            .fromTo('.transform-card.before .transform-list li', { opacity: 0, x: -16 }, { opacity: 1, x: 0, stagger: 0.05, ease: 'power1.out' }, 0.08)
+            .fromTo('.transform-card.after',  { opacity: 0, y: 130 }, { opacity: 1, y: 0, ease: 'power1.out' }, 0.42)
+            .fromTo('.transform-card.after .transform-list li', { opacity: 0, x: 16 }, { opacity: 1, x: 0, stagger: 0.05, ease: 'power1.out' }, 0.55);
+
+        /* Overview */
+        const ovTl = gsap.timeline({
+            scrollTrigger: { trigger: '.overview-section', start: 'top 78%' }
+        });
+        ovTl
+            .fromTo('.overview-header .section-label',   { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 })
+            .fromTo('.overview-header .section-heading', { opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25')
+            .fromTo('.overview-card',                    { opacity: 0, y: 28, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'back.out(1.2)' }, '-=0.3');
+
+        /* Crossfade Background and Text washes */
+        gsap.fromTo(['.transformation-section', '.overview-section'], { backgroundColor: '#000000' }, {
+            backgroundColor: '#ffffff', ease: 'none',
+            scrollTrigger: { trigger: '.transformation-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.overview-section', '.benefits-section'], { backgroundColor: '#ffffff' }, {
+            backgroundColor: '#030712', ease: 'none',
+            scrollTrigger: { trigger: '.overview-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.benefits-section', '.audience-section'], { backgroundColor: '#030712' }, {
+            backgroundColor: '#ffffff', ease: 'none',
+            scrollTrigger: { trigger: '.benefits-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.audience-section', '.faq-section-outer'], { backgroundColor: '#ffffff' }, {
+            backgroundColor: '#000000', ease: 'none',
+            scrollTrigger: { trigger: '.audience-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+
+        gsap.fromTo(['.transformation-section .section-heading', '.overview-header .section-heading'], { color: '#ffffff' }, {
+            color: '#0B0F19', ease: 'none',
+            scrollTrigger: { trigger: '.transformation-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.overview-header .section-heading', '.benefits-section .section-heading'], { color: '#0B0F19' }, {
+            color: '#ffffff', ease: 'none',
+            scrollTrigger: { trigger: '.overview-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.benefits-section .section-heading', '.audience-left .section-heading'], { color: '#ffffff' }, {
+            color: '#0B0F19', ease: 'none',
+            scrollTrigger: { trigger: '.benefits-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo('.audience-left p', { color: '#94A3B8' }, {
+            color: '#5B6475', ease: 'none',
+            scrollTrigger: { trigger: '.benefits-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo(['.audience-left .section-heading', '.faq-header .section-heading'], { color: '#0B0F19' }, {
+            color: '#ffffff', ease: 'none',
+            scrollTrigger: { trigger: '.audience-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+        gsap.fromTo('.audience-left p', { color: '#5B6475' }, {
+            color: '#94A3B8', ease: 'none',
+            scrollTrigger: { trigger: '.audience-section', start: 'bottom top+=280', end: 'bottom top', scrub: true }
+        });
+
+        /* Benefits */
+        const benTl = gsap.timeline({
+            scrollTrigger: { trigger: '.benefits-section', start: 'top 80%' }
+        });
+        benTl
+            .fromTo('.benefits-section .section-label', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 })
+            .fromTo('.benefits-section .section-heading', { opacity: 0, y: 26, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25');
+        gsap.from('.benefit-card', {
+            opacity: 0, y: 40, scale: 0.94, stagger: 0.09, duration: 0.75, ease: 'back.out(1.1)',
+            scrollTrigger: { trigger: '.benefits-grid', start: 'top 82%' }
+        });
+
+        /* Audience */
+        const audTl = gsap.timeline({
+            scrollTrigger: { trigger: '.audience-section', start: 'top 78%' }
+        });
+        audTl
+            .fromTo('.audience-left .section-label',   { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.5 })
+            .fromTo('.audience-left .section-heading', { opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25')
+            .fromTo('.audience-left p',                { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65 }, '-=0.45');
+
+        gsap.from('.audience-item', {
+            opacity: 0, y: 44, scale: 0.96,
+            duration: 0.7, stagger: 0.18, ease: 'power3.out',
+            scrollTrigger: { trigger: '.audience-right', start: 'top 85%' }
+        });
+
+        /* Curriculum */
+        const currTl = gsap.timeline({
+            scrollTrigger: { trigger: '.curriculum-section', start: 'top 78%' }
+        });
+        currTl
+            .fromTo('.curriculum-header .section-label', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 })
+            .fromTo('.curriculum-header .section-heading', { opacity: 0, y: 28, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25')
+            .fromTo('.curriculum-header p',               { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.45');
+
+        /* FAQ */
+        gsap.from('.faq-header', {
+            opacity: 0, y: 28, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: '.faq-section', start: 'top 82%' }
+        });
+
+        gsap.from('.faq-item-wrapper', {
+            opacity: 0, y: 20, stagger: 0.1, duration: 0.65, ease: 'power2.out',
+            scrollTrigger: { trigger: '.faq-items', start: 'top 82%' }
+        });
+
+        /* CTA */
+        gsap.fromTo('.cta-card',
+            { opacity: 0, scale: 0.92, y: 44 },
+            { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power3.out',
+              scrollTrigger: { trigger: '.cta-section', start: 'top 78%' }
+            }
+        );
+    </script>
+</body>
+</html>
