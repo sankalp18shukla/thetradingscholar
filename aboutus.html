@@ -107,8 +107,8 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5), 0 2px 10px rgba(37, 99, 235, 0.5);
             transition: width .15s, height .15s, background-color .15s, transform .15s;
-            mix-blend-mode: screen;
         }
 
         /* Noise overlay */
@@ -132,7 +132,6 @@
             padding: 100px 60px;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid var(--border-light);
             background: radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
         }
 
@@ -638,7 +637,7 @@
         .hero-h1 em {
             font-style: italic;
             font-weight: 800;
-            background: linear-gradient(135deg, #FFFFFF 0%, var(--soft-accent) 100%);
+            background: linear-gradient(135deg, #1440D4 0%, #1B4FFF 60%, #4D6FFF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-right: 0.15em;
@@ -741,7 +740,6 @@
         .journey-section {
             position: relative;
             background: var(--bg-dark);
-            border-bottom: 1px solid var(--border-light);
         }
 
         .journey-pin-container {
@@ -765,7 +763,7 @@
         .journey-left .portrait-frame {
             width: 100%;
             max-width: 440px;
-            aspect-ratio: 4/5;
+            aspect-ratio: 1/1;
             border-radius: 20px;
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(11, 15, 25, 0.7) 100%);
             border: 1px solid var(--border-light);
@@ -943,7 +941,7 @@
         .philosophy-quote em {
             font-weight: 800;
             font-style: italic;
-            color: var(--accent-gold);
+            color: var(--soft-accent);
         }
 
         .philosophy-body {
@@ -957,12 +955,13 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 16px;
             width: 100%;
+            margin-top: 70px;
             position: relative;
             z-index: 3;
             /* Placed explicitly over the backdrop text */
         }
 
-        /* Glassmorphic Boxes */
+        /* Glassmorphic Boxes — icon pops above the card edge on hover, like the Key Benefits cards */
         .principle-card {
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
@@ -970,9 +969,10 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--glass-glow);
             border-radius: 16px;
-            padding: 30px 24px;
+            padding: 56px 24px 30px;
             transition: all 0.4s cubic-bezier(.2, .8, .2, 1);
             position: relative;
+            overflow: visible;
             z-index: 4;
         }
 
@@ -984,22 +984,24 @@
         }
 
         .principle-icon {
-            width: 42px;
-            height: 42px;
-            background: rgba(37, 99, 235, 0.12);
-            border-radius: 10px;
+            width: 92px;
+            height: 92px;
+            margin: -70px auto 18px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            overflow: hidden;
+            filter: drop-shadow(0 10px 18px rgba(37, 99, 235, 0.45));
+            transition: transform .35s ease;
+        }
+
+        .principle-card:hover .principle-icon {
+            transform: scale(1.35) translateY(-6px);
         }
 
         .principle-icon img {
-            width: 22px;
-            height: 22px;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            filter: brightness(0) saturate(100%) invert(1);
         }
 
         .principle-num {
@@ -1221,16 +1223,17 @@
             top: 50px;
             left: 60px;
             z-index: 10;
-            max-width: 360px;
+            max-width: none;
         }
 
         .timeline-title {
             font-family: var(--font-headings);
-            font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+            font-size: clamp(1.3rem, 2.1vw, 1.9rem);
             font-weight: 300;
             letter-spacing: -1px;
             color: #FFFFFF;
             line-height: 1.2;
+            white-space: nowrap;
         }
 
         .timeline-title em {
@@ -1344,66 +1347,106 @@
             box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
         }
 
-        /* ─── IMPACT SECTION ─── */
+        /* ─── IMPACT SECTION (GLOWING DOME + STAT ROW) ─── */
+        #impact {
+            overflow: hidden;
+            padding-top: 110px;
+            background-color: var(--bg-dark);
+        }
+
         .impact-inner {
             max-width: 1200px;
             width: 100%;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            width: 100%;
-            margin-top: 50px;
-        }
-
-        .impact-cell {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 40px 25px;
-            text-align: center;
             position: relative;
-            overflow: hidden;
-            transition: background .3s;
         }
 
-        .impact-cell:hover {
-            background: rgba(37, 99, 235, 0.03);
+        /* Convex glowing dome backdrop — full curve sits flush at the section's top, nothing clipped above */
+        .impact-dome {
+            position: absolute;
+            top: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130vw;
+            height: 130vw;
+            border-radius: 50%;
+            background: radial-gradient(circle at center top,
+                    rgba(37, 99, 235, 0.45) 0%,
+                    rgba(11, 15, 25, 0.14) 30%,
+                    rgba(0, 0, 0, 0) 65%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .impact-cell .big-stat {
+        .impact-head {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .impact-head .section-label {
+            display: block;
+            text-align: center;
+        }
+
+        .impact-stats-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 60px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .impact-stat-block {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .impact-divider {
+            width: 1px;
+            height: 48px;
+            background: var(--secondary-accent);
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        .impact-stat-block .big-stat {
             font-family: var(--font-headings);
-            font-size: clamp(3.2rem, 6vw, 4.5rem);
+            font-size: clamp(2.6rem, 5vw, 4rem);
             font-weight: 900;
             font-style: italic;
             letter-spacing: -2px;
             color: #FFFFFF;
             line-height: 1;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
-        .impact-cell .big-stat span {
+        .impact-stat-block .big-stat span {
             color: var(--secondary-accent);
         }
 
-        .impact-cell .stat-label {
-            font-size: .95rem;
+        .impact-stat-block .stat-label {
+            font-size: .92rem;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 500;
             line-height: 1.5;
         }
 
-        /* ─── BROKER MARQUEE RIBBON ─── */
+        /* ─── BROKER MARQUEE RIBBON (BLACK BG, WHITE SVG LOGOS) ─── */
         .logo-marquee-section {
             width: 100%;
-            margin-top: 60px;
+            margin-top: 90px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 2;
         }
 
         .logo-marquee-title {
@@ -1419,16 +1462,11 @@
         }
 
         .logo-marquee {
+            --fade-color: var(--bg-dark);
             width: 100%;
             overflow: hidden;
-            padding: 40px 0;
+            padding: 20px 0;
             position: relative;
-            background: #FFFFFF;
-            /* White background ribbon for corporate logo visibility */
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05), 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
         }
 
         .logo-marquee::before,
@@ -1444,35 +1482,35 @@
 
         .logo-marquee::before {
             left: 0;
-            background: linear-gradient(to right, #FFFFFF 0%, transparent 100%);
+            background: linear-gradient(to right, var(--fade-color) 0%, transparent 100%);
         }
 
         .logo-marquee::after {
             right: 0;
-            background: linear-gradient(to left, #FFFFFF 0%, transparent 100%);
+            background: linear-gradient(to left, var(--fade-color) 0%, transparent 100%);
         }
 
         .logo-track {
+            --logo-invert: 1;
             display: flex;
             align-items: center;
-            gap: 120px;
+            gap: 100px;
             width: max-content;
             animation: scrollLogos 22s linear infinite;
         }
 
         .logo-track img {
-            height: 75px;
-            /* Increased dimensions (~100% larger) */
+            height: 38px;
             width: auto;
-            opacity: 0.8;
-            filter: grayscale(100%);
+            opacity: 0.65;
+            filter: brightness(0) saturate(100%) invert(var(--logo-invert));
             transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
         }
 
         .logo-track img:hover {
             opacity: 1;
-            transform: translateY(-5px) scale(1.05);
-            filter: grayscale(0%);
+            transform: translateY(-5px) scale(1.06);
+            filter: brightness(0) saturate(100%) invert(var(--logo-invert)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
         }
 
         @keyframes scrollLogos {
@@ -1487,7 +1525,12 @@
 
         /* ─── SERVICES ─── */
         .services-section {
-            background: var(--bg-dark-secondary);
+            background-color: #ffffff;
+        }
+
+        .services-section .section-h2,
+        .how-section .section-h2 {
+            color: #0B0F19;
         }
 
         .services-inner {
@@ -1515,10 +1558,8 @@
             justify-content: space-between;
             gap: 40px;
             padding: 26px 32px;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--border-light);
-            border-left: 1px solid var(--border-light);
+            background: #f5f7ff;
+            border: 1px solid rgba(27, 79, 255, 0.15);
             border-radius: 16px;
             transition: border-color .35s ease, background .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
             position: relative;
@@ -1543,10 +1584,10 @@
         }
 
         .service-row:hover {
-            border-color: var(--border-active);
-            background: rgba(37, 99, 235, 0.04);
+            border-color: rgba(27, 79, 255, 0.4);
+            background: #eef1ff;
             transform: translateX(6px);
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 18px 35px rgba(11, 15, 25, 0.1);
         }
 
         .service-row-left {
@@ -1566,7 +1607,7 @@
             font-family: var(--font-headings);
             font-size: 1.35rem;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #0B0F19;
         }
 
         .service-row-info p {
@@ -1595,7 +1636,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(11, 15, 25, 0.3);
             transition: color .4s ease, transform .4s cubic-bezier(.2, .8, .2, 1), filter .4s ease;
             flex-shrink: 0;
         }
@@ -1606,86 +1647,149 @@
             filter: drop-shadow(0 0 10px rgba(79, 125, 243, 0.7));
         }
 
-        /* ─── HOW IT WORKS (PINNED SLIDE REVEAL) ─── */
+        /* ─── HOW IT WORKS (VERTICAL SCROLL RAIL) ─── */
         .how-section {
-            background: var(--bg-dark);
+            background-color: #ffffff;
             position: relative;
+            justify-content: flex-start;
+            padding-top: 160px;
         }
 
         .how-inner {
             max-width: 1200px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 0.85fr 1.3fr;
             gap: 80px;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        .how-left {
+        .how-head {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            position: sticky;
+            top: 120px;
+            align-self: flex-start;
         }
 
-        .how-steps-container {
+        .how-rail {
             position: relative;
-            height: 380px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Redesigned Step Cards */
-        .how-step-card {
-            position: absolute;
-            inset: 0;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 45px 40px;
             display: flex;
             flex-direction: column;
+            gap: 64px;
+            padding: 4px 0;
+        }
+
+        .how-rail-line {
+            position: absolute;
+            top: 30px;
+            bottom: 30px;
+            left: 29px;
+            width: 2px;
+            background: rgba(11, 15, 25, 0.12);
+            z-index: 1;
+        }
+
+        .how-rail-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, var(--secondary-accent), var(--soft-accent));
+            box-shadow: 0 0 14px rgba(37, 99, 235, 0.6);
+        }
+
+        .how-step {
+            display: flex;
+            gap: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .how-step-node {
+            --node-bg: #ffffff;
+            --node-border: rgba(11, 15, 25, 0.15);
+            --node-color: rgba(11, 15, 25, 0.45);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--node-bg);
+            border: 2px solid var(--node-border);
+            display: flex;
+            align-items: center;
             justify-content: center;
-            opacity: 0;
-            transform: scale(0.95) translate3d(0, 35px, 0);
-            pointer-events: none;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-            box-shadow: var(--glass-glow), 0 30px 60px rgba(0, 0, 0, 0.45);
-        }
-
-        .how-step-card.active {
-            opacity: 1;
-            transform: scale(1) translate3d(0, 0, 0);
-            pointer-events: auto;
-        }
-
-        .how-step-num {
+            flex-shrink: 0;
             font-family: var(--font-headings);
-            font-size: 3rem;
             font-weight: 800;
-            color: var(--secondary-accent);
-            line-height: 1;
-            margin-bottom: 18px;
-        }
-
-        .how-step-card h3 {
-            font-family: var(--font-headings);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 12px;
-        }
-
-        .how-step-card p {
             font-size: 1.05rem;
+            color: var(--node-color);
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .how-step.active .how-step-node {
+            border-color: var(--secondary-accent);
+            color: var(--secondary-accent);
+            background: #ffffff;
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.12), 0 0 25px rgba(37, 99, 235, 0.35);
+            transform: scale(1.08);
+        }
+
+        .how-step-content {
+            padding-top: 8px;
+            opacity: 0.55;
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .how-step.active .how-step-content {
+            opacity: 1;
+        }
+
+        .how-step-content h3 {
+            font-family: var(--font-headings);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0B0F19;
+            margin-bottom: 10px;
+        }
+
+        .how-step-content p {
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.65;
+            max-width: 440px;
+        }
+
+        .how-step-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .how-step-tags span {
+            --tag-border: rgba(11, 15, 25, 0.12);
+            --tag-color: rgba(11, 15, 25, 0.55);
+            padding: 6px 14px;
+            border: 1px solid var(--tag-border);
+            border-radius: 20px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--tag-color);
+            transition: all .3s;
+        }
+
+        .how-step.active .how-step-tags span {
+            border-color: rgba(37, 99, 235, 0.35);
+            color: var(--soft-accent);
+            background: rgba(37, 99, 235, 0.08);
         }
 
         /* ─── FINAL CTA ─── */
         .cta-section {
-            background: var(--bg-dark-secondary);
+            background-color: #0B0F19;
         }
 
         .cta-inner {
@@ -1723,52 +1827,156 @@
             flex-wrap: wrap;
         }
 
-        /* ─── FOOTER WITH SYMBOLIC LOGO ─── */
+        /* ─── FOOTER (CONSISTENT WITH INDEX.HTML) ─── */
         footer {
-            background: var(--bg-dark);
-            border-top: 1px solid var(--border-light);
-            padding: 40px 60px;
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            padding: 80px 60px 40px 60px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
 
-        .footer-inner {
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 5;
         }
 
-        .footer-logo-wrap {
+        .footer-brand h3 {
+            font-family: var(--font-headings);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--soft-accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 12px;
         }
 
-        .footer-logo-img {
-            height: 32px;
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0 auto;
+            border-top: 1px solid var(--border-light);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social-link:hover {
+            background: var(--secondary-accent);
+            border-color: var(--secondary-accent);
+            transform: translateY(-2px);
+        }
+
+        .footer-social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+            display: block;
+            margin: auto;
+            transition: fill 0.3s ease;
+        }
+
+        .footer-social-link:hover svg {
+            fill: #FFFFFF;
+        }
+
+        .giant-footer-logo-container {
+            position: relative;
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .giant-footer-logo img {
+            height: 150px;
             width: auto;
-            filter: brightness(0) saturate(100%) invert(100%);
+            object-fit: contain;
+            opacity: 0.15;
+            filter: brightness(0) invert(1);
         }
 
-        .footer-logo {
-            font-family: var(--font-headings);
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .footer-copy {
-            font-size: .8rem;
-            color: rgba(255, 255, 255, 0.25);
+        .giant-footer-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, rgba(3, 7, 18, 0) 100%);
+            pointer-events: none;
         }
 
         .footer-back {
             font-size: .8rem;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.35);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-decoration: underline;
             transition: color .3s;
         }
 
@@ -1919,7 +2127,7 @@
 
             .journey-left .portrait-frame {
                 max-width: 360px;
-                aspect-ratio: 4/5;
+                aspect-ratio: 1/1;
                 margin: 0 auto;
             }
 
@@ -2001,6 +2209,10 @@
                 text-align: center;
             }
 
+            .timeline-title {
+                white-space: normal;
+            }
+
             .timeline-track {
                 flex-direction: column;
                 padding: 60px 24px;
@@ -2027,14 +2239,31 @@
                 bottom: 20px;
             }
 
-            .impact-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+            #impact {
+                padding-top: 100px;
+            }
+
+            .impact-dome {
+                width: 100%;
+                height: 350px;
+                top: 24px;
+            }
+
+            .impact-stats-row {
+                flex-wrap: wrap;
+                gap: 32px 0;
+            }
+
+            .impact-stat-block {
+                flex: 1 1 45%;
+            }
+
+            .impact-divider {
+                display: none;
             }
 
             .logo-marquee {
-                border-radius: 12px;
-                padding: 24px 0;
+                padding: 16px 0;
             }
 
             .logo-track {
@@ -2042,7 +2271,7 @@
             }
 
             .logo-track img {
-                height: 48px;
+                height: 42px;
             }
 
             .services-head {
@@ -2054,24 +2283,35 @@
             .how-inner {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+
+            .how-head {
+                position: static;
                 text-align: center;
+                align-items: center;
             }
 
-            .how-steps-container {
-                height: auto !important;
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 24px !important;
-                position: static !important;
+            .how-step-content {
+                opacity: 1;
+                text-align: left;
             }
 
-            .how-step-card {
-                position: static !important;
-                opacity: 1 !important;
-                transform: none !important;
-                pointer-events: auto !important;
-                box-shadow: none !important;
-                width: 100% !important;
+            .how-step-content p {
+                max-width: none;
+            }
+
+            .how-rail {
+                gap: 44px;
+            }
+
+            .how-step-node {
+                width: 46px;
+                height: 46px;
+                font-size: .9rem;
+            }
+
+            .how-rail-line {
+                left: 22px;
             }
         }
 
@@ -2104,8 +2344,8 @@
                 width: 100%;
             }
 
-            .impact-grid {
-                grid-template-columns: 1fr;
+            .impact-stat-block {
+                flex: 1 1 100%;
             }
 
             .service-row {
@@ -2123,10 +2363,33 @@
                 align-self: flex-end;
             }
 
-            .footer-inner {
+            footer {
+                padding: 50px 24px 30px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                max-width: none;
+                margin: 0 auto;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .footer-bottom {
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
+            }
+
+            .giant-footer-logo img {
+                height: 90px;
             }
 
             .cta-inner {
@@ -2689,6 +2952,7 @@
             <!-- Left pinned portrait -->
             <div class="journey-left">
                 <span class="section-label">The Origin</span>
+                <h2 class="section-h2" style="margin-bottom: 28px;">Meet<br><em>Kundan Prajapati.</em></h2>
                 <div class="portrait-frame">
                     <div class="portrait-placeholder">
                         <img src="Kundan 2.JPG" alt="Kundan Prajapati">
@@ -2758,7 +3022,7 @@
             <div class="principles-grid">
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <img src="service2.png" alt="Preservation First">
+                        <img src="service1.png" alt="Preservation First">
                     </div>
                     <div class="principle-num">01</div>
                     <h4>Preservation First</h4>
@@ -2767,7 +3031,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <img src="service2.png" alt="Systematic Edge">
+                        <img src="service1.png" alt="Systematic Edge">
                     </div>
                     <div class="principle-num">02</div>
                     <h4>Systematic Edge</h4>
@@ -2776,7 +3040,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <img src="service2.png" alt="Structured Habits">
+                        <img src="service1.png" alt="Structured Habits">
                     </div>
                     <div class="principle-num">03</div>
                     <h4>Structured Habits</h4>
@@ -2785,7 +3049,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <img src="service2.png" alt="Integrated Risk">
+                        <img src="service1.png" alt="Integrated Risk">
                     </div>
                     <div class="principle-num">04</div>
                     <h4>Integrated Risk</h4>
@@ -2794,7 +3058,7 @@
 
                 <div class="principle-card">
                     <div class="principle-icon">
-                        <img src="service2.png" alt="Scalable Units">
+                        <img src="service1.png" alt="Scalable Units">
                     </div>
                     <div class="principle-num">05</div>
                     <h4>Scalable Units</h4>
@@ -2897,7 +3161,7 @@
 
             <div class="timeline-section-label">
                 <span class="section-label">The Methodology</span>
-                <h2 class="timeline-title">Three Steps.<br><em>Zero Guesswork.</em></h2>
+                <h2 class="timeline-title">Three Steps. <em>Zero Guesswork.</em></h2>
             </div>
 
             <div class="timeline-track" id="tl-track">
@@ -2951,32 +3215,39 @@
 
     <!-- ─── IMPACT SECTION & COLLABORATIONS ─── -->
     <section class="viewport-section" id="impact">
+        <div class="impact-dome"></div>
         <div class="impact-inner">
 
-            <div class="reveal">
+            <div class="impact-head reveal">
                 <span class="section-label">The Impact</span>
                 <h2 class="section-h2">Numbers That<br>Tell The <em>Truth.</em></h2>
             </div>
 
-            <div class="impact-grid">
-                <div class="impact-cell">
+            <div class="impact-stats-row reveal">
+                <div class="impact-stat-block">
                     <div class="big-stat" data-target="1000" data-plus="true">0</div>
-                    <div class="stat-label">Traders Mentored Across India</div>
+                    <div class="stat-label">Traders Mentored<br>Across India</div>
                 </div>
 
-                <div class="impact-cell">
+                <div class="impact-divider"></div>
+
+                <div class="impact-stat-block">
                     <div class="big-stat" data-target="9" data-plus="true">0</div>
-                    <div class="stat-label">Years of Market Experience</div>
+                    <div class="stat-label">Years of Market<br>Experience</div>
                 </div>
 
-                <div class="impact-cell">
+                <div class="impact-divider"></div>
+
+                <div class="impact-stat-block">
                     <div class="big-stat" data-target="5" data-plus="false">0</div>
-                    <div class="stat-label">Broker Collaborations</div>
+                    <div class="stat-label">Broker<br>Collaborations</div>
                 </div>
 
-                <div class="impact-cell">
+                <div class="impact-divider"></div>
+
+                <div class="impact-stat-block">
                     <div class="big-stat" data-target="3" data-plus="false">0</div>
-                    <div class="stat-label">Structured Courses Offered</div>
+                    <div class="stat-label">Structured Courses<br>Offered</div>
                 </div>
             </div>
 
@@ -2991,6 +3262,7 @@
                         <img src="angelone.png" alt="Angel One">
                         <img src="dhan.png" alt="Dhan">
                         <img src="aliceblue.png" alt="Alice Blue">
+                        <img src="5paisa.png" alt="5paisa">
 
                         <!-- DUPLICATE FOR INFINITE LOOP -->
                         <img src="upstox.png" alt="Upstox">
@@ -2998,6 +3270,7 @@
                         <img src="angelone.png" alt="Angel One">
                         <img src="dhan.png" alt="Dhan">
                         <img src="aliceblue.png" alt="Alice Blue">
+                        <img src="5paisa.png" alt="5paisa">
                     </div>
                 </div>
             </div>
@@ -3137,41 +3410,51 @@
         </div>
     </section>
 
-    <!-- ─── HOW IT WORKS (PINNED SCROLL STEP REVEAL) ─── -->
+    <!-- ─── HOW IT WORKS (VERTICAL SCROLL RAIL) ─── -->
     <section class="viewport-section how-section" id="how-it-works">
         <div class="how-inner">
-            <div class="how-left">
+            <div class="how-head reveal">
                 <span class="section-label">How It Works</span>
                 <h2 class="section-h2">The Path To<br><em>Professional</em> Trading.</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-top: 20px;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-top: 20px; max-width: 380px;">
                     Our program establishes systematic benchmarks at each checkpoint to measure progress objectively.
                 </p>
             </div>
 
-            <!-- Steps Overlay Container -->
-            <div class="how-steps-container">
-                <!-- Step Card 1 -->
-                <div class="how-step-card active" id="how-step-1">
-                    <div class="how-step-num">1</div>
-                    <h3>Learn The Methodology</h3>
-                    <p>Master institutional frameworks, hedging systems, and risk management principles before placing
-                        trades.</p>
+            <!-- Scroll-Driven Vertical Rail -->
+            <div class="how-rail" id="howRail">
+                <div class="how-rail-line" id="howRailLine">
+                    <div class="how-rail-fill" id="howRailFill"></div>
                 </div>
 
-                <!-- Step Card 2 -->
-                <div class="how-step-card" id="how-step-2">
-                    <div class="how-step-num">2</div>
-                    <h3>Practice With Live Support</h3>
-                    <p>Apply setups in live market conditions with direct feedback loops, trade journaling, and metrics
-                        tracking.</p>
+                <div class="how-step" id="how-step-1">
+                    <div class="how-step-node"><span>01</span></div>
+                    <div class="how-step-content">
+                        <h3>Learn The Methodology</h3>
+                        <p>Master institutional frameworks, hedging systems, and risk management principles before
+                            placing trades.</p>
+                        <div class="how-step-tags"><span>Frameworks</span><span>Risk Systems</span></div>
+                    </div>
                 </div>
 
-                <!-- Step Card 3 -->
-                <div class="how-step-card" id="how-step-3">
-                    <div class="how-step-num">3</div>
-                    <h3>Trade With Consistency</h3>
-                    <p>Execute checklists flawlessly to transition from unpredictable results into systematic long-term
-                        compounding.</p>
+                <div class="how-step" id="how-step-2">
+                    <div class="how-step-node"><span>02</span></div>
+                    <div class="how-step-content">
+                        <h3>Practice With Live Support</h3>
+                        <p>Apply setups in live market conditions with direct feedback loops, trade journaling, and
+                            metrics tracking.</p>
+                        <div class="how-step-tags"><span>Live Feedback</span><span>Journaling</span></div>
+                    </div>
+                </div>
+
+                <div class="how-step" id="how-step-3">
+                    <div class="how-step-node"><span>03</span></div>
+                    <div class="how-step-content">
+                        <h3>Trade With Consistency</h3>
+                        <p>Execute checklists flawlessly to transition from unpredictable results into systematic
+                            long-term compounding.</p>
+                        <div class="how-step-tags"><span>Checklists</span><span>Compounding</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3250,31 +3533,82 @@
 
     <!-- ─── FOOTER ─── -->
     <footer>
-        <div class="footer-inner">
-            <div class="footer-logo-wrap">
-                <!-- Matching official navbar bull logo -->
-                <img src="logo.png" alt="The Trading Scholar Logo" class="footer-logo-img">
-                <div class="footer-logo">The Trading Scholar</div>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>The Trading Scholar</h3>
+                <p>Building disciplined, systematic, and institutional thinkers in the Indian financial markets. Learn
+                    strategies built for capital preservation first.</p>
             </div>
-            <div class="footer-copy">© 2026 The Trading Scholar · Education only · All rights reserved</div>
-            <a href="#" class="footer-back" id="backToTop">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M12 19V5M5 12l7-7 7 7" />
-                </svg>
-                Back to Top
-            </a>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#problems">Why Us</a></li>
+                    <li><a href="index.html#courses">Our Programs</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="index.html#results">Student Proof</a></li>
+                    <li><a href="index.html#masterclass">Free Masterclass</a></li>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Risk Disclaimer</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Trading Scholar. All Rights Reserved. Education-only purposes.
+                <a href="#" class="footer-back" id="backToTop" style="margin-left: 16px;">Back to Top</a>
+            </p>
+            <div class="footer-socials">
+                <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="footer-social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                    </svg></a>
+                <a href="https://t.me/Thetradingscholar" target="_blank" rel="noopener" class="footer-social-link" aria-label="Telegram"><svg viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                    </svg></a>
+                <a href="https://www.facebook.com/thetradingscholar" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                    </svg></a>
+                <a href="https://www.youtube.com/@thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg></a>
+                <a href="https://x.com/ScholarTrading" target="_blank" rel="noopener" class="footer-social-link" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg></a>
+                <a href="https://www.instagram.com/thetradingscholarr" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                    </svg></a>
+            </div>
+        </div>
+        <div class="giant-footer-logo-container">
+            <div class="giant-footer-logo"><img src="logo.png" alt="The Trading Scholar Logo"></div>
+            <div class="giant-footer-fade"></div>
         </div>
     </footer>
 
     <!-- Fixed Social Dock -->
     <div class="fixed-dock">
-        <a href="#" class="dock-btn" aria-label="WhatsApp">
+        <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="dock-btn" aria-label="WhatsApp">
             <svg viewBox="0 0 24 24">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
             </svg>
         </a>
-        <a href="#" class="dock-btn" aria-label="Telegram">
+        <a href="https://t.me/Thetradingscholar" target="_blank" rel="noopener" class="dock-btn" aria-label="Telegram">
             <svg viewBox="0 0 24 24">
                 <path
                     d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
@@ -3296,7 +3630,7 @@
                 cursor.style.top = e.clientY + 'px';
             });
 
-            document.querySelectorAll('a, button, .service-row, .principle-card, .diff-card, .how-step-card, .tl-tag').forEach(el => {
+            document.querySelectorAll('a, button, .service-row, .principle-card, .diff-card, .how-step, .tl-tag').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.style.transform = 'translate(-50%, -50%) scale(2.2)';
                     cursor.style.backgroundColor = 'rgba(37, 99, 235, 0.45)';
@@ -3416,17 +3750,17 @@
             });
         }
 
-        /* Staggered Principles display */
+        /* Staggered Principles display (matches Key Benefits card entrance) */
         gsap.fromTo('.principle-card',
-            { opacity: 0, y: 20 },
+            { opacity: 0, y: 40, scale: 0.94 },
             {
-                opacity: 1, y: 0,
-                duration: 0.6,
-                stagger: 0.08,
-                ease: 'power2.out',
+                opacity: 1, y: 0, scale: 1,
+                duration: 0.75,
+                stagger: 0.09,
+                ease: 'back.out(1.1)',
                 scrollTrigger: {
                     trigger: '.principles-grid',
-                    start: 'top 80%'
+                    start: 'top 82%'
                 }
             }
         );
@@ -3455,7 +3789,7 @@
         }
 
         ScrollTrigger.create({
-            trigger: '.impact-grid',
+            trigger: '.impact-stats-row',
             start: 'top 85%',
             onEnter: () => {
                 document.querySelectorAll('.big-stat').forEach(stat => runCounter(stat));
@@ -3489,59 +3823,76 @@
             );
         }
 
-        /* "How It Works" sequential card sequence on scroll */
-        if (isDesktop()) {
-            const howTimeline = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#how-it-works",
-                    start: "top top",
-                    end: "+=1800",
-                    pin: true,
-                    scrub: true,
-                    invalidateOnRefresh: true
+        /* "How It Works" — vertical rail fills and steps light up as you scroll */
+        const howRail = document.getElementById('howRail');
+        const howRailFill = document.getElementById('howRailFill');
+        const howRailLine = document.getElementById('howRailLine');
+
+        if (howRail && howRailFill && howRailLine) {
+            // Pin the line's top/bottom exactly to the center of the first and last node,
+            // so it never runs past step 01 or step 03 — the dark node + white ring masks the rest.
+            function updateHowRailLine() {
+                const nodes = howRail.querySelectorAll('.how-step-node');
+                if (!nodes.length) return;
+                const railRect = howRail.getBoundingClientRect();
+                const firstRect = nodes[0].getBoundingClientRect();
+                const lastRect = nodes[nodes.length - 1].getBoundingClientRect();
+                const topOffset = (firstRect.top + firstRect.height / 2) - railRect.top;
+                const bottomOffset = railRect.bottom - (lastRect.top + lastRect.height / 2);
+                howRailLine.style.top = `${topOffset}px`;
+                howRailLine.style.bottom = `${bottomOffset}px`;
+            }
+            updateHowRailLine();
+            window.addEventListener('load', updateHowRailLine);
+            window.addEventListener('resize', updateHowRailLine);
+
+            ScrollTrigger.create({
+                trigger: howRail,
+                start: 'top 75%',
+                end: 'bottom 55%',
+                scrub: true,
+                onUpdate: self => {
+                    howRailFill.style.height = `${self.progress * 100}%`;
                 }
             });
 
-            gsap.set("#how-step-2, #how-step-3", { opacity: 0, scale: 0.95, y: 35 });
-            gsap.set("#how-step-1", { opacity: 1, scale: 1, y: 0 });
-
-            // Transition: Step 1 out -> Step 2 in
-            howTimeline.to("#how-step-1", {
-                opacity: 0,
-                scale: 0.95,
-                y: -35,
-                duration: 1
-            });
-            howTimeline.to("#how-step-2", {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1,
-                className: "how-step-card active"
-            }, "<");
-
-            // Transition: Step 2 out -> Step 3 in
-            howTimeline.to("#how-step-2", {
-                opacity: 0,
-                scale: 0.95,
-                y: -35,
-                duration: 1
-            });
-            howTimeline.to("#how-step-3", {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1,
-                className: "how-step-card active"
-            }, "<");
-        } else {
-            // Mobile fallback compatibility initialization
-            document.querySelectorAll('.how-step-card').forEach(card => {
-                card.style.opacity = '1';
-                card.style.transform = 'none';
-                card.style.position = 'static';
+            document.querySelectorAll('.how-step').forEach(step => {
+                ScrollTrigger.create({
+                    trigger: step,
+                    start: 'top 70%',
+                    end: 'bottom 45%',
+                    toggleClass: { targets: step, className: 'active' }
+                });
             });
         }
+
+        /* Section-seam background crossfades — keyed to the OUTGOING section's own scroll
+           progress (fires once you're 70% through it, finishes exactly as it scrolls away),
+           with every visible element (bg, dome, headings, stats, logos) tweening on the SAME
+           timeline so nothing goes invisible and there's no hard-edged "cut" between sections. */
+        const impactToServices = gsap.timeline({
+            scrollTrigger: { trigger: '#impact', start: '70% top', end: 'bottom top', scrub: true }
+        });
+        impactToServices
+            .fromTo('#impact', { backgroundColor: '#030712' }, { backgroundColor: '#ffffff', ease: 'none' }, 0)
+            .fromTo('.services-section', { backgroundColor: '#030712' }, { backgroundColor: '#ffffff', ease: 'none' }, 0)
+            .fromTo('.impact-dome', { opacity: 1 }, { opacity: 0, ease: 'none' }, 0)
+            .fromTo('.services-section .section-h2', { color: '#ffffff' }, { color: '#0B0F19', ease: 'none' }, 0)
+            .fromTo('.impact-stat-block .big-stat', { color: '#ffffff' }, { color: '#0B0F19', ease: 'none' }, 0)
+            .fromTo('.logo-marquee', { '--fade-color': '#030712' }, { '--fade-color': '#ffffff', ease: 'none' }, 0)
+            .fromTo('.logo-track', { '--logo-invert': 1 }, { '--logo-invert': 0, ease: 'none' }, 0);
+
+        const howToCta = gsap.timeline({
+            scrollTrigger: { trigger: '.how-section', start: '70% top', end: 'bottom top', scrub: true }
+        });
+        howToCta
+            .fromTo('.how-section', { backgroundColor: '#ffffff' }, { backgroundColor: '#0B0F19', ease: 'none' }, 0)
+            .fromTo('.cta-section', { backgroundColor: '#ffffff' }, { backgroundColor: '#0B0F19', ease: 'none' }, 0)
+            .fromTo('.cta-h2', { color: '#0B0F19' }, { color: '#ffffff', ease: 'none' }, 0)
+            .fromTo('.how-step-content h3', { color: '#0B0F19' }, { color: '#ffffff', ease: 'none' }, 0)
+            .fromTo('.how-step-node', { '--node-bg': '#ffffff', '--node-border': 'rgba(11,15,25,0.15)', '--node-color': 'rgba(11,15,25,0.45)' }, { '--node-bg': '#0B0F19', '--node-border': 'rgba(255,255,255,0.15)', '--node-color': 'rgba(255,255,255,0.45)', ease: 'none' }, 0)
+            .fromTo('.how-rail-line', { backgroundColor: 'rgba(11,15,25,0.12)' }, { backgroundColor: 'rgba(255,255,255,0.08)', ease: 'none' }, 0)
+            .fromTo('.how-step-tags span', { '--tag-color': 'rgba(11,15,25,0.55)', '--tag-border': 'rgba(11,15,25,0.12)' }, { '--tag-color': 'rgba(255,255,255,0.5)', '--tag-border': 'rgba(255,255,255,0.08)', ease: 'none' }, 0);
     </script>
 </body>
 
