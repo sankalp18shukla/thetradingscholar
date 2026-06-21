@@ -1016,8 +1016,36 @@
         .hero-container {
             position: relative;
             margin-bottom: 12px;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
+        }
+
+        /* Subtle glass band behind hero content (no outline or shadow) */
+        .hero-glass {
+            position: absolute;
+            left: 50%;
+            top: 52%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 160px);
+            max-width: 1200px;
+            height: 160px;
+            border-radius: 40px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            backdrop-filter: blur(12px) saturate(120%);
+            -webkit-backdrop-filter: blur(12px) saturate(120%);
+            border: none;
+            box-shadow: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Make sure hero text and controls sit above the glass */
+        .hero-container,
+        .hero-sub,
+        .hero-footer-row,
+        .hero-actions {
+            z-index: 3;
+            position: relative;
         }
 
 
@@ -5016,6 +5044,7 @@
     <section class="hero-screen">
         <!-- Live chart-style animated background -->
         <canvas class="hero-graph-bg" id="heroChartCanvas" aria-hidden="true"></canvas>
+        <div class="hero-glass" aria-hidden="true"></div>
 <div class="hero-container">
 
             <h1>

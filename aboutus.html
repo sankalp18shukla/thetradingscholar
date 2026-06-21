@@ -32,10 +32,10 @@
         @font-face { font-family:'BwGradual'; src:url('bwgradualdemo-110599/Bw Gradual DEMO/BwGradualDEMO-BlackItalic.otf') format('opentype'); font-weight:900; font-style:italic; font-display:swap; }
 
         :root {
-            --bg-dark: #030712;
+            --bg-dark: #000000;
             --bg-dark-secondary: #0B0F19;
             --primary-accent: #2563EB;
-            --secondary-accent: #2563EB;
+            --secondary-accent: #1B4FFF;
             --soft-accent: #4F7DF3;
             --accent-gold: #C9A84C;
             --text-primary: #FFFFFF;
@@ -99,7 +99,7 @@
         .custom-cursor {
             width: 10px;
             height: 10px;
-            background-color: var(--secondary-accent);
+            background-color: #1B4FFF;
             border-radius: 50%;
             position: fixed;
             top: 0;
@@ -107,8 +107,7 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5), 0 2px 10px rgba(37, 99, 235, 0.5);
-            transition: width .15s, height .15s, background-color .15s, transform .15s;
+            transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
         }
 
         /* Noise overlay */
@@ -132,7 +131,7 @@
             padding: 100px 60px;
             position: relative;
             overflow: hidden;
-            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            background: #000000;
         }
 
         /* ─── BUTTON ANIMATION STYLING ─── */
@@ -894,7 +893,7 @@
 
         /* ─── PHILOSOPHY SECTION WITH BACKDROP TEXT ─── */
         .philosophy-section {
-            background: var(--bg-dark-secondary);
+            background: var(--bg-dark);
             position: relative;
         }
 
@@ -1200,7 +1199,8 @@
         /* ─── METHODOLOGY TRACK (HORIZONTAL) ─── */
         .timeline-scroll-wrapper {
             position: relative;
-            background: var(--bg-dark-secondary);
+            background: var(--bg-dark);
+            margin-bottom: 80px;
         }
 
         .timeline-sticky {
@@ -1338,7 +1338,7 @@
 
         .timeline-progress {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             height: 3px;
             background: var(--secondary-accent);
@@ -1370,9 +1370,9 @@
             height: 130vw;
             border-radius: 50%;
             background: radial-gradient(circle at center top,
-                    rgba(37, 99, 235, 0.45) 0%,
-                    rgba(11, 15, 25, 0.14) 30%,
-                    rgba(0, 0, 0, 0) 65%);
+                rgba(37, 99, 235, 0.45) 0%,
+                rgba(0, 0, 0, 0.14) 30%,
+                rgba(0, 0, 0, 0) 65%);
             pointer-events: none;
             z-index: 0;
         }
@@ -1500,9 +1500,9 @@
         }
 
         .logo-track img {
-            height: 38px;
+            height: 64px;
             width: auto;
-            opacity: 0.65;
+            opacity: 0.85;
             filter: brightness(0) saturate(100%) invert(var(--logo-invert));
             transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
         }
@@ -2267,11 +2267,11 @@
             }
 
             .logo-track {
-                gap: 60px;
+                gap: 80px;
             }
 
             .logo-track img {
-                height: 42px;
+                height: 48px;
             }
 
             .services-head {
@@ -3632,12 +3632,10 @@
 
             document.querySelectorAll('a, button, .service-row, .principle-card, .diff-card, .how-step, .tl-tag').forEach(el => {
                 el.addEventListener('mouseenter', () => {
-                    cursor.style.transform = 'translate(-50%, -50%) scale(2.2)';
-                    cursor.style.backgroundColor = 'rgba(37, 99, 235, 0.45)';
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.6)';
                 });
                 el.addEventListener('mouseleave', () => {
                     cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                    cursor.style.backgroundColor = 'var(--secondary-accent)';
                 });
             });
         } else {
