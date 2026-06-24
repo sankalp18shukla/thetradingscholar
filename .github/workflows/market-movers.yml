@@ -1,0 +1,32 @@
+name: Update market movers
+
+on:
+  schedule:
+    # Every 10 minutes during NSE trading hours (9:00-15:30 IST = 3:30-10:00 UTC), Mon-Fri
+    - cron: '*/10 3-9 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch latest gainers/losers
+        run: node scripts/fetch-market-movers.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- market-movers.json; then
+            echo "No change in market data, skipping commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add market-movers.json
+          git commit -m "Update market movers data"
+          git push

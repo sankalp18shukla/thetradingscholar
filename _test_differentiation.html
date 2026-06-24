@@ -35,7 +35,7 @@
             --bg-dark: #000000;
             --bg-dark-secondary: #0B0F19;
             --primary-accent: #2563EB;
-            --secondary-accent: #2B2BEB;
+            --secondary-accent: #1B4FFF;
             --soft-accent: #4F7DF3;
             --accent-gold: #C9A84C;
             --text-primary: #FFFFFF;
@@ -99,7 +99,7 @@
         .custom-cursor {
             width: 10px;
             height: 10px;
-            background-color: #2B2BEB;
+            background-color: #1B4FFF;
             border-radius: 50%;
             position: fixed;
             top: 0;
@@ -232,7 +232,7 @@
         /* ─── HEADER & NAV (shared across site) ─── */
         .header {
             position: fixed;
-            top: calc(var(--ribbon-h, 0px) + 20px);
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: 94%;
@@ -255,7 +255,7 @@
         }
 
         .header.scrolled {
-            top: calc(var(--ribbon-h, 0px) + 14px);
+            top: 14px;
             width: 80%;
             max-width: 1120px;
             background-color: rgba(3,7,18,0.95);
@@ -350,7 +350,7 @@
             background: rgba(6, 8, 22, 0.97);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(43, 43, 235, 0.18);
+            border: 1px solid rgba(27, 79, 255, 0.18);
             border-radius: 20px;
             opacity: 0;
             visibility: hidden;
@@ -358,7 +358,7 @@
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             padding: 32px 48px;
             z-index: 998;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(43, 43, 235, 0.06);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(27, 79, 255, 0.06);
         }
 
         .header.mega-menu-open .header--mega-menu-container {
@@ -389,13 +389,13 @@
             text-decoration: none;
         }
 
-        .mega-menu-link-item:hover { background: rgba(43, 43, 235, 0.08); }
+        .mega-menu-link-item:hover { background: rgba(27, 79, 255, 0.08); }
 
         .mega-link-icon {
             width: 36px;
             height: 36px;
-            background: rgba(43, 43, 235, 0.12);
-            border: 1px solid rgba(43, 43, 235, 0.2);
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -404,7 +404,7 @@
             margin-top: 2px;
         }
 
-        .mega-link-icon svg { width: 16px; height: 16px; stroke: #5050F5; fill: none; stroke-width: 2; }
+        .mega-link-icon svg { width: 16px; height: 16px; stroke: #4D6FFF; fill: none; stroke-width: 2; }
 
         .mega-link-title {
             font-family: var(--font-headings);
@@ -442,8 +442,8 @@
         .mega-collage-img {
             border-radius: 10px;
             overflow: hidden;
-            background: rgba(43, 43, 235, 0.08);
-            border: 1px solid rgba(43, 43, 235, 0.12);
+            background: rgba(27, 79, 255, 0.08);
+            border: 1px solid rgba(27, 79, 255, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -456,7 +456,7 @@
             width: 100%;
             height: 100%;
             min-height: 80px;
-            background: linear-gradient(135deg, rgba(43, 43, 235, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -492,7 +492,7 @@
             align-items: center;
             gap: 6px;
             padding: 9px 18px;
-            background: linear-gradient(135deg, #5050F5, #2B2BEB);
+            background: linear-gradient(135deg, #4D6FFF, #1B4FFF);
             color: #FFFFFF !important;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -504,7 +504,7 @@
             text-decoration: none;
         }
 
-        .mega-cta-link:hover { box-shadow: 0 6px 20px rgba(43, 43, 235, 0.5); transform: translateY(-1px); }
+        .mega-cta-link:hover { box-shadow: 0 6px 20px rgba(27, 79, 255, 0.5); transform: translateY(-1px); }
 
         @media (max-width: 1024px) {
             .mega-menu-inner { grid-template-columns: 1fr; }
@@ -578,7 +578,7 @@
             transition: color .3s;
         }
 
-        .mobile-nav a:hover { color: #5050F5; }
+        .mobile-nav a:hover { color: #4D6FFF; }
 
         /* ─── HERO SECTION ─── */
         .page-hero {
@@ -636,7 +636,7 @@
         .hero-h1 em {
             font-style: italic;
             font-weight: 800;
-            background: linear-gradient(135deg, #1717B8 0%, #2B2BEB 60%, #5050F5 100%);
+            background: linear-gradient(135deg, #1440D4 0%, #1B4FFF 60%, #4D6FFF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-right: 0.15em;
@@ -1559,7 +1559,7 @@
             gap: 40px;
             padding: 26px 32px;
             background: #f5f7ff;
-            border: 1px solid rgba(43, 43, 235, 0.15);
+            border: 1px solid rgba(27, 79, 255, 0.15);
             border-radius: 16px;
             transition: border-color .35s ease, background .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
             position: relative;
@@ -1584,7 +1584,7 @@
         }
 
         .service-row:hover {
-            border-color: rgba(43, 43, 235, 0.4);
+            border-color: rgba(27, 79, 255, 0.4);
             background: #eef1ff;
             transform: translateX(6px);
             box-shadow: 0 18px 35px rgba(11, 15, 25, 0.1);
@@ -2054,7 +2054,7 @@
                 -webkit-backdrop-filter: blur(15px);
                 border: 1px solid rgba(255,255,255,0.08);
                 box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
-                top: calc(var(--ribbon-h, 0px) + 12px);
+                top: 12px;
             }
 
             .header.scrolled {
@@ -2200,7 +2200,6 @@
                 position: static;
                 height: auto;
                 overflow: visible;
-                display: block;
             }
 
             .timeline-section-label {
@@ -2417,219 +2416,10 @@
                 width: 100%;
             }
         }
-
-        /* ===== MARKET MOVERS RIBBON ===== */
-        html {
-            --ribbon-h: 38px;
-        }
-
-        html.ribbon-closed {
-            --ribbon-h: 0px;
-        }
-
-        body {
-            padding-top: var(--ribbon-h, 0px);
-            transition: padding-top 0.4s ease;
-        }
-
-        .market-ribbon {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--ribbon-h, 38px);
-            background: linear-gradient(135deg, var(--soft-accent) 0%, var(--secondary-accent) 100%);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            z-index: 1100;
-            font-family: var(--font-primary);
-            transition: height 0.4s ease;
-        }
-
-        html.ribbon-closed .market-ribbon {
-            display: none;
-        }
-
-        .market-ribbon__label {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 0 16px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.12);
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            white-space: nowrap;
-        }
-
-        .market-ribbon__live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent-gold);
-            box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.7);
-            animation: ribbon-pulse 1.6s infinite;
-        }
-
-        @keyframes ribbon-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.6); }
-            70% { box-shadow: 0 0 0 6px rgba(201, 168, 76, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
-        }
-
-        .market-ribbon__track-wrap {
-            flex: 1 1 auto;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .market-ribbon__track {
-            display: inline-flex;
-            align-items: center;
-            height: 100%;
-            white-space: nowrap;
-            animation: ribbon-marquee 55s linear infinite;
-            will-change: transform;
-        }
-
-        .market-ribbon:hover .market-ribbon__track {
-            animation-play-state: paused;
-        }
-
-        @keyframes ribbon-marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        .market-ribbon__item {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0 14px;
-            font-size: 12.5px;
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .market-ribbon__symbol {
-            font-weight: 700;
-            letter-spacing: 0.01em;
-        }
-
-        .market-ribbon__price {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .market-ribbon__change {
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .market-ribbon__change.up {
-            color: #6FFFA9;
-        }
-
-        .market-ribbon__change.down {
-            color: #FFB4B4;
-        }
-
-        .market-ribbon__dot {
-            flex: 0 0 auto;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .market-ribbon__close {
-            flex: 0 0 auto;
-            width: 38px;
-            height: 100%;
-            border: none;
-            background: rgba(0, 0, 0, 0.12);
-            color: #fff;
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .market-ribbon__close:hover {
-            background: rgba(0, 0, 0, 0.22);
-        }
-
-        @media (max-width: 768px) {
-            html { --ribbon-h: 34px; }
-            .market-ribbon__label { display: none; }
-            .market-ribbon__item { font-size: 11.5px; padding: 0 10px; }
-        }
     </style>
-</head>
+<style>section.page-hero{display:none !important;}section#origin{display:none !important;}section#philosophy{display:none !important;}</style></head>
 
 <body>
-    <!-- MARKET MOVERS RIBBON -->
-    <div class="market-ribbon" id="marketRibbon">
-        <div class="market-ribbon__label">
-            <span class="market-ribbon__live-dot"></span>
-            NSE LIVE
-        </div>
-        <div class="market-ribbon__track-wrap">
-            <div class="market-ribbon__track" id="marketRibbonTrack"></div>
-        </div>
-        <button class="market-ribbon__close" id="marketRibbonClose" aria-label="Close market ticker">&times;</button>
-    </div>
-    <script>
-        (function () {
-            var root = document.documentElement;
-            if (sessionStorage.getItem('marketRibbonClosed') === '1') {
-                root.classList.add('ribbon-closed');
-            }
-
-            var closeBtn = document.getElementById('marketRibbonClose');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function () {
-                    root.classList.add('ribbon-closed');
-                    sessionStorage.setItem('marketRibbonClosed', '1');
-                });
-            }
-
-            var track = document.getElementById('marketRibbonTrack');
-            if (!track) return;
-
-            function formatItem(m) {
-                var isUp = m.change >= 0;
-                var arrow = isUp ? '▲' : '▼';
-                var price = '₹' + Number(m.ltp).toFixed(2);
-                var change = (isUp ? '+' : '') + Number(m.change).toFixed(2) + '%';
-                return (
-                    '<span class="market-ribbon__item">' +
-                        '<span class="market-ribbon__symbol">' + m.symbol + '</span>' +
-                        '<span class="market-ribbon__price">' + price + '</span>' +
-                        '<span class="market-ribbon__change ' + (isUp ? 'up' : 'down') + '">' + arrow + ' ' + change + '</span>' +
-                    '</span>' +
-                    '<span class="market-ribbon__dot"></span>'
-                );
-            }
-
-            fetch('market-movers.json', { cache: 'no-store' })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    var movers = (data && data.movers) || [];
-                    if (!movers.length) return;
-                    var html = movers.map(formatItem).join('');
-                    track.innerHTML = html + html;
-                })
-                .catch(function () {});
-        })();
-    </script>
 
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="cursor"></div>

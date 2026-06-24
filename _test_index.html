@@ -34,9 +34,9 @@
         :root {
             --primary-bg: #FFFFFF;
             --secondary-bg: #F7F9FC;
-            --primary-accent: #0024E8;
-            --secondary-accent: #0024E8;
-            --soft-accent: #0024E8;
+            --primary-accent: #1B4FFF;
+            --secondary-accent: #1B4FFF;
+            --soft-accent: #4D6FFF;
             --primary-text: #0B0F19;
             --secondary-text: #5B6475;
             --border-color: #E2E8F0;
@@ -50,9 +50,9 @@
             --color-black: #030712;
             --color-white: #ffffff;
             --color-dark: #101820;
-            --color-blue: #0024E8;
-            --color-blue-glow: rgba(0, 36, 232, 0.5);
-            --gradient-button: #0024E8;
+            --color-blue: #1B4FFF;
+            --color-blue-glow: rgba(27, 79, 255, 0.5);
+            --gradient-button: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             --font-primary: 'Inter', sans-serif;
             --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
             --font-display: 'BwGradual', 'Urbanist', 'Plus Jakarta Sans', sans-serif;
@@ -85,7 +85,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: conic-gradient(from var(--glow-angle) at 50% 50%, rgba(0, 36, 232,0) 0%, rgba(0, 36, 232,0) 22%, #0024E8 48%, #0024E8 60%, rgba(0, 36, 232,0) 82%);
+            background: conic-gradient(from var(--glow-angle) at 50% 50%, rgba(27,79,255,0) 0%, rgba(27,79,255,0) 22%, #4D6FFF 48%, #1B4FFF 60%, rgba(27,79,255,0) 82%);
             animation: rotateGlow 4s linear infinite;
             z-index: 1;
         }
@@ -143,7 +143,7 @@
         .custom-cursor {
             width: 10px;
             height: 10px;
-            background-color: #0024E8;
+            background-color: #1B4FFF;
             border-radius: 50%;
             position: fixed;
             top: 0;
@@ -180,12 +180,12 @@
 
         .path-ray {
             fill: none;
-            stroke: #0024E8;
+            stroke: #1B4FFF;
             stroke-width: 2.5;
             stroke-dasharray: 120 2000;
             animation: moveRay 12s linear infinite;
             opacity: 0.25;
-            filter: drop-shadow(0 0 6px #0024E8);
+            filter: drop-shadow(0 0 6px #1B4FFF);
         }
 
         .path-ray.delay {
@@ -269,25 +269,25 @@
             background: var(--gradient-button);
             color: var(--color-white) !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.4);
         }
 
         .is-style-fill .wp-block-button__link:hover {
-            box-shadow: 0 8px 28px rgba(0, 36, 232, 0.55);
+            box-shadow: 0 8px 28px rgba(27, 79, 255, 0.55);
             transform: translateY(-2px);
         }
 
         .is-style-outline-alt .wp-block-button__link {
             background: transparent;
-            color: #0024E8;
-            border: 1.5px solid rgba(0, 36, 232, 0.5);
+            color: #1B4FFF;
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
         }
 
         .is-style-outline-alt .wp-block-button__link:hover {
-            background: #0024E8;
+            background: #1B4FFF;
             color: var(--color-white) !important;
-            border-color: #0024E8;
-            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.35);
+            border-color: #1B4FFF;
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.35);
         }
 
         .gp-arrow {
@@ -323,24 +323,24 @@
             background: var(--gradient-button);
             color: #ffffff !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.4);
         }
 
         .hero-cta-btn.filled:hover {
-            box-shadow: 0 10px 32px rgba(0, 36, 232, 0.6);
+            box-shadow: 0 10px 32px rgba(27, 79, 255, 0.6);
         }
 
         .hero-cta-btn.outline {
             background: transparent;
-            color: #0024E8 !important;
-            border: 1.5px solid rgba(0, 36, 232, 0.5);
+            color: #1B4FFF !important;
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
         }
 
         .hero-cta-btn.outline:hover {
-            background: #0024E8;
+            background: #1B4FFF;
             color: #ffffff !important;
-            border-color: #0024E8;
-            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.35);
+            border-color: #1B4FFF;
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.35);
         }
 
         .hero-cta-btn:active {
@@ -390,19 +390,18 @@
         /* ===== HEADER ===== */
         .header {
             position: fixed;
-            top: var(--ribbon-h, 0px);
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            max-width: 100%;
+            width: 94%;
+            max-width: 1400px;
             z-index: 1000;
             background-color: transparent;
             border: 1px solid transparent;
-            border-radius: 0;
-            padding: 22px 0;
+            border-radius: 50px;
+            padding: 14px 0;
             box-shadow: none !important;
-            /* Smooth per-property transitions — left/transform stay constant across
-               states so only width/padding/etc animate (avoids sideways drift) */
+            /* Smooth per-property transitions */
             transition:
                 top 0.65s cubic-bezier(0.25, 1, 0.35, 1),
                 width 0.65s cubic-bezier(0.25, 1, 0.35, 1),
@@ -410,13 +409,12 @@
                 background-color 0.55s cubic-bezier(0.25, 1, 0.35, 1),
                 backdrop-filter 0.55s ease,
                 border-color 0.55s ease,
-                border-radius 0.55s ease,
                 padding 0.55s cubic-bezier(0.25, 1, 0.35, 1),
                 box-shadow 0.55s ease;
         }
 
         .header.scrolled {
-            top: calc(var(--ribbon-h, 0px) + 14px);
+            top: 14px;
             width: 80%;
             max-width: 1120px;
             background-color: rgba(3, 7, 18, 0.95);
@@ -481,34 +479,34 @@
         }
 
         #header--logo img {
-            width: 46px;
-            height: 46px;
+            width: 38px;
+            height: 38px;
             transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .header.scrolled #header--logo img {
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
         }
 
         .logo-text-fallback {
             font-family: var(--font-display);
-            font-size: 1.7rem;
+            font-size: 1.45rem;
             font-weight: 700;
             letter-spacing: -0.3px;
-            color: #0024E8;
+            color: #1B4FFF;
             transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .header.scrolled .logo-text-fallback {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #FFFFFF;
         }
 
         /* Logo color matches text before scroll */
         #header--logo img {
-            filter: invert(18.24%) sepia(87.05%) saturate(1020.32%) hue-rotate(207.83deg) brightness(135.45%) contrast(182.74%);
+            filter: invert(31%) sepia(98%) saturate(1832%) hue-rotate(213deg) brightness(94%) contrast(96%);
         }
 
         .header.scrolled #header--logo img {
@@ -547,7 +545,7 @@
 
         .menu-item-link:hover,
         .menu-item.active .menu-item-link {
-            color: #0024E8;
+            color: #1B4FFF;
         }
 
         .menu-item-arv svg {
@@ -635,7 +633,7 @@
             background: rgba(6, 8, 22, 0.97);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(0, 36, 232, 0.18);
+            border: 1px solid rgba(27, 79, 255, 0.18);
             border-radius: 20px;
             opacity: 0;
             visibility: hidden;
@@ -643,7 +641,7 @@
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             padding: 32px 48px;
             z-index: 998;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 36, 232, 0.06);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(27, 79, 255, 0.06);
         }
 
         .header.mega-menu-open .header--mega-menu-container {
@@ -686,14 +684,14 @@
         }
 
         .mega-menu-link-item:hover {
-            background: rgba(0, 36, 232, 0.08);
+            background: rgba(27, 79, 255, 0.08);
         }
 
         .mega-link-icon {
             width: 36px;
             height: 36px;
-            background: rgba(0, 36, 232, 0.12);
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            background: rgba(27, 79, 255, 0.12);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -705,7 +703,7 @@
         .mega-link-icon svg {
             width: 16px;
             height: 16px;
-            stroke: #0024E8;
+            stroke: #4D6FFF;
             fill: none;
             stroke-width: 2;
         }
@@ -749,8 +747,8 @@
         .mega-collage-img {
             border-radius: 10px;
             overflow: hidden;
-            background: rgba(0, 36, 232, 0.08);
-            border: 1px solid rgba(0, 36, 232, 0.12);
+            background: rgba(27, 79, 255, 0.08);
+            border: 1px solid rgba(27, 79, 255, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -765,7 +763,7 @@
             width: 100%;
             height: 100%;
             min-height: 80px;
-            background: linear-gradient(135deg, rgba(0, 36, 232, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -786,7 +784,7 @@
         .mega-collage-icon {
             width: 24px;
             height: 24px;
-            stroke: rgba(0, 36, 232, 0.5);
+            stroke: rgba(96, 165, 250, 0.5);
             fill: none;
         }
 
@@ -809,7 +807,7 @@
             align-items: center;
             gap: 6px;
             padding: 9px 18px;
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF, #1B4FFF);
             color: #FFFFFF !important;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -822,7 +820,7 @@
         }
 
         .mega-cta-link:hover {
-            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.5);
+            box-shadow: 0 6px 20px rgba(27, 79, 255, 0.5);
             transform: translateY(-1px);
         }
 
@@ -836,7 +834,7 @@
             background: rgba(5, 8, 22, 0.98);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(0, 36, 232, 0.25);
+            border: 1px solid rgba(27, 79, 255, 0.25);
             border-radius: 24px;
             padding: 28px;
             display: grid;
@@ -847,7 +845,7 @@
             transform: translateY(15px);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1001;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 36, 232, 0.08);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(27, 79, 255, 0.08);
         }
 
         .demat-dropdown.show {
@@ -869,19 +867,19 @@
         }
 
         .dropdown-box:hover {
-            border-color: rgba(0, 36, 232, 0.4);
-            background: rgba(0, 36, 232, 0.05);
+            border-color: rgba(27, 79, 255, 0.4);
+            background: rgba(27, 79, 255, 0.05);
             transform: translateY(-3px);
         }
 
         .dropdown-box.highlighted {
-            background: rgba(0, 36, 232, 0.08);
-            border-color: rgba(0, 36, 232, 0.35);
+            background: rgba(27, 79, 255, 0.08);
+            border-color: rgba(27, 79, 255, 0.35);
         }
 
         .dropdown-box.highlighted:hover {
-            border-color: rgba(0, 36, 232, 0.6);
-            background: rgba(0, 36, 232, 0.12);
+            border-color: rgba(27, 79, 255, 0.6);
+            background: rgba(27, 79, 255, 0.12);
         }
 
         .box-header {
@@ -898,7 +896,7 @@
 
         .box-subtitle {
             font-size: 0.73rem;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 0.8px;
@@ -922,7 +920,7 @@
         }
 
         .box-list li span.check-icon {
-            color: #0024E8;
+            color: #4D6FFF;
             font-weight: 700;
             font-size: 0.9rem;
             flex-shrink: 0;
@@ -946,13 +944,13 @@
         }
 
         .accent-color-link {
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
-            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.4);
         }
 
         .accent-color-link:hover {
-            box-shadow: 0 6px 26px rgba(0, 36, 232, 0.6);
+            box-shadow: 0 6px 26px rgba(27, 79, 255, 0.6);
             transform: translateY(-2px);
         }
 
@@ -963,40 +961,40 @@
         }
 
         .light-outline-link:hover {
-            background: rgba(0, 36, 232, 0.15);
-            border-color: rgba(0, 36, 232, 0.5);
+            background: rgba(27, 79, 255, 0.15);
+            border-color: rgba(27, 79, 255, 0.5);
             color: #FFFFFF !important;
         }
 
         .demat-btn .wp-block-button__link {
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
             border: 1.5px solid transparent;
-            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.45);
-            font-size: 13.5px;
+            box-shadow: 0 4px 18px rgba(27, 79, 255, 0.45);
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.07em;
-            padding: 13px 26px;
+            padding: 11px 22px;
             border-radius: 50px;
         }
 
         .demat-btn .wp-block-button__link:hover {
-            box-shadow: 0 8px 28px rgba(0, 36, 232, 0.6);
+            box-shadow: 0 8px 28px rgba(27, 79, 255, 0.6);
             transform: translateY(-1px);
         }
 
         .header.scrolled .demat-btn .wp-block-button__link {
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
             border-color: transparent;
-            padding: 15px 24px;
-            font-size: 13px;
+            padding: 13px 20px;
+            font-size: 11.5px;
             border-radius: 44px;
-            box-shadow: 0 4px 12px rgba(0, 36, 232, 0.35);
+            box-shadow: 0 4px 12px rgba(27, 79, 255, 0.35);
         }
 
         .header.scrolled .demat-btn .wp-block-button__link:hover {
-            box-shadow: 0 4px 16px rgba(0, 36, 232, 0.45);
+            box-shadow: 0 4px 16px rgba(27, 79, 255, 0.45);
             transform: translateY(-1px);
         }
 
@@ -1036,9 +1034,9 @@
             position: absolute;
             inset: -28px -36px;
             border-radius: 32px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-            backdrop-filter: blur(6px) saturate(130%);
-            -webkit-backdrop-filter: blur(6px) saturate(130%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+            backdrop-filter: blur(14px) saturate(130%);
+            -webkit-backdrop-filter: blur(14px) saturate(130%);
             border: none;
             box-shadow: none;
             pointer-events: none;
@@ -1073,24 +1071,35 @@
 
         h1 .light-text {
             font-weight: 300;
-            font-size: clamp(3rem, 5.2vw, 5rem);
-            letter-spacing: -1px;
+            font-size: 2.9rem;
+            letter-spacing: -0.5px;
             display: block;
             font-family: var(--font-display);
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
         h1 .bold-italic-text {
-            font-weight: 600;
+            font-weight: 900;
             font-style: italic;
-            font-size: clamp(3.4rem, 6.8vw, 6.4rem);
-            letter-spacing: -3px;
+            font-size: 4.6rem;
+            letter-spacing: -2.5px;
             display: block;
             margin-top: 2px;
             padding: 6px 0;
-            min-height: 100px;
+            min-height: 92px;
             overflow: visible !important;
             font-family: var(--font-display);
+        }
+
+        .rotating-word {
+            display: inline-block;
+            background: linear-gradient(135deg, #1440D4 0%, #1B4FFF 60%, #4D6FFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            padding-bottom: 14px;
+            padding-right: 25px;
+            overflow: visible !important;
         }
 
         .hero-sub {
@@ -1133,32 +1142,32 @@
         }
 
         .stat-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background-color: var(--circle-bg);
-            border: none;
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             position: relative;
             font-family: var(--font-headings);
-            color: #0024E8;
+            color: #1B4FFF;
             white-space: nowrap;
             flex-shrink: 0;
         }
 
         .stat-icon {
             position: absolute;
-            top: -5px;
-            right: -3px;
-            color: #0024E8;
+            top: -4px;
+            right: -2px;
+            color: #1B4FFF;
             background: var(--primary-bg);
-            border: none;
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 50%;
-            padding: 4px;
+            padding: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1183,7 +1192,7 @@
         .video-reveal-section {
             width: 100%;
             position: relative;
-            background: var(--primary-bg);
+            background: #FFFFFF;
             z-index: 10;
         }
 
@@ -1194,7 +1203,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary-bg);
+            background: #FFFFFF;
             /* Uniform gap so rounded corners are always visible on every side */
             padding: 24px;
             box-sizing: border-box;
@@ -1214,7 +1223,7 @@
 
         .video-reveal-text-top {
             position: absolute;
-            /* sits above the small video (video half-height ≈ 113px, two text lines ≈ 115px tall, +24px gap) */
+            /* sits above the small video (video half-height ≈ 113px, text ≈ 65px tall, +24px gap) */
             bottom: calc(50% + 126px);
             left: 0;
             right: 0;
@@ -1226,11 +1235,11 @@
 
         .video-reveal-text-top span {
             font-family: var(--font-display);
-            font-size: 3.4rem;
-            font-weight: 350;
-            color: #ffffff;
+            font-size: 3.3rem;
+            font-weight: 300;
+            color: var(--primary-text);
             letter-spacing: -1.5px;
-            line-height: 1.05;
+            line-height: 1.1;
             display: block;
         }
 
@@ -1273,7 +1282,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 60% 40%, rgba(0, 36, 232, 0.18) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 60% 40%, rgba(27, 79, 255, 0.18) 0%, transparent 65%);
             z-index: 1;
         }
 
@@ -1349,7 +1358,7 @@
             font-family: var(--font-display);
             font-size: 4.8rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #1B4FFF;
             letter-spacing: -1.5px;
             line-height: 1.1;
             display: block;
@@ -1408,7 +1417,7 @@
         }
 
         .mobile-nav a:hover {
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .mobile-cta-btn {
@@ -1416,7 +1425,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px 32px;
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF;
             border-radius: 50px;
             font-family: var(--font-nav);
@@ -1424,12 +1433,12 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            box-shadow: 0 6px 24px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 6px 24px rgba(27, 79, 255, 0.4);
             transition: all 0.3s ease;
         }
 
         .mobile-cta-btn:hover {
-            box-shadow: 0 10px 32px rgba(0, 36, 232, 0.6);
+            box-shadow: 0 10px 32px rgba(27, 79, 255, 0.6);
             transform: translateY(-2px);
         }
 
@@ -1589,15 +1598,15 @@
         }
 
         .cta-btn.accent-style {
-            border-color: rgba(0, 36, 232, 0.8);
-            background: rgba(0, 36, 232, 0.1);
+            border-color: rgba(27, 79, 255, 0.8);
+            background: rgba(27, 79, 255, 0.1);
         }
 
         .cta-btn.accent-style:hover {
-            background: #0024E8;
-            border-color: #0024E8;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             color: #ffffff !important;
-            box-shadow: 0 10px 32px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 10px 32px rgba(27, 79, 255, 0.4);
         }
 
         /* ===== SECTION HEADERS ===== */
@@ -1611,7 +1620,7 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 3px;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             display: block;
             margin-bottom: 12px;
@@ -1628,7 +1637,7 @@
         .section-hdr h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         /* ===== FLIP CARDS ===== */
@@ -1737,8 +1746,8 @@
         }
 
         .card-front {
-            background: linear-gradient(135deg, rgba(43, 43, 235, 0.18) 0%, rgba(11, 15, 25, 0.7) 100%) !important;
-            border: 1px solid rgba(43, 43, 235, 0.2) !important;
+            background: linear-gradient(135deg, rgba(27, 79, 255, 0.18) 0%, rgba(11, 15, 25, 0.7) 100%) !important;
+            border: 1px solid rgba(27, 79, 255, 0.2) !important;
             color: #F1F5F9 !important;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
             backdrop-filter: blur(10px);
@@ -1776,10 +1785,10 @@
         }
 
         .card-back {
-            background: linear-gradient(135deg, #2B2BEB 0%, #1717B8 100%) !important;
+            background: linear-gradient(135deg, #1B4FFF 0%, #1440D4 100%) !important;
             color: #FFFFFF !important;
             transform: rotateY(180deg);
-            box-shadow: 0 15px 35px rgba(43, 43, 235, 0.3) !important;
+            box-shadow: 0 15px 35px rgba(27, 79, 255, 0.3) !important;
         }
 
         .card-back h3 {
@@ -1832,7 +1841,7 @@
         }
 
         .indicator-dot.active {
-            background: #0024E8;
+            background: #1B4FFF;
         }
 
         /* ===== COURSES SECTION ===== */
@@ -1860,14 +1869,14 @@
         .courses-section>h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #0024E8 !important;
+            color: #4D6FFF !important;
         }
 
         .courses-sub-label {
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 3px;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             display: block;
             margin-bottom: 14px;
@@ -1907,7 +1916,7 @@
         .vision-card-title em {
             font-style: italic;
             font-weight: 400;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .vision-point {
@@ -1921,8 +1930,8 @@
             flex-shrink: 0;
             width: 28px;
             height: 28px;
-            background: rgba(0, 36, 232, 0.15);
-            border: 1px solid rgba(0, 36, 232, 0.3);
+            background: rgba(27, 79, 255, 0.15);
+            border: 1px solid rgba(27, 79, 255, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1933,7 +1942,7 @@
         .vision-point-icon svg {
             width: 12px;
             height: 12px;
-            stroke: #0024E8;
+            stroke: #4D6FFF;
             fill: none;
             stroke-width: 2.5;
             stroke-linecap: round;
@@ -1969,7 +1978,7 @@
         }
 
         .vision-card-link {
-            color: #0024E8 !important;
+            color: #4D6FFF !important;
             font-size: 13px;
             font-weight: 700;
             text-decoration: none;
@@ -2006,31 +2015,31 @@
         }
 
         .course-card.blue {
-            background: linear-gradient(135deg, #2B2BEB 0%, #1717B8 100%);
-            box-shadow: 0 12px 40px rgba(43, 43, 235, 0.35);
+            background: linear-gradient(135deg, #1B4FFF 0%, #1440D4 100%);
+            box-shadow: 0 12px 40px rgba(27, 79, 255, 0.35);
         }
 
         .course-card.blue:hover {
-            box-shadow: 0 18px 50px rgba(43, 43, 235, 0.5);
+            box-shadow: 0 18px 50px rgba(27, 79, 255, 0.5);
         }
 
         .course-card.navy {
             background: linear-gradient(135deg, #1A38D4 0%, #1A37A0 100%);
-            border: 1px solid rgba(80, 80, 245, 0.3);
+            border: 1px solid rgba(77, 111, 255, 0.3);
         }
 
         .course-card.navy:hover {
-            border-color: rgba(80, 80, 245, 0.55);
+            border-color: rgba(77, 111, 255, 0.55);
             box-shadow: 0 12px 36px rgba(30, 64, 175, 0.35);
         }
 
         .course-card.dark {
             background: linear-gradient(135deg, #1832A8 0%, #172E75 100%);
-            border: 1px solid rgba(80, 80, 245, 0.25);
+            border: 1px solid rgba(77, 111, 255, 0.25);
         }
 
         .course-card.dark:hover {
-            border-color: rgba(80, 80, 245, 0.45);
+            border-color: rgba(77, 111, 255, 0.45);
             box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
         }
 
@@ -2159,7 +2168,7 @@
             justify-content: flex-start;
             background-color: var(--bg-dark);
             z-index: 10;
-            padding-top: 130px;
+            padding-top: 70px;
         }
 
         .stack-section-header {
@@ -2173,7 +2182,7 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 3px;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             display: block;
         }
@@ -2190,16 +2199,15 @@
         .stack-section-header h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #0024E8 !important;
+            color: #4D6FFF !important;
         }
 
         .stack-container {
             position: relative;
             width: 81%;
             max-width: 1320px;
-            flex: 1 1 0%;
-            max-height: 64vh;
-            min-height: 500px;
+            height: 64vh;
+            min-height: 560px;
             margin-top: 0;
         }
 
@@ -2223,7 +2231,7 @@
         }
 
         .stack-card:nth-child(1) {
-            background: linear-gradient(135deg, #2B2BEB 0%, #1717B8 100%);
+            background: linear-gradient(135deg, #1B4FFF 0%, #1440D4 100%);
             z-index: 10;
         }
 
@@ -2239,13 +2247,13 @@
 
         .stack-card:nth-child(4) {
             background: linear-gradient(135deg, #1B2E6B 0%, #14255A 100%);
-            border-color: rgba(80, 80, 245, 0.22) !important;
+            border-color: rgba(77, 111, 255, 0.22) !important;
             z-index: 40;
         }
 
         .stack-card:nth-child(5) {
             background: linear-gradient(135deg, #162554 0%, #0F1D44 100%);
-            border-color: rgba(80, 80, 245, 0.28) !important;
+            border-color: rgba(77, 111, 255, 0.28) !important;
             z-index: 50;
         }
 
@@ -2291,12 +2299,6 @@
             color: #FFFFFF !important;
         }
 
-        @media (min-width: 1301px) {
-            #service-5 .stack-title h2 {
-                font-size: 2.1rem;
-            }
-        }
-
         .stack-desc {
             font-size: 1.05rem;
             line-height: 1.65;
@@ -2314,12 +2316,12 @@
         }
 
         .stack-tags span {
-            background: rgba(0, 36, 232, 0.12);
+            background: rgba(27, 79, 255, 0.12);
             padding: 8px 18px;
             border-radius: 20px;
             white-space: nowrap;
             color: #FFFFFF !important;
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            border: 1px solid rgba(27, 79, 255, 0.2);
         }
 
         .stack-right {
@@ -2375,7 +2377,7 @@
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             margin-bottom: 8px;
             display: block;
@@ -2392,7 +2394,7 @@
         .how-header h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .how-track-wrapper {
@@ -2417,7 +2419,7 @@
             min-width: 260px;
             height: 360px;
             background: linear-gradient(145deg, #eef2fb 0%, #ffffff 100%);
-            border: 1px solid rgba(0, 36, 232, 0.14);
+            border: 1px solid rgba(27, 79, 255, 0.14);
             border-radius: 20px;
             padding: 44px 38px;
             display: flex;
@@ -2429,7 +2431,7 @@
         }
 
         .how-card:hover {
-            border-color: rgba(0, 36, 232, 0.35);
+            border-color: rgba(27, 79, 255, 0.35);
             transform: translateY(-5px);
             box-shadow: 0 16px 36px rgba(8, 15, 40, 0.22);
         }
@@ -2438,7 +2440,7 @@
             font-family: var(--font-headings);
             font-size: 3.8rem;
             font-weight: 900;
-            color: #0024E8;
+            color: #4D6FFF;
             line-height: 1;
             font-style: italic;
         }
@@ -2482,7 +2484,7 @@
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
-            color: #0024E8;
+            color: #4D6FFF;
             text-transform: uppercase;
             margin-bottom: 8px;
             display: block;
@@ -2499,7 +2501,7 @@
         .about-header h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .about-desc-preview {
@@ -2555,7 +2557,7 @@
             max-height: 560px;
             object-fit: contain;
             opacity: 0.55;
-            filter: saturate(1.25) brightness(1.05) drop-shadow(0 0 40px rgba(0, 36, 232, 0.35));
+            filter: saturate(1.25) brightness(1.05) drop-shadow(0 0 40px rgba(77, 111, 255, 0.35));
         }
 
         .bear-mascot .mascot-img {
@@ -2572,7 +2574,7 @@
             padding-top: 56.25%;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 36, 232, 0.1);
+            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.6), 0 0 50px rgba(27, 79, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.12);
             transform-style: preserve-3d;
             will-change: transform;
@@ -2639,7 +2641,7 @@
 
         .result-card {
             background: #f5f7ff;
-            border: 1px solid rgba(0, 36, 232, 0.15);
+            border: 1px solid rgba(27, 79, 255, 0.15);
             border-radius: 16px;
             padding: 32px 24px;
             display: flex;
@@ -2651,14 +2653,14 @@
 
         .result-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(0, 36, 232, 0.4);
+            border-color: rgba(27, 79, 255, 0.4);
         }
 
         .result-card .screenshot-placeholder {
             width: 100%;
             height: 150px;
-            background: rgba(0, 36, 232, 0.04);
-            border: 1px dashed rgba(0, 36, 232, 0.25);
+            background: rgba(77, 111, 255, 0.04);
+            border: 1px dashed rgba(27, 79, 255, 0.25);
             border-radius: 8px;
             margin-bottom: 18px;
             display: flex;
@@ -2682,8 +2684,8 @@
         }
 
         .result-card .metric-item {
-            background: rgba(0, 36, 232, 0.06);
-            border: 1px solid rgba(0, 36, 232, 0.18);
+            background: rgba(77, 111, 255, 0.06);
+            border: 1px solid rgba(27, 79, 255, 0.18);
             padding: 8px 14px;
             border-radius: 6px;
             text-align: center;
@@ -2700,7 +2702,7 @@
 
         .result-card .metric-item strong {
             font-size: 1.1rem;
-            color: #0024E8;
+            color: #4D6FFF;
             font-weight: 700;
         }
 
@@ -2751,7 +2753,7 @@
 
         .podcast-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(0, 36, 232, 0.4);
+            border-color: rgba(27, 79, 255, 0.4);
         }
 
         .podcast-thumb {
@@ -2803,7 +2805,7 @@
         }
 
         .podcast-card:hover .play-overlay {
-            background: #0024E8;
+            background: #1B4FFF;
             transform: translate(-50%, -50%) scale(1.08);
         }
 
@@ -2837,8 +2839,8 @@
             width: fit-content;
             padding: 11px 18px;
             border-radius: 12px;
-            background: rgba(0, 36, 232, 0.1);
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            background: rgba(27, 79, 255, 0.1);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             color: #FFFFFF;
             text-decoration: none;
             font-size: 0.9rem;
@@ -2847,8 +2849,8 @@
         }
 
         .podcast-link:hover {
-            background: #0024E8;
-            border-color: #0024E8;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             color: #FFFFFF !important;
             transform: translateY(-2px);
         }
@@ -2937,9 +2939,9 @@
             gap: 10px;
             padding: 14px 36px;
             background: transparent;
-            border: 1.5px solid rgba(0, 36, 232, 0.5);
+            border: 1.5px solid rgba(27, 79, 255, 0.5);
             border-radius: 50px;
-            color: #0024E8;
+            color: #1B4FFF;
             font-family: var(--font-nav);
             font-size: 12px;
             font-weight: 700;
@@ -2950,9 +2952,9 @@
         }
 
         .gallery-show-more-btn:hover {
-            background: #0024E8;
-            border-color: #0024E8;
-            box-shadow: 0 8px 26px rgba(0, 36, 232, 0.35);
+            background: #1B4FFF;
+            border-color: #1B4FFF;
+            box-shadow: 0 8px 26px rgba(27, 79, 255, 0.35);
             transform: translateY(-2px);
         }
 
@@ -2977,10 +2979,10 @@
         }
 
         .podcast-view-all-btn:hover {
-            background: #0024E8;
-            border-color: #0024E8;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             color: #FFFFFF !important;
-            box-shadow: 0 8px 26px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 8px 26px rgba(27, 79, 255, 0.4);
             transform: translateY(-2px);
         }
 
@@ -3032,7 +3034,7 @@
         .hero-title span.italic {
             font-style: italic;
             font-weight: 800;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .hero-subtitle {
@@ -3060,8 +3062,8 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(0, 36, 232, 0.15);
-            border: 1px solid rgba(0, 36, 232, 0.3);
+            background: rgba(27, 79, 255, 0.15);
+            border: 1px solid rgba(27, 79, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -3177,7 +3179,7 @@
         }
 
         .form-input:focus {
-            border-bottom-color: #0024E8;
+            border-bottom-color: #1B4FFF;
         }
 
         .phone-input-wrapper {
@@ -3188,7 +3190,7 @@
         }
 
         .phone-input-wrapper:focus-within {
-            border-bottom-color: #0024E8;
+            border-bottom-color: #1B4FFF;
         }
 
         .country-selector {
@@ -3241,7 +3243,7 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #ffffff;
             border: none;
             border-radius: 50px;
@@ -3251,14 +3253,14 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            box-shadow: 0 12px 28px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 12px 28px rgba(27, 79, 255, 0.4);
             margin-top: 35px;
             transition: box-shadow 0.3s ease, transform 0.15s ease;
             padding: 0;
         }
 
         .submit-action:hover {
-            box-shadow: 0 16px 36px rgba(0, 36, 232, 0.55);
+            box-shadow: 0 16px 36px rgba(27, 79, 255, 0.55);
         }
 
         .submit-action:active {
@@ -3429,7 +3431,7 @@
             width: 46px;
             height: 46px;
             border-radius: 50%;
-            background: #0024E8;
+            background: #1B4FFF;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -3437,12 +3439,12 @@
             text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: none;
-            box-shadow: 0 4px 14px rgba(0, 36, 232, 0.45);
+            box-shadow: 0 4px 14px rgba(27, 79, 255, 0.45);
         }
 
         .fvc-linkedin-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(0, 36, 232, 0.65);
+            box-shadow: 0 8px 24px rgba(27, 79, 255, 0.65);
         }
 
         .fvc-linkedin-btn svg {
@@ -3469,7 +3471,7 @@
         .faq-left h2 span.faq-accent {
             font-style: italic;
             font-weight: 400;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .faq-left p {
@@ -3481,7 +3483,7 @@
 
         .founder-card {
             background: #070b19;
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             border-radius: 20px;
             padding: 28px;
         }
@@ -3538,9 +3540,9 @@
         }
 
         .faq-tab-btn.active {
-            background: #0024E8;
+            background: linear-gradient(135deg, #4D6FFF 0%, #1B4FFF 100%);
             color: #FFFFFF !important;
-            box-shadow: 0 4px 16px rgba(0, 36, 232, 0.35);
+            box-shadow: 0 4px 16px rgba(27, 79, 255, 0.35);
         }
 
         .faq-category-set {
@@ -3589,13 +3591,13 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(0, 36, 232, 0.1);
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            background: rgba(27, 79, 255, 0.1);
+            border: 1px solid rgba(27, 79, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            color: #0024E8;
+            color: #4D6FFF;
             transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
         }
@@ -3613,9 +3615,9 @@
         }
 
         .faq-item-wrapper.active .accordion-toggle {
-            background: #0024E8;
+            background: #1B4FFF;
             color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(0, 36, 232, 0.4);
+            box-shadow: 0 4px 14px rgba(27, 79, 255, 0.4);
         }
 
         .faq-item-wrapper.active .accordion-toggle svg {
@@ -3688,7 +3690,7 @@
             margin-bottom: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #0024E8;
+            color: #4D6FFF;
         }
 
         .footer-links ul {
@@ -3744,8 +3746,8 @@
         }
 
         .footer-social-link:hover {
-            background: #0024E8;
-            border-color: #0024E8;
+            background: #1B4FFF;
+            border-color: #1B4FFF;
             transform: translateY(-2px);
         }
 
@@ -3929,8 +3931,8 @@
 
         .social-dock-link:hover {
             transform: translateY(-4px);
-            background-color: #0024E8;
-            box-shadow: 0 12px 28px rgba(0, 36, 232, 0.45);
+            background-color: #1B4FFF;
+            box-shadow: 0 12px 28px rgba(27, 79, 255, 0.45);
         }
 
         .social-dock-link svg {
@@ -3939,71 +3941,6 @@
             fill: #FFFFFF;
             display: block;
             margin: auto;
-        }
-
-        /* ── Local time badge (bottom-left corner) ── */
-        .local-time-dock {
-            position: fixed;
-            bottom: 36px;
-            left: 36px;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            pointer-events: none;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .local-time-dock.hidden {
-            opacity: 0;
-            transform: translateY(8px);
-            pointer-events: none;
-        }
-
-        .ltb-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #0024E8;
-            flex-shrink: 0;
-            animation: ltbPulse 2s infinite;
-        }
-
-        @keyframes ltbPulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 36, 232, 0.5); }
-            70% { box-shadow: 0 0 0 9px rgba(0, 36, 232, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 36, 232, 0); }
-        }
-
-        /* Text color is flipped by JS (updateBadgeContrast) to match
-           whatever section is actually behind the fixed badge as the
-           page scrolls underneath it: black over light sections,
-           white over dark sections. */
-        .ltb-text {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .ltb-date {
-            font-family: var(--font-nav);
-            font-size: 15px;
-            font-weight: 700;
-            color: #FFFFFF;
-            transition: color 0.2s ease;
-        }
-
-        .ltb-time {
-            font-family: var(--font-nav);
-            font-size: 13px;
-            font-weight: 600;
-            color: #FFFFFF;
-            transition: color 0.2s ease;
-        }
-
-        .local-time-dock.on-light .ltb-date,
-        .local-time-dock.on-light .ltb-time {
-            color: #0B0F19;
         }
 
 
@@ -4027,7 +3964,7 @@
                 -webkit-backdrop-filter: blur(15px);
                 border: 1px solid rgba(0, 0, 0, 0.06);
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-                top: calc(var(--ribbon-h, 0px) + 12px);
+                top: 12px;
             }
 
             .header.scrolled {
@@ -4066,7 +4003,7 @@
 
             /* Logo: brand color on light header, white on dark scrolled */
             #header--logo img {
-                filter: invert(18.24%) sepia(87.05%) saturate(1020.32%) hue-rotate(207.83deg) brightness(135.45%) contrast(182.74%);
+                filter: invert(31%) sepia(98%) saturate(1832%) hue-rotate(213deg) brightness(94%) contrast(96%);
             }
 
             .header.scrolled #header--logo img {
@@ -4074,7 +4011,7 @@
             }
 
             .logo-text-fallback {
-                color: #0024E8;
+                color: #1B4FFF;
                 font-size: 1.4rem;
             }
 
@@ -4090,12 +4027,12 @@
             }
 
             h1 .light-text {
-                font-size: 2.8rem;
+                font-size: 2.1rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 3.3rem;
-                letter-spacing: -2.5px;
+                font-size: 3.2rem;
+                letter-spacing: -2px;
                 min-height: auto;
             }
 
@@ -4113,10 +4050,6 @@
                 bottom: 16px;
                 right: 16px;
                 gap: 8px;
-            }
-
-            .local-time-dock {
-                display: none;
             }
 
             .trustpilot-badge {
@@ -4355,11 +4288,11 @@
 
         @media (max-width: 768px) {
             h1 .light-text {
-                font-size: 2.3rem;
+                font-size: 1.8rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 2.7rem;
+                font-size: 2.8rem;
                 letter-spacing: -2px;
                 min-height: auto;
             }
@@ -4482,12 +4415,12 @@
 
         @media (max-width: 480px) {
             h1 .light-text {
-                font-size: 2.05rem;
+                font-size: 1.65rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 2.3rem;
-                letter-spacing: -1.8px;
+                font-size: 2.5rem;
+                letter-spacing: -1.5px;
             }
 
             .hero-screen {
@@ -4610,11 +4543,11 @@
             }
 
             h1 .light-text {
-                font-size: 1.85rem;
+                font-size: 1.5rem;
             }
 
             h1 .bold-italic-text {
-                font-size: 2rem;
+                font-size: 2.2rem;
                 min-height: 52px;
                 letter-spacing: -1.5px;
             }
@@ -4650,227 +4583,14 @@
 
             /* Navbar top offset for landscape */
             .header {
-                top: calc(var(--ribbon-h, 0px) + 8px);
+                top: 8px;
             }
-        }
-
-        /* ===== MARKET MOVERS RIBBON ===== */
-        html {
-            --ribbon-h: 38px;
-        }
-
-        html.ribbon-closed {
-            --ribbon-h: 0px;
-        }
-
-        body {
-            padding-top: var(--ribbon-h, 0px);
-            transition: padding-top 0.4s ease;
-        }
-
-        .market-ribbon {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--ribbon-h, 38px);
-            background: linear-gradient(135deg, #00318C 0%, #0024E8 100%);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            z-index: 1100;
-            font-family: var(--font-primary);
-            transition: height 0.4s ease;
-        }
-
-        html.ribbon-closed .market-ribbon {
-            display: none;
-        }
-
-        .market-ribbon__label {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 0 16px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.12);
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            white-space: nowrap;
-        }
-
-        .market-ribbon__live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent-gold);
-            box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.7);
-            animation: ribbon-pulse 1.6s infinite;
-        }
-
-        @keyframes ribbon-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.6); }
-            70% { box-shadow: 0 0 0 6px rgba(201, 168, 76, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
-        }
-
-        .market-ribbon__track-wrap {
-            flex: 1 1 auto;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .market-ribbon__track {
-            display: inline-flex;
-            align-items: center;
-            height: 100%;
-            white-space: nowrap;
-            animation: ribbon-marquee 55s linear infinite;
-            will-change: transform;
-        }
-
-        .market-ribbon:hover .market-ribbon__track {
-            animation-play-state: paused;
-        }
-
-        @keyframes ribbon-marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        .market-ribbon__item {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0 14px;
-            font-size: 12.5px;
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .market-ribbon__symbol {
-            font-weight: 700;
-            letter-spacing: 0.01em;
-        }
-
-        .market-ribbon__price {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .market-ribbon__change {
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .market-ribbon__change.up {
-            color: #6FFFA9;
-        }
-
-        .market-ribbon__change.down {
-            color: #FFB4B4;
-        }
-
-        .market-ribbon__dot {
-            flex: 0 0 auto;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .market-ribbon__close {
-            flex: 0 0 auto;
-            width: 38px;
-            height: 100%;
-            border: none;
-            background: rgba(0, 0, 0, 0.12);
-            color: #fff;
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .market-ribbon__close:hover {
-            background: rgba(0, 0, 0, 0.22);
-        }
-
-        @media (max-width: 768px) {
-            html { --ribbon-h: 34px; }
-            .market-ribbon__label { display: none; }
-            .market-ribbon__item { font-size: 11.5px; padding: 0 10px; }
         }
 
     </style>
 </head>
 
 <body>
-    <!-- MARKET MOVERS RIBBON -->
-    <div class="market-ribbon" id="marketRibbon">
-        <div class="market-ribbon__label">
-            <span class="market-ribbon__live-dot"></span>
-            NSE LIVE
-        </div>
-        <div class="market-ribbon__track-wrap">
-            <div class="market-ribbon__track" id="marketRibbonTrack"></div>
-        </div>
-        <button class="market-ribbon__close" id="marketRibbonClose" aria-label="Close market ticker">&times;</button>
-    </div>
-    <script>
-        (function () {
-            var root = document.documentElement;
-            if (sessionStorage.getItem('marketRibbonClosed') === '1') {
-                root.classList.add('ribbon-closed');
-            }
-
-            var closeBtn = document.getElementById('marketRibbonClose');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function () {
-                    root.classList.add('ribbon-closed');
-                    sessionStorage.setItem('marketRibbonClosed', '1');
-                });
-            }
-
-            var track = document.getElementById('marketRibbonTrack');
-            if (!track) return;
-
-            function formatItem(m) {
-                var isUp = m.change >= 0;
-                var arrow = isUp ? '▲' : '▼';
-                var price = '₹' + Number(m.ltp).toFixed(2);
-                var change = (isUp ? '+' : '') + Number(m.change).toFixed(2) + '%';
-                return (
-                    '<span class="market-ribbon__item">' +
-                        '<span class="market-ribbon__symbol">' + m.symbol + '</span>' +
-                        '<span class="market-ribbon__price">' + price + '</span>' +
-                        '<span class="market-ribbon__change ' + (isUp ? 'up' : 'down') + '">' + arrow + ' ' + change + '</span>' +
-                    '</span>' +
-                    '<span class="market-ribbon__dot"></span>'
-                );
-            }
-
-            fetch('market-movers.json', { cache: 'no-store' })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    var movers = (data && data.movers) || [];
-                    if (!movers.length) return;
-                    var html = movers.map(formatItem).join('');
-                    // Duplicate content so the marquee loop is seamless at -50% translateX
-                    track.innerHTML = html + html;
-                })
-                .catch(function () {
-                    // Leave ribbon visually empty if the data file isn't reachable yet
-                });
-        })();
-    </script>
-
     <div class="custom-cursor" id="cursor"></div>
 
     <!-- Background Lines (no candle canvas) -->
@@ -4895,7 +4615,7 @@
                         <a href="#" aria-label="Homepage" class="header--logo-link">
                             <div id="header--logo">
                                 <img src="logo.png" alt="The Trading Scholar"
-                                    style="width: 54px; height: 46px; display: block; object-fit: contain;">
+                                    style="width: 45px; height: 38px; display: block; object-fit: contain;">
                             </div>
                             <div class="header--logo-two">
                                 <span class="logo-text-fallback" id="brandLabel">The Trading Scholar</span>
@@ -5078,7 +4798,7 @@
                                     <svg class="mega-collage-icon" viewBox="0 0 24 24">
                                         <path
                                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"
-                                            fill="rgba(0,36,232,0.4)" />
+                                            fill="rgba(96,165,250,0.4)" />
                                     </svg>
                                     <span class="mega-collage-label">Student Results</span>
                                 </div>
@@ -5333,14 +5053,17 @@
 <div class="hero-container">
 
             <h1>
-                <span class="light-text">The Market Rewards.<br>Only the Educated.</span>
-                <span class="bold-italic-text">Are You Ready?</span>
+                <span class="light-text">Reimagining The Future Of</span>
+                <span class="bold-italic-text" id="rotating-container">
+                    <span class="rotating-word" id="dynamic-text">Modern Trading</span>
+                </span>
             </h1>
         </div>
 
         <p class="hero-sub">
-            Stop trading on instinct. Start trading on a system. In 90 days, you will have clarity, the strategy,
-            and the confidence that profitable traders are built on.
+            Built for traders who seek consistency over chaos, systems over speculation, and long-term wealth over
+            short-term excitement. The Trading Scholar helps serious traders approach markets with institutional
+            thinking, disciplined execution, and structured risk management.
         </p>
 
         <div class="hero-footer-row">
@@ -5350,66 +5073,66 @@
                     <div class="stat-circle">
                         <span id="counter-years">0</span>+
                         <div class="stat-icon">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="stat-text">Years of<br>Live Trading</div>
+                    <div class="stat-text">Years of<br>Experience</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-circle" style="font-size:1rem;">
+                    <div class="stat-circle" style="font-size:0.85rem;">
                         <span id="counter-students">0</span>+
                         <div class="stat-icon">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="stat-text">Traders,<br>Transformed</div>
+                    <div class="stat-text">Students<br>Trained</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-circle">
-                        <span id="counter-courses">0</span>
+                    <div class="stat-circle" style="font-size:0.9rem;">
+                        <span id="counter-courses">0</span>+
                         <div class="stat-icon">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="stat-text">Adjustment<br>Hedging</div>
+                    <div class="stat-text">Courses<br>Launched</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-circle">
-                        <span id="counter-success">0</span>
+                    <div class="stat-circle" style="font-size:0.85rem;">
+                        <span id="counter-success">0</span>%
                         <div class="stat-icon">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="stat-text">Offerings.<br>Zero Gaps</div>
+                    <div class="stat-text">Student<br>Success Rate</div>
                 </div>
             </div>
 
             <!-- CTA Buttons — slide animation -->
             <div class="hero-actions">
                 <a href="#courses" class="hero-cta-btn filled">
-                    <span class="btn-sizer">Explore Courses</span>
-                    <span class="btn-row btn-visible">Explore Courses</span>
-                    <span class="btn-row btn-ghost">Explore Courses</span>
+                    <span class="btn-sizer">Explore Programs</span>
+                    <span class="btn-row btn-visible">Explore Programs</span>
+                    <span class="btn-row btn-ghost">Explore Programs</span>
                 </a>
                 <a href="#stack-viewport" class="hero-cta-btn outline">
-                    <span class="btn-sizer">View Services</span>
-                    <span class="btn-row btn-visible">View Services</span>
-                    <span class="btn-row btn-ghost">View Services</span>
+                    <span class="btn-sizer">Our Services</span>
+                    <span class="btn-row btn-visible">Our Services</span>
+                    <span class="btn-row btn-ghost">Our Services</span>
                 </a>
             </div>
         </div>
@@ -5466,7 +5189,7 @@
     <section class="animation-viewport" id="pin-section">
         <div class="section-hdr" id="problems">
             <span class="sub-title">Core Market Realities</span>
-            <h2>The Professional Edge vs. <span>Retail Mistakes</span></h2>
+            <h2>Systemic Execution vs. <span>Common Retail Traps</span></h2>
         </div>
 
         <div class="viewport-watermark">Outcome-Driven Trading</div>
@@ -5476,18 +5199,19 @@
                 <div class="card-inner">
                     <div class="card-face card-front">
                         <div><span class="face-tag">Problem 01</span>
-                            <h3 style="margin-top:15px;">The Option Buyer's Trap</h3>
+                            <h3 style="margin-top:15px;">Option Buying Losses</h3>
                         </div>
                         <div class="card-icon"><img src="problem1.png" alt="Problem 1"></div>
-                        <p>Option buying promises big returns, but time decay, volatility changes, and poor trade selection can turn a right view into a losing trade.</p>
+                        <p>Traders continuously lose money chasing quick directional moves without a defined
+                            risk-management system.</p>
                     </div>
                     <div class="card-face card-back">
                         <div><span class="face-tag">Solution 01</span>
-                            <h3 style="margin-top:15px;">The Theta Edge</h3>
+                            <h3 style="margin-top:15px;">Institutional Mindset</h3>
                         </div>
                         <div class="card-icon"><img src="solution1.png" alt="Solution 1"></div>
-                        <p>Stop fighting time decay. Learn strategies where theta works in your favor, helping you
-                            generate consistent returns day after day.</p>
+                        <p>Trade with structured systems instead of emotional speculation. Learn to act like a market
+                            participant.</p>
                     </div>
                 </div>
             </div>
@@ -5495,19 +5219,19 @@
                 <div class="card-inner">
                     <div class="card-face card-front">
                         <div><span class="face-tag">Problem 02</span>
-                            <h3 style="margin-top:15px;">The Borrowed Confidence</h3>
+                            <h3 style="margin-top:15px;">Emotional Trading</h3>
                         </div>
                         <div class="card-icon"><img src="problem2.png" alt="Problem 2"></div>
-                        <p>Relying on tips, calls, and opinions leaves your success dependent on someone else's
-                            conviction, not your own.</p>
+                        <p>Fear, greed, revenge trading, and lack of discipline destroy consistency and wipe out
+                            accounts.</p>
                     </div>
                     <div class="card-face card-back">
                         <div><span class="face-tag">Solution 02</span>
-                            <h3 style="margin-top:15px;">The Earned Conviction</h3>
+                            <h3 style="margin-top:15px;">Hedging Systems</h3>
                         </div>
                         <div class="card-icon"><img src="solution2.png" alt="Solution 2"></div>
-                        <p>Master the system, not stock tips. Build confidence through understanding so every trade is
-                            backed by logic, not hope.</p>
+                        <p>Implement strategies specifically designed to reduce drawdowns and protect capital across all
+                            conditions.</p>
                     </div>
                 </div>
             </div>
@@ -5515,19 +5239,19 @@
                 <div class="card-inner">
                     <div class="card-face card-front">
                         <div><span class="face-tag">Problem 03</span>
-                            <h3 style="margin-top:15px;">The Mind Trap</h3>
+                            <h3 style="margin-top:15px;">No Scalability</h3>
                         </div>
                         <div class="card-icon"><img src="problem3.png" alt="Problem 3"></div>
-                        <p>Fear, greed, revenge trading, and overconfidence turn good setups into bad decisions and
-                            inconsistent results.</p>
+                        <p>Most retail strategies fail when capital increases because they lack institutional risk
+                            management metrics.</p>
                     </div>
                     <div class="card-face card-back">
                         <div><span class="face-tag">Solution 03</span>
-                            <h3 style="margin-top:15px;">The Systematic Edge</h3>
+                            <h3 style="margin-top:15px;">Systematic Execution</h3>
                         </div>
                         <div class="card-icon"><img src="solution3.png" alt="Solution 3"></div>
-                        <p>Trade with predefined rules and backtested strategies. Remove guesswork and let discipline
-                            replace emotion.</p>
+                        <p>Clear frameworks, repeatable processes, and pre-defined setups remove emotion before the
+                            market opens.</p>
                     </div>
                 </div>
             </div>
@@ -5535,19 +5259,19 @@
                 <div class="card-inner">
                     <div class="card-face card-front">
                         <div><span class="face-tag">Problem 04</span>
-                            <h3 style="margin-top:15px;">The Isolation Trap</h3>
+                            <h3 style="margin-top:15px;">No Structured Mentorship</h3>
                         </div>
                         <div class="card-icon"><img src="problem4.png" alt="Problem 4"></div>
-                        <p>Without feedback, guidance, or trade reviews, mistakes repeat and blind spots remain
-                            invisible.</p>
+                        <p>Jumping from video to video creates confusion. Most traders never learn live execution
+                            pressure management.</p>
                     </div>
                     <div class="card-face card-back">
                         <div><span class="face-tag">Solution 04</span>
-                            <h3 style="margin-top:15px;">The Mentor's Edge</h3>
+                            <h3 style="margin-top:15px;">Mentorship &amp; Guidance</h3>
                         </div>
                         <div class="card-icon"><img src="solution4.png" alt="Solution 4"></div>
-                        <p>Gain expert guidance, trade reviews, and accountability that uncover blind spots and
-                            accelerate your growth.</p>
+                        <p>Direct learning from 9+ years of real market experience and live execution. Personalization
+                            leads to mastery.</p>
                     </div>
                 </div>
             </div>
@@ -5916,7 +5640,7 @@
                     systematic options selling with strict code logic changed my performance profile."</p>
                 <div style="display:flex;align-items:center;">
                     <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
+                        style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         RS</div>
                     <div style="margin-left:12px;text-align:left;">
                         <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Rohan Sharma</h4>
@@ -5940,7 +5664,7 @@
                     account capital. I stopped experiencing emotional drawdowns."</p>
                 <div style="display:flex;align-items:center;">
                     <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
+                        style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         PP</div>
                     <div style="margin-left:12px;text-align:left;">
                         <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Priya Patel</h4>
@@ -5965,7 +5689,7 @@
                     I sleep peacefully knowing my maximum risk is always hedged."</p>
                 <div style="display:flex;align-items:center;">
                     <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
+                        style="width:40px;height:40px;background:#1B4FFF;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
                         AJ</div>
                     <div style="margin-left:12px;text-align:left;">
                         <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Ankit Joshi</h4>
@@ -6594,15 +6318,6 @@
         </div>
     </footer>
 
-    <!-- Local Time Badge (bottom-left corner) -->
-    <div class="local-time-dock" id="localTimeBadge">
-        <span class="ltb-dot"></span>
-        <div class="ltb-text">
-            <span class="ltb-date" id="ltbDate">Mon, Jun 22nd</span>
-            <span class="ltb-time" id="ltbTime">6:30 pm, India</span>
-        </div>
-    </div>
-
     <!-- Fixed Bottom Dock -->
     <div class="fixed-bottom-dock">
 
@@ -6761,7 +6476,7 @@
                     const lastPoint = drawPoints[drawPoints.length - 1];
 
                     /* Horizontal price line */
-                    ctx.strokeStyle = 'rgba(0, 36, 232, 0.04)';
+                    ctx.strokeStyle = 'rgba(27, 79, 255, 0.04)';
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(0, lastPoint.y);
@@ -6776,18 +6491,18 @@
                     ctx.closePath();
 
                     const gradient = ctx.createLinearGradient(0, 0, 0, h);
-                    gradient.addColorStop(0, 'rgba(0, 36, 232, 0.05)');
-                    gradient.addColorStop(0.5, 'rgba(0, 36, 232, 0.02)');
-                    gradient.addColorStop(1, 'rgba(0, 36, 232, 0)');
+                    gradient.addColorStop(0, 'rgba(27, 79, 255, 0.05)');
+                    gradient.addColorStop(0.5, 'rgba(27, 79, 255, 0.02)');
+                    gradient.addColorStop(1, 'rgba(27, 79, 255, 0)');
                     ctx.fillStyle = gradient;
                     ctx.fill();
 
                     /* Line stroke */
-                    ctx.strokeStyle = 'rgba(0, 36, 232, 0.18)';
+                    ctx.strokeStyle = 'rgba(27, 79, 255, 0.18)';
                     ctx.lineWidth = 1.5;
                     ctx.lineCap = 'round';
                     ctx.lineJoin = 'round';
-                    ctx.shadowColor = 'rgba(0, 36, 232, 0.12)';
+                    ctx.shadowColor = 'rgba(27, 79, 255, 0.12)';
                     ctx.shadowBlur = 3;
 
                     ctx.beginPath();
@@ -6802,18 +6517,18 @@
                     const innerPulseRadius = 6 + Math.sin(pulsePeriod) * 1.2;
                     const outerPulseRadius = 11 + Math.sin(pulsePeriod) * 1.6;
 
-                    ctx.fillStyle = 'rgba(0, 36, 232, 0.04)';
+                    ctx.fillStyle = 'rgba(27, 79, 255, 0.04)';
                     ctx.beginPath();
                     ctx.arc(lastPoint.x, lastPoint.y, outerPulseRadius, 0, Math.PI * 2);
                     ctx.fill();
 
-                    ctx.fillStyle = 'rgba(0, 36, 232, 0.12)';
+                    ctx.fillStyle = 'rgba(27, 79, 255, 0.12)';
                     ctx.beginPath();
                     ctx.arc(lastPoint.x, lastPoint.y, innerPulseRadius, 0, Math.PI * 2);
                     ctx.fill();
 
                     ctx.fillStyle = '#ffffff';
-                    ctx.strokeStyle = '#0024E8';
+                    ctx.strokeStyle = '#1B4FFF';
                     ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.arc(lastPoint.x, lastPoint.y, 3.5, 0, Math.PI * 2);
@@ -6905,6 +6620,25 @@
             megaMenuItems.forEach(item => item.classList.remove('active'));
         });
 
+        /* ===== ROTATING HERO TEXT ===== */
+        const dynamicText = document.getElementById('dynamic-text');
+        const phrases = ["Modern Trading", "Indian Trading", "Future Trading"];
+        let phraseCount = 0;
+
+        setInterval(() => {
+            dynamicText.style.opacity = '0';
+            dynamicText.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                phraseCount = (phraseCount + 1) % phrases.length;
+                dynamicText.textContent = phrases[phraseCount];
+                dynamicText.style.transform = 'translateY(-10px)';
+                requestAnimationFrame(() => {
+                    dynamicText.style.opacity = '1';
+                    dynamicText.style.transform = 'translateY(0)';
+                });
+            }, 350);
+        }, 3200);
+
         /* ===== COUNTER ANIMATION ===== */
         function runCounter(elementId, end, duration, suffix) {
             const el = document.getElementById(elementId);
@@ -6924,96 +6658,12 @@
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.hero-screen').classList.add('loaded');
             setTimeout(() => {
-                runCounter('counter-years', 10, 1500);
+                runCounter('counter-years', 9, 1500);
                 runCounter('counter-students', 1000, 2000);
-                runCounter('counter-courses', 0, 1200);
-                runCounter('counter-success', 7, 1800);
+                runCounter('counter-courses', 3, 1200);
+                runCounter('counter-success', 71, 1800);
             }, 300);
         });
-
-        /* ===== LOCAL TIME BADGE (India) ===== */
-        function ordinalSuffix(day) {
-            if (day > 3 && day < 21) return 'th';
-            switch (day % 10) {
-                case 1: return 'st';
-                case 2: return 'nd';
-                case 3: return 'rd';
-                default: return 'th';
-            }
-        }
-
-        function updateLocalTimeBadge() {
-            const dateEl = document.getElementById('ltbDate');
-            const timeEl = document.getElementById('ltbTime');
-            if (!dateEl || !timeEl) return;
-            const now = new Date();
-            const weekday = now.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'Asia/Kolkata' });
-            const month = now.toLocaleDateString('en-US', { month: 'short', timeZone: 'Asia/Kolkata' });
-            const day = parseInt(now.toLocaleDateString('en-US', { day: 'numeric', timeZone: 'Asia/Kolkata' }), 10);
-            const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' }).toLowerCase();
-            dateEl.textContent = `${weekday}, ${month} ${day}${ordinalSuffix(day)}`;
-            timeEl.textContent = `${time}, India`;
-        }
-
-        updateLocalTimeBadge();
-        setInterval(updateLocalTimeBadge, 30000);
-
-        /* Sample the actual background behind the badge so its text can
-           flip black/white to stay readable, instead of relying on
-           mix-blend-mode (which can't blend through a fixed element's
-           own stacking context). */
-        (function () {
-            const dock = document.getElementById('localTimeBadge');
-            if (!dock) return;
-
-            function parseRgb(str) {
-                const m = str && str.match(/rgba?\(([^)]+)\)/);
-                if (!m) return null;
-                const parts = m[1].split(',').map(Number);
-                const [r, g, b, a = 1] = parts;
-                if (a === 0) return null;
-                return { r, g, b };
-            }
-
-            function backgroundLuminance(x, y) {
-                const els = document.elementsFromPoint(x, y);
-                for (const el of els) {
-                    if (el === dock || dock.contains(el)) continue;
-                    let node = el;
-                    while (node && node !== document.documentElement) {
-                        const bg = parseRgb(getComputedStyle(node).backgroundColor);
-                        if (bg) {
-                            return (0.299 * bg.r + 0.587 * bg.g + 0.114 * bg.b) / 255;
-                        }
-                        node = node.parentElement;
-                    }
-                    break;
-                }
-                return 1; // default to light (white page background)
-            }
-
-            function updateBadgeContrast() {
-                const rect = dock.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top + rect.height / 2;
-                const luminance = backgroundLuminance(x, y);
-                dock.classList.toggle('on-light', luminance > 0.5);
-            }
-
-            let ticking = false;
-            function onScrollOrResize() {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(() => {
-                    updateBadgeContrast();
-                    ticking = false;
-                });
-            }
-
-            window.addEventListener('scroll', onScrollOrResize, { passive: true });
-            window.addEventListener('resize', onScrollOrResize);
-            updateBadgeContrast();
-        })();
 
         /* ===== MASTERCLASS COUNTER ===== */
         let masterclassCounterFired = false;
@@ -7189,11 +6839,6 @@
                     pin: true,
                     scrub: true,
                     anticipatePin: 1,
-                    // Background only flips to dark once the section actually takes over
-                    // the viewport (pin engages), not while it's still scrolling into view.
-                    onEnter:     () => gsap.set(vrSticky, { backgroundColor: '#030712' }),
-                    onEnterBack: () => gsap.set(vrSticky, { backgroundColor: '#030712' }),
-                    onLeaveBack: () => gsap.set(vrSticky, { backgroundColor: '#ffffff' }),
                 }
             });
 
@@ -7214,8 +6859,17 @@
                 { opacity: 1, y: 0, duration: 0.2, ease: 'power2.out' },
                 0.55
             );
-            // 75–100%: hold (background is already dark for the whole section)
-            vrTl.to({}, { duration: 0.25 }, 0.75);
+            // 75–85%: hold
+            vrTl.to({}, { duration: 0.1 }, 0.75);
+            // 85–100%: fade bg to dark + top text to white
+            vrTl.to(vrSticky,
+                { backgroundColor: '#030712', duration: 0.15, ease: 'none' },
+                0.85
+            );
+            vrTl.to(vrTop.querySelector('span'),
+                { color: '#ffffff', duration: 0.15, ease: 'none' },
+                0.85
+            );
             /* ---------------------------------------------------------------- */
 
             const cards = gsap.utils.toArray(".card");
@@ -7298,7 +6952,7 @@
             gsap.set('#vr-video', { clearProps: 'width,height,transform' });
             gsap.set('#vr-top',    { opacity: 1, y: 0 });
             gsap.set('#vr-bottom', { opacity: 1, y: 0 });
-            gsap.set('.video-reveal-sticky', { backgroundColor: '#030712' });
+            gsap.set('.video-reveal-sticky', { backgroundColor: '#ffffff' });
 
             gsap.set(".card", { x: 0, y: 0, rotate: 0, opacity: 1 });
             gsap.set(".card-inner", { rotateY: 0 });
@@ -7425,6 +7079,18 @@
             scrollTrigger: { trigger: ".gallery-section", start: "bottom 81%", end: "bottom 62%", scrub: true }
         });
     </script>
+
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var y = p.get('y');
+  if (y) {
+    window.addEventListener('load', function() {
+      setTimeout(function() { window.scrollTo(0, parseInt(y,10)); }, 400);
+    });
+  }
+})();
+</script>
 </body>
 
 </html>

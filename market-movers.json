@@ -1,0 +1,125 @@
+{
+  "updatedAt": "2026-06-22T21:51:51.261915Z",
+  "movers": [
+    {
+      "symbol": "VAML",
+      "ltp": 480.65,
+      "change": 5,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VBL",
+      "ltp": 512,
+      "change": -3.31,
+      "type": "loser"
+    },
+    {
+      "symbol": "VOGL",
+      "ltp": 34.51,
+      "change": 4.99,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACAP",
+      "ltp": 355.95,
+      "change": -2.96,
+      "type": "loser"
+    },
+    {
+      "symbol": "CIPLA",
+      "ltp": 1417,
+      "change": 4.82,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "ltp": 2672.9,
+      "change": -2.2,
+      "type": "loser"
+    },
+    {
+      "symbol": "RECLTD",
+      "ltp": 369.65,
+      "change": 4.02,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "ltp": 5768,
+      "change": -1.65,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1551,
+      "change": 3.23,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HDFCAMC",
+      "ltp": 2682,
+      "change": -1.36,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 3215,
+      "change": 2.84,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TITAN",
+      "ltp": 4367,
+      "change": -1.2,
+      "type": "loser"
+    },
+    {
+      "symbol": "HAL",
+      "ltp": 4515.5,
+      "change": 2.44,
+      "type": "gainer"
+    },
+    {
+      "symbol": "NESTLEIND",
+      "ltp": 1400,
+      "change": -1.05,
+      "type": "loser"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 18489,
+      "change": 2.42,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 992,
+      "change": -0.99,
+      "type": "loser"
+    },
+    {
+      "symbol": "PFC",
+      "ltp": 440.9,
+      "change": 2.3,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TRENT",
+      "ltp": 3176,
+      "change": -0.93,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJAJHLDNG",
+      "ltp": 10922,
+      "change": 2.29,
+      "type": "gainer"
+    },
+    {
+      "symbol": "PIDILITIND",
+      "ltp": 1566.7,
+      "change": -0.84,
+      "type": "loser"
+    }
+  ]
+}
