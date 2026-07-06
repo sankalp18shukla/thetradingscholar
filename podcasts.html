@@ -34,9 +34,9 @@
         :root {
             --primary-bg: #FFFFFF;
             --secondary-bg: #F7F9FC;
-            --primary-accent: #2B2BEB;
-            --secondary-accent: #2B2BEB;
-            --soft-accent: #5050F5;
+            --primary-accent: #0024E8;
+            --secondary-accent: #0024E8;
+            --soft-accent: #0024E8;
             --primary-text: #0B0F19;
             --secondary-text: #5B6475;
             --border-color: #E2E8F0;
@@ -50,9 +50,9 @@
             --color-black: #030712;
             --color-white: #ffffff;
             --color-dark: #101820;
-            --color-blue: #2B2BEB;
-            --color-blue-glow: rgba(43, 43, 235, 0.5);
-            --gradient-button: linear-gradient(135deg, #5050F5 0%, #2B2BEB 100%);
+            --color-blue: #0024E8;
+            --color-blue-glow: rgba(0, 36, 232, 0.5);
+            --gradient-button: linear-gradient(135deg, #0024E8 0%, #0024E8 100%);
             --font-primary: 'Inter', sans-serif;
             --font-headings: 'BwGradual', 'Plus Jakarta Sans', sans-serif;
             --font-display: 'BwGradual', 'Urbanist', 'Plus Jakarta Sans', sans-serif;
@@ -98,7 +98,7 @@
         .custom-cursor {
             width: 10px;
             height: 10px;
-            background-color: #2B2BEB;
+            background-color: #0024E8;
             border-radius: 50%;
             position: fixed;
             top: 0;
@@ -133,11 +133,11 @@
             border-radius: 28px;
             padding: 1.5px;
             background: linear-gradient(90deg, 
-                #2B2BEB 0%, 
-                #5050F5 25%, 
-                #2B2BEB 50%, 
-                #5050F5 75%, 
-                #2B2BEB 100%);
+                #0024E8 0%, 
+                #0024E8 25%, 
+                #0024E8 50%, 
+                #0024E8 75%, 
+                #0024E8 100%);
             background-size: 200% 100%;
             animation: glowFlow 4s linear infinite;
             -webkit-mask: 
@@ -185,25 +185,25 @@
             background: var(--gradient-button);
             color: var(--color-white) !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(43, 43, 235, 0.4);
+            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.4);
         }
 
         .is-style-fill .wp-block-button__link:hover {
-            box-shadow: 0 8px 28px rgba(43, 43, 235, 0.55);
+            box-shadow: 0 8px 28px rgba(0, 36, 232, 0.55);
             transform: translateY(-2px);
         }
 
         .is-style-outline-alt .wp-block-button__link {
             background: transparent;
-            color: #2B2BEB;
-            border: 1.5px solid rgba(43, 43, 235, 0.5);
+            color: #0024E8;
+            border: 1.5px solid rgba(0, 36, 232, 0.5);
         }
 
         .is-style-outline-alt .wp-block-button__link:hover {
-            background: #2B2BEB;
+            background: #0024E8;
             color: var(--color-white) !important;
-            border-color: #2B2BEB;
-            box-shadow: 0 6px 20px rgba(43, 43, 235, 0.35);
+            border-color: #0024E8;
+            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.35);
         }
 
         .gp-arrow {
@@ -238,24 +238,24 @@
             background: var(--gradient-button);
             color: #ffffff !important;
             border: 1px solid transparent;
-            box-shadow: 0 4px 18px rgba(43, 43, 235, 0.4);
+            box-shadow: 0 4px 18px rgba(0, 36, 232, 0.4);
         }
 
         .hero-cta-btn.filled:hover {
-            box-shadow: 0 10px 32px rgba(43, 43, 235, 0.6);
+            box-shadow: 0 10px 32px rgba(0, 36, 232, 0.6);
         }
 
         .hero-cta-btn.outline {
             background: transparent;
-            color: #2B2BEB !important;
-            border: 1.5px solid rgba(43, 43, 235, 0.5);
+            color: #0024E8 !important;
+            border: 1.5px solid rgba(0, 36, 232, 0.5);
         }
 
         .hero-cta-btn.outline:hover {
-            background: #2B2BEB;
+            background: #0024E8;
             color: #ffffff !important;
-            border-color: #2B2BEB;
-            box-shadow: 0 6px 20px rgba(43, 43, 235, 0.35);
+            border-color: #0024E8;
+            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.35);
         }
 
         .hero-cta-btn.white-style {
@@ -266,9 +266,9 @@
         }
 
         .hero-cta-btn.white-style:hover {
-            background: #2B2BEB;
+            background: #0024E8;
             color: #ffffff !important;
-            box-shadow: 0 10px 32px rgba(43, 43, 235, 0.5);
+            box-shadow: 0 10px 32px rgba(0, 36, 232, 0.5);
         }
 
         .hero-cta-btn:active {
@@ -509,21 +509,17 @@
         /* ===== MEGA MENU CONTAINER ===== */
         .header--mega-menu-container {
             position: absolute;
-            top: calc(100% + 8px);
+            top: 100%;
             left: 0;
             width: 100%;
-            background: rgba(6, 8, 22, 0.97);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(43, 43, 235, 0.18);
-            border-radius: 20px;
+            /* Invisible hover-bridge: keeps the old 8px visual gap part of the
+               hoverable hit-area so crossing it doesn't fire mouseleave on .header */
+            padding-top: 8px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(8px);
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-            padding: 32px 48px;
             z-index: 998;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(43, 43, 235, 0.06);
         }
 
         .header.mega-menu-open .header--mega-menu-container {
@@ -534,6 +530,13 @@
 
         .header--mega-menu-item {
             display: none;
+            background: rgba(6, 8, 22, 0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(0, 36, 232, 0.18);
+            border-radius: 20px;
+            padding: 32px 48px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 36, 232, 0.06);
         }
 
         .header--mega-menu-item.active {
@@ -565,14 +568,14 @@
         }
 
         .mega-menu-link-item:hover {
-            background: rgba(43, 43, 235, 0.08);
+            background: rgba(0, 36, 232, 0.08);
         }
 
         .mega-link-icon {
             width: 36px;
             height: 36px;
-            background: rgba(43, 43, 235, 0.12);
-            border: 1px solid rgba(43, 43, 235, 0.2);
+            background: rgba(0, 36, 232, 0.12);
+            border: 1px solid rgba(0, 36, 232, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -584,7 +587,7 @@
         .mega-link-icon svg {
             width: 16px;
             height: 16px;
-            stroke: #5050F5;
+            stroke: #0024E8;
             fill: none;
             stroke-width: 2;
         }
@@ -625,8 +628,8 @@
         .mega-collage-img {
             border-radius: 10px;
             overflow: hidden;
-            background: rgba(43, 43, 235, 0.08);
-            border: 1px solid rgba(43, 43, 235, 0.12);
+            background: rgba(0, 36, 232, 0.08);
+            border: 1px solid rgba(0, 36, 232, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -641,7 +644,7 @@
             width: 100%;
             height: 100%;
             min-height: 80px;
-            background: linear-gradient(135deg, rgba(43, 43, 235, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(0, 36, 232, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -685,7 +688,7 @@
             align-items: center;
             gap: 6px;
             padding: 9px 18px;
-            background: linear-gradient(135deg, #5050F5, #2B2BEB);
+            background: linear-gradient(135deg, #0024E8, #0024E8);
             color: #FFFFFF !important;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -698,7 +701,7 @@
         }
 
         .mega-cta-link:hover {
-            box-shadow: 0 6px 20px rgba(43, 43, 235, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 36, 232, 0.5);
             transform: translateY(-1px);
         }
 
@@ -755,7 +758,7 @@
         }
 
         .mobile-nav a:hover {
-            color: #5050F5;
+            color: #0024E8;
         }
 
         .mobile-cta-btn {
@@ -763,7 +766,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px 32px;
-            background: linear-gradient(135deg, #5050F5 0%, #2B2BEB 100%);
+            background: linear-gradient(135deg, #0024E8 0%, #0024E8 100%);
             color: #FFFFFF;
             border-radius: 50px;
             font-family: var(--font-nav);
@@ -771,7 +774,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            box-shadow: 0 6px 24px rgba(43, 43, 235, 0.4);
+            box-shadow: 0 6px 24px rgba(0, 36, 232, 0.4);
             transition: all 0.3s ease;
         }
 
@@ -792,9 +795,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(43, 43, 235, 0.12);
-            border: 1px solid rgba(43, 43, 235, 0.3);
-            color: #5050F5;
+            background: rgba(0, 36, 232, 0.12);
+            border: 1px solid rgba(0, 36, 232, 0.3);
+            color: #0024E8;
             padding: 8px 16px;
             border-radius: 30px;
             font-family: var(--font-nav);
@@ -818,7 +821,7 @@
         .podcast-hero h1 span.accent {
             font-weight: 800;
             font-style: italic;
-            color: #5050F5;
+            color: #0024E8;
         }
 
         .podcast-hero p {
@@ -857,7 +860,7 @@
 
         .podcast-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(43, 43, 235, 0.4);
+            border-color: rgba(0, 36, 232, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
@@ -908,9 +911,9 @@
         }
 
         .podcast-card:hover .play-overlay {
-            background: #2B2BEB;
+            background: #0024E8;
             transform: translate(-50%, -50%) scale(1.08);
-            box-shadow: 0 0 20px rgba(43, 43, 235, 0.6);
+            box-shadow: 0 0 20px rgba(0, 36, 232, 0.6);
         }
 
         .duration-badge {
@@ -963,7 +966,7 @@
             margin-bottom: 12px;
             font-size: 0.78rem;
             font-weight: 600;
-            color: #5050F5;
+            color: #0024E8;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -979,7 +982,7 @@
         }
 
         .podcast-card:hover .podcast-info h3 {
-            color: #5050F5;
+            color: #0024E8;
         }
 
         .podcast-info p {
@@ -1020,8 +1023,8 @@
         }
 
         .icon-link:hover {
-            background: #2B2BEB;
-            border-color: #2B2BEB;
+            background: #0024E8;
+            border-color: #0024E8;
             transform: translateY(-2px);
         }
 
@@ -1065,7 +1068,7 @@
         .cta-banner-content h2 span {
             font-weight: 800;
             font-style: italic;
-            color: #5050F5;
+            color: #0024E8;
         }
 
         .cta-banner-content p {
@@ -1104,7 +1107,7 @@
             border-radius: 24px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(43, 43, 235, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 36, 232, 0.15);
             transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -1185,7 +1188,7 @@
             margin-bottom: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #5050F5;
+            color: #0024E8;
         }
 
         .footer-links ul {
@@ -1241,8 +1244,8 @@
         }
 
         .footer-social-link:hover {
-            background: #2B2BEB;
-            border-color: #2B2BEB;
+            background: #0024E8;
+            border-color: #0024E8;
             transform: translateY(-2px);
         }
 
@@ -1313,9 +1316,9 @@
 
         .social-dock-link:hover {
             transform: translateY(-4px);
-            border-color: #2B2BEB;
-            background-color: #2B2BEB;
-            box-shadow: 0 12px 28px rgba(43, 43, 235, 0.4);
+            border-color: #0024E8;
+            background-color: #0024E8;
+            box-shadow: 0 12px 28px rgba(0, 36, 232, 0.4);
         }
 
         .social-dock-link svg {

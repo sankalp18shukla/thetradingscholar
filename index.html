@@ -629,21 +629,17 @@
         /* ===== REDESIGNED MEGA MENU / NAV DROPDOWN ===== */
         .header--mega-menu-container {
             position: absolute;
-            top: calc(100% + 8px);
+            top: 100%;
             left: 0;
             width: 100%;
-            background: rgba(6, 8, 22, 0.97);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(0, 36, 232, 0.18);
-            border-radius: 20px;
+            /* Invisible hover-bridge: keeps the old 8px visual gap part of the
+               hoverable hit-area so crossing it doesn't fire mouseleave on .header */
+            padding-top: 8px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(8px);
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-            padding: 32px 48px;
             z-index: 998;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 36, 232, 0.06);
         }
 
         .header.mega-menu-open .header--mega-menu-container {
@@ -654,6 +650,13 @@
 
         .header--mega-menu-item {
             display: none;
+            background: rgba(6, 8, 22, 0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(0, 36, 232, 0.18);
+            border-radius: 20px;
+            padding: 32px 48px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 36, 232, 0.06);
         }
 
         .header--mega-menu-item.active {
@@ -973,9 +976,9 @@
             color: #FFFFFF !important;
             border: 1.5px solid transparent;
             box-shadow: 0 4px 18px rgba(0, 36, 232, 0.45);
-            font-size: 13.5px;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.07em;
+            letter-spacing: 0.05em;
             padding: 13px 26px;
             border-radius: 50px;
         }
@@ -990,7 +993,8 @@
             color: #FFFFFF !important;
             border-color: transparent;
             padding: 15px 24px;
-            font-size: 13px;
+            font-size: 12px;
+            letter-spacing: 0.05em;
             border-radius: 44px;
             box-shadow: 0 4px 12px rgba(0, 36, 232, 0.35);
         }
@@ -1096,9 +1100,9 @@
         .hero-sub {
             color: var(--secondary-text);
             font-family: var(--font-primary);
-            font-size: 0.95rem;
+            font-size: clamp(0.95rem, 0.5vw + 0.55rem, 1.25rem);
             font-weight: 400;
-            max-width: 620px;
+            max-width: clamp(620px, 34vw, 820px);
             margin: 14px auto 30px auto;
             line-height: 1.6;
             position: relative;
@@ -1440,7 +1444,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 20px 20px 40px 20px;
+            padding: 80px 20px 140px 20px;
             position: relative;
             background-color: var(--primary-bg);
             z-index: 10;
@@ -2039,7 +2043,7 @@
         }
 
         .course-card-title {
-            font-family: var(--font-headings);
+            font-family: var(--font-primary);
             font-size: 24px;
             font-weight: 700;
             color: #FFFFFF !important;
@@ -2529,41 +2533,48 @@
             flex-direction: column;
             align-items: center;
             gap: 30px;
+            position: relative;
+            z-index: 5;
         }
 
         .mentor-mascot {
             flex-shrink: 0;
-            width: 520px;
-            height: 560px;
+            width: 468px;
+            height: 504px;
             display: flex;
             align-items: center;
+            position: relative;
+            z-index: 1;
+            margin-top: -40px;
         }
 
         .bear-mascot {
             justify-content: flex-start;
-            margin-left: -240px;
+            margin-left: -60px;
+            margin-right: -180px;
         }
 
         .bull-mascot {
             justify-content: flex-end;
-            margin-right: -240px;
+            margin-right: -60px;
+            margin-left: -180px;
         }
 
         .mascot-img {
             width: 100%;
             height: auto;
-            max-height: 560px;
+            max-height: 504px;
             object-fit: contain;
             opacity: 0.55;
             filter: saturate(1.25) brightness(1.05) drop-shadow(0 0 40px rgba(0, 36, 232, 0.35));
         }
 
         .bear-mascot .mascot-img {
-            transform: rotate(-20deg);
+            transform: scaleX(-1);
         }
 
         .bull-mascot .mascot-img {
-            transform: scaleX(-1) rotate(-20deg);
+            transform: none;
         }
 
         .video-container {
@@ -4135,6 +4146,10 @@
             .social-dock-link svg {
                 width: 18px;
                 height: 18px;
+            }
+
+            .partners-screen {
+                padding: 55px 20px 90px 20px;
             }
 
             .logo-slider-container {

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Editions - Everywhere Reconstitution</title>
+  <style>
+    :root {
+      --bg-color: #0b0e0c;
+      --text-color: #ffffff;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-color);
+      font-family: var(--font-family);
+      color: var(--text-color);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* UI Overlay Layer */
+    .ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 40px;
+    }
+
+    .ui-layer a, .ui-layer button {
+      pointer-events: auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 18px;
+      height: 18px;
+      background-color: var(--text-color);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z'/%3E%3C/svg%3E") no-repeat center;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z'/%3E%3C/svg%3E") no-repeat center;
+    }
+
+    .brand-title {
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn-secondary {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      align-items: flex-end;
+      width: 100%;
+      padding-bottom: 12px;
+    }
+
+    .footer-summary {
+      font-size: 14px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 280px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+      width: fit-content;
+    }
+
+    .footer-col a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .nav-center { display: none; }
+      footer {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-summary { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="canvas-container"></div>
+
+  <div class="ui-layer">
+    <header>
+      <div class="header-left">
+        <div class="logo-mark"></div>
+        <span class="brand-title">Shopify Editions <span style="color: rgba(255,255,255,0.5)">Spring '26</span></span>
+      </div>
+      <div class="nav-center">
+        <a href="#" class="nav-link">Editions <span style="font-size: 10px;">▼</span></a>
+        <a href="#" class="nav-link">Search 🔍</a>
+      </div>
+      <div class="header-right">
+        <a href="#" class="btn-secondary">shopify.com</a>
+        <a href="#" class="btn-primary">Start for free</a>
+      </div>
+    </header>
+
+    <footer>
+      <div class="footer-summary">
+        150+ updates to sell, shop, and build everywhere
+      </div>
+      <div class="footer-col">
+        <a href="#">Agentic</a>
+        <a href="#">Sidekick</a>
+        <a href="#">Online</a>
+        <a href="#">Retail</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">Marketing</a>
+        <a href="#">Operations</a>
+        <a href="#">Shop app</a>
+        <a href="#">Payments</a>
+      </div>
+      <div class="footer-col">
+        <a href="#">Finance</a>
+        <a href="#">Developer</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    // --- Config & Setup ---
+    const CONFIG = {
+      particleCount: 160000, // Highly dense point cloud
+      baseSpeed: 0.2,
+      displacementStrength: 2.2,
+      displacementRadius: 3.8
+    };
+
+    const container = document.getElementById('canvas-container');
+    let scene, camera, renderer, clock;
+    let particleGeometry, particleMaterial, particlePoints;
+    let textMesh, textMaterial;
+    
+    const mouse = new THREE.Vector2(0, 0);
+    const targetMouse = new THREE.Vector2(0, 0);
+    const mouseVelocity = new THREE.Vector2(0, 0);
+    let lastMousePosition = new THREE.Vector2(0, 0);
+
+    // --- GLSL Shaders ---
+    const noiseGLSL = `
+      vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+      vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+      float snoise(vec3 v) { 
+        const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+        const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+
+        vec3 i  = floor(v + dot(v, C.yyy) );
+        vec3 x0 =   v - i + dot(i, C.xxx) ;
+
+        vec3 g = step(x0.yzx, x0.xyz);
+        vec3 l = 1.0 - g;
+        vec3 i1 = min( g.xyz, l.zxy );
+        vec3 i2 = max( g.xyz, l.zxy );
+
+        vec3 x1 = x0 - i1 + C.xxx;
+        vec3 x2 = x0 - i2 + C.yyy;
+        vec3 x3 = x0 - D.yyy;
+
+        i = mod289(i); 
+        vec4 p = permute( permute( permute( 
+                   i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+                 + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) 
+                 + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+
+        float n_ = 0.142857142857;
+        vec3  ns = n_ * D.wyz - D.xzx;
+
+        vec4 j = p - 49.0 * floor(p * ns.z);
+
+        vec4 x_ = floor(j * ns.z);
+        vec4 y_ = floor(j - 7.0 * x_ );
+
+        vec4 x = x_ *ns.x + ns.yyyy;
+        vec4 y = y_ *ns.x + ns.yyyy;
+        vec4 h = 1.0 - abs(x) - abs(y);
+
+        vec4 b0 = vec4( x.xy, y.xy );
+        vec4 b1 = vec4( x.zw, y.zw );
+
+        vec4 s0 = floor(b0)*2.0 + 1.0;
+        vec4 s1 = floor(b1)*2.0 + 1.0;
+        vec4 sh = -step(h, vec4(0.0));
+
+        vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+        vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+
+        vec3 p0 = vec3(a0.xy,h.x);
+        vec3 p1 = vec3(a0.zw,h.y);
+        vec3 p2 = vec3(a1.xy,h.z);
+        vec3 p3 = vec3(a1.zw,h.w);
+
+        vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+        p0 *= norm.x;
+        p1 *= norm.y;
+        p2 *= norm.z;
+        p3 *= norm.w;
+
+        vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+        m = m * m;
+        return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), 
+                                      dot(p2,x2), dot(p3,x3) ) );
+      }
+    `;
+
+    // --- Particle Shaders ---
+    const particleVertexShader = `
+      uniform float uTime;
+      uniform vec2 uMouse;
+      uniform vec2 uMouseVelocity;
+      uniform float uDisplacementStrength;
+      uniform float uDisplacementRadius;
+      
+      attribute vec3 aColor;
+      attribute float aPhase;
+      
+      varying vec3 vColor;
+      varying float vAlpha;
+
+      ${noiseGLSL}
+
+      void main() {
+        vColor = aColor;
+        vec3 pos = position;
+
+        // Lush procedural wind swaying
+        float noiseFreq = 0.12;
+        float noiseAmp = 0.4;
+        pos.x += snoise(vec3(position.x * noiseFreq, position.y * noiseFreq + uTime * 0.08, position.z * noiseFreq)) * noiseAmp;
+        pos.y += sin(uTime * 0.15 + aPhase) * 0.12;
+        pos.z += snoise(vec3(position.x * noiseFreq, position.y * noiseFreq, position.z * noiseFreq + uTime * 0.04)) * noiseAmp;
+
+        // Screen projection mapping for fluid mouse physics
+        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+        vec4 projection = projectionMatrix * mvPosition;
+        vec2 ndc = projection.xy / projection.w;
+
+        float dist = distance(ndc, uMouse);
+        if (dist < uDisplacementRadius) {
+          float force = (1.0 - (dist / uDisplacementRadius));
+          force = pow(force, 2.5); // Smooth organic decay curve
+          
+          vec2 pushDir = normalize(ndc - uMouse);
+          vec3 displacement = vec3(pushDir.x, pushDir.y, 0.0) * force * uDisplacementStrength;
+          displacement += vec3(uMouseVelocity.x, uMouseVelocity.y, 0.0) * force * uDisplacementStrength * 3.0;
+          pos += displacement;
+        }
+
+        vec4 finalMvPosition = modelViewMatrix * vec4(pos, 1.0);
+        gl_Position = projectionMatrix * finalMvPosition;
+
+        // Scale point sizing based on camera distance
+        gl_PointSize = (14.0 / -finalMvPosition.z) * (1.0 + sin(uTime + aPhase) * 0.2);
+        
+        // Depth-based fade to match foggy background atmosphere
+        vAlpha = smoothstep(-20.0, -1.0, finalMvPosition.z);
+      }
+    `;
+
+    const particleFragmentShader = `
+      varying vec3 vColor;
+      varying float vAlpha;
+
+      void main() {
+        float dist = distance(gl_PointCoord, vec2(0.5));
+        if (dist > 0.5) discard;
+        
+        float alphaStrength = smoothstep(0.5, 0.1, dist) * vAlpha;
+        gl_FragColor = vec4(vColor, alphaStrength * 0.9);
+      }
+    `;
+
+    // --- Single Curved Text Shaders ---
+    const textVertexShader = `
+      uniform float uTime;
+      uniform vec2 uMouse;
+      uniform vec2 uMouseVelocity;
+      uniform float uDisplacementStrength;
+      uniform float uDisplacementRadius;
+
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      varying vec3 vViewPosition;
+      
+      ${noiseGLSL}
+
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+
+        // Soft wavy movement inside the revolving ring
+        float textWobble = sin(pos.y * 1.5 + uTime) * 0.08;
+        pos.x += textWobble;
+        pos.z += cos(pos.y * 1.5 + uTime) * 0.08;
+
+        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+        vec4 projection = projectionMatrix * mvPosition;
+        vec2 ndc = projection.xy / projection.w;
+
+        // Match the same displacement field of the foliage
+        float dist = distance(ndc, uMouse);
+        if (dist < uDisplacementRadius) {
+          float force = (1.0 - (dist / uDisplacementRadius));
+          force = pow(force, 2.0);
+          
+          vec2 pushDir = normalize(ndc - uMouse);
+          vec3 displacement = vec3(pushDir.x, pushDir.y, 0.0) * force * uDisplacementStrength * 0.4;
+          pos += displacement;
+        }
+
+        vec4 finalPosition = modelViewMatrix * vec4(pos, 1.0);
+        vViewPosition = -finalPosition.xyz;
+        vNormal = normalize(normalMatrix * normal);
+
+        gl_Position = projectionMatrix * finalPosition;
+      }
+    `;
+
+    const textFragmentShader = `
+      uniform sampler2D uTexture;
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      varying vec3 vViewPosition;
+
+      void main() {
+        vec4 color = texture2D(uTexture, vUv);
+        if (color.a < 0.05) discard;
+
+        // Custom lighting calculation to make the back face transparent and reversed 
+        // while the front face remains sharp, white, and reflective
+        vec3 normal = normalize(vNormal);
+        vec3 viewDir = normalize(vViewPosition);
+        float dotProduct = dot(normal, viewDir);
+
+        float frontFaceIntensity = smoothstep(0.0, 0.4, dotProduct);
+        float backFaceIntensity = smoothstep(0.0, -0.4, dotProduct) * 0.4; // Soft reversed back projection
+
+        vec3 finalColor = vec3(1.0); // Solid crisp white text color
+        float finalAlpha = color.a * (frontFaceIntensity + backFaceIntensity);
+
+        gl_FragColor = vec4(finalColor, finalAlpha);
+      }
+    `;
+
+    // --- Scene Setup & Render Tree ---
+
+    function init() {
+      scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x0b0e0c, 0.04);
+
+      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 11);
+
+      clock = new THREE.Clock();
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(scene.fog.color);
+      container.appendChild(renderer.domElement);
+
+      createAtmospherePointcloud();
+      createCurvedEverywhereText();
+
+      window.addEventListener('resize', onWindowResize);
+      window.addEventListener('mousemove', onMouseMove);
+
+      animate();
+    }
+
+    // --- Foliage Landscape Pointcloud Generation ---
+    function createAtmospherePointcloud() {
+      const count = CONFIG.particleCount;
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      const phases = new Float32Array(count);
+
+      // Organic colors corresponding to the dense garden scenery and highlights
+      const palette = {
+        deepForest: new THREE.Color('#0b2413'), 
+        vibrantGreen: new THREE.Color('#286c3d'),
+        emerald: new THREE.Color('#3ea861'),
+        pinkHighlight: new THREE.Color('#f0b8d5'),
+        whiteGlow: new THREE.Color('#ffffff'),
+        shadowDark: new THREE.Color('#071109')
+      };
+
+      for (let i = 0; i < count; i++) {
+        // Landscape density logic: denser at the bottom, scattering upwards
+        const theta = Math.random() * Math.PI * 2;
+        const radial = Math.pow(Math.random(), 0.7) * 9.0;
+        
+        let x = Math.cos(theta) * radial;
+        let y = (Math.pow(Math.random(), 1.5) - 0.5) * 11.0; 
+        let z = (Math.random() - 0.5) * 8.0 - 2.0;
+
+        // Apply a wave curve to simulate an organic path or ground structure
+        y -= Math.sin(x * 0.3) * 1.2;
+
+        positions[i * 3] = x;
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = z;
+
+        // Color grading corresponding to the screenshots:
+        // Dark greens at the bottom/edges, bright emerald foliage in the middle, pink & white light mists in the top center
+        let finalCol = palette.deepForest;
+        const distFromCenter = Math.sqrt(x*x + y*y);
+
+        if (y > 1.0 && Math.abs(x) < 4.0) {
+          // Volumetric pink/white glow area
+          const lerpVal = Math.random();
+          if (lerpVal > 0.6) {
+            finalCol = palette.pinkHighlight;
+          } else if (lerpVal > 0.4) {
+            finalCol = palette.whiteGlow;
+          } else {
+            finalCol = palette.emerald;
+          }
+        } else if (y < -1.0) {
+          // Bottom deep shadows
+          finalCol = Math.random() > 0.5 ? palette.shadowDark : palette.vibrantGreen;
+        } else {
+          // Mid ground leafy foliage
+          finalCol = Math.random() > 0.7 ? palette.emerald : palette.vibrantGreen;
+        }
+
+        colors[i * 3] = finalCol.r;
+        colors[i * 3 + 1] = finalCol.g;
+        colors[i * 3 + 2] = finalCol.b;
+
+        phases[i] = Math.random() * Math.PI * 2;
+      }
+
+      particleGeometry = new THREE.BufferGeometry();
+      particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      particleGeometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
+      particleGeometry.setAttribute('aPhase', new THREE.BufferAttribute(phases, 1));
+
+      particleMaterial = new THREE.ShaderMaterial({
+        vertexShader: particleVertexShader,
+        fragmentShader: particleFragmentShader,
+        uniforms: {
+          uTime: { value: 0.0 },
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uMouseVelocity: { value: new THREE.Vector2(0, 0) },
+          uDisplacementStrength: { value: CONFIG.displacementStrength },
+          uDisplacementRadius: { value: CONFIG.displacementRadius },
+        },
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.NormalBlending
+      });
+
+      particlePoints = new THREE.Points(particleGeometry, particleMaterial);
+      scene.add(particlePoints);
+    }
+
+    // --- Singular Curved "Everywhere" Cylinder Generation ---
+    function createCurvedEverywhereText() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 2048;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Single, highly prominent white text rendering
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 135px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Draw exactly one single continuous text block wrapping around the loop structure
+      ctx.fillText("Everywhere", canvas.width / 2, canvas.height / 2);
+
+      const textTexture = new THREE.CanvasTexture(canvas);
+      textTexture.wrapS = THREE.RepeatWrapping;
+      textTexture.wrapT = THREE.ClampToEdgeWrapping;
+      textTexture.minFilter = THREE.LinearFilter;
+
+      // Map texture to an open cylinder shape (transparent backing, double-sided render)
+      const geometry = new THREE.CylinderGeometry(2.3, 2.3, 2.3, 128, 16, true);
+      
+      textMaterial = new THREE.ShaderMaterial({
+        vertexShader: textVertexShader,
+        fragmentShader: textFragmentShader,
+        uniforms: {
+          uTexture: { value: textTexture },
+          uTime: { value: 0.0 },
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uMouseVelocity: { value: new THREE.Vector2(0, 0) },
+          uDisplacementStrength: { value: CONFIG.displacementStrength },
+          uDisplacementRadius: { value: CONFIG.displacementRadius }
+        },
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+
+      textMesh = new THREE.Mesh(geometry, textMaterial);
+      textMesh.position.set(0, 0.4, 3.2); // Positioned directly in front of the camera plane
+      textMesh.rotation.x = 0.2;  // Slanted angle matching the screenshots
+      textMesh.rotation.z = -0.15;
+
+      scene.add(textMesh);
+    }
+
+    // --- Interaction Physics Updates ---
+
+    function onMouseMove(event) {
+      targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    function updatePhysics(deltaTime) {
+      const lerpFactor = 0.07;
+      const prevMouseX = mouse.x;
+      const prevMouseY = mouse.y;
+
+      mouse.x += (targetMouse.x - mouse.x) * lerpFactor;
+      mouse.y += (targetMouse.y - mouse.y) * lerpFactor;
+
+      mouseVelocity.set(
+        (mouse.x - prevMouseX) / deltaTime,
+        (mouse.y - prevMouseY) / deltaTime
+      );
+
+      if (particleMaterial) {
+        particleMaterial.uniforms.uMouse.value.copy(mouse);
+        particleMaterial.uniforms.uMouseVelocity.value.copy(mouseVelocity);
+      }
+      if (textMaterial) {
+        textMaterial.uniforms.uMouse.value.copy(mouse);
+        textMaterial.uniforms.uMouseVelocity.value.copy(mouseVelocity);
+      }
+    }
+
+    // --- Loop ---
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsed = clock.getElapsedTime();
+      const delta = clock.getDelta();
+
+      updatePhysics(Math.max(delta, 0.01));
+
+      if (particleMaterial) {
+        particleMaterial.uniforms.uTime.value = elapsed * CONFIG.baseSpeed;
+      }
+      if (textMaterial) {
+        textMaterial.uniforms.uTime.value = elapsed * CONFIG.baseSpeed;
+      }
+
+      // Rotate text mesh
+      if (textMesh) {
+        textMesh.rotation.y = -elapsed * 0.12;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
