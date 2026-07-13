@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel — Fuck Around, Find Out.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0B0B0C;
+            /* Replace the background-image URL below with your actual PNG path if needed */
+            background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 25, 0.8) 0%, rgba(10, 10, 12, 1) 100%), 
+                              url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #F3F4F6;
+            min-height: 100vh;
+        }
+        
+        .serif-text {
+            font-family: 'Instrument Serif', serif;
+        }
+
+        /* Glass Liquid - Translucent Container Aesthetic */
+        .glass-liquid {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-liquid-nav {
+            background: rgba(10, 10, 12, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Transparent Aesthetic Button - Fills with image/gradient on hover/active */
+        .btn-aesthetic {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-aesthetic:hover {
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            /* Simulates a filled image pattern on hover */
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+        }
+
+        .btn-aesthetic:active {
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Simulated dynamic match bank containing only generic descriptions (No identifying information)
+        const mockMatchBank = [
+            {
+                id: "m_dev",
+                roleDescription: "A backend logic architect focusing on low-latency Rust compilation pipelines and decentralized verification protocols. Usually online around late evening hours.",
+                timezone: "UTC-5",
+                freeTime: "19:00 - 21:00",
+                rawName: "S. Thorne" // Hidden until peer accepts
+            },
+            {
+                id: "m_des",
+                roleDescription: "An interaction strategist researching spatial interface typography and generative grid structures. Focused heavily on high-precision minimal design applications.",
+                timezone: "UTC+1",
+                freeTime: "14:00 - 16:00",
+                rawName: "K. Al-Jamil" // Hidden until peer accepts
+            }
+        ];
+
+        function App() {
+            // Flow Engine Views: 'register' | 'dashboard' | 'searching' | 'connections_found' | 'meet_confirmed' | 'feedback'
+            const [view, setView] = useState("register");
+            
+            // Core States
+            const [userProfile, setUserProfile] = useState({
+                name: "",
+                gender: "",
+                role: "",
+                timezone: "",
+                freeTime: "",
+                policyAgreed: false
+            });
+
+            const [availableMatches, setAvailableMatches] = useState([]);
+            const [selectedMatch, setSelectedMatch] = useState(null);
+            const [meetingRoomUrl, setMeetingRoomUrl] = useState("");
+            const [scheduledTimeDisplay, setScheduledTimeDisplay] = useState("");
+            
+            // Rescheduling / Help Desk State
+            const [showHelpModal, setShowHelpModal] = useState(false);
+            const [rescheduleTimeInput, setRescheduleTimeInput] = useState("");
+            const [helpStatusMessage, setHelpStatusMessage] = useState("");
+
+            // Post-Meet States
+            const [feedbackForm, setFeedbackForm] = useState({
+                showedUp: true,
+                notes: ""
+            });
+            const [userWarnings, setUserWarnings] = useState(0);
+            const [historyLog, setHistoryLog] = useState([]);
+
+            const handleRegistration = (e) => {
+                e.preventDefault();
+                if (!userProfile.policyAgreed) {
+                    alert("You must acknowledge the platform behavioral directives to proceed.");
+                    return;
+                }
+                setView("dashboard");
+            };
+
+            const initiateSearch = () => {
+                setView("searching");
+                
+                // Emulate platform-level match searches
+                setTimeout(() => {
+                    setAvailableMatches(mockMatchBank);
+                    setView("connections_found");
+                }, 3000);
+            };
+
+            const acceptConnectionOffer = (match) => {
+                setSelectedMatch(match);
+                // Establish mutual agreement parameters and confirm immediately
+                const uniqueId = Math.random().toString(36).substring(2, 9);
+                setMeetingRoomUrl(`https://meet.jit.si/parallel-meet-${uniqueId}`);
+                setScheduledTimeDisplay(`Today at ${match.freeTime} (${match.timezone})`);
+                setView("meet_confirmed");
+            };
+
+            const handleHelpRescheduleSubmit = (e) => {
+                e.preventDefault();
+                setHelpStatusMessage("Relaying rescheduling request anonymously to peer...");
+                
+                // Emulate asynchronous peer mediation response via platform
+                setTimeout(() => {
+                    setScheduledTimeDisplay(`Proposed: ${rescheduleTimeInput} (Pending Peer Acceptance via Email)`);
+                    setHelpStatusMessage("The peer has been notified via parallel routing. We will generate the meeting link once they agree.");
+                    setTimeout(() => {
+                        setShowHelpModal(false);
+                        setHelpStatusMessage("");
+                    }, 4000);
+                }, 2000);
+            };
+
+            const handleFeedbackSubmit = (e) => {
+                e.preventDefault();
+                
+                if (!feedbackForm.showedUp) {
+                    setUserWarnings(prev => prev + 1);
+                }
+
+                const logEntry = {
+                    id: Date.now(),
+                    matchDescription: selectedMatch.roleDescription,
+                    showedUp: feedbackForm.showedUp,
+                    notes: feedbackForm.notes || "No notes submitted.",
+                    date: new Date().toLocaleDateString()
+                };
+
+                setHistoryLog([logEntry, ...historyLog]);
+                
+                // Clear state and revert to main control board
+                setSelectedMatch(null);
+                setFeedbackForm({ showedUp: true, notes: "" });
+                setView("dashboard");
+            };
+
+            return (
+                <div class="min-h-screen flex flex-col justify-between">
+                    
+                    {/* Glass-Liquid Navbar */}
+                    <nav class="glass-liquid-nav sticky top-0 z-50 py-4 px-6">
+                        <div class="max-w-4xl mx-auto flex justify-between items-center">
+                            <span class="serif-text text-3xl font-normal tracking-tight text-white">parallel</span>
+                            <span class="serif-text text-lg italic text-neutral-400">Fuck around, find out.</span>
+                        </div>
+                    </nav>
+
+                    {/* Main Application Container */}
+                    <main class="flex-grow max-w-2xl mx-auto w-full px-4 py-12 flex flex-col justify-center">
+                        
+                        {/* VIEW 1: REGISTRATION & DIRECTIVE WARNING */}
+                        {view === "register" && (
+                            <div class="glass-liquid p-8 md:p-12 space-y-8 rounded-none">
+                                <div class="space-y-2">
+                                    <h1 class="serif-text text-5xl md:text-6xl font-normal tracking-tight text-white leading-none">
+                                        Establish Presence
+                                    </h1>
+                                    <p class="text-xs text-neutral-400 uppercase tracking-widest">
+                                        Surprise peer alignments for technical professionals.
+                                    </p>
+                                </div>
+
+                                <form onSubmit={handleRegistration} class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Identify Name</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                placeholder="Julian Vane"
+                                                value={userProfile.name}
+                                                onChange={(e) => setUserProfile({...userProfile, name: e.target.value})}
+                                                class="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-white/35 text-white transition-colors"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Gender Identification</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                placeholder="Non-binary / Female / Male"
+                                                value={userProfile.gender}
+                                                onChange={(e) => setUserProfile({...userProfile, gender: e.target.value})}
+                                                class="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-white/35 text-white transition-colors"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Time Zone</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                placeholder="e.g. UTC-5"
+                                                value={userProfile.timezone}
+                                                onChange={(e) => setUserProfile({...userProfile, timezone: e.target.value})}
+                                                class="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-white/35 text-white transition-colors"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Typical Window of Availability</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                placeholder="e.g. 18:00 - 20:00"
+                                                value={userProfile.freeTime}
+                                                onChange={(e) => setUserProfile({...userProfile, freeTime: e.target.value})}
+                                                class="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-white/35 text-white transition-colors"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Your Professional Capabilities (Role Summary)</label>
+                                        <textarea 
+                                            required 
+                                            rows="3"
+                                            placeholder="Detail your capabilities and knowledge domains. Exclude employer names."
+                                            value={userProfile.role}
+                                            onChange={(e) => setUserProfile({...userProfile, role: e.target.value})}
+                                            class="w-full bg-white/5 border border-white/10 p-4 text-sm focus:outline-none focus:border-white/35 text-white transition-colors resize-none"
+                                        ></textarea>
+                                    </div>
+
+                                    {/* Behavioral Mandates & Warning Statement */}
+                                    <div class="bg-red-950/20 border border-red-900/30 p-5 space-y-3">
+                                        <h3 class="text-xs font-semibold tracking-wider uppercase text-red-400">Direct Compliance Warning</h3>
+                                        <p class="text-xs text-neutral-400 leading-relaxed">
+                                            This framework enforces a high-integrity community profile. Zero tolerance is held for the sale or exchange of restricted substances, abusive or harassing text/video actions, system discrimination, or missed meeting appointments without notice.
+                                        </p>
+                                        <p class="text-xs font-medium text-red-300">
+                                            Violation profiles flagged and validated by the platform lead to lifetime service exclusion.
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-2">
+                                        <label class="flex items-start cursor-pointer select-none">
+                                            <input 
+                                                type="checkbox" 
+                                                required
+                                                checked={userProfile.policyAgreed}
+                                                onChange={(e) => setUserProfile({...userProfile, policyAgreed: e.target.checked})}
+                                                class="mt-1 h-4 w-4 bg-white/5 border border-white/20 accent-white rounded-none"
+                                            />
+                                            <span class="ml-3 text-[11px] text-neutral-400 leading-normal">
+                                                I certify that I have read the system direct compliance warnings. I acknowledge that violations or reports of absenteeism will trigger a permanent structural ban.
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <button 
+                                        type="submit" 
+                                        class="w-full btn-aesthetic text-xs uppercase tracking-widest py-4 font-medium"
+                                    >
+                                        Acknowledge & Register Profile
+                                    </button>
+                                </form>
+                            </div>
+                        )}
+
+                        {/* VIEW 2: PROFILE DISPLAY & CONTROL HUB */}
+                        {view === "dashboard" && (
+                            <div class="space-y-6">
+                                <div class="glass-liquid p-8 md:p-12 space-y-6">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="text-[10px] uppercase tracking-widest text-neutral-400">Account Verified</span>
+                                            <h2 class="serif-text text-4xl text-white mt-1">{userProfile.name}</h2>
+                                        </div>
+                                        <span class="text-[10px] border border-white/20 px-2 py-1 text-white tracking-wider uppercase">
+                                            {userWarnings > 0 ? `Warnings: ${userWarnings}/1` : "Status: Optimal"}
+                                        </span>
+                                    </div>
+
+                                    <div class="border-y border-white/5 py-4 space-y-2">
+                                        <p class="text-xs text-neutral-300"><span class="text-neutral-500 font-medium uppercase tracking-wider text-[10px] mr-2">Gender:</span> {userProfile.gender}</p>
+                                        <p class="text-xs text-neutral-300"><span class="text-neutral-500 font-medium uppercase tracking-wider text-[10px] mr-2">Window:</span> {userProfile.freeTime} ({userProfile.timezone})</p>
+                                        <p class="text-xs text-neutral-300 leading-relaxed"><span class="text-neutral-500 font-medium uppercase tracking-wider text-[10px] block mb-1">Knowledge Definition:</span> {userProfile.role}</p>
+                                    </div>
+
+                                    <button 
+                                        onClick={initiateSearch}
+                                        class="w-full btn-aesthetic text-xs uppercase tracking-widest py-4 font-semibold"
+                                    >
+                                        Look for New Meets
+                                    </button>
+                                </div>
+
+                                {/* Local Session Match History Logs */}
+                                <div class="glass-liquid p-8">
+                                    <h3 class="text-xs uppercase tracking-wider text-neutral-400 mb-4">Historical Records</h3>
+                                    {historyLog.length === 0 ? (
+                                        <p class="text-xs text-neutral-500 italic py-2">No historical profiles recorded in this session environment.</p>
+                                    ) : (
+                                        <div class="space-y-4 divide-y divide-white/5">
+                                            {historyLog.map((log) => (
+                                                <div key={log.id} class="pt-4 first:pt-0">
+                                                    <div class="flex justify-between items-start">
+                                                        <p class="text-xs text-neutral-400 max-w-[80%] italic">"{log.matchDescription}"</p>
+                                                        <span class={`text-[9px] uppercase tracking-widest px-2 py-0.5 border ${log.showedUp ? 'border-white/20 text-neutral-300' : 'border-red-900/40 text-red-400'}`}>
+                                                            {log.showedUp ? "Attended" : "Absent"}
+                                                        </span>
+                                                    </div>
+                                                    <p class="text-xs text-neutral-500 mt-2">Feedback: {log.notes}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 3: MATCH SEARCH QUEUE LOADING */}
+                        {view === "searching" && (
+                            <div class="glass-liquid p-12 text-center space-y-6 min-h-[350px] flex flex-col justify-center items-center">
+                                <div class="h-10 w-10 border-2 border-white/10 border-t-white rounded-full animate-spin"></div>
+                                <div class="space-y-2 max-w-sm">
+                                    <h2 class="serif-text text-3xl font-normal text-white">Searching Network Space...</h2>
+                                    <p class="text-xs text-neutral-400 leading-relaxed">
+                                        We have initiated a search sequence for your connection. Once found, we will deliver an anonymous notification describing their background. No identifying data will be displayed.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 4: CONNECTIONS OFFERED / SELECT */}
+                        {view === "connections_found" && (
+                            <div class="glass-liquid p-8 md:p-12 space-y-8">
+                                <div class="space-y-2">
+                                    <h2 class="serif-text text-4xl text-white">Intersections Located</h2>
+                                    <p class="text-xs text-neutral-400 leading-relaxed">
+                                        The match engine has isolated compatible profiles. Review their blind descriptions. Only selecting "Ready for Meet" will proceed to the verification step.
+                                    </p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    {availableMatches.map((match) => (
+                                        <div key={match.id} class="border border-white/10 p-6 space-y-4 bg-white/[0.01]">
+                                            <div class="space-y-1">
+                                                <span class="text-[9px] uppercase tracking-widest text-neutral-500">Professional Identity Profile</span>
+                                                <p class="text-sm text-neutral-200 leading-relaxed font-light">
+                                                    {match.roleDescription}
+                                                </p>
+                                            </div>
+                                            <div class="flex justify-between items-center text-[11px] text-neutral-400 pt-2 border-t border-white/5">
+                                                <span>Availability Slot: {match.freeTime} ({match.timezone})</span>
+                                                <button 
+                                                    onClick={() => acceptConnectionOffer(match)}
+                                                    class="btn-aesthetic text-[10px] px-4 py-2 uppercase tracking-wider"
+                                                >
+                                                    Ready for Meet
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 5: MEETING PORTAL & RESCHEDULING HELP MODULE */}
+                        {view === "meet_confirmed" && selectedMatch && (
+                            <div class="glass-liquid p-8 md:p-12 space-y-8 relative">
+                                <div class="space-y-2 border-b border-white/5 pb-4">
+                                    <span class="text-[9px] uppercase tracking-widest text-neutral-400">Match Agreed</span>
+                                    <h2 class="serif-text text-4xl text-white">Dynamic Link Generated</h2>
+                                    <p class="text-xs text-neutral-500">
+                                        Both participants have indicated readiness. Your connection parameters are locked.
+                                    </p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="bg-white/[0.02] border border-white/5 p-4 rounded-none space-y-1">
+                                        <span class="text-[9px] uppercase tracking-widest text-neutral-500 block">Scheduled Time Target</span>
+                                        <p class="text-sm font-medium text-white">{scheduledTimeDisplay}</p>
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <a 
+                                            href={meetingRoomUrl} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            class="block w-full btn-aesthetic text-xs text-center uppercase tracking-widest py-4 font-semibold"
+                                        >
+                                            Initiate Meet Link (External Video Call)
+                                        </a>
+                                        <p class="text-[10px] text-neutral-500 text-center leading-normal">
+                                            The room establishes connection over Jitsi. Once the meeting terminates, return here to complete structural reviews.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-white/5 pt-6 flex justify-between items-center">
+                                    <span class="text-xs text-neutral-400">Need to amend this time?</span>
+                                    <button 
+                                        onClick={() => setShowHelpModal(true)}
+                                        class="text-xs uppercase tracking-wider underline text-neutral-200 hover:text-white"
+                                    >
+                                        Help (Request Change)
+                                    </button>
+                                </div>
+
+                                {/* ANONYMOUS HELPDESK RESCHEDULE MODAL */}
+                                {showHelpModal && (
+                                    <div class="absolute inset-0 bg-black/90 backdrop-blur-md p-8 md:p-12 flex flex-col justify-center">
+                                        <div class="space-y-4">
+                                            <h3 class="serif-text text-3xl text-white">Platform Mediation Request</h3>
+                                            <p class="text-xs text-neutral-400 leading-relaxed">
+                                                You can request a single time shift. This query will be delivered anonymously through our platform email routers to protect network anonymity.
+                                            </p>
+
+                                            <form onSubmit={handleHelpRescheduleSubmit} class="space-y-4">
+                                                <div>
+                                                    <label class="block text-[10px] uppercase tracking-wider text-neutral-500 mb-2">Propose New Time & Date</label>
+                                                    <input 
+                                                        type="text" 
+                                                        required 
+                                                        placeholder="e.g., Tomorrow at 15:30 UTC"
+                                                        value={rescheduleTimeInput}
+                                                        onChange={(e) => setRescheduleTimeInput(e.target.value)}
+                                                        class="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-white/35 text-white transition-colors"
+                                                    />
+                                                </div>
+
+                                                {helpStatusMessage && (
+                                                    <p class="text-xs text-red-400 font-light">{helpStatusMessage}</p>
+                                                )}
+
+                                                <div class="flex gap-4">
+                                                    <button 
+                                                        type="submit" 
+                                                        class="flex-1 btn-aesthetic text-xs uppercase tracking-widest py-3"
+                                                    >
+                                                        Relay Message
+                                                    </button>
+                                                    <button 
+                                                        type="button" 
+                                                        onClick={() => setShowHelpModal(false)}
+                                                        class="px-6 border border-white/10 hover:border-white/20 text-xs text-neutral-400 uppercase tracking-wider"
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div class="border-t border-white/5 pt-4 text-right">
+                                    <button 
+                                        onClick={() => setView("feedback")} 
+                                        class="text-xs tracking-wider uppercase text-neutral-400 hover:text-white underline"
+                                    >
+                                        Completed? Go to Feedback Form
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 6: FEEDBACK & VERIFICATION INGESTION */}
+                        {view === "feedback" && selectedMatch && (
+                            <div class="glass-liquid p-8 md:p-12 space-y-6">
+                                <div class="space-y-2">
+                                    <span class="text-[9px] uppercase tracking-widest text-neutral-400">Post-Meeting Validation</span>
+                                    <h2 class="serif-text text-4xl text-white">Review Dialogue Partner</h2>
+                                    <p class="text-xs text-neutral-500 leading-normal">
+                                        Help track community alignment and attendance integrity. Complete the evaluation accurately.
+                                    </p>
+                                </div>
+
+                                <form onSubmit={handleFeedbackSubmit} class="space-y-6">
+                                    <div>
+                                        <label class="block text-xs uppercase tracking-wider text-neutral-400 mb-3">Attendance Assessment</label>
+                                        <div class="space-y-3">
+                                            <label class="flex items-center cursor-pointer select-none">
+                                                <input 
+                                                    type="radio" 
+                                                    name="showedUp"
+                                                    checked={feedbackForm.showedUp === true}
+                                                    onChange={() => setFeedbackForm({...feedbackForm, showedUp: true})}
+                                                    class="h-4 w-4 bg-white/5 border border-white/10 accent-white"
+                                                />
+                                                <span class="ml-3 text-xs text-neutral-300">The alignment was successful. The peer attended on schedule.</span>
+                                            </label>
+                                            <label class="flex items-center cursor-pointer select-none">
+                                                <input 
+                                                    type="radio" 
+                                                    name="showedUp"
+                                                    checked={feedbackForm.showedUp === false}
+                                                    onChange={() => setFeedbackForm({...feedbackForm, showedUp: false})}
+                                                    class="h-4 w-4 bg-white/5 border border-white/10 accent-white"
+                                                />
+                                                <span class="ml-3 text-xs text-red-400 font-light">The peer was absent / failed to attend. (Will trigger a warning).</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {feedbackForm.showedUp ? (
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-[10px] uppercase tracking-wider text-neutral-400 mb-2">Observations & Content Assessment</label>
+                                                <textarea 
+                                                    required={feedbackForm.showedUp}
+                                                    rows="4"
+                                                    placeholder="Detail the technical ideas explored. Was the experience of constructive professional quality?"
+                                                    value={feedbackForm.notes}
+                                                    onChange={(e) => setFeedbackForm({...feedbackForm, notes: e.target.value})}
+                                                    class="w-full bg-white/5 border border-white/10 p-4 text-sm focus:outline-none focus:border-white/35 text-white transition-colors resize-none"
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div class="p-4 bg-red-950/20 border border-red-900/30 text-[11px] text-red-400 leading-normal">
+                                            Falsifying non-attendance reports is grounds for systemic exclusions. Upon confirmation, a structural warning sequence is initiated for the reported target.
+                                        </div>
+                                    )}
+
+                                    <button 
+                                        type="submit" 
+                                        class="w-full btn-aesthetic text-xs uppercase tracking-widest py-4 font-semibold"
+                                    >
+                                        Transmit Verification Log
+                                    </button>
+                                </form>
+                            </div>
+                        )}
+
+                    </main>
+
+                    {/* Footer */}
+                    <footer class="py-8 text-center bg-black/20 border-t border-white/5">
+                        <p class="text-[9px] tracking-widest uppercase text-neutral-500">
+                            parallel network &middot; compliance enforced strictly &middot; fuck around, find out.
+                        </p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -2295,12 +2295,6 @@
             color: #FFFFFF !important;
         }
 
-        @media (min-width: 1301px) {
-            #service-5 .stack-title h2 {
-                font-size: 2.1rem;
-            }
-        }
-
         .stack-desc {
             font-size: 1.05rem;
             line-height: 1.65;
@@ -2318,12 +2312,12 @@
         }
 
         .stack-tags span {
-            background: rgba(0, 36, 232, 0.12);
+            background: rgba(255, 255, 255, 0.14);
             padding: 8px 18px;
             border-radius: 20px;
             white-space: nowrap;
             color: #FFFFFF !important;
-            border: 1px solid rgba(0, 36, 232, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.28);
         }
 
         .stack-right {
@@ -3332,6 +3326,10 @@
         .faq-section-outer {
             background-color: #000000;
             width: 100%;
+            position: relative;
+            z-index: 2;
+            border-radius: 0 0 48px 48px;
+            box-shadow: 0 60px 100px -30px rgba(0, 0, 0, 0.7);
         }
 
         /* ===== FOUNDER VISION CARD (FAQ) ===== */
@@ -3657,12 +3655,22 @@
 
         /* CLEAN glow border animation — contained, no leaking */
 
-        /* ===== FOOTER ===== */
-        footer {
-            background-color: var(--bg-dark);
-            color: #FFFFFF;
-            padding: 80px 60px 40px 60px;
+        /* ===== FOOTER STICKY-REVEAL STACK ===== */
+        /* Extra height beyond the footer's own content gives .footer-reveal-stack
+           room to keep the footer pinned to the viewport bottom while the FAQ
+           curtain above it finishes scrolling out of view. */
+        .footer-reveal-stack {
             position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+
+        footer {
+            background-color: #FFFFFF;
+            color: #0A0A0A;
+            padding: 80px 60px 40px 60px;
+            position: sticky;
+            bottom: 0;
             overflow: hidden;
             width: 100%;
             z-index: 10;
@@ -3687,7 +3695,7 @@
         }
 
         .footer-brand p {
-            color: var(--text-secondary);
+            color: #52525B;
             font-size: 0.88rem;
             line-height: 1.6;
             max-width: 320px;
@@ -3710,20 +3718,20 @@
         }
 
         .footer-links a {
-            color: var(--text-secondary);
+            color: #52525B;
             text-decoration: none;
             font-size: 0.88rem;
             transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: #FFFFFF;
+            color: #0A0A0A;
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 60px auto 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
             padding-top: 30px;
             display: flex;
             justify-content: space-between;
@@ -3734,7 +3742,7 @@
 
         .footer-bottom p {
             font-size: 0.8rem;
-            color: #64748B;
+            color: #71717A;
         }
 
         .footer-socials {
@@ -3745,8 +3753,8 @@
         .footer-social-link {
             width: 36px;
             height: 36px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -3763,7 +3771,7 @@
         .footer-social-link svg {
             width: 16px;
             height: 16px;
-            fill: var(--text-secondary);
+            fill: #52525B;
             display: block;
             margin: auto;
             transition: fill 0.3s ease;
@@ -3786,8 +3794,8 @@
             height: 150px;
             width: auto;
             object-fit: contain;
-            opacity: 0.15;
-            filter: brightness(0) invert(1);
+            opacity: 0.08;
+            filter: brightness(0);
         }
 
         .giant-footer-fade {
@@ -3796,7 +3804,7 @@
             left: 0;
             width: 100%;
             height: 60%;
-            background: linear-gradient(to top, var(--bg-dark) 0%, rgba(3, 7, 18, 0) 100%);
+            background: linear-gradient(to top, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
             pointer-events: none;
         }
 
@@ -4193,26 +4201,39 @@
                 padding-top: 100px;
                 height: auto;
                 min-height: 100vh;
+                overflow: visible;
             }
 
             .stack-container {
                 width: 100%;
                 max-width: none;
                 height: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
+                display: block;
                 margin-bottom: 50px;
             }
 
             .stack-card {
-                position: relative !important;
+                position: sticky !important;
+                top: 84px;
                 height: auto !important;
+                min-height: 460px;
                 flex-direction: column !important;
                 padding: 30px !important;
                 gap: 20px !important;
-                top: auto !important;
                 left: auto !important;
+                margin-bottom: 24px;
+                opacity: 0;
+                transform: translateX(-56px);
+                transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+            }
+
+            .stack-card.in-view {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .stack-card:last-child {
+                margin-bottom: 0;
             }
 
             .stack-left,
@@ -4417,6 +4438,10 @@
                 font-size: 2.2rem;
             }
 
+            .stack-section-header h2 {
+                font-size: 2.1rem;
+            }
+
             .logo-item {
                 width: 240px;
                 height: 110px;
@@ -4426,8 +4451,18 @@
                 max-height: 80px;
             }
 
+            /* Sticky-reveal is desktop-only; mobile gets a normal in-flow footer */
+            .footer-reveal-stack {
+                min-height: 0;
+            }
+
             footer {
+                position: static;
                 padding: 40px 20px;
+            }
+
+            .faq-section-outer {
+                border-radius: 0 0 28px 28px;
             }
 
             .footer-container {
@@ -4580,6 +4615,10 @@
 
             .stack-title h2 {
                 font-size: 1.85rem;
+            }
+
+            .stack-section-header h2 {
+                font-size: 1.6rem;
             }
 
             .stack-section {
@@ -5123,36 +5162,36 @@
                         <a href="#service-1" class="mega-menu-link-item" onclick="scrollToService('service-1', event)">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="3" />
-                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Expert Mutual Funds Structuring</span>
-                                <span class="mega-link-desc">Goal-aligned portfolios, risk calibration, and long-term wealth building.</span>
+                                <span class="mega-link-title">Algo Trading — Basket Strategies</span>
+                                <span class="mega-link-desc">Fully automated intraday &amp; positional baskets. Exclusive to students.</span>
                             </div>
                         </a>
                         <a href="#service-2" class="mega-menu-link-item" onclick="scrollToService('service-2', event)">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <polyline points="16 18 22 12 16 6" />
-                                    <polyline points="8 6 2 12 8 18" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Custom Strategy Automation</span>
-                                <span class="mega-link-desc">Python-powered algo systems built exactly to your logic and API specs.</span>
+                                <span class="mega-link-title">Expert Consultation — Mutual Funds</span>
+                                <span class="mega-link-desc">Personalised portfolios aligned to your risk, goals, and time horizon.</span>
                             </div>
                         </a>
                         <a href="#service-3" class="mega-menu-link-item" onclick="scrollToService('service-3', event)">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algorithmic Trading — Elgo System</span>
-                                <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
+                                <span class="mega-link-title">1-on-1 Mentorship — Kundan Prajapati</span>
+                                <span class="mega-link-desc">10 live sessions. Premium strategies backtested and explained live.</span>
                             </div>
                         </a>
                         <a href="#service-4" class="mega-menu-link-item" onclick="scrollToService('service-4', event)">
@@ -5163,19 +5202,19 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Pre-IPO Unlisted Shares</span>
-                                <span class="mega-link-desc">Early-stage equity access. Institutional wealth-building before listing.</span>
+                                <span class="mega-link-desc">Buy &amp; sell high-potential unlisted shares below grey market price.</span>
                             </div>
                         </a>
                         <a href="#service-5" class="mega-menu-link-item" onclick="scrollToService('service-5', event)">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="8" r="4" />
-                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">1:1 Consultation — Kundan Prajapati</span>
-                                <span class="mega-link-desc">Direct mentorship tailored to your capital, psychology, and trading goals.</span>
+                                <span class="mega-link-title">Custom Strategy — Automation &amp; Backtesting</span>
+                                <span class="mega-link-desc">Bring your rule-defined strategy. We backtest, optimise, and deploy it.</span>
                             </div>
                         </a>
                     </div>
@@ -5576,8 +5615,8 @@
 
     <!-- COURSES SECTION -->
     <section class="courses-section" id="courses">
-        <span class="courses-sub-label">Academy Programs</span>
-        <h2>Our Systematic <span>Trading Programs</span></h2>
+        <span class="courses-sub-label">Our Flagship Courses</span>
+        <h2>Choose your <span>edge</span></h2>
 
         <div class="courses-grid-wrap">
             <div class="glow-border-wrapper glowing" style="height:100%; display:flex;">
@@ -5585,7 +5624,7 @@
                     <div class="vision-card-inner">
                         <div>
                             <h2 class="vision-card-title">
-                                Join An Academy <em>That Resonates With Your Goals</em>
+                                This Is What Makes <em>The Trading Scholar Different.</em>
                             </h2>
                             <div class="vision-point">
                                 <div class="vision-point-icon">
@@ -5595,7 +5634,7 @@
                                 </div>
                                 <div class="vision-point-text">
                                     <strong>Structured Learning Path</strong>
-                                    <span>From market fundamentals to live execution — every module builds on the last, so you never trade before you're ready.</span>
+                                    <span>From market basics to advanced trading systems, every module builds step by step — with defined rules, backtested reports, risk management, and disciplined execution at the core.</span>
                                 </div>
                             </div>
                             <div class="vision-point">
@@ -5605,8 +5644,8 @@
                                     </svg>
                                 </div>
                                 <div class="vision-point-text">
-                                    <strong>Direct Mentor Access</strong>
-                                    <span>Real feedback on real trades — not recorded content. Learn from 9+ years of live market experience, personalised to your capital and goals.</span>
+                                    <strong>Weekend Doubt Sessions – Every Saturday &amp; Sunday</strong>
+                                    <span>Mr. Kundan Prajapati stays live until every doubt is cleared — no time limit, no rushed endings. Because a question that goes unanswered today becomes a loss tomorrow.</span>
                                 </div>
                             </div>
                             <div class="vision-point">
@@ -5616,15 +5655,26 @@
                                     </svg>
                                 </div>
                                 <div class="vision-point-text">
-                                    <strong>Systems, Not Signals</strong>
-                                    <span>We don't hand you tips. We build your decision framework — so every trade you take is backed by process, not guesswork.</span>
+                                    <strong>Live Trading Community</strong>
+                                    <span>An active WhatsApp community where trades are shared in real time, experienced students mentor newcomers, and the learning doesn't stop between sessions. Not a broadcast channel — a room full of real traders.</span>
+                                </div>
+                            </div>
+                            <div class="vision-point">
+                                <div class="vision-point-icon">
+                                    <svg viewBox="0 0 16 16">
+                                        <path d="M2 8l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <div class="vision-point-text">
+                                    <strong>Lifetime Access – Pay Once. Learn Forever</strong>
+                                    <span>Your investment includes every future strategy Mr. Kundan Prajapati develops — at no extra cost. No upsells. No "advanced modules" sold separately. In an industry built on charging you again and again, we made a different choice. (T&amp;C Applied)</span>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="vision-card-divider"></div>
                             <div class="vision-card-footer">
-                                <p>Built for traders who want consistency over shortcuts — and are ready to treat the market like a profession.</p>
+                                <p>Most trading programs give you content. We give you a community, a mentor, a system, and a commitment that doesn't end when the course does.</p>
                             </div>
                         </div>
                     </div>
@@ -5634,8 +5684,8 @@
             <div class="course-cards-stack">
                 <div class="course-card blue">
                     <div class="course-card-left">
-                        <div class="course-card-title">Algo Trading (Elgo System)</div>
-                        <div class="course-card-desc">Remove Emotion. Execute Automatically. Scale Confidently.</div>
+                        <div class="course-card-title">Algo Trading Course</div>
+                        <div class="course-card-desc">From zero knowledge to live deployment — build, backtest, and automate strategies, even with no coding experience.</div>
                         <a href="course1.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
@@ -5659,8 +5709,8 @@
 
                 <div class="course-card navy">
                     <div class="course-card-left">
-                        <div class="course-card-title">1-on-1 Mentorship</div>
-                        <div class="course-card-desc">Personalized Strategy. Direct Accountability. Real Results.</div>
+                        <div class="course-card-title">Swing Trading Course</div>
+                        <div class="course-card-desc">Master swing setups and intraday execution through pure price action — a rule-based system, no indicators, no guesswork.</div>
                         <a href="course2.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
@@ -5678,8 +5728,8 @@
 
                 <div class="course-card dark">
                     <div class="course-card-left">
-                        <div class="course-card-title">Option Selling &amp; Hedging</div>
-                        <div class="course-card-desc">Consistent Income. Defined Risk. Institutional Execution.</div>
+                        <div class="course-card-title">Hedging Course</div>
+                        <div class="course-card-desc">The only course in India with 20+ proprietary Zero Adjustment Hedging strategies, refined over 10 years of live markets.</div>
                         <a href="course3.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
@@ -5701,24 +5751,25 @@
     <section class="stack-section" id="stack-viewport">
         <div class="stack-section-header">
             <span class="stack-sub-title">Services</span>
-            <h2>What We <span>Offer</span></h2>
+            <h2>Beyond Courses. <span>A Complete Trader's Ecosystem.</span></h2>
         </div>
         <div class="stack-container" id="services">
             <div class="stack-card" id="service-1">
                 <div class="stack-left">
                     <div class="stack-title">
                         <h3>Service 01</h3>
-                        <h2>Expert Consultation<span>On Mutual Funds</span></h2>
-                        <p class="stack-desc">Personalized mutual fund portfolio structuring aligned with your financial
-                            goals, risk tolerance, and time horizon. Build stable, diversified long-term wealth separate
-                            from your active trading capital.</p>
+                        <h2>Algo Trading<span>Basket Strategies</span></h2>
+                        <p class="stack-desc">A curated basket of fully automated intraday and positional strategies —
+                            exclusively available to The Trading Scholar students. No manual execution, no emotional
+                            interference. Your strategy runs on autopilot, built on systems that have been tested in
+                            real market conditions.</p>
                     </div>
                     <div>
-                        <div class="stack-tags"><span>Goal Structuring</span><span>Risk Calibration</span><span>Asset
-                                Allocation</span><span>Tax Planning</span></div>
+                        <div class="stack-tags"><span>Intraday Basket</span><span>Positional Basket</span><span>Full
+                                Automation</span><span>Students Exclusive</span></div>
                         <div class="wp-block-button is-style-fill">
                             <a href="#masterclass" class="wp-block-button__link">
-                                <span class="btn-text">Book Consultation</span>
+                                <span class="btn-text">Explore Service</span>
                                 <span class="gp-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -5733,17 +5784,18 @@
                 <div class="stack-left">
                     <div class="stack-title">
                         <h3>Service 02</h3>
-                        <h2>Custom Code &amp;<span>Strategy Automation</span></h2>
-                        <p class="stack-desc">Have a working trading strategy but no coding knowledge? Our in-house
-                            developers will build, backtest, and deploy a custom algo system tailored specifically to
-                            your exact logic and broker API requirements.</p>
+                        <h2>Expert Consultation<span>On Mutual Funds</span></h2>
+                        <p class="stack-desc">We build your personalised mutual fund portfolio — tailored to your risk
+                            appetite, financial goals, and time horizon. Our expert connects with you personally to
+                            structure a long-term wealth plan that works alongside your trading capital, not against
+                            it. No generic advice. No one-size-fits-all.</p>
                     </div>
                     <div>
-                        <div class="stack-tags"><span>Python Backend</span><span>API Integrations</span><span>Strategy
-                                Backtesting</span><span>AWS Server Hosting</span></div>
+                        <div class="stack-tags"><span>Personalised Portfolio</span><span>Risk-Based
+                                Allocation</span><span>1-on-1 Expert Call</span><span>Free of Cost</span></div>
                         <div class="wp-block-button is-style-fill">
                             <a href="#masterclass" class="wp-block-button__link">
-                                <span class="btn-text">Get Strategy Automated</span>
+                                <span class="btn-text">Book Consultation</span>
                                 <span class="gp-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -5758,17 +5810,17 @@
                 <div class="stack-left">
                     <div class="stack-title">
                         <h3>Service 03</h3>
-                        <h2>Algorithmic Trading<span>The Elgo System</span></h2>
-                        <p class="stack-desc">Learn to build and deploy your own automated trading systems through the
-                            comprehensive Elgo Algo Trading System course. Completely remove emotional bias, trade with
-                            precision, and scale with total confidence.</p>
+                        <h2>One-on-One Mentorship<span>With Kundan Prajapati</span></h2>
+                        <p class="stack-desc">10 live, 1-hour sessions with direct access to Mr. Kundan Prajapati —
+                            premium strategies discussed, backtested live, and explained from first principles.
+                            Built for the serious trader who demands more than surface-level lessons.</p>
                     </div>
                     <div>
-                        <div class="stack-tags"><span>Automated Execution</span><span>Risk Systems</span><span>Python
-                                Basics</span><span>Live API Connections</span></div>
+                        <div class="stack-tags"><span>10 Live Sessions</span><span>Live
+                                Backtesting</span><span>Premium Strategies</span><span>Direct Access</span></div>
                         <div class="wp-block-button is-style-fill">
-                            <a href="#courses" class="wp-block-button__link">
-                                <span class="btn-text">Explore Course</span>
+                            <a href="#masterclass" class="wp-block-button__link">
+                                <span class="btn-text">Apply Now</span>
                                 <span class="gp-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -5783,17 +5835,18 @@
                 <div class="stack-left">
                     <div class="stack-title">
                         <h3>Service 04</h3>
-                        <h2>Pre-IPO Strategy<span>Unlisted Shares Deals</span></h2>
-                        <p class="stack-desc">Get strategic wealth exposure with unlisted growth opportunities. Learn
-                            how institutional wealth structures and targets pre-IPO business access and private equity
-                            before direct stock exchange listing.</p>
+                        <h2>Deals in Unlisted Shares<span>Pre-IPO Opportunities</span></h2>
+                        <p class="stack-desc">Get in before the IPO. We facilitate buying and selling of high-potential
+                            unlisted shares — NSE, CSK, Zepto, OYO, and more — at 5–10% below grey market price. Early
+                            access to tomorrow's listed companies, at today's best price. Available in limited
+                            quantities.</p>
                     </div>
                     <div>
-                        <div class="stack-tags"><span>Pre-IPO Equity</span><span>Venture Dynamics</span><span>Growth
-                                Capital</span><span>Direct Allocation</span></div>
+                        <div class="stack-tags"><span>5–10% Below Grey Market</span><span>NSE · CSK · Zepto ·
+                                OYO</span><span>Buy &amp; Sell</span><span>Pre-IPO Access</span></div>
                         <div class="wp-block-button is-style-fill">
                             <a href="#masterclass" class="wp-block-button__link">
-                                <span class="btn-text">Explore Opportunities</span>
+                                <span class="btn-text">Enquire Now</span>
                                 <span class="gp-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -5808,17 +5861,17 @@
                 <div class="stack-left">
                     <div class="stack-title">
                         <h3>Service 05</h3>
-                        <h2>One-On-One Consultation<span>With Mr. Kundan Prajapati</span></h2>
-                        <p class="stack-desc">Direct 1:1 mentorship program with Kundan Prajapati. Every session is
-                            completely tailored to your unique capital size, psychology, schedule constraints, and
-                            overall career trading goals.</p>
+                        <h2>Custom Strategy<span>Automation &amp; Backtesting</span></h2>
+                        <p class="stack-desc">Have a rule-defined trading strategy but don't know how to automate it?
+                            We handle everything — backtesting, optimisation, and full deployment. Bring your logic.
+                            We build the machine. <em>(Coming Soon)</em></p>
                     </div>
                     <div>
-                        <div class="stack-tags"><span>Direct Mentorship</span><span>Psychology
-                                Review</span><span>Capital Management</span><span>Performance Audit</span></div>
+                        <div class="stack-tags"><span>Strategy Backtesting</span><span>Full
+                                Automation</span><span>Custom Deployment</span></div>
                         <div class="wp-block-button is-style-fill">
                             <a href="#masterclass" class="wp-block-button__link">
-                                <span class="btn-text">Apply For Mentorship</span>
+                                <span class="btn-text">Notify Me</span>
                                 <span class="gp-arrow"><svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -6548,7 +6601,8 @@
     </section>
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (sticky-reveal: pinned in place while the FAQ curtain slides up over it) -->
+    <div class="footer-reveal-stack">
     <footer>
         <div class="footer-container">
             <div class="footer-brand">
@@ -6608,6 +6662,7 @@
             <div class="giant-footer-fade"></div>
         </div>
     </footer>
+    </div>
 
     <!-- Local Time Badge (bottom-left corner) -->
     <div class="local-time-dock" id="localTimeBadge">
@@ -7165,6 +7220,7 @@
 
         /* ===== GSAP ANIMATIONS ===== */
         gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('load', () => ScrollTrigger.refresh());
 
         gsap.fromTo(".hero-screen h1",
             { opacity: 1, filter: "blur(0px)", scale: 1 },
@@ -7317,11 +7373,9 @@
 
             gsap.set(".card", { x: 0, y: 0, rotate: 0, opacity: 1 });
             gsap.set(".card-inner", { rotateY: 0 });
-            gsap.set(".stack-card", { y: 0, opacity: 1 });
             gsap.set(".how-card", { x: 0, opacity: 1 });
             gsap.from(".card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#pin-section", start: "top 80%" } });
             gsap.from(".how-card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#how-viewport", start: "top 80%" } });
-            gsap.from(".stack-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: "#stack-viewport", start: "top 80%" } });
             gsap.from(".course-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
             gsap.from(".vision-card-inner", { opacity: 0, y: 40, duration: 0.9, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
 
@@ -7342,6 +7396,16 @@
                 color: "#ffffff", ease: "none",
                 scrollTrigger: { trigger: "#how-viewport", start: "bottom 38%", end: "bottom top", scrub: true }
             });
+
+            // Services: sticky cards slide in from the left and stack over one another while scrolling.
+            const stackObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('in-view');
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -15% 0px' });
+            document.querySelectorAll('.stack-card').forEach(card => stackObserver.observe(card));
+
+            return () => stackObserver.disconnect();
         });
 
         gsap.fromTo("#mentor-video",

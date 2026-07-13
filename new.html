@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Disruptive Finch Formula</title>
+  
+  <!-- Load Premium Modern Sans-Serif Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and Core Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ffffff;
+      color: #0e1118;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    /* Section Container */
+    .formula-section {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* CSS Grid Layout */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    /* Header Container spanning 2 columns */
+    .header-container {
+      grid-column: span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 40px;
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                  transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    .header-container h2 {
+      font-size: 3.5rem;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -2px;
+      color: #0e1118;
+    }
+
+    .header-container h2 span.highlight {
+      display: block;
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: -1.5px;
+      margin-top: 4px;
+    }
+
+    /* Individual Card Styles */
+    .stat-card {
+      background-color: #f6f7f9;
+      border-radius: 16px;
+      padding: 32px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(-60px) scale(0.95);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Icon Styling */
+    .icon-wrapper {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .icon-wrapper svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Info Block inside Card */
+    .card-info {
+      margin-top: 24px;
+    }
+
+    /* Stat Number & Label Flex Row */
+    .stat-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: #0e1118;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #0e1118;
+    }
+
+    /* Description paragraph */
+    .stat-desc {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #5c6470;
+    }
+
+    /* Staggered Drop-In Animation Triggers (Activated by JS) */
+    .formula-section.revealed .header-container {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .formula-section.revealed .stat-card {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Stagger delay definitions for organic waterfall effect */
+    .formula-section.revealed .stat-card:nth-child(2) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s; }
+    .formula-section.revealed .stat-card:nth-child(3) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; }
+    .formula-section.revealed .stat-card:nth-child(4) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; }
+    .formula-section.revealed .stat-card:nth-child(5) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; }
+    .formula-section.revealed .stat-card:nth-child(6) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s; }
+    .formula-section.revealed .stat-card:nth-child(7) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s; }
+
+    /* Responsive Design Adjustments */
+    @media (max-width: 1024px) {
+      .formula-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .header-container {
+        grid-column: span 2;
+        padding-right: 0;
+        margin-bottom: 20px;
+      }
+      .header-container h2 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-container {
+        grid-column: span 1;
+      }
+      .header-container h2 {
+        font-size: 2.5rem;
+      }
+      .stat-card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="formula-section" id="formula-section">
+    <div class="formula-grid">
+      
+      <!-- Grid Item 1: Main Title Header (Spans 2 columns) -->
+      <div class="header-container">
+        <h2>
+          Our Disruptive
+          <span class="highlight">Finch Formula</span>
+        </h2>
+      </div>
+
+      <!-- Grid Item 2: Card 1 (500+ Projects) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Glossy Sphere Cluster SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="sphere" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#93c5fd" />
+                <stop offset="35%" stop-color="#2563eb" />
+                <stop offset="75%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#1e3a8a" />
+              </radialGradient>
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15"/>
+              </filter>
+            </defs>
+            <circle cx="35" cy="35" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="53" cy="30" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="43" cy="45" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="61" cy="40" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="35" cy="55" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="53" cy="50" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="45" cy="62" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="63" cy="58" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+            <circle cx="53" cy="68" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Projects<br>Delivered</span>
+          </div>
+          <p class="stat-desc">Achieving exceptional results, exceeding client expectations.</p>
+        </div>
+      </div>
+
+      <!-- Grid Item 3: Card 2 (200+ Clients) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Isometric Cube Cluster SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="topFace" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#60a5fa" />
+                <stop offset="100%" stop-color="#2563eb" />
+              </linearGradient>
+              <linearGradient id="leftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#1e40af" />
+              </linearGradient>
+              <linearGradient id="rightFace" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e3a8a" />
+                <stop offset="100%" stop-color="#0f172a" />
+              </linearGradient>
+            </defs>
+            <!-- Left Lower Cube -->
+            <g transform="translate(15, 42)">
+              <polygon points="20,10 35,2.5 50,10 35,17.5" fill="url(#topFace)"/>
+              <polygon points="20,10 35,17.5 35,32.5 20,25" fill="url(#leftFace)"/>
+              <polygon points="35,17.5 50,10 50,25 35,32.5" fill="url(#rightFace)"/>
+            </g>
+            <!-- Right Upper Cube -->
+            <g transform="translate(38, 20)">
+              <polygon points="20,10 35,2.5 50,10 35,17.5" fill="url(#topFace)"/>
+              <polygon points="20,10 35,17.5 35,32.5 20,25" fill="url(#leftFace)"/>
+              <polygon points="35,17.5 50,10 50,25 35,32.5" fill="url(#rightFace)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">200+</span>
+            <span class="stat-label">Clients<br>Delighted</span>
+          </div>
+          <p class="stat-desc">Happy and content clients, a testament to our proficient services.</p>
+        </div>
+      </div>
+
+      <!-- Grid Item 4: Card 3 (11+ Partnerships) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Link / Angled Square Clip SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" />
+                <stop offset="40%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#1e3a8a" />
+              </linearGradient>
+              <linearGradient id="linkHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#93c5fd" />
+                <stop offset="100%" stop-color="#2563eb" />
+              </linearGradient>
+            </defs>
+            <g transform="rotate(-15 50 50)">
+              <!-- Main Link Loop -->
+              <rect x="25" y="25" width="45" height="45" rx="8" stroke="url(#linkGrad)" stroke-width="12" fill="none" />
+              <!-- Highlight Overlay for 3D depth -->
+              <path d="M 25 35 L 25 33 A 8 8 0 0 1 33 25 L 55 25" stroke="url(#linkHighlight)" stroke-width="6" stroke-linecap="round" fill="none" />
+              <!-- Inner small looping link hook element -->
+              <path d="M 15 25 L 35 45" stroke="url(#linkGrad)" stroke-width="10" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">11+</span>
+            <span class="stat-label">Partnerships<br>Forged</span>
+          </div>
+          <p class="stat-desc">Strong collaborations driving growth across enterprise industries.</p>
+        </div>
+      </div>
+
+      <!-- Grid Item 5: Card 4 (94% Results) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Horseshoe / Curved Toroid Tube SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="horseshoe" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#60a5fa" />
+                <stop offset="50%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#172554" />
+              </linearGradient>
+            </defs>
+            <g transform="rotate(30 50 50)">
+              <!-- Back Side Shadow Curve -->
+              <path d="M 30,30 C 30,75 70,75 70,30" stroke="#1e3a8a" stroke-width="18" stroke-linecap="round" fill="none" />
+              <!-- Front Glossy Color Curve -->
+              <path d="M 30,30 C 30,75 70,75 70,30" stroke="url(#horseshoe)" stroke-width="14" stroke-linecap="round" fill="none" />
+            </g>
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">94%</span>
+            <span class="stat-label">Results<br>Retained</span>
+          </div>
+          <p class="stat-desc">The reflection of our commitment to excellence.</p>
+        </div>
+      </div>
+
+      <!-- Grid Item 6: Card 5 (98% Success) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Concentric Arc Wave/Radar SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#93c5fd" />
+                <stop offset="50%" stop-color="#2563eb" />
+                <stop offset="100%" stop-color="#1e3a8a" />
+              </linearGradient>
+            </defs>
+            <!-- Nested arcs offset to mimic a 3D radar cone segment -->
+            <path d="M 20,35 C 35,15 65,15 80,35" stroke="url(#arcGrad)" stroke-width="10" stroke-linecap="round" fill="none" />
+            <path d="M 30,50 C 42,32 58,32 70,50" stroke="url(#arcGrad)" stroke-width="8" stroke-linecap="round" fill="none" />
+            <path d="M 40,65 C 47,52 53,52 60,65" stroke="url(#arcGrad)" stroke-width="6" stroke-linecap="round" fill="none" />
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Success<br>Achieved</span>
+          </div>
+          <p class="stat-desc">Consistently delivering outstanding results for diverse projects.</p>
+        </div>
+      </div>
+
+      <!-- Grid Item 7: Card 6 (18+ Industry Reach) -->
+      <div class="stat-card">
+        <div class="icon-wrapper">
+          <!-- 3D Rising Steps Isometric SVG -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="stairTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#60a5fa" />
+                <stop offset="100%" stop-color="#2563eb" />
+              </linearGradient>
+              <linearGradient id="stairLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#1e40af" />
+              </linearGradient>
+              <linearGradient id="stairRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e3a8a" />
+                <stop offset="100%" stop-color="#0f172a" />
+              </linearGradient>
+            </defs>
+            <!-- Step 1 (Low, Left) -->
+            <g transform="translate(15, 45)">
+              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
+              <polygon points="10,10 20,15 20,25 10,20" fill="url(#stairLeft)"/>
+              <polygon points="20,15 30,10 30,20 20,25" fill="url(#stairRight)"/>
+            </g>
+            <!-- Step 2 (Medium, Center) -->
+            <g transform="translate(32, 33)">
+              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
+              <polygon points="10,10 20,15 20,37 10,32" fill="url(#stairLeft)"/>
+              <polygon points="20,15 30,10 30,32 20,37" fill="url(#stairRight)"/>
+            </g>
+            <!-- Step 3 (High, Right) -->
+            <g transform="translate(49, 21)">
+              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
+              <polygon points="10,10 20,15 20,49 10,44" fill="url(#stairLeft)"/>
+              <polygon points="20,15 30,10 30,44 20,49" fill="url(#stairRight)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">18+</span>
+            <span class="stat-label">Industry<br>Reach</span>
+          </div>
+          <p class="stat-desc">A vibrant portfolio of expertise across industries.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JavaScript to trigger Fall-In / Drop-In Animation when visible in screen -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const section = document.getElementById("formula-section");
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15 // Triggers when 15% of the section is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target); // Animates once
+          }
+        });
+      }, observerOptions);
+
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
