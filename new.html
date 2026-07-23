@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Disruptive Finch Formula</title>
-  
+  <title>The Trading Scholar — By the Numbers</title>
+
   <!-- Load Premium Modern Sans-Serif Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
     .formula-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      gap: 32px;
       align-items: stretch;
     }
 
@@ -54,8 +54,17 @@
       padding-right: 40px;
       opacity: 0;
       transform: translateY(-30px);
-      transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+      transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000),
                   transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 16px;
     }
 
     .header-container h2 {
@@ -76,13 +85,14 @@
 
     /* Individual Card Styles */
     .stat-card {
+      position: relative;
       background-color: #f6f7f9;
       border-radius: 16px;
-      padding: 32px;
-      min-height: 280px;
+      padding: 28px;
+      min-height: 260px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       transform: translateY(-60px) scale(0.95);
@@ -93,37 +103,46 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
     }
 
-    /* Icon Styling */
+    /* Icon Styling — big, fixed to the exact same spot on every card, */
+    /* pulled past the card's own left edge so it pops out of the side */
     .icon-wrapper {
-      width: 80px;
-      height: 80px;
+      position: absolute;
+      top: 24px;
+      left: -26px;
+      width: 136px;
+      height: 136px;
       display: flex;
       align-items: center;
-      justify-content: start;
+      justify-content: flex-start;
     }
 
-    .icon-wrapper svg {
+    .icon-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 8px 14px rgba(14, 17, 24, 0.18));
     }
 
-    /* Info Block inside Card */
+    /* Info Block inside Card — mirrored to the right, opposite the icon's side */
     .card-info {
-      margin-top: 24px;
+      margin-top: 178px;
+      text-align: right;
     }
 
-    /* Stat Number & Label Flex Row */
+    /* Stat Number stacked above every other line of text */
     .stat-meta {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
       margin-bottom: 12px;
     }
 
     .stat-number {
-      font-size: 2.6rem;
-      font-weight: 800;
+      font-size: 3.4rem;
+      font-weight: 900;
+      font-style: italic;
       line-height: 1;
       letter-spacing: -1px;
       color: #0e1118;
@@ -144,6 +163,16 @@
       color: #5c6470;
     }
 
+    .stat-desc .tc {
+      font-size: 0.75rem;
+      color: #8a919c;
+    }
+
+    /* Both bottom cards are equally wide */
+    .stat-card.wide {
+      grid-column: span 2;
+    }
+
     /* Staggered Drop-In Animation Triggers (Activated by JS) */
     .formula-section.revealed .header-container {
       opacity: 1;
@@ -156,17 +185,20 @@
     }
 
     /* Stagger delay definitions for organic waterfall effect */
-    .formula-section.revealed .stat-card:nth-child(2) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s; }
-    .formula-section.revealed .stat-card:nth-child(3) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; }
-    .formula-section.revealed .stat-card:nth-child(4) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; }
-    .formula-section.revealed .stat-card:nth-child(5) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; }
-    .formula-section.revealed .stat-card:nth-child(6) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s; }
-    .formula-section.revealed .stat-card:nth-child(7) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s; }
+    .formula-section.revealed .stat-card:nth-child(2) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s; }
+    .formula-section.revealed .stat-card:nth-child(3) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s; }
+    .formula-section.revealed .stat-card:nth-child(4) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s; }
+    .formula-section.revealed .stat-card:nth-child(5) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; }
+    .formula-section.revealed .stat-card:nth-child(6) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s; }
+    .formula-section.revealed .stat-card:nth-child(7) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; }
+    .formula-section.revealed .stat-card:nth-child(8) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s; }
+    .formula-section.revealed .stat-card:nth-child(9) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; }
 
     /* Responsive Design Adjustments */
     @media (max-width: 1024px) {
       .formula-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
       }
       .header-container {
         grid-column: span 2;
@@ -176,13 +208,17 @@
       .header-container h2 {
         font-size: 3rem;
       }
+      .stat-card.wide {
+        grid-column: span 2;
+      }
     }
 
     @media (max-width: 640px) {
       .formula-grid {
         grid-template-columns: 1fr;
       }
-      .header-container {
+      .header-container,
+      .stat-card.wide {
         grid-column: span 1;
       }
       .header-container h2 {
@@ -191,6 +227,14 @@
       .stat-card {
         min-height: auto;
       }
+      .icon-wrapper {
+        width: 104px;
+        height: 104px;
+        left: -20px;
+      }
+      .card-info {
+        margin-top: 136px;
+      }
     }
   </style>
 </head>
@@ -198,239 +242,153 @@
 
   <section class="formula-section" id="formula-section">
     <div class="formula-grid">
-      
-      <!-- Grid Item 1: Main Title Header (Spans 2 columns) -->
+
+      <!-- Header Container -->
       <div class="header-container">
+        <span class="eyebrow">Our Impact</span>
         <h2>
-          Our Disruptive
-          <span class="highlight">Finch Formula</span>
+          The Trading Scholar
+          <span class="highlight">By the Numbers.</span>
         </h2>
       </div>
 
-      <!-- Grid Item 2: Card 1 (500+ Projects) -->
+      <!-- Card: 1000+ Traders Trained -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Glossy Sphere Cluster SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="sphere" cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#93c5fd" />
-                <stop offset="35%" stop-color="#2563eb" />
-                <stop offset="75%" stop-color="#1d4ed8" />
-                <stop offset="100%" stop-color="#1e3a8a" />
-              </radialGradient>
-              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15"/>
-              </filter>
-            </defs>
-            <circle cx="35" cy="35" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="53" cy="30" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="43" cy="45" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="61" cy="40" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="35" cy="55" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="53" cy="50" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="45" cy="62" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="63" cy="58" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-            <circle cx="53" cy="68" r="10" fill="url(#sphere)" filter="url(#shadow)"/>
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Projects<br>Delivered</span>
+            <span class="stat-number" data-target="1000" data-suffix="+">0+</span>
+            <span class="stat-label">Traders<br>Trained</span>
           </div>
-          <p class="stat-desc">Achieving exceptional results, exceeding client expectations.</p>
+          <p class="stat-desc">Students across all levels — beginner to advanced — transformed into systematic traders.</p>
         </div>
       </div>
 
-      <!-- Grid Item 3: Card 2 (200+ Clients) -->
+      <!-- Card: 20+ Zero Adjustment Strategies -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Isometric Cube Cluster SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="topFace" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#60a5fa" />
-                <stop offset="100%" stop-color="#2563eb" />
-              </linearGradient>
-              <linearGradient id="leftFace" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1d4ed8" />
-                <stop offset="100%" stop-color="#1e40af" />
-              </linearGradient>
-              <linearGradient id="rightFace" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1e3a8a" />
-                <stop offset="100%" stop-color="#0f172a" />
-              </linearGradient>
-            </defs>
-            <!-- Left Lower Cube -->
-            <g transform="translate(15, 42)">
-              <polygon points="20,10 35,2.5 50,10 35,17.5" fill="url(#topFace)"/>
-              <polygon points="20,10 35,17.5 35,32.5 20,25" fill="url(#leftFace)"/>
-              <polygon points="35,17.5 50,10 50,25 35,32.5" fill="url(#rightFace)"/>
-            </g>
-            <!-- Right Upper Cube -->
-            <g transform="translate(38, 20)">
-              <polygon points="20,10 35,2.5 50,10 35,17.5" fill="url(#topFace)"/>
-              <polygon points="20,10 35,17.5 35,32.5 20,25" fill="url(#leftFace)"/>
-              <polygon points="35,17.5 50,10 50,25 35,32.5" fill="url(#rightFace)"/>
-            </g>
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">200+</span>
-            <span class="stat-label">Clients<br>Delighted</span>
+            <span class="stat-number" data-target="20" data-suffix="+">0+</span>
+            <span class="stat-label">Zero Adjustment<br>Strategies</span>
           </div>
-          <p class="stat-desc">Happy and content clients, a testament to our proficient services.</p>
+          <p class="stat-desc">Proprietary hedging strategies — built, tested, and refined in live Indian markets.</p>
         </div>
       </div>
 
-      <!-- Grid Item 4: Card 3 (11+ Partnerships) -->
+      <!-- Card: 10+ Years Live Trading -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Link / Angled Square Clip SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6" />
-                <stop offset="40%" stop-color="#1d4ed8" />
-                <stop offset="100%" stop-color="#1e3a8a" />
-              </linearGradient>
-              <linearGradient id="linkHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#93c5fd" />
-                <stop offset="100%" stop-color="#2563eb" />
-              </linearGradient>
-            </defs>
-            <g transform="rotate(-15 50 50)">
-              <!-- Main Link Loop -->
-              <rect x="25" y="25" width="45" height="45" rx="8" stroke="url(#linkGrad)" stroke-width="12" fill="none" />
-              <!-- Highlight Overlay for 3D depth -->
-              <path d="M 25 35 L 25 33 A 8 8 0 0 1 33 25 L 55 25" stroke="url(#linkHighlight)" stroke-width="6" stroke-linecap="round" fill="none" />
-              <!-- Inner small looping link hook element -->
-              <path d="M 15 25 L 35 45" stroke="url(#linkGrad)" stroke-width="10" stroke-linecap="round" />
-            </g>
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">11+</span>
-            <span class="stat-label">Partnerships<br>Forged</span>
+            <span class="stat-number" data-target="10" data-suffix="+">0+</span>
+            <span class="stat-label">Years Live<br>Trading</span>
           </div>
-          <p class="stat-desc">Strong collaborations driving growth across enterprise industries.</p>
+          <p class="stat-desc">Real capital. Real markets. Not simulations.</p>
         </div>
       </div>
 
-      <!-- Grid Item 5: Card 4 (94% Results) -->
+      <!-- Card: 3 Flagship Courses -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Horseshoe / Curved Toroid Tube SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="horseshoe" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#60a5fa" />
-                <stop offset="50%" stop-color="#1d4ed8" />
-                <stop offset="100%" stop-color="#172554" />
-              </linearGradient>
-            </defs>
-            <g transform="rotate(30 50 50)">
-              <!-- Back Side Shadow Curve -->
-              <path d="M 30,30 C 30,75 70,75 70,30" stroke="#1e3a8a" stroke-width="18" stroke-linecap="round" fill="none" />
-              <!-- Front Glossy Color Curve -->
-              <path d="M 30,30 C 30,75 70,75 70,30" stroke="url(#horseshoe)" stroke-width="14" stroke-linecap="round" fill="none" />
-            </g>
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">94%</span>
-            <span class="stat-label">Results<br>Retained</span>
+            <span class="stat-number" data-target="3">0</span>
+            <span class="stat-label">Flagship<br>Courses</span>
           </div>
-          <p class="stat-desc">The reflection of our commitment to excellence.</p>
+          <p class="stat-desc">Swing, Hedging &amp; Algo — every path to mastery covered.</p>
         </div>
       </div>
 
-      <!-- Grid Item 6: Card 5 (98% Success) -->
+      <!-- Card: 5 Expert Services -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Concentric Arc Wave/Radar SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#93c5fd" />
-                <stop offset="50%" stop-color="#2563eb" />
-                <stop offset="100%" stop-color="#1e3a8a" />
-              </linearGradient>
-            </defs>
-            <!-- Nested arcs offset to mimic a 3D radar cone segment -->
-            <path d="M 20,35 C 35,15 65,15 80,35" stroke="url(#arcGrad)" stroke-width="10" stroke-linecap="round" fill="none" />
-            <path d="M 30,50 C 42,32 58,32 70,50" stroke="url(#arcGrad)" stroke-width="8" stroke-linecap="round" fill="none" />
-            <path d="M 40,65 C 47,52 53,52 60,65" stroke="url(#arcGrad)" stroke-width="6" stroke-linecap="round" fill="none" />
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">98%</span>
-            <span class="stat-label">Success<br>Achieved</span>
+            <span class="stat-number" data-target="5">0</span>
+            <span class="stat-label">Expert<br>Services</span>
           </div>
-          <p class="stat-desc">Consistently delivering outstanding results for diverse projects.</p>
+          <p class="stat-desc">From automation to wealth creation — complete ecosystem.</p>
         </div>
       </div>
 
-      <!-- Grid Item 7: Card 6 (18+ Industry Reach) -->
+      <!-- Card: 2x Weekly Live Sessions -->
       <div class="stat-card">
         <div class="icon-wrapper">
-          <!-- 3D Rising Steps Isometric SVG -->
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="stairTop" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#60a5fa" />
-                <stop offset="100%" stop-color="#2563eb" />
-              </linearGradient>
-              <linearGradient id="stairLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1d4ed8" />
-                <stop offset="100%" stop-color="#1e40af" />
-              </linearGradient>
-              <linearGradient id="stairRight" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1e3a8a" />
-                <stop offset="100%" stop-color="#0f172a" />
-              </linearGradient>
-            </defs>
-            <!-- Step 1 (Low, Left) -->
-            <g transform="translate(15, 45)">
-              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
-              <polygon points="10,10 20,15 20,25 10,20" fill="url(#stairLeft)"/>
-              <polygon points="20,15 30,10 30,20 20,25" fill="url(#stairRight)"/>
-            </g>
-            <!-- Step 2 (Medium, Center) -->
-            <g transform="translate(32, 33)">
-              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
-              <polygon points="10,10 20,15 20,37 10,32" fill="url(#stairLeft)"/>
-              <polygon points="20,15 30,10 30,32 20,37" fill="url(#stairRight)"/>
-            </g>
-            <!-- Step 3 (High, Right) -->
-            <g transform="translate(49, 21)">
-              <polygon points="10,10 20,5 30,10 20,15" fill="url(#stairTop)"/>
-              <polygon points="10,10 20,15 20,49 10,44" fill="url(#stairLeft)"/>
-              <polygon points="20,15 30,10 30,44 20,49" fill="url(#stairRight)"/>
-            </g>
-          </svg>
+          <img src="service3.png" alt="">
         </div>
         <div class="card-info">
           <div class="stat-meta">
-            <span class="stat-number">18+</span>
-            <span class="stat-label">Industry<br>Reach</span>
+            <span class="stat-number" data-target="2" data-suffix="×">0×</span>
+            <span class="stat-label">Weekly Live<br>Sessions</span>
           </div>
-          <p class="stat-desc">A vibrant portfolio of expertise across industries.</p>
+          <p class="stat-desc">Every Saturday &amp; Sunday — no doubt goes unanswered.</p>
+        </div>
+      </div>
+
+      <!-- Card: ₹0 Upselling. Ever. (big) -->
+      <div class="stat-card wide">
+        <div class="icon-wrapper">
+          <img src="service3.png" alt="">
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number">₹0</span>
+            <span class="stat-label">Upselling.<br>Ever.</span>
+          </div>
+          <p class="stat-desc">Pay once. Get lifetime access — including every new strategy Mr. Kundan Prajapati creates in the future. No hidden fees. No upgrade prompts. <span class="tc">(T&amp;C Applied)</span></p>
+        </div>
+      </div>
+
+      <!-- Card: 90 Days to Mastery (big) -->
+      <div class="stat-card wide">
+        <div class="icon-wrapper">
+          <img src="service3.png" alt="">
+        </div>
+        <div class="card-info">
+          <div class="stat-meta">
+            <span class="stat-number" data-target="90">0</span>
+            <span class="stat-label">Days to<br>Mastery</span>
+          </div>
+          <p class="stat-desc">From instinct to a system that actually works in real markets.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- JavaScript to trigger Fall-In / Drop-In Animation when visible in screen -->
+  <!-- JavaScript to trigger Fall-In / Drop-In Animation and Count-Up when visible on screen -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById("formula-section");
+
+      function animateCount(el) {
+        const target = parseFloat(el.dataset.target);
+        if (Number.isNaN(target)) return;
+        const prefix = el.dataset.prefix || "";
+        const suffix = el.dataset.suffix || "";
+        const duration = 1400;
+        const startTime = performance.now();
+
+        function step(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          const value = Math.round(target * eased);
+          el.textContent = prefix + value + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
 
       const observerOptions = {
         root: null,
@@ -442,6 +400,7 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add("revealed");
+            entry.target.querySelectorAll(".stat-number[data-target]").forEach(animateCount);
             observer.unobserve(entry.target); // Animates once
           }
         });

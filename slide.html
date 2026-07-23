@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revealing Stack Cards</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #0d0d0f;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* 
+           The Scroll Space:
+           This creates the physical vertical scroll height of the page.
+           With 4 slides, we set it to 400vh so the user can scroll normally.
+        */
+        .scroll-space {
+            position: relative;
+            height: 400vh; 
+            width: 100%;
+            display: block;
+        }
+
+        /* 
+           The Slide Stage:
+           A fixed viewport container that holds all stacked slides in place.
+        */
+        .slide-stage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* 
+           The Slides:
+           Stacked directly on top of each other using position: absolute.
+           We assign descending z-index values so the first slide sits on top.
+        */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            will-change: transform;
+            /* Box shadow creates depth as a slide moves off the one below */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Slide Layers (z-index heirarchy) */
+        #slide1 { z-index: 4; background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+        #slide2 { z-index: 3; background: linear-gradient(135deg, #115e59 0%, #0f172a 100%); }
+        #slide3 { z-index: 2; background: linear-gradient(135deg, #854d0e 0%, #1e1b4b 100%); }
+        #slide4 { z-index: 1; background: linear-gradient(135deg, #991b1b 0%, #0f0505 100%); }
+
+        /* Slide Content Container */
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        /* Card Image Frame */
+        .card-frame {
+            width: 100%;
+            max-width: 500px;
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Typography */
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .card-description {
+            font-size: 1.05rem;
+            color: #a1a1aa;
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        /* Fixed Navigation Sidebar */
+        .nav-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #ffffff;
+            transform: scale(1.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .card-frame {
+                max-width: 85%;
+                height: 220px;
+            }
+            .card-title {
+                font-size: 1.8rem;
+            }
+            .nav-dots {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Indicator Dots -->
+    <nav class="nav-dots" id="navDots">
+        <div class="dot active" data-index="0"></div>
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+        <div class="dot" data-index="3"></div>
+    </nav>
+
+    <!-- The Scroll Space provides the height for vertical scrolling -->
+    <div class="scroll-space">
+        
+        <!-- The Fixed Viewport Stage -->
+        <div class="slide-stage">
+
+            <!-- Slide 1 (Topmost Card) -->
+            <section class="slide" id="slide1">
+                <div class="slide-content">
+                    <div class="card-frame">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Ocean Shore">
+                    </div>
+                    <h2 class="card-title">Ocean Shore</h2>
+                    <p class="card-description">Scroll downwards. This top card will slide upward and off the screen, revealing the next card which remains completely stuck underneath.</p>
+                </div>
+                <div class="scroll-indicator">Scroll Down</div>
+            </section>
+
+            <!-- Slide 2 (Second Card) -->
+            <section class="slide" id="slide2">
+                <div class="slide-content">
+                    <div class="card-frame">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80" alt="Misty Forest">
+                    </div>
+                    <h2 class="card-title">Misty Forest</h2>
+                    <p class="card-description">This card remained stationary and stuck while the first card slid off. Now, scrolling further will slide this card up to reveal the next.</p>
+                </div>
+            </section>
+
+            <!-- Slide 3 (Third Card) -->
+            <section class="slide" id="slide3">
+                <div class="slide-content">
+                    <div class="card-frame">
+                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1000&q=80" alt="Woodland Path">
+                    </div>
+                    <h2 class="card-title">Woodland Path</h2>
+                    <p class="card-description">Revealed from beneath, this card sits waiting. It stays locked in place until the scroll progress initiates its turn to move up.</p>
+                </div>
+            </section>
+
+            <!-- Slide 4 (Bottom-most Card) -->
+            <section class="slide" id="slide4">
+                <div class="slide-content">
+                    <div class="card-frame">
+                        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1000&q=80" alt="Mountain Peak">
+                    </div>
+                    <h2 class="card-title">Mountain Peak</h2>
+                    <p class="card-description">This is the final card in the stack, completely revealed once all preceding layers have been pushed off-screen.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function updateSlidePositions() {
+            const scrollTop = window.scrollY;
+            const viewportHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                // Define the scroll range for each slide's exit animation
+                const startScroll = index * viewportHeight;
+                const endScroll = (index + 1) * viewportHeight;
+
+                if (scrollTop < startScroll) {
+                    // Slide is waiting in the stack, fully stationary (stuck)
+                    slide.style.transform = `translateY(0%)`;
+                } else if (scrollTop >= startScroll && scrollTop <= endScroll) {
+                    // Slide is currently transitioning up and off-screen
+                    const progress = (scrollTop - startScroll) / viewportHeight;
+                    const translateYValue = progress * -100;
+                    slide.style.transform = `translateY(${translateYValue}%)`;
+                } else {
+                    // Slide has completed its transition and is off-screen
+                    slide.style.transform = `translateY(-100%)`;
+                }
+            });
+
+            // Update active dot indicators based on scroll progress
+            const currentActiveIndex = Math.min(
+                Math.floor(scrollTop / viewportHeight),
+                totalSlides - 1
+            );
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentActiveIndex);
+            });
+        }
+
+        // Run on scroll
+        window.addEventListener('scroll', updateSlidePositions);
+
+        // Run on load and resize to handle correct height calculations
+        window.addEventListener('resize', updateSlidePositions);
+        updateSlidePositions();
+
+        // Dot Navigation scroll behavior
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const targetIndex = parseInt(e.target.getAttribute('data-index'), 10);
+                window.scrollTo({
+                    top: targetIndex * window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

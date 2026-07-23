@@ -205,6 +205,20 @@
             }
         }
 
+        /* Opaque backing layer for the hero. .hero-screen itself stays
+           background: transparent (needed for the header's blur-on-scroll
+           effect), but that means the fixed footer sitting behind it in
+           the stacking order would otherwise show through -- this sits
+           above that gap and below the chart canvas / text so nothing
+           bleeds through. */
+        .hero-bg-cover {
+            position: absolute;
+            inset: 0;
+            background: var(--primary-bg);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* ===== HERO LIVE CHART BACKGROUND ===== */
         .hero-graph-bg {
             position: absolute;
@@ -2219,7 +2233,7 @@
             justify-content: space-between;
             box-sizing: border-box;
             overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: none !important;
             border: 1px solid rgba(255, 255, 255, 0.06) !important;
             opacity: 1 !important;
             backface-visibility: hidden;
@@ -2350,109 +2364,219 @@
             transform: scale(1.05);
         }
 
-        /* ===== HOW IT WORKS ===== */
+        /* ===== HOW IT WORKS (BY THE NUMBERS) ===== */
         .how-works-section {
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            height: auto;
+            overflow: visible;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
             background-color: var(--bg-dark);
             z-index: 10;
+            padding: 140px 20px;
         }
 
-        .how-header {
-            text-align: center;
-            margin-bottom: 40px;
-            z-index: 10;
+        #how-viewport .formula-grid {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            align-items: stretch;
         }
 
-        .how-header .sub-hdr {
-            font-size: 11px;
-            font-weight: 800;
+        #how-viewport .header-container {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 40px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                        transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+
+        #how-viewport .eyebrow {
+            font-family: var(--font-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
             letter-spacing: 2px;
-            color: #0024E8;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            color: #ffffff;
+            margin-bottom: 16px;
             display: block;
         }
 
-        .how-header h2 {
+        #how-viewport .header-container h2 {
             font-family: var(--font-headings);
-            font-size: 2.8rem;
-            font-weight: 300;
-            color: #FFFFFF;
-            letter-spacing: -1px;
+            font-size: 3.5rem;
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -2px;
+            color: #ffffff;
         }
 
-        .how-header h2 span {
+        #how-viewport .header-container h2 .highlight {
+            display: block;
             font-weight: 800;
             font-style: italic;
+            letter-spacing: -1.5px;
+            margin-top: 4px;
             color: #0024E8;
         }
 
-        .how-track-wrapper {
-            width: 74%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            overflow: visible;
+        #how-viewport .stat-card {
             position: relative;
-        }
-
-        .how-track {
-            display: flex;
-            gap: 28px;
-            width: 100%;
-            position: relative;
-            z-index: 5;
-        }
-
-        .how-card {
-            flex: 1 1 0;
-            min-width: 260px;
-            height: 360px;
-            background: linear-gradient(145deg, #eef2fb 0%, #ffffff 100%);
-            border: 1px solid rgba(0, 36, 232, 0.14);
-            border-radius: 20px;
-            padding: 44px 38px;
+            background-color: #f6f7f9;
+            border-radius: 16px;
+            padding: 28px;
+            min-height: 260px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 12px 30px rgba(8, 15, 40, 0.18);
+            justify-content: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
-            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            transform: translateY(-60px) scale(0.95);
         }
 
-        .how-card:hover {
-            border-color: rgba(0, 36, 232, 0.35);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 36px rgba(8, 15, 40, 0.22);
+        #how-viewport .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
         }
 
-        .how-card .step-num {
-            font-family: var(--font-headings);
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: #0024E8;
-            line-height: 1;
-            font-style: italic;
+        #how-viewport .icon-wrapper {
+            position: absolute;
+            top: 24px;
+            left: -26px;
+            width: 136px;
+            height: 136px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
         }
 
-        .how-card h3 {
-            font-family: var(--font-headings);
-            font-size: 1.65rem;
-            font-weight: 600;
+        #how-viewport .icon-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            filter: drop-shadow(0 8px 14px rgba(14, 17, 24, 0.18));
+        }
+
+        #how-viewport .card-info {
+            margin-top: 178px;
+            text-align: right;
+        }
+
+        #how-viewport .stat-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
             margin-bottom: 12px;
+        }
+
+        #how-viewport .stat-card .stat-number {
+            font-family: var(--font-headings);
+            font-size: 3.4rem;
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+            letter-spacing: -1px;
             color: #0B0F19;
         }
 
-        .how-card p {
-            font-size: 0.97rem;
-            line-height: 1.65;
-            color: #475569;
+        #how-viewport .stat-card .stat-label {
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0B0F19;
+            max-width: none;
+            opacity: 1;
+        }
+
+        #how-viewport .stat-desc {
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #5c6470;
+        }
+
+        #how-viewport .stat-desc .tc {
+            font-size: 0.75rem;
+            color: #8a919c;
+        }
+
+        #how-viewport .stat-card.wide {
+            grid-column: span 2;
+        }
+
+        #how-viewport.formula-section.revealed .header-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #how-viewport.formula-section.revealed .stat-card {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        #how-viewport.formula-section.revealed .stat-card:nth-child(2) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(3) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(4) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(5) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(6) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(7) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(8) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s; }
+        #how-viewport.formula-section.revealed .stat-card:nth-child(9) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; }
+
+        @media (max-width: 1024px) {
+            #how-viewport .formula-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            #how-viewport .header-container {
+                grid-column: span 2;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            #how-viewport .header-container h2 {
+                font-size: 3rem;
+            }
+            #how-viewport .stat-card.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #how-viewport .formula-grid {
+                grid-template-columns: 1fr;
+            }
+            #how-viewport .header-container,
+            #how-viewport .stat-card.wide {
+                grid-column: span 1;
+            }
+            #how-viewport .header-container h2 {
+                font-size: 2.5rem;
+            }
+            #how-viewport .stat-card {
+                min-height: auto;
+            }
+            #how-viewport .icon-wrapper {
+                width: 104px;
+                height: 104px;
+                left: -20px;
+            }
+            #how-viewport .card-info {
+                margin-top: 136px;
+            }
         }
 
         /* ===== ABOUT SECTION ===== */
@@ -2621,103 +2745,260 @@
         /* ===== RESULTS ===== */
         .results-section {
             background-color: #ffffff;
-            padding: 180px 40px;
+            padding: 120px 40px 150px;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             z-index: 10;
+            overflow: hidden;
+        }
+
+        .results-section .section-hdr {
+            margin-bottom: 24px;
         }
 
         .results-section .section-hdr h2 {
             color: #0B0F19;
         }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+        /* ===== REVIEWS CAROUSEL ===== */
+        .reviews-carousel {
+            position: relative;
             width: 100%;
-            max-width: 1200px;
-        }
-
-        .result-card {
-            background: #f5f7ff;
-            border: 1px solid rgba(0, 36, 232, 0.15);
-            border-radius: 16px;
-            padding: 32px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .result-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 36, 232, 0.4);
-        }
-
-        .result-card .screenshot-placeholder {
-            width: 100%;
-            height: 150px;
-            background: rgba(0, 36, 232, 0.04);
-            border: 1px dashed rgba(0, 36, 232, 0.25);
-            border-radius: 8px;
-            margin-bottom: 18px;
+            max-width: 1320px;
+            height: 640px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
         }
 
-        .result-card .screenshot-placeholder svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            fill: var(--text-secondary);
+        .reviews-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
-        .result-card .metrics {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 18px;
+        .review-slide {
+            position: absolute;
+            top: 36%;
+            left: 50%;
+            width: 264px;
+            height: 470px;
+            transform: translate(-50%, -50%) translateX(var(--x, 0px)) scale(var(--scale, 1));
+            opacity: var(--opacity, 1);
+            filter: brightness(var(--bright, 1));
+            z-index: 1;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(.22, .61, .36, 1), opacity 0.6s ease, filter 0.6s ease;
         }
 
-        .result-card .metric-item {
-            background: rgba(0, 36, 232, 0.06);
-            border: 1px solid rgba(0, 36, 232, 0.18);
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-align: center;
-            flex: 1;
+        .review-slide.active {
+            cursor: default;
         }
 
-        .result-card .metric-item span {
+        .review-video-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #05070d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.6s ease, box-shadow 0.6s ease;
+        }
+
+        .review-slide.active .review-video-wrap {
+            border-color: rgba(201, 168, 76, 0.55);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 40px rgba(201, 168, 76, 0.18);
+        }
+
+        .review-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            font-size: 0.72rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
+        }
+
+        .unmute-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            background: rgba(3, 7, 18, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.7rem;
             font-weight: 600;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            cursor: pointer;
+            z-index: 3;
         }
 
-        .result-card .metric-item strong {
-            font-size: 1.1rem;
-            color: #0024E8;
+        .review-video-wrap:hover .unmute-btn,
+        .unmute-btn.is-unmuted {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .unmute-btn svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+        }
+
+        .unmute-btn .icon-unmuted {
+            display: none;
+        }
+
+        .unmute-btn.is-unmuted .icon-muted {
+            display: none;
+        }
+
+        .unmute-btn.is-unmuted .icon-unmuted {
+            display: inline-block;
+        }
+
+        .unmute-btn.is-unmuted {
+            background: rgba(201, 168, 76, 0.85);
+            border-color: rgba(201, 168, 76, 0.9);
+            color: #0B0F19;
+        }
+
+        .review-card {
+            position: absolute;
+            right: -32px;
+            bottom: -32px;
+            width: 254px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px 24px 20px;
+            z-index: 6;
+            box-shadow: 0 24px 48px rgba(3, 7, 18, 0.22), 0 6px 18px rgba(0, 36, 232, 0.1);
+            border: 1px solid rgba(0, 36, 232, 0.08);
+            transition: opacity 0.6s ease, box-shadow 0.6s ease;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 12px;
+            font-family: var(--font-headings);
+            font-size: 6.5rem;
+            font-weight: 800;
+            font-style: italic;
+            color: rgba(0, 36, 232, 0.07);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .review-slide.active .review-card {
+            box-shadow: 0 28px 56px rgba(3, 7, 18, 0.24), 0 0 0 1px rgba(201, 168, 76, 0.3), 0 8px 20px rgba(201, 168, 76, 0.14);
+        }
+
+        .review-slide:not(.active) .review-card {
+            opacity: 0.85;
+        }
+
+        .review-card .review-quote {
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.55;
+            font-style: italic;
+            font-weight: 500;
+            color: #0B0F19;
+            margin: 0 0 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .review-card .review-name {
+            position: relative;
+            display: block;
+            font-size: 0.82rem;
             font-weight: 700;
+            color: #0024E8;
+            letter-spacing: 0.01em;
         }
 
-        .result-card .metric-item.profit strong {
-            color: #10B981;
+        .review-card .review-name::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin-bottom: 8px;
         }
 
-        .result-card p {
-            font-size: 0.88rem;
-            color: #6B7280;
-            line-height: 1.6;
-            margin-bottom: 18px;
+        .reviews-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 36px;
+        }
+
+        .reviews-dots .rdot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(11, 15, 25, 0.2);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reviews-dots .rdot.active {
+            background: #0024E8;
+            width: 22px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-carousel {
+                height: 480px;
+                overflow: hidden;
+            }
+
+            .review-slide {
+                top: 34%;
+                width: 192px;
+                height: 342px;
+            }
+
+            .review-card {
+                width: 192px;
+                right: -16px;
+                bottom: -20px;
+                padding: 18px 18px 16px;
+            }
+
+            .review-card::before {
+                font-size: 4.5rem;
+                top: -20px;
+            }
+
+            .review-card .review-quote {
+                font-size: 0.82rem;
+                -webkit-line-clamp: 3;
+                line-clamp: 3;
+            }
         }
 
         /* ===== PODCAST ===== */
@@ -3330,6 +3611,10 @@
             z-index: 2;
             border-radius: 0 0 48px 48px;
             box-shadow: 0 60px 100px -30px rgba(0, 0, 0, 0.7);
+            /* Slid up via a JS scroll listener (see updateFaqFooterReveal) using
+               transform: translateY, not layout margins, so the curtain glides
+               smoothly off the fixed footer underneath instead of jumping. */
+            will-change: transform;
         }
 
         /* ===== FOUNDER VISION CARD (FAQ) ===== */
@@ -3655,25 +3940,72 @@
 
         /* CLEAN glow border animation — contained, no leaking */
 
-        /* ===== FOOTER STICKY-REVEAL STACK ===== */
-        /* Extra height beyond the footer's own content gives .footer-reveal-stack
-           room to keep the footer pinned to the viewport bottom while the FAQ
-           curtain above it finishes scrolling out of view. */
+        /* ===== FOOTER FIXED-REVEAL STACK ===== */
+        /* The footer is pinned to the viewport bottom (position: fixed) so it
+           never moves on its own. The FAQ curtain above it (.faq-section-outer,
+           z-index: 2) covers it until updateFaqFooterReveal() slides the curtain
+           up via transform, revealing the footer (z-index: 1) underneath.
+           Deliberately no z-index here (stays auto/no new stacking context) --
+           giving this wrapper a negative z-index previously made the footer
+           un-paintable once revealed, since it got stacked behind <body>'s own
+           box instead of just behind the FAQ curtain. */
         .footer-reveal-stack {
             position: relative;
+        }
+
+        /* Everything above the FAQ curtain (header nav down through the
+           masterclass section) needs to sit in its own stacking context
+           above the fixed footer (z-index: 1) -- otherwise any section here
+           that isn't itself positioned+z-indexed (e.g. .podcast-section)
+           gets painted BELOW the footer's positioned layer and the fixed
+           footer shows through/over it whenever that section reaches the
+           bottom of the viewport. z-index: 2 matches .faq-section-outer so
+           the whole page reads as one continuous stack above the footer,
+           right up until the curtain intentionally reveals it. */
+        .main-content-stack {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Guards the fixed footer against a WebKit/Chrome rubber-band bug:
+           during elastic overscroll at the very top of the page,
+           position: fixed layers (the footer included) can get shoved to
+           the wrong on-screen spot for a frame or two, which briefly
+           shows the footer over the hero instead of staying pinned off
+           behind it. This is also position: fixed (so it gets the same
+           erroneous bounce transform as the footer and keeps tracking it
+           1:1) and sits just above the footer's z-index but below every
+           real section (z-index: 2), so it can never cover hero or page
+           content -- only ever the footer. updateFaqFooterReveal() fades
+           it out in lockstep with the real curtain reveal so the
+           intentional footer reveal at the true bottom of the page still
+           works. Desktop-only: below 768px the footer is position: static
+           (see footer media query) so there's nothing to guard against. */
+        .footer-bounce-guard {
+            position: fixed;
+            inset: 0;
+            background: var(--primary-bg);
             z-index: 1;
-            min-height: 100vh;
+            pointer-events: none;
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .footer-bounce-guard {
+                display: block;
+            }
         }
 
         footer {
             background-color: #FFFFFF;
             color: #0A0A0A;
             padding: 80px 60px 40px 60px;
-            position: sticky;
+            position: fixed;
+            left: 0;
             bottom: 0;
             overflow: hidden;
             width: 100%;
-            z-index: 10;
+            z-index: 1;
         }
 
         .footer-container {
@@ -4254,25 +4586,7 @@
             }
 
             .how-works-section {
-                height: auto;
                 padding: 120px 20px;
-            }
-
-            .how-track-wrapper {
-                width: 100%;
-                max-width: none;
-                padding: 0;
-            }
-
-            .how-track {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .how-card {
-                width: 100%;
-                min-width: unset;
-                height: auto;
             }
 
             .about-section {
@@ -4286,10 +4600,6 @@
             .mentor-layout {
                 flex-direction: column;
                 gap: 0;
-            }
-
-            .results-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
 
             .podcast-grid {
@@ -4422,10 +4732,6 @@
                 font-size: 0.78rem;
             }
 
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
-
             .podcast-grid {
                 grid-template-columns: 1fr;
             }
@@ -4451,11 +4757,7 @@
                 max-height: 80px;
             }
 
-            /* Sticky-reveal is desktop-only; mobile gets a normal in-flow footer */
-            .footer-reveal-stack {
-                min-height: 0;
-            }
-
+            /* Fixed-reveal is desktop-only; mobile gets a normal in-flow footer */
             footer {
                 position: static;
                 padding: 40px 20px;
@@ -4463,6 +4765,8 @@
 
             .faq-section-outer {
                 border-radius: 0 0 28px 28px;
+                margin-bottom: 0;
+                transform: none !important;
             }
 
             .footer-container {
@@ -4629,12 +4933,8 @@
                 padding: 32px 22px;
             }
 
-            .how-card {
-                padding: 32px 24px;
-            }
-
-            .how-card .step-num {
-                font-size: 3rem;
+            #how-viewport .stat-card {
+                padding: 20px;
             }
 
             .logo-item {
@@ -5081,9 +5381,9 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algo Trading — Elgo System</span>
-                                <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with
-                                    precision.</span>
+                                <span class="mega-link-title">Algo Trading Course</span>
+                                <span class="mega-link-desc">From zero knowledge to live deployment — build,
+                                    backtest, and automate strategies, even with no coding experience.</span>
                             </div>
                         </a>
                         <a href="course2.html" class="mega-menu-link-item">
@@ -5095,9 +5395,9 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">1-on-1 Live Mentorship</span>
-                                <span class="mega-link-desc">Direct coaching with Kundan. Personalised systems built
-                                    around your capital.</span>
+                                <span class="mega-link-title">Swing Trading Course</span>
+                                <span class="mega-link-desc">Master swing setups and intraday execution through pure
+                                    price action — a rule-based system, no indicators, no guesswork.</span>
                             </div>
                         </a>
                         <a href="course3.html" class="mega-menu-link-item">
@@ -5109,9 +5409,9 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Option Selling &amp; Hedging</span>
-                                <span class="mega-link-desc">Consistent monthly income. Defined risk.
-                                    Institutional-style execution.</span>
+                                <span class="mega-link-title">Hedging Course</span>
+                                <span class="mega-link-desc">The only course in India with 20+ proprietary Zero
+                                    Adjustment Hedging strategies, refined over 10 years of live markets.</span>
                             </div>
                         </a>
                     </div>
@@ -5134,7 +5434,7 @@
                                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"
                                             fill="rgba(0,36,232,0.4)" />
                                     </svg>
-                                    <span class="mega-collage-label">Student Results</span>
+                                    <span class="mega-collage-label">Student Reviews</span>
                                 </div>
                             </div>
                             <div class="mega-collage-img">
@@ -5368,7 +5668,7 @@
                     <li><a href="aboutus.html" class="mobile-link" target="_blank">About Us</a></li>
                     <li><a href="#courses" class="mobile-link">Academy Programs</a></li>
                     <li><a href="#stack-viewport" class="mobile-link">Services</a></li>
-                    <li><a href="#results" class="mobile-link">Student Results</a></li>
+                    <li><a href="#results" class="mobile-link">Student Reviews</a></li>
                     <li><a href="#masterclass" class="mobile-link">Contact</a></li>
                 </ul>
             </nav>
@@ -5378,8 +5678,11 @@
         </div>
     </div>
 
+    <div class="main-content-stack">
+
     <!-- HERO -->
     <section class="hero-screen">
+        <div class="hero-bg-cover" aria-hidden="true"></div>
         <!-- Live chart-style animated background -->
         <canvas class="hero-graph-bg" id="heroChartCanvas" aria-hidden="true"></canvas>
         <div class="hero-content">
@@ -5886,38 +6189,130 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="how-works-section" id="how-viewport">
-        <div class="how-header">
-            <span class="sub-hdr">Our Value Methodology</span>
-            <h2>How It <span>Works</span></h2>
-        </div>
-        <div class="how-track-wrapper">
-            <div class="how-track">
-                <div class="how-card" id="how-card-1">
-                    <div class="step-num">1</div>
-                    <div>
-                        <h3>Learn The Methodology</h3>
-                        <p>Master institutional frameworks, hedging systems, and risk management principles. Understand
-                            how professional market participants think before you place a single trade.</p>
-                    </div>
+    <section class="how-works-section formula-section" id="how-viewport">
+        <div class="formula-grid">
+
+            <!-- Header Container -->
+            <div class="header-container">
+                <span class="eyebrow">Our Impact</span>
+                <h2>
+                    The Trading Scholar
+                    <span class="highlight">By the Numbers.</span>
+                </h2>
+            </div>
+
+            <!-- Card: 1000+ Traders Trained -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
                 </div>
-                <div class="how-card" id="how-card-2">
-                    <div class="step-num">2</div>
-                    <div>
-                        <h3>Practice With Live Support</h3>
-                        <p>Apply systems in real market conditions with direct mentor guidance. Get feedback on actual
-                            trades, not hypothetical scenarios.</p>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="1000" data-suffix="+">0+</span>
+                        <span class="stat-label">Traders<br>Trained</span>
                     </div>
-                </div>
-                <div class="how-card" id="how-card-3">
-                    <div class="step-num">3</div>
-                    <div>
-                        <h3>Trade With Consistency</h3>
-                        <p>Execute with discipline and build a sustainable, scalable trading approach. Track
-                            performance, refine the system, and compound results over time.</p>
-                    </div>
+                    <p class="stat-desc">Students across all levels — beginner to advanced — transformed into systematic traders.</p>
                 </div>
             </div>
+
+            <!-- Card: 20+ Zero Adjustment Strategies -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="20" data-suffix="+">0+</span>
+                        <span class="stat-label">Zero Adjustment<br>Strategies</span>
+                    </div>
+                    <p class="stat-desc">Proprietary hedging strategies — built, tested, and refined in live Indian markets.</p>
+                </div>
+            </div>
+
+            <!-- Card: 10+ Years Live Trading -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="10" data-suffix="+">0+</span>
+                        <span class="stat-label">Years Live<br>Trading</span>
+                    </div>
+                    <p class="stat-desc">Real capital. Real markets. Not simulations.</p>
+                </div>
+            </div>
+
+            <!-- Card: 3 Flagship Courses -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="3">0</span>
+                        <span class="stat-label">Flagship<br>Courses</span>
+                    </div>
+                    <p class="stat-desc">Swing, Hedging &amp; Algo — every path to mastery covered.</p>
+                </div>
+            </div>
+
+            <!-- Card: 5 Expert Services -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="5">0</span>
+                        <span class="stat-label">Expert<br>Services</span>
+                    </div>
+                    <p class="stat-desc">From automation to wealth creation — complete ecosystem.</p>
+                </div>
+            </div>
+
+            <!-- Card: 2x Weekly Live Sessions -->
+            <div class="stat-card">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="2" data-suffix="×">0×</span>
+                        <span class="stat-label">Weekly Live<br>Sessions</span>
+                    </div>
+                    <p class="stat-desc">Every Saturday &amp; Sunday — no doubt goes unanswered.</p>
+                </div>
+            </div>
+
+            <!-- Card: ₹0 Upselling. Ever. (big) -->
+            <div class="stat-card wide">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number">₹0</span>
+                        <span class="stat-label">Upselling.<br>Ever.</span>
+                    </div>
+                    <p class="stat-desc">Pay once. Get lifetime access — including every new strategy Mr. Kundan Prajapati creates in the future. No hidden fees. No upgrade prompts. <span class="tc">(T&amp;C Applied)</span></p>
+                </div>
+            </div>
+
+            <!-- Card: 90 Days to Mastery (big) -->
+            <div class="stat-card wide">
+                <div class="icon-wrapper">
+                    <img src="service3.png" alt="">
+                </div>
+                <div class="card-info">
+                    <div class="stat-meta">
+                        <span class="stat-number" data-target="90">0</span>
+                        <span class="stat-label">Days to<br>Mastery</span>
+                    </div>
+                    <p class="stat-desc">From instinct to a system that actually works in real markets.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -5965,84 +6360,290 @@
     <section class="results-section" id="results">
         <div class="section-hdr">
             <span class="sub-title">Performance Proof</span>
-            <h2>Verified Student <span>Results</span></h2>
+            <h2>Student <span>Reviews</span></h2>
         </div>
-        <div class="results-grid">
-            <div class="result-card">
-                <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
-                    </svg>
-                    <span>P&amp;L Statement Verified</span>
-                </div>
-                <div class="metrics">
-                    <div class="metric-item profit"><span>Net Profit</span><strong>+₹1,82,000</strong></div>
-                    <div class="metric-item"><span>Period</span><strong>3 Months</strong></div>
-                </div>
-                <p>"The Elgo system completely saved my capital. I used to chase naked option buying moves. Shifting to
-                    systematic options selling with strict code logic changed my performance profile."</p>
-                <div style="display:flex;align-items:center;">
-                    <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
-                        RS</div>
-                    <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Rohan Sharma</h4>
-                        <span style="color:var(--text-secondary);font-size:0.75rem;">Mumbai | Algo Student</span>
+        <div class="reviews-carousel" id="reviewsCarousel">
+            <div class="reviews-track" id="reviewsTrack">
+                <div class="review-slide" data-index="0">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"The Elgo system completely saved my capital. Shifting to systematic options selling changed my performance profile."</p>
+                        <span class="review-name">Rohan Sharma — Mumbai</span>
                     </div>
                 </div>
-            </div>
-            <div class="result-card">
-                <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
-                    </svg>
-                    <span>P&amp;L Screenshot Attached</span>
-                </div>
-                <div class="metrics">
-                    <div class="metric-item profit"><span>Win Rate</span><strong>68.4%</strong></div>
-                    <div class="metric-item"><span>Drawdown</span><strong>-3.2% Max</strong></div>
-                </div>
-                <p>"Applying the systematic 1:1 mentorship helped me define custom position sizes based on my active
-                    account capital. I stopped experiencing emotional drawdowns."</p>
-                <div style="display:flex;align-items:center;">
-                    <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
-                        PP</div>
-                    <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Priya Patel</h4>
-                        <span style="color:var(--text-secondary);font-size:0.75rem;">Ahmedabad | 1-on-1
-                            Mentorship</span>
+                <div class="review-slide" data-index="1">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"The systematic 1:1 mentorship helped me define custom position sizes. I stopped experiencing emotional drawdowns."</p>
+                        <span class="review-name">Priya Patel — Ahmedabad</span>
                     </div>
                 </div>
-            </div>
-            <div class="result-card">
-                <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z" />
-                    </svg>
-                    <span>Trading Statement PDF</span>
+                <div class="review-slide" data-index="2">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"The option selling and hedging course taught me to manage delta risk. I sleep peacefully knowing my max risk is hedged."</p>
+                        <span class="review-name">Ankit Joshi — Jaipur</span>
+                    </div>
                 </div>
-                <div class="metrics">
-                    <div class="metric-item profit"><span>Return</span><strong>+24.5%</strong></div>
-                    <div class="metric-item"><span>System</span><strong>Iron Condors</strong></div>
+                <div class="review-slide" data-index="3">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"Before this course I traded on gut feeling. Now every trade follows a checklist, and my win rate finally makes sense."</p>
+                        <span class="review-name">Simran Kaur — Delhi</span>
+                    </div>
                 </div>
-                <p>"The option selling and hedging strategies course taught me how to manage delta risk systematically.
-                    I sleep peacefully knowing my maximum risk is always hedged."</p>
-                <div style="display:flex;align-items:center;">
-                    <div
-                        style="width:40px;height:40px;background:#0024E8;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">
-                        AJ</div>
-                    <div style="margin-left:12px;text-align:left;">
-                        <h4 style="color:#0B0F19;font-size:0.95rem;font-weight:600;">Ankit Joshi</h4>
-                        <span style="color:var(--text-secondary);font-size:0.75rem;">Jaipur | Options Course</span>
+                <div class="review-slide" data-index="4">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"The mentorship sessions caught mistakes I didn't know I was making. My drawdowns are a fraction of what they used to be."</p>
+                        <span class="review-name">Vikram Nair — Bengaluru</span>
+                    </div>
+                </div>
+                <div class="review-slide" data-index="5">
+                    <div class="review-video-wrap">
+                        <video class="review-video" muted loop playsinline preload="metadata"
+                            poster="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=400&h=700">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                        </video>
+                        <button class="unmute-btn" type="button" aria-label="Unmute video">
+                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
+                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                            <span class="unmute-label">Unmute</span>
+                        </button>
+                    </div>
+                    <div class="review-card">
+                        <p class="review-quote">"I finally understand why my trades work or fail. The framework gave me a process I can repeat every single day."</p>
+                        <span class="review-name">Neha Deshmukh — Pune</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="reviews-dots" id="reviewsDots"></div>
     </section>
+
+    <script>
+        (function () {
+            const track = document.getElementById('reviewsTrack');
+            const dotsWrap = document.getElementById('reviewsDots');
+            const carousel = document.getElementById('reviewsCarousel');
+            if (!track || !dotsWrap || !carousel) return;
+
+            // The visible strip is 3 copies of the review set laid end to end.
+            // Navigating always steps by exactly 1 through this flat list, so a
+            // slide's screen position only ever shifts by one "slot" per tick —
+            // there's no modulo wraparound math to jump a hidden slide across
+            // the visible area. Once the active index drifts into the first or
+            // last copy, it's snapped back by one full set length (N) into the
+            // middle copy; since both positions show identical cloned content,
+            // that snap happens with transitions disabled and is invisible.
+            const baseSlides = Array.from(track.querySelectorAll('.review-slide'));
+            const N = baseSlides.length;
+            const REPEAT = 3;
+
+            track.innerHTML = '';
+            const slides = [];
+            for (let r = 0; r < REPEAT; r++) {
+                baseSlides.forEach((base) => {
+                    const clone = base.cloneNode(true);
+                    track.appendChild(clone);
+                    slides.push(clone);
+                });
+            }
+            const total = slides.length;
+
+            let current = N + 2; // middle copy, starting on the 3rd review
+            let autoTimer = null;
+            let normalizeTimer = null;
+            let userUnmuted = false;
+
+            baseSlides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'rdot';
+                dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+                dot.addEventListener('click', () => goToBase(i, true));
+                dotsWrap.appendChild(dot);
+            });
+            const dots = Array.from(dotsWrap.children);
+
+            function layout() {
+                const isMobile = window.innerWidth <= 768;
+                const maxAbs = isMobile ? 1 : 2;
+
+                slides.forEach((slide, i) => {
+                    const diff = i - current;
+                    const abs = Math.abs(diff);
+                    const video = slide.querySelector('.review-video');
+
+                    let x = 0, scale = 1, opacity = 1, z = 6, bright = 1, pe = 'auto';
+                    if (abs === 0) {
+                        x = 0; scale = 1; opacity = 1; z = 6; bright = 1; pe = 'auto';
+                    } else if (abs === 1) {
+                        x = diff * (isMobile ? 192 : 283); scale = 0.8; opacity = 0.65; z = 5; bright = 0.55; pe = 'auto';
+                    } else if (abs === 2 && !isMobile) {
+                        x = diff * 249; scale = 0.6; opacity = 0.38; z = 4; bright = 0.4; pe = 'auto';
+                    } else {
+                        x = diff * (isMobile ? 300 : 700); scale = 0.45; opacity = 0; z = 1; bright = 0.3; pe = 'none';
+                    }
+
+                    slide.style.setProperty('--x', x + 'px');
+                    slide.style.setProperty('--scale', scale);
+                    slide.style.setProperty('--opacity', opacity);
+                    slide.style.setProperty('--bright', bright);
+                    slide.style.zIndex = z;
+                    slide.style.pointerEvents = pe;
+                    slide.classList.toggle('active', abs === 0);
+
+                    if (abs <= maxAbs) {
+                        video.play().catch(() => {});
+                    } else if (video !== document.activeElement) {
+                        video.pause();
+                    }
+                });
+                const activeBase = ((current % N) + N) % N;
+                dots.forEach((d, i) => d.classList.toggle('active', i === activeBase));
+            }
+
+            window.addEventListener('resize', layout);
+
+            function goTo(index, manual) {
+                current = index;
+                layout();
+                if (manual) restartAuto();
+                scheduleNormalize();
+            }
+
+            // Dots address a base review (0..N-1); resolve that to whichever
+            // copy of it sits closest to the current index for the shortest hop.
+            function goToBase(baseIndex, manual) {
+                let best = baseIndex + N;
+                let bestDist = Math.abs(best - current);
+                for (let r = 0; r < REPEAT; r++) {
+                    const candidate = baseIndex + r * N;
+                    const dist = Math.abs(candidate - current);
+                    if (dist < bestDist) { bestDist = dist; best = candidate; }
+                }
+                goTo(best, manual);
+            }
+
+            function scheduleNormalize() {
+                clearTimeout(normalizeTimer);
+                normalizeTimer = setTimeout(() => {
+                    if (current < N || current >= N * 2) {
+                        current = N + (((current - N) % N) + N) % N;
+                        slides.forEach((s) => { s.style.transition = 'none'; });
+                        layout();
+                        void track.offsetHeight;
+                        slides.forEach((s) => { s.style.transition = ''; });
+                    }
+                }, 650);
+            }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(() => {
+                    if (!userUnmuted) goTo(current + 1);
+                }, 3000);
+            }
+            function stopAuto() {
+                if (autoTimer) clearInterval(autoTimer);
+                autoTimer = null;
+            }
+            function restartAuto() { startAuto(); }
+
+            slides.forEach((slide, i) => {
+                const video = slide.querySelector('.review-video');
+                const btn = slide.querySelector('.unmute-btn');
+
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wasMuted = video.muted;
+
+                    slides.forEach((s) => {
+                        if (s === slide) return;
+                        const v = s.querySelector('.review-video');
+                        const b = s.querySelector('.unmute-btn');
+                        v.muted = true;
+                        b.classList.remove('is-unmuted');
+                    });
+
+                    if (wasMuted) {
+                        video.muted = false;
+                        video.play().catch(() => {});
+                        btn.classList.add('is-unmuted');
+                        userUnmuted = true;
+                        goTo(i, false);
+                        stopAuto();
+                    } else {
+                        video.muted = true;
+                        btn.classList.remove('is-unmuted');
+                        userUnmuted = false;
+                        startAuto();
+                    }
+                });
+
+                slide.addEventListener('click', () => {
+                    if (!slide.classList.contains('active')) goTo(i, true);
+                });
+            });
+
+            carousel.addEventListener('mouseenter', () => { if (!userUnmuted) stopAuto(); });
+            carousel.addEventListener('mouseleave', () => { if (!userUnmuted) startAuto(); });
+
+            layout();
+            startAuto();
+        })();
+    </script>
 
     <!-- PODCASTS -->
     <section class="podcast-section" id="podcast-viewport">
@@ -6267,6 +6868,8 @@
             </div>
         </div>
     </section>
+
+    </div>
 
     <!-- FAQ -->
     <div class="faq-section-outer" id="faq">
@@ -6622,7 +7225,7 @@
             <div class="footer-links">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="#results">Student Proof</a></li>
+                    <li><a href="#results">Student Reviews</a></li>
                     <li><a href="#masterclass">Free Masterclass</a></li>
                     <li><a href="#faq">FAQs</a></li>
                 </ul>
@@ -6663,6 +7266,8 @@
         </div>
     </footer>
     </div>
+
+    <div class="footer-bounce-guard" id="footerBounceGuard" aria-hidden="true"></div>
 
     <!-- Local Time Badge (bottom-left corner) -->
     <div class="local-time-dock" id="localTimeBadge">
@@ -7189,6 +7794,9 @@
                 const first = target.querySelector('.faq-item-wrapper');
                 if (first) first.classList.add('active', 'glowing');
             }
+            // Category swap changes the FAQ column's height, which shifts where
+            // the footer reveal should kick in.
+            setTimeout(() => window.updateFaqFooterReveal && window.updateFaqFooterReveal(), 360);
         }
 
         /* ===== ACCORDION ===== */
@@ -7197,7 +7805,77 @@
             const isActive = wrapper.classList.contains('active');
             document.querySelectorAll('.faq-item-wrapper').forEach(w => w.classList.remove('active', 'glowing'));
             if (!isActive) wrapper.classList.add('active', 'glowing');
+            // Expanding/collapsing an item animates the FAQ column's height over
+            // 0.35s (see .accordion-content transition); recompute once it settles
+            // so the footer reveal threshold stays in sync.
+            setTimeout(() => window.updateFaqFooterReveal && window.updateFaqFooterReveal(), 360);
         }
+
+        /* ===== FAQ -> FOOTER SCROLL REVEAL =====
+           The footer is position:fixed and pinned to the viewport bottom. Rather
+           than pulling it into view with a negative margin-bottom (which moved in
+           lockstep with layout reflow and felt stepped/stuck), the FAQ curtain
+           above it is translated upward on scroll with a JS-computed
+           transform: translateY, the same scroll -> transform technique as
+           slide.html. Only this one section uses it; nothing else on the page
+           is scroll-driven. */
+        const footerEl = document.querySelector('footer');
+        const faqSectionOuterEl = document.querySelector('.faq-section-outer');
+        const footerBounceGuardEl = document.querySelector('.footer-bounce-guard');
+        let faqFooterRevealRAF = null;
+
+        function updateFaqFooterReveal() {
+            faqFooterRevealRAF = null;
+            if (!footerEl || !faqSectionOuterEl) return;
+
+            if (window.innerWidth <= 768) {
+                faqSectionOuterEl.style.transform = '';
+                return;
+            }
+
+            const footerHeight = footerEl.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            const naturalBottom = faqSectionOuterEl.offsetTop + faqSectionOuterEl.offsetHeight;
+
+            // Reveal window: the last `footerHeight` px of scroll before the FAQ's
+            // untransformed bottom edge would line up with the viewport bottom.
+            const revealEnd = naturalBottom - viewportHeight;
+            const revealStart = revealEnd - footerHeight;
+
+            const scrollY = window.scrollY || window.pageYOffset;
+            let progress = (scrollY - revealStart) / footerHeight;
+            progress = Math.max(0, Math.min(1, progress));
+
+            faqSectionOuterEl.style.transform = progress > 0
+                ? `translateY(${-progress * footerHeight}px)`
+                : '';
+
+            // Keep the bounce guard opaque everywhere except the real reveal
+            // window, so it never masks the intentional footer reveal.
+            if (footerBounceGuardEl) {
+                footerBounceGuardEl.style.opacity = progress > 0 ? '0' : '1';
+            }
+        }
+
+        function requestFaqFooterReveal() {
+            if (faqFooterRevealRAF === null) {
+                faqFooterRevealRAF = requestAnimationFrame(updateFaqFooterReveal);
+            }
+        }
+        window.updateFaqFooterReveal = updateFaqFooterReveal;
+
+        updateFaqFooterReveal();
+        window.addEventListener('scroll', requestFaqFooterReveal, { passive: true });
+        window.addEventListener('load', updateFaqFooterReveal);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateFaqFooterReveal);
+        let footerHeightResizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(footerHeightResizeTimer);
+            footerHeightResizeTimer = setTimeout(() => {
+                updateFaqFooterReveal();
+                if (window.ScrollTrigger) ScrollTrigger.refresh();
+            }, 150);
+        });
 
         /* ===== FORM SUBMIT ===== */
         function handleFormSubmit(e) {
@@ -7349,19 +8027,6 @@
                 stackTimeline.to({}, { duration: 0.8 });
             });
 
-            const howTimeline = gsap.timeline({
-                scrollTrigger: { trigger: "#how-viewport", start: "top top", end: "+=2250", pin: true, scrub: 1, anticipatePin: 1 }
-            });
-
-            howTimeline
-                .fromTo("#how-viewport", { backgroundColor: "#030712" }, { backgroundColor: "#ffffff", duration: 0.3, ease: "none" }, 0)
-                .fromTo(".how-header h2", { color: "#ffffff" }, { color: "#0B0F19", duration: 0.3, ease: "none" }, 0)
-                .fromTo("#how-card-1", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0)
-                .fromTo("#how-card-2", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0.4)
-                .fromTo("#how-card-3", { x: "100vw", opacity: 0 }, { x: "0vw", opacity: 1, duration: 0.6, ease: "power2.out" }, 0.8)
-                .to("#how-viewport", { backgroundColor: "#030712", duration: 0.3, ease: "none" }, 1.75)
-                .to(".how-header h2", { color: "#ffffff", duration: 0.3, ease: "none" }, 1.75)
-                .to({}, { duration: 1.45 });
         });
 
         mm.add("(max-width: 1300px)", () => {
@@ -7373,29 +8038,9 @@
 
             gsap.set(".card", { x: 0, y: 0, rotate: 0, opacity: 1 });
             gsap.set(".card-inner", { rotateY: 0 });
-            gsap.set(".how-card", { x: 0, opacity: 1 });
             gsap.from(".card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#pin-section", start: "top 80%" } });
-            gsap.from(".how-card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8, scrollTrigger: { trigger: "#how-viewport", start: "top 80%" } });
             gsap.from(".course-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
             gsap.from(".vision-card-inner", { opacity: 0, y: 40, duration: 0.9, ease: "power2.out", scrollTrigger: { trigger: ".courses-section", start: "top 80%" } });
-
-            // How It Works background fade dark -> white -> dark (mobile, no pin)
-            gsap.fromTo("#how-viewport", { backgroundColor: "#030712" }, {
-                backgroundColor: "#ffffff", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 62%", scrub: true }
-            });
-            gsap.fromTo(".how-header h2", { color: "#ffffff" }, {
-                color: "#0B0F19", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 62%", scrub: true }
-            });
-            gsap.to("#how-viewport", {
-                backgroundColor: "#030712", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "bottom 38%", end: "bottom top", scrub: true }
-            });
-            gsap.to(".how-header h2", {
-                color: "#ffffff", ease: "none",
-                scrollTrigger: { trigger: "#how-viewport", start: "bottom 38%", end: "bottom top", scrub: true }
-            });
 
             // Services: sticky cards slide in from the left and stack over one another while scrolling.
             const stackObserver = new IntersectionObserver((entries) => {
@@ -7416,11 +8061,88 @@
             }
         );
 
-        // B1: How It Works header reveal on entry (dark -> dark, reveal only)
-        gsap.fromTo(".how-header", { opacity: 0, y: 28 }, {
-            opacity: 1, y: 0, ease: "none",
-            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 87.5%", scrub: true }
+        // B1: How It Works (By the Numbers) + About (Meet Your Mentor) background fade dark -> white together on entry.
+        // Both sections are kept in lockstep so they're always the same color while adjacent — About is
+        // still off-screen here, but it fades in sync so it's already white by the time it's reached.
+        gsap.fromTo(["#stack-viewport", "#how-viewport", "#about-viewport"], { backgroundColor: "#030712" }, {
+            backgroundColor: "#ffffff", ease: "none",
+            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 81%", scrub: true }
         });
+        gsap.fromTo("#how-viewport .eyebrow, #how-viewport .header-container h2", { color: "#ffffff" }, {
+            color: "#0B0F19", ease: "none",
+            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 81%", scrub: true }
+        });
+        gsap.fromTo(".about-header h2", { color: "#ffffff" }, {
+            color: "#0B0F19", ease: "none",
+            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 81%", scrub: true }
+        });
+        gsap.fromTo(".about-desc-preview", { color: "#94A3B8" }, {
+            color: "#5c6470", ease: "none",
+            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 81%", scrub: true }
+        });
+        gsap.fromTo(".about-page-btn", { color: "#ffffff", borderColor: "rgba(255,255,255,0.15)", backgroundColor: "rgba(255,255,255,0.05)" }, {
+            color: "#0B0F19", borderColor: "rgba(11,15,25,0.15)", backgroundColor: "rgba(11,15,25,0.05)", ease: "none",
+            scrollTrigger: { trigger: "#how-viewport", start: "top bottom", end: "top 81%", scrub: true }
+        });
+
+        // B1b: How It Works + About exit (white -> dark) together, once we've scrolled ~80% through Our Impact.
+        // Kept in lockstep with B1 above so the two sections never mismatch while both are visible on screen.
+        gsap.fromTo(["#how-viewport", "#about-viewport"], { backgroundColor: "#ffffff" }, {
+            backgroundColor: "#030712", ease: "none", immediateRender: false,
+            scrollTrigger: { trigger: "#how-viewport", start: "80% top", end: "bottom top", scrub: true }
+        });
+        gsap.fromTo("#how-viewport .eyebrow, #how-viewport .header-container h2", { color: "#0B0F19" }, {
+            color: "#ffffff", ease: "none", immediateRender: false,
+            scrollTrigger: { trigger: "#how-viewport", start: "80% top", end: "bottom top", scrub: true }
+        });
+        gsap.fromTo(".about-header h2", { color: "#0B0F19" }, {
+            color: "#ffffff", ease: "none", immediateRender: false,
+            scrollTrigger: { trigger: "#how-viewport", start: "80% top", end: "bottom top", scrub: true }
+        });
+        gsap.fromTo(".about-desc-preview", { color: "#5c6470" }, {
+            color: "#94A3B8", ease: "none", immediateRender: false,
+            scrollTrigger: { trigger: "#how-viewport", start: "80% top", end: "bottom top", scrub: true }
+        });
+        gsap.fromTo(".about-page-btn", { color: "#0B0F19", borderColor: "rgba(11,15,25,0.15)", backgroundColor: "rgba(11,15,25,0.05)" }, {
+            color: "#ffffff", borderColor: "rgba(255,255,255,0.15)", backgroundColor: "rgba(255,255,255,0.05)", ease: "none", immediateRender: false,
+            scrollTrigger: { trigger: "#how-viewport", start: "80% top", end: "bottom top", scrub: true }
+        });
+
+        // Fall-in / drop-in reveal + count-up for the By the Numbers stat cards, once on scroll into view
+        (() => {
+            const numbersSection = document.getElementById("how-viewport");
+            if (!numbersSection) return;
+
+            function animateCount(el) {
+                const target = parseFloat(el.dataset.target);
+                if (Number.isNaN(target)) return;
+                const prefix = el.dataset.prefix || "";
+                const suffix = el.dataset.suffix || "";
+                const duration = 1400;
+                const startTime = performance.now();
+
+                function step(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const value = Math.round(target * eased);
+                    el.textContent = prefix + value + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+
+            const numbersObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("revealed");
+                        entry.target.querySelectorAll(".stat-number[data-target]").forEach(animateCount);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: "0px", threshold: 0.15 });
+
+            numbersObserver.observe(numbersSection);
+        })();
 
         // B2: About section header reveal on entry (leaving How It Works, dark -> dark, reveal only)
         gsap.fromTo(".about-header, .about-desc-preview, .mentor-layout", { opacity: 0, y: 28 }, {
@@ -7441,7 +8163,7 @@
             color: "#0B0F19", borderColor: "rgba(11,15,25,0.15)", backgroundColor: "rgba(11,15,25,0.05)", ease: "none",
             scrollTrigger: { trigger: ".results-section", start: "top bottom", end: "top 81%", scrub: true }
         });
-        gsap.fromTo(".results-section .section-hdr, .results-grid", { opacity: 0, y: 28 }, {
+        gsap.fromTo(".results-section .section-hdr, .reviews-carousel", { opacity: 0, y: 28 }, {
             opacity: 1, y: 0, ease: "none",
             scrollTrigger: { trigger: ".results-section", start: "top 81%", end: "top 62%", scrub: true }
         });
