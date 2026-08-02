@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockSchool - What Our Mentees Say About Us</title>
+  <!-- Google Fonts for modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==================== RESET & BASICS ==================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==================== HEADER NAVBAR ==================== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #f1f5f9;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #475569;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .btn-strategy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-strategy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
+
+    /* ==================== HERO / SECTION HEADER ==================== */
+    .testimonials-section {
+      padding: 60px 0 80px 0;
+      position: relative;
+      background: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.06) 0%, rgba(248, 250, 252, 0) 70%);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -1px;
+      margin-bottom: 36px;
+    }
+
+    .section-title span {
+      color: #3b82f6;
+    }
+
+    /* ==================== VIDEO TESTIMONIALS BAR ==================== */
+    .video-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .video-bar-label {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-right: 8px;
+    }
+
+    .video-avatars-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .video-avatar-btn {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: #e2e8f0;
+      padding: 0;
+      outline: none;
+    }
+
+    .video-avatar-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .video-avatar-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-badge {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .video-avatar-btn:hover .play-badge {
+      background: rgba(37, 99, 235, 0.4);
+    }
+
+    .play-badge-icon {
+      width: 22px;
+      height: 22px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .play-badge-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: #ffffff;
+      margin-left: 1px;
+    }
+
+    /* ==================== CONTINUOUS SLIDER ==================== */
+    .slider-wrapper {
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0 40px 0;
+      position: relative;
+      /* Soft fade effect on the left and right edges */
+      mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      /* Animation duration tuned for ultra-smooth scrolling */
+      animation: continuousScroll 45s linear infinite;
+    }
+
+    /* Pause animation smoothly on hover */
+    .slider-wrapper:hover .slider-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes continuousScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* Translates exactly half width (1 set of cards) so the loop is seamless */
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ==================== REVIEW CARD STYLING ==================== */
+    .review-card {
+      width: 380px;
+      flex-shrink: 0;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: default;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border-color: #cbd5e1;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      color: #f59e0b;
+      font-size: 16px;
+    }
+
+    .linkedin-icon {
+      width: 26px;
+      height: 26px;
+      background: #0077b5;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .review-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #334155;
+      font-weight: 500;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .user-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #e2e8f0;
+    }
+
+    .user-details h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .user-details p {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* ==================== VIDEO MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: #000000;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Responsive styling tweaks */
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .section-title { font-size: 28px; }
+      .video-bar { flex-direction: column; }
+      .review-card { width: 300px; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">StockSchool<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Testimonials</a></li>
+      <li><a href="#">FAQs</a></li>
+    </ul>
+    <a href="#" class="btn-strategy">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      Book a Strategy Session
+    </a>
+  </nav>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="testimonials-section">
+    <h1 class="section-title">What Our Mentees <span>Say About Us</span></h1>
+
+    <!-- VIDEO TESTIMONIALS BAR -->
+    <div class="video-bar">
+      <span class="video-bar-label">Watch Video Testimonials</span>
+      <div class="video-avatars-container" id="videoAvatarsContainer">
+        <!-- 6 Video Thumbnails dynamically injected via JS -->
+      </div>
+    </div>
+
+    <!-- INFINITE TEXT REVIEWS SLIDER -->
+    <div class="slider-wrapper">
+      <div class="slider-track" id="sliderTrack">
+        <!-- Cards dynamically injected via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO MODAL POPUP -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-container">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <div class="video-wrapper">
+        <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ================= DATA CONFIGURATION ================= //
+
+    // 6 Video Testimonials Data
+    const videoTestimonials = [
+      {
+        id: 1,
+        name: "Rahul Verma",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: 2,
+        name: "Aman Gupta",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: 3,
+        name: "Siddharth Mehta",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: 4,
+        name: "Karan Patel",
+        image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: 5,
+        name: "Vikram Sharma",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: 6,
+        name: "Arjun Reddy",
+        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+        youtubeId: "dQw4w9WgXcQ"
+      }
+    ];
+
+    // 10 Text Reviews Data
+    const textReviews = [
+      {
+        id: 1,
+        text: "I used to trade based on instincts and random tips. StockSchool helped me understand how to build a proper system and stick to it. Now I finally feel confident and consistent in my trades that changed my journey.",
+        name: "Nitin Vijay",
+        title: "Senior Coordinator",
+        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 2,
+        text: "Red candles used to make me panic and exit too soon. After learning from StockSchool, I now trade with clarity, patience, and a solid plan that works in real market conditions.",
+        name: "Hastimal Suthar",
+        title: "Head of Technology",
+        avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 3,
+        text: "I've tried many trading courses, but most left me confused. StockSchool was the first one that broke things down clearly and gave me real, usable strategies. It actually made trading feel simple.",
+        name: "Jugal Dev",
+        title: "Audit Associate",
+        avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 4,
+        text: "The risk management framework alone paid back the course fee ten times over. I no longer over-leverage or make emotional trades. Highly recommended for serious traders.",
+        name: "Ananya Sharma",
+        title: "Risk Analyst",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 5,
+        text: "The live market sessions and community support are unmatched. Seeing the mentors execute strategies in real-time gave me the exact confidence I was missing.",
+        name: "Rajesh Malhotra",
+        title: "Product Manager",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 6,
+        text: "StockSchool provides genuine education without false promises. They focus heavily on market structure, psychology, and disciplined execution.",
+        name: "Priya Nair",
+        title: "Financial Advisor",
+        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 7,
+        text: "Being analytical, I deeply appreciated the data-driven approach. The rule-based entry and exit strategies completely removed guesswork from my day trading.",
+        name: "Vikramaditya Singh",
+        title: "Data Scientist",
+        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 8,
+        text: "Balancing a full-time job and trading was tough until I learned their systematic swing trading framework. Now I spend just 30 minutes a day with solid results.",
+        name: "Sneha Kulkarni",
+        title: "Software Engineer",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 9,
+        text: "From understanding order flow to managing trade exits, every module is structured brilliantly. My win rate and reward-to-risk ratio improved significantly.",
+        name: "Rohan Kapoor",
+        title: "Business Consultant",
+        avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=150"
+      },
+      {
+        id: 10,
+        text: "The mentorship here is top tier. They don't just teach chart patterns; they teach you how to think like a professional trader and stay calm during market volatility.",
+        name: "Kavita Verma",
+        title: "Marketing Lead",
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150"
+      }
+    ];
+
+    // ================= DOM INITIALIZATION ================= //
+
+    // 1. Render Video Avatars
+    const videoContainer = document.getElementById('videoAvatarsContainer');
+    videoTestimonials.forEach(item => {
+      const btn = document.createElement('button');
+      btn.className = 'video-avatar-btn';
+      btn.title = `Watch review by ${item.name}`;
+      btn.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="play-badge">
+          <div class="play-badge-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
+        </div>
+      `;
+      btn.addEventListener('click', () => openVideoModal(item.youtubeId));
+      videoContainer.appendChild(btn);
+    });
+
+    // 2. Render Continuous Review Slider
+    // To achieve a PERFECT seamless continuous loop with NO jumps or gaps, 
+    // we render the 10 reviews TWICE in the track (Total 20 cards).
+    const sliderTrack = document.getElementById('sliderTrack');
+
+    function createCardHTML(review) {
+      return `
+        <div class="review-card">
+          <div>
+            <div class="card-top">
+              <div class="stars">★★★★★</div>
+              <div class="linkedin-icon">in</div>
+            </div>
+            <p class="review-text">"${review.text}"</p>
+          </div>
+          <div class="user-info">
+            <img class="user-avatar" src="${review.avatar}" alt="${review.name}">
+            <div class="user-details">
+              <h4>${review.name}</h4>
+              <p>${review.title}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Append Original 10 + Duplicate 10 (20 items total for infinite continuous scroll)
+    const doubleReviews = [...textReviews, ...textReviews];
+    sliderTrack.innerHTML = doubleReviews.map(review => createCardHTML(review)).join('');
+
+
+    // ================= VIDEO MODAL LOGIC ================= //
+
+    const modal = document.getElementById('videoModal');
+    const modalIframe = document.getElementById('modalIframe');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function openVideoModal(youtubeId) {
+      // Sample embed video link
+      modalIframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+      modal.classList.add('active');
+    }
+
+    function closeVideoModal() {
+      modal.classList.remove('active');
+      modalIframe.src = '';
+    }
+
+    closeModalBtn.addEventListener('click', closeVideoModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeVideoModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeVideoModal();
+      }
+    });
+  </script>
+</body>
+</html>

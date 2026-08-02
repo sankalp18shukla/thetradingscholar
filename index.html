@@ -59,15 +59,16 @@
             --font-nav: 'Inter', sans-serif;
         }
 
-        /* ===== GLOW BORDER ===== */
-        @property --glow-angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-        }
-
-        @keyframes rotateGlow {
-            to { --glow-angle: 360deg; }
+        /* ===== GLOW BORDER =====
+           A small comet-shaped bar travels along the wrapper's own
+           border-box edge via offset-path, so it keeps a constant width
+           and stays visually smooth through corners -- unlike a
+           conic-gradient stretched over a rectangle, whose equal-angle
+           slices sweep very different arc-lengths near corners vs. the
+           middle of an edge, making the highlight balloon/pinch as it
+           passes them. */
+        @keyframes travelGlow {
+            to { offset-distance: 100%; }
         }
 
         .glow-border-wrapper {
@@ -84,10 +85,19 @@
         .glow-border-wrapper.glowing::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: conic-gradient(from var(--glow-angle) at 50% 50%, rgba(0, 36, 232,0) 0%, rgba(0, 36, 232,0) 22%, #0024E8 48%, #0024E8 60%, rgba(0, 36, 232,0) 82%);
-            animation: rotateGlow 4s linear infinite;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 4px;
+            margin: -2px 0 0 -80px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(0, 36, 232, 0) 0%, rgba(0, 78, 232, 0.9) 20%, #5b8dff 50%, rgba(0, 78, 232, 0.9) 80%, rgba(0, 36, 232, 0) 100%);
+            box-shadow: 0 0 16px 3px rgba(0, 90, 232, 0.7);
+            offset-path: border-box;
+            offset-rotate: auto;
+            animation: travelGlow 4s linear infinite;
             z-index: 1;
+            pointer-events: none;
         }
 
         .glow-border-inner {
@@ -2376,25 +2386,17 @@
             position: relative;
             background-color: var(--bg-dark);
             z-index: 10;
-            padding: 140px 20px;
-        }
-
-        #how-viewport .formula-grid {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            align-items: stretch;
+            padding: 70px 20px;
         }
 
         #how-viewport .header-container {
-            grid-column: span 2;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto 28px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding-right: 40px;
+            align-items: center;
+            text-align: center;
             opacity: 0;
             transform: translateY(-30px);
             transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000),
@@ -2403,39 +2405,49 @@
 
         #how-viewport .eyebrow {
             font-family: var(--font-primary);
-            font-size: 0.75rem;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: #ffffff;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             display: block;
         }
 
         #how-viewport .header-container h2 {
             font-family: var(--font-headings);
-            font-size: 3.5rem;
-            font-weight: 500;
+            font-size: 2.8rem;
+            font-weight: 300;
             line-height: 1.15;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
             color: #ffffff;
         }
 
         #how-viewport .header-container h2 .highlight {
-            display: block;
+            display: inline;
             font-weight: 800;
             font-style: italic;
-            letter-spacing: -1.5px;
-            margin-top: 4px;
+            letter-spacing: -1px;
+            margin-left: 8px;
             color: #0024E8;
+        }
+
+        #how-viewport .formula-grid {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            align-items: stretch;
         }
 
         #how-viewport .stat-card {
             position: relative;
             background-color: #f6f7f9;
-            border-radius: 16px;
-            padding: 28px;
-            min-height: 260px;
+            border-radius: 14px;
+            padding: 18px 20px 20px;
+            min-height: 195px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -2451,10 +2463,10 @@
 
         #how-viewport .icon-wrapper {
             position: absolute;
-            top: 24px;
-            left: -26px;
-            width: 136px;
-            height: 136px;
+            top: -12px;
+            left: -16px;
+            width: 82px;
+            height: 82px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -2469,7 +2481,7 @@
         }
 
         #how-viewport .card-info {
-            margin-top: 178px;
+            margin-top: 70px;
             text-align: right;
         }
 
@@ -2478,16 +2490,16 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 4px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         #how-viewport .stat-card .stat-number {
             font-family: var(--font-headings);
-            font-size: 3.4rem;
+            font-size: 2.4rem;
             font-weight: 900;
             font-style: italic;
             line-height: 1;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
             color: #0B0F19;
         }
 
@@ -2503,19 +2515,15 @@
 
         #how-viewport .stat-desc {
             font-family: var(--font-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.4;
             color: #5c6470;
         }
 
         #how-viewport .stat-desc .tc {
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             color: #8a919c;
-        }
-
-        #how-viewport .stat-card.wide {
-            grid-column: span 2;
         }
 
         #how-viewport.formula-section.revealed .header-container {
@@ -2528,6 +2536,7 @@
             transform: translateY(0) scale(1);
         }
 
+        #how-viewport.formula-section.revealed .stat-card:nth-child(1) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0s; }
         #how-viewport.formula-section.revealed .stat-card:nth-child(2) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s; }
         #how-viewport.formula-section.revealed .stat-card:nth-child(3) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s; }
         #how-viewport.formula-section.revealed .stat-card:nth-child(4) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s; }
@@ -2535,23 +2544,14 @@
         #how-viewport.formula-section.revealed .stat-card:nth-child(6) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s; }
         #how-viewport.formula-section.revealed .stat-card:nth-child(7) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s; }
         #how-viewport.formula-section.revealed .stat-card:nth-child(8) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s; }
-        #how-viewport.formula-section.revealed .stat-card:nth-child(9) { transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s; }
 
         @media (max-width: 1024px) {
             #how-viewport .formula-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-            #how-viewport .header-container {
-                grid-column: span 2;
-                padding-right: 0;
-                margin-bottom: 20px;
+                gap: 16px;
             }
             #how-viewport .header-container h2 {
-                font-size: 3rem;
-            }
-            #how-viewport .stat-card.wide {
-                grid-column: span 2;
+                font-size: 2.4rem;
             }
         }
 
@@ -2559,23 +2559,17 @@
             #how-viewport .formula-grid {
                 grid-template-columns: 1fr;
             }
-            #how-viewport .header-container,
-            #how-viewport .stat-card.wide {
-                grid-column: span 1;
-            }
             #how-viewport .header-container h2 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             #how-viewport .stat-card {
                 min-height: auto;
             }
             #how-viewport .icon-wrapper {
-                width: 104px;
-                height: 104px;
-                left: -20px;
-            }
-            #how-viewport .card-info {
-                margin-top: 136px;
+                width: 64px;
+                height: 64px;
+                left: -10px;
+                top: -8px;
             }
         }
 
@@ -2692,7 +2686,8 @@
         }
 
         .bull-mascot .mascot-img {
-            transform: none;
+            transform: scale(0.945);
+            transform-origin: bottom center;
         }
 
         .video-container {
@@ -2768,189 +2763,298 @@
             position: relative;
             width: 100%;
             max-width: 1320px;
-            height: 640px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Video testimonial avatars row --- */
+        .video-testimonials {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 22px;
+            margin-bottom: 56px;
         }
 
-        .reviews-track {
+        .vt-label {
+            font-family: var(--font-headings);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0B0F19;
+            white-space: nowrap;
+        }
+
+        .vt-avatars {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .vt-avatar {
             position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .review-slide {
-            position: absolute;
-            top: 36%;
-            left: 50%;
-            width: 264px;
-            height: 470px;
-            transform: translate(-50%, -50%) translateX(var(--x, 0px)) scale(var(--scale, 1));
-            opacity: var(--opacity, 1);
-            filter: brightness(var(--bright, 1));
-            z-index: 1;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            padding: 0;
+            border: none;
             cursor: pointer;
-            transition: transform 0.6s cubic-bezier(.22, .61, .36, 1), opacity 0.6s ease, filter 0.6s ease;
-        }
-
-        .review-slide.active {
-            cursor: default;
-        }
-
-        .review-video-wrap {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
             overflow: hidden;
-            background: #05070d;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
-            transition: border-color 0.6s ease, box-shadow 0.6s ease;
+            flex-shrink: 0;
+            background: #0B0F19;
+            box-shadow: 0 6px 18px rgba(11, 15, 25, 0.16);
+            transition: transform 0.3s cubic-bezier(.22, .61, .36, 1), box-shadow 0.3s ease;
         }
 
-        .review-slide.active .review-video-wrap {
-            border-color: rgba(201, 168, 76, 0.55);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 40px rgba(201, 168, 76, 0.18);
+        .vt-avatar:hover,
+        .vt-avatar:focus-visible {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 26px rgba(11, 15, 25, 0.24);
         }
 
-        .review-video {
+        .vt-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .unmute-btn {
+        .vt-play {
             position: absolute;
-            top: 14px;
-            right: 14px;
+            inset: 0;
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 7px 12px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 999px;
-            background: rgba(3, 7, 18, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
+            justify-content: center;
+            background: rgba(11, 15, 25, 0.28);
+        }
+
+        .vt-play svg {
+            width: 26px;
+            height: 26px;
+            fill: #0024E8;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 6px;
+            box-sizing: content-box;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Video lightbox modal --- */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
-            transform: translateY(-4px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            cursor: pointer;
-            z-index: 3;
+            visibility: hidden;
+            transition: opacity 0.25s ease;
         }
 
-        .review-video-wrap:hover .unmute-btn,
-        .unmute-btn.is-unmuted {
+        .video-modal.is-open {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
         }
 
-        .unmute-btn svg {
-            width: 13px;
-            height: 13px;
-            fill: currentColor;
+        .video-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.82);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
-        .unmute-btn .icon-unmuted {
-            display: none;
+        .video-modal-box {
+            position: relative;
+            width: min(90vw, 380px);
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.94);
+            transition: transform 0.25s ease;
         }
 
-        .unmute-btn.is-unmuted .icon-muted {
-            display: none;
+        .video-modal.is-open .video-modal-box {
+            transform: scale(1);
         }
 
-        .unmute-btn.is-unmuted .icon-unmuted {
-            display: inline-block;
+        .video-modal-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .unmute-btn.is-unmuted {
-            background: rgba(201, 168, 76, 0.85);
-            border-color: rgba(201, 168, 76, 0.9);
-            color: #0B0F19;
+        .video-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(3, 7, 18, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.2s ease;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(3, 7, 18, 0.8);
+        }
+
+        /* --- Text reviews slider --- */
+        .reviews-slider {
+            position: relative;
+            width: 100%;
+        }
+
+        .reviews-track {
+            position: relative;
+            width: 100%;
+            height: 380px;
+        }
+
+        .review-slide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 372px;
+            height: 100%;
+            transform: translate(-50%, -50%) translateX(var(--x, 0px)) scale(var(--scale, 1));
+            opacity: var(--opacity, 1);
+            z-index: 1;
+            cursor: pointer;
+            transition: transform 0.49s cubic-bezier(.22, .61, .36, 1), opacity 0.49s ease;
+        }
+
+        .review-slide.active {
+            cursor: default;
         }
 
         .review-card {
-            position: absolute;
-            right: -32px;
-            bottom: -32px;
-            width: 254px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             background: #ffffff;
             border-radius: 20px;
-            padding: 24px 24px 20px;
-            z-index: 6;
-            box-shadow: 0 24px 48px rgba(3, 7, 18, 0.22), 0 6px 18px rgba(0, 36, 232, 0.1);
-            border: 1px solid rgba(0, 36, 232, 0.08);
-            transition: opacity 0.6s ease, box-shadow 0.6s ease;
-            overflow: hidden;
-        }
-
-        .review-card::before {
-            content: '"';
-            position: absolute;
-            top: -30px;
-            left: 12px;
-            font-family: var(--font-headings);
-            font-size: 6.5rem;
-            font-weight: 800;
-            font-style: italic;
-            color: rgba(0, 36, 232, 0.07);
-            line-height: 1;
-            pointer-events: none;
+            padding: 28px 26px 24px;
+            box-shadow: 0 18px 42px rgba(3, 7, 18, 0.1), 0 4px 14px rgba(0, 36, 232, 0.06);
+            border: 1px solid rgba(11, 15, 25, 0.06);
+            transition: box-shadow 0.4s ease;
         }
 
         .review-slide.active .review-card {
-            box-shadow: 0 28px 56px rgba(3, 7, 18, 0.24), 0 0 0 1px rgba(201, 168, 76, 0.3), 0 8px 20px rgba(201, 168, 76, 0.14);
+            box-shadow: 0 24px 52px rgba(3, 7, 18, 0.14), 0 0 0 1px rgba(0, 36, 232, 0.12), 0 6px 18px rgba(0, 36, 232, 0.1);
         }
 
-        .review-slide:not(.active) .review-card {
-            opacity: 0.85;
+        .review-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .review-stars svg {
+            width: 15px;
+            height: 15px;
+            fill: var(--accent-gold);
+        }
+
+        .review-badge-in {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: #EEF1F6;
+            color: #64748B;
+            font-size: 0.68rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .review-card .review-quote {
             position: relative;
-            font-size: 1rem;
-            line-height: 1.55;
-            font-style: italic;
-            font-weight: 500;
-            color: #0B0F19;
-            margin: 0 0 14px;
+            flex: 1;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            font-weight: 400;
+            color: #33394A;
+            margin: 0 0 20px;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
+            -webkit-line-clamp: 6;
+            line-clamp: 6;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .review-card .review-name {
-            position: relative;
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #0024E8;
-            letter-spacing: 0.01em;
+        .review-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: auto;
         }
 
-        .review-card .review-name::before {
-            content: '';
-            display: block;
-            width: 20px;
-            height: 2px;
-            background: var(--accent-gold);
-            margin-bottom: 8px;
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .review-person-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .review-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0B0F19;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .review-role {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #8891A0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .reviews-dots {
             display: flex;
             gap: 8px;
             justify-content: center;
-            margin-top: 36px;
+            margin-top: 40px;
         }
 
         .reviews-dots .rdot {
@@ -2971,33 +3075,41 @@
         }
 
         @media (max-width: 768px) {
-            .reviews-carousel {
-                height: 480px;
+            .video-testimonials {
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
+
+            .vt-avatar {
+                width: 56px;
+                height: 56px;
+            }
+
+            .vt-avatars {
+                gap: 10px;
+            }
+
+            .reviews-slider {
                 overflow: hidden;
             }
 
+            .reviews-track {
+                height: 340px;
+            }
+
             .review-slide {
-                top: 34%;
-                width: 192px;
-                height: 342px;
+                width: 280px;
             }
 
             .review-card {
-                width: 192px;
-                right: -16px;
-                bottom: -20px;
-                padding: 18px 18px 16px;
-            }
-
-            .review-card::before {
-                font-size: 4.5rem;
-                top: -20px;
+                padding: 22px 20px 20px;
             }
 
             .review-card .review-quote {
-                font-size: 0.82rem;
-                -webkit-line-clamp: 3;
-                line-clamp: 3;
+                font-size: 0.9rem;
+                -webkit-line-clamp: 5;
+                line-clamp: 5;
             }
         }
 
@@ -3238,6 +3350,7 @@
         .gallery-show-more-btn:hover {
             background: #0024E8;
             border-color: #0024E8;
+            color: #FFFFFF !important;
             box-shadow: 0 8px 26px rgba(0, 36, 232, 0.35);
             transform: translateY(-2px);
         }
@@ -3926,8 +4039,17 @@
             grid-template-rows: 1fr;
         }
 
-        .accordion-inner-desc {
+        /* The grid item itself must carry zero padding/margin so its
+           automatic minimum size (zeroed by overflow: hidden) can actually
+           reach 0 -- padding on the item would floor the collapsed height
+           at that padding value no matter what the track size is. The
+           padding lives on the nested .accordion-inner-desc instead. */
+        .accordion-collapse {
             overflow: hidden;
+            min-height: 0;
+        }
+
+        .accordion-inner-desc {
             font-size: 14px;
             line-height: 1.7;
             color: rgba(148, 163, 184, 0.85) !important;
@@ -4162,6 +4284,9 @@
             opacity: 1;
             transform: translateY(0);
             transition: opacity 0.5s ease, transform 0.5s ease;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
         }
 
         .trustpilot-badge.hidden {
@@ -4441,11 +4566,11 @@
             }
 
             h1 .light-text {
-                font-size: 2.8rem;
+                font-size: clamp(2.8rem, 4.6vw, 4rem);
             }
 
             h1 .bold-italic-text {
-                font-size: 3.3rem;
+                font-size: clamp(3.3rem, 5.6vw, 4.8rem);
                 letter-spacing: -2.5px;
                 min-height: auto;
             }
@@ -5337,7 +5462,7 @@
                                         <li><span class="check-icon">✓</span>Zero brokerage equity delivery</li>
                                         <li><span class="check-icon">✓</span>Flat ₹20/order F&amp;O</li>
                                         <li><span class="check-icon">✓</span>Trusted by 1 Cr+ traders</li>
-                                        <li><span class="check-icon">✓</span>Kite — best-in-class platform</li>
+                                        <li><span class="check-icon">✓</span>Kite - best-in-class platform</li>
                                     </ul>
                                     <a href="#" class="dropdown-link light-outline-link">Open Free Account →</a>
                                 </div>
@@ -5373,19 +5498,6 @@
             <div class="header--mega-menu-item" data-menu-id="courses-menu">
                 <div class="mega-menu-inner">
                     <div class="mega-menu-links-col">
-                        <a href="course1.html" class="mega-menu-link-item">
-                            <div class="mega-link-icon">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algo Trading Course</span>
-                                <span class="mega-link-desc">From zero knowledge to live deployment — build,
-                                    backtest, and automate strategies, even with no coding experience.</span>
-                            </div>
-                        </a>
                         <a href="course2.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
@@ -5397,7 +5509,7 @@
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Swing Trading Course</span>
                                 <span class="mega-link-desc">Master swing setups and intraday execution through pure
-                                    price action — a rule-based system, no indicators, no guesswork.</span>
+                                    price action - a rule-based system, no indicators, no guesswork.</span>
                             </div>
                         </a>
                         <a href="course3.html" class="mega-menu-link-item">
@@ -5412,6 +5524,19 @@
                                 <span class="mega-link-title">Hedging Course</span>
                                 <span class="mega-link-desc">The only course in India with 20+ proprietary Zero
                                     Adjustment Hedging strategies, refined over 10 years of live markets.</span>
+                            </div>
+                        </a>
+                        <a href="course1.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">Algo Trading Course</span>
+                                <span class="mega-link-desc">From zero knowledge to live deployment - build,
+                                    backtest, and automate strategies, even with no coding experience.</span>
                             </div>
                         </a>
                     </div>
@@ -5466,7 +5591,7 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algo Trading — Basket Strategies</span>
+                                <span class="mega-link-title">Algo Trading - Basket Strategies</span>
                                 <span class="mega-link-desc">Fully automated intraday &amp; positional baskets. Exclusive to students.</span>
                             </div>
                         </a>
@@ -5478,7 +5603,7 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Expert Consultation — Mutual Funds</span>
+                                <span class="mega-link-title">Expert Consultation - Mutual Funds</span>
                                 <span class="mega-link-desc">Personalised portfolios aligned to your risk, goals, and time horizon.</span>
                             </div>
                         </a>
@@ -5490,7 +5615,7 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">1-on-1 Mentorship — Kundan Prajapati</span>
+                                <span class="mega-link-title">1-on-1 Mentorship - Kundan Prajapati</span>
                                 <span class="mega-link-desc">10 live sessions. Premium strategies backtested and explained live.</span>
                             </div>
                         </a>
@@ -5513,7 +5638,7 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Custom Strategy — Automation &amp; Backtesting</span>
+                                <span class="mega-link-title">Custom Strategy - Automation &amp; Backtesting</span>
                                 <span class="mega-link-desc">Bring your rule-defined strategy. We backtest, optimise, and deploy it.</span>
                             </div>
                         </a>
@@ -5569,7 +5694,7 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Meet Your Mentor</span>
-                                <span class="mega-link-desc">Kundan Prajapati — 9+ years, 1000+ traders mentored across
+                                <span class="mega-link-desc">Kundan Prajapati - 9+ years, 1000+ traders mentored across
                                     India.</span>
                             </div>
                         </a>
@@ -5852,7 +5977,7 @@
                 <div class="card-inner">
                     <div class="card-face card-front">
                         <div><span class="face-tag">Problem 02</span>
-                            <h3 style="margin-top:15px;">The Borrowed Confidence</h3>
+                            <h3 style="margin-top:15px; white-space:nowrap;">The Borrowed Confidence</h3>
                         </div>
                         <div class="card-icon"><img src="problem2.png" alt="Problem 2"></div>
                         <p>Relying on tips, calls, and opinions leaves your success dependent on someone else's
@@ -5937,7 +6062,7 @@
                                 </div>
                                 <div class="vision-point-text">
                                     <strong>Structured Learning Path</strong>
-                                    <span>From market basics to advanced trading systems, every module builds step by step — with defined rules, backtested reports, risk management, and disciplined execution at the core.</span>
+                                    <span>From market basics to advanced trading systems, every module builds step by step - with defined rules, backtested reports, risk management, and disciplined execution at the core.</span>
                                 </div>
                             </div>
                             <div class="vision-point">
@@ -5948,7 +6073,7 @@
                                 </div>
                                 <div class="vision-point-text">
                                     <strong>Weekend Doubt Sessions – Every Saturday &amp; Sunday</strong>
-                                    <span>Mr. Kundan Prajapati stays live until every doubt is cleared — no time limit, no rushed endings. Because a question that goes unanswered today becomes a loss tomorrow.</span>
+                                    <span>Mr. Kundan Prajapati stays live until every doubt is cleared - no time limit, no rushed endings. Because a question that goes unanswered today becomes a loss tomorrow.</span>
                                 </div>
                             </div>
                             <div class="vision-point">
@@ -5959,7 +6084,7 @@
                                 </div>
                                 <div class="vision-point-text">
                                     <strong>Live Trading Community</strong>
-                                    <span>An active WhatsApp community where trades are shared in real time, experienced students mentor newcomers, and the learning doesn't stop between sessions. Not a broadcast channel — a room full of real traders.</span>
+                                    <span>An active WhatsApp community where trades are shared in real time, experienced students mentor newcomers, and the learning doesn't stop between sessions. Not a broadcast channel - a room full of real traders.</span>
                                 </div>
                             </div>
                             <div class="vision-point">
@@ -5970,7 +6095,7 @@
                                 </div>
                                 <div class="vision-point-text">
                                     <strong>Lifetime Access – Pay Once. Learn Forever</strong>
-                                    <span>Your investment includes every future strategy Mr. Kundan Prajapati develops — at no extra cost. No upsells. No "advanced modules" sold separately. In an industry built on charging you again and again, we made a different choice. (T&amp;C Applied)</span>
+                                    <span>Your investment includes every future strategy Mr. Kundan Prajapati develops - at no extra cost. No upsells. No "advanced modules" sold separately. In an industry built on charging you again and again, we made a different choice. (T&amp;C Applied)</span>
                                 </div>
                             </div>
                         </div>
@@ -5987,33 +6112,8 @@
             <div class="course-cards-stack">
                 <div class="course-card blue">
                     <div class="course-card-left">
-                        <div class="course-card-title">Algo Trading Course</div>
-                        <div class="course-card-desc">From zero knowledge to live deployment — build, backtest, and automate strategies, even with no coding experience.</div>
-                        <a href="course1.html" class="course-card-btn">
-                            <span class="btn-sizer-sm">Learn More</span>
-                            <span class="btn-row-sm btn-vis">Learn More</span>
-                            <span class="btn-row-sm btn-gh">Learn More</span>
-                        </a>
-                    </div>
-                    <svg class="course-art" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="20" y="20" width="40" height="40" rx="8" fill="rgba(255,255,255,0.15)"
-                            stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
-                        <rect x="30" y="30" width="20" height="20" rx="4" fill="rgba(255,255,255,0.25)" />
-                        <line x1="40" y1="5" x2="40" y2="15" stroke="rgba(255,255,255,0.5)" stroke-width="2"
-                            stroke-linecap="round" />
-                        <line x1="40" y1="65" x2="40" y2="75" stroke="rgba(255,255,255,0.5)" stroke-width="2"
-                            stroke-linecap="round" />
-                        <line x1="5" y1="40" x2="15" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="2"
-                            stroke-linecap="round" />
-                        <line x1="65" y1="40" x2="75" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </div>
-
-                <div class="course-card navy">
-                    <div class="course-card-left">
                         <div class="course-card-title">Swing Trading Course</div>
-                        <div class="course-card-desc">Master swing setups and intraday execution through pure price action — a rule-based system, no indicators, no guesswork.</div>
+                        <div class="course-card-desc">Master swing setups and intraday execution through pure price action - a rule-based system, no indicators, no guesswork.</div>
                         <a href="course2.html" class="course-card-btn">
                             <span class="btn-sizer-sm">Learn More</span>
                             <span class="btn-row-sm btn-vis">Learn More</span>
@@ -6029,7 +6129,7 @@
                     </svg>
                 </div>
 
-                <div class="course-card dark">
+                <div class="course-card navy">
                     <div class="course-card-left">
                         <div class="course-card-title">Hedging Course</div>
                         <div class="course-card-desc">The only course in India with 20+ proprietary Zero Adjustment Hedging strategies, refined over 10 years of live markets.</div>
@@ -6044,6 +6144,31 @@
                             stroke-dasharray="6 3" />
                         <circle cx="40" cy="40" r="18" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" />
                         <circle cx="40" cy="40" r="6" fill="rgba(59,130,246,0.5)" />
+                    </svg>
+                </div>
+
+                <div class="course-card dark">
+                    <div class="course-card-left">
+                        <div class="course-card-title">Algo Trading Course</div>
+                        <div class="course-card-desc">From zero knowledge to live deployment - build, backtest, and automate strategies, even with no coding experience.</div>
+                        <a href="course1.html" class="course-card-btn">
+                            <span class="btn-sizer-sm">Coming Soon</span>
+                            <span class="btn-row-sm btn-vis">Coming Soon</span>
+                            <span class="btn-row-sm btn-gh">Coming Soon</span>
+                        </a>
+                    </div>
+                    <svg class="course-art" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="40" height="40" rx="8" fill="rgba(255,255,255,0.15)"
+                            stroke="rgba(255,255,255,0.3)" stroke-width="1.5" />
+                        <rect x="30" y="30" width="20" height="20" rx="4" fill="rgba(255,255,255,0.25)" />
+                        <line x1="40" y1="5" x2="40" y2="15" stroke="rgba(255,255,255,0.5)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="40" y1="65" x2="40" y2="75" stroke="rgba(255,255,255,0.5)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="5" y1="40" x2="15" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <line x1="65" y1="40" x2="75" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="2"
+                            stroke-linecap="round" />
                     </svg>
                 </div>
             </div>
@@ -6062,7 +6187,7 @@
                     <div class="stack-title">
                         <h3>Service 01</h3>
                         <h2>Algo Trading<span>Basket Strategies</span></h2>
-                        <p class="stack-desc">A curated basket of fully automated intraday and positional strategies —
+                        <p class="stack-desc">A curated basket of fully automated intraday and positional strategies -
                             exclusively available to The Trading Scholar students. No manual execution, no emotional
                             interference. Your strategy runs on autopilot, built on systems that have been tested in
                             real market conditions.</p>
@@ -6088,7 +6213,7 @@
                     <div class="stack-title">
                         <h3>Service 02</h3>
                         <h2>Expert Consultation<span>On Mutual Funds</span></h2>
-                        <p class="stack-desc">We build your personalised mutual fund portfolio — tailored to your risk
+                        <p class="stack-desc">We build your personalised mutual fund portfolio - tailored to your risk
                             appetite, financial goals, and time horizon. Our expert connects with you personally to
                             structure a long-term wealth plan that works alongside your trading capital, not against
                             it. No generic advice. No one-size-fits-all.</p>
@@ -6114,7 +6239,7 @@
                     <div class="stack-title">
                         <h3>Service 03</h3>
                         <h2>One-on-One Mentorship<span>With Kundan Prajapati</span></h2>
-                        <p class="stack-desc">10 live, 1-hour sessions with direct access to Mr. Kundan Prajapati —
+                        <p class="stack-desc">10 live, 1-hour sessions with direct access to Mr. Kundan Prajapati -
                             premium strategies discussed, backtested live, and explained from first principles.
                             Built for the serious trader who demands more than surface-level lessons.</p>
                     </div>
@@ -6140,7 +6265,7 @@
                         <h3>Service 04</h3>
                         <h2>Deals in Unlisted Shares<span>Pre-IPO Opportunities</span></h2>
                         <p class="stack-desc">Get in before the IPO. We facilitate buying and selling of high-potential
-                            unlisted shares — NSE, CSK, Zepto, OYO, and more — at 5–10% below grey market price. Early
+                            unlisted shares - NSE, CSK, Zepto, OYO, and more - at 5–10% below grey market price. Early
                             access to tomorrow's listed companies, at today's best price. Available in limited
                             quantities.</p>
                     </div>
@@ -6166,7 +6291,7 @@
                         <h3>Service 05</h3>
                         <h2>Custom Strategy<span>Automation &amp; Backtesting</span></h2>
                         <p class="stack-desc">Have a rule-defined trading strategy but don't know how to automate it?
-                            We handle everything — backtesting, optimisation, and full deployment. Bring your logic.
+                            We handle everything - backtesting, optimisation, and full deployment. Bring your logic.
                             We build the machine. <em>(Coming Soon)</em></p>
                     </div>
                     <div>
@@ -6190,16 +6315,16 @@
 
     <!-- HOW IT WORKS -->
     <section class="how-works-section formula-section" id="how-viewport">
-        <div class="formula-grid">
+        <!-- Header Container -->
+        <div class="header-container">
+            <span class="eyebrow">Our Impact</span>
+            <h2>
+                The Trading Scholar
+                <span class="highlight">By the Numbers.</span>
+            </h2>
+        </div>
 
-            <!-- Header Container -->
-            <div class="header-container">
-                <span class="eyebrow">Our Impact</span>
-                <h2>
-                    The Trading Scholar
-                    <span class="highlight">By the Numbers.</span>
-                </h2>
-            </div>
+        <div class="formula-grid">
 
             <!-- Card: 1000+ Traders Trained -->
             <div class="stat-card">
@@ -6211,7 +6336,7 @@
                         <span class="stat-number" data-target="1000" data-suffix="+">0+</span>
                         <span class="stat-label">Traders<br>Trained</span>
                     </div>
-                    <p class="stat-desc">Students across all levels — beginner to advanced — transformed into systematic traders.</p>
+                    <p class="stat-desc">Students across all levels - beginner to advanced - transformed into systematic traders.</p>
                 </div>
             </div>
 
@@ -6225,7 +6350,7 @@
                         <span class="stat-number" data-target="20" data-suffix="+">0+</span>
                         <span class="stat-label">Zero Adjustment<br>Strategies</span>
                     </div>
-                    <p class="stat-desc">Proprietary hedging strategies — built, tested, and refined in live Indian markets.</p>
+                    <p class="stat-desc">Proprietary hedging strategies - built, tested, and refined in live Indian markets.</p>
                 </div>
             </div>
 
@@ -6253,7 +6378,7 @@
                         <span class="stat-number" data-target="3">0</span>
                         <span class="stat-label">Flagship<br>Courses</span>
                     </div>
-                    <p class="stat-desc">Swing, Hedging &amp; Algo — every path to mastery covered.</p>
+                    <p class="stat-desc">Swing, Hedging &amp; Algo - every path to mastery covered.</p>
                 </div>
             </div>
 
@@ -6267,7 +6392,7 @@
                         <span class="stat-number" data-target="5">0</span>
                         <span class="stat-label">Expert<br>Services</span>
                     </div>
-                    <p class="stat-desc">From automation to wealth creation — complete ecosystem.</p>
+                    <p class="stat-desc">From automation to wealth creation - complete ecosystem.</p>
                 </div>
             </div>
 
@@ -6281,12 +6406,12 @@
                         <span class="stat-number" data-target="2" data-suffix="×">0×</span>
                         <span class="stat-label">Weekly Live<br>Sessions</span>
                     </div>
-                    <p class="stat-desc">Every Saturday &amp; Sunday — no doubt goes unanswered.</p>
+                    <p class="stat-desc">Every Saturday &amp; Sunday - no doubt goes unanswered.</p>
                 </div>
             </div>
 
-            <!-- Card: ₹0 Upselling. Ever. (big) -->
-            <div class="stat-card wide">
+            <!-- Card: ₹0 Upselling. Ever. -->
+            <div class="stat-card">
                 <div class="icon-wrapper">
                     <img src="service3.png" alt="">
                 </div>
@@ -6295,12 +6420,12 @@
                         <span class="stat-number">₹0</span>
                         <span class="stat-label">Upselling.<br>Ever.</span>
                     </div>
-                    <p class="stat-desc">Pay once. Get lifetime access — including every new strategy Mr. Kundan Prajapati creates in the future. No hidden fees. No upgrade prompts. <span class="tc">(T&amp;C Applied)</span></p>
+                    <p class="stat-desc">Pay once. Lifetime access - including every future strategy. <span class="tc">(T&amp;C Applied)</span></p>
                 </div>
             </div>
 
-            <!-- Card: 90 Days to Mastery (big) -->
-            <div class="stat-card wide">
+            <!-- Card: 90 Days to Mastery -->
+            <div class="stat-card">
                 <div class="icon-wrapper">
                     <img src="service3.png" alt="">
                 </div>
@@ -6345,7 +6470,7 @@
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 8v4M12 16h.01" />
                     </svg>
-                    Read Full Story — About Kundan
+                    Read Full Story - About Kundan
                 </a>
             </div>
 
@@ -6363,120 +6488,282 @@
             <h2>Student <span>Reviews</span></h2>
         </div>
         <div class="reviews-carousel" id="reviewsCarousel">
-            <div class="reviews-track" id="reviewsTrack">
-                <div class="review-slide" data-index="0">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
-                    </div>
-                    <div class="review-card">
-                        <p class="review-quote">"The Elgo system completely saved my capital. Shifting to systematic options selling changed my performance profile."</p>
-                        <span class="review-name">Rohan Sharma — Mumbai</span>
-                    </div>
+
+            <!-- Video testimonial avatars -->
+            <div class="video-testimonials">
+                <span class="vt-label">Watch Video Testimonials</span>
+                <div class="vt-avatars" id="vtAvatars">
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Rohan Sharma">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200" alt="Rohan Sharma" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Priya Patel">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200" alt="Priya Patel" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Ankit Joshi">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200" alt="Ankit Joshi" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Simran Kaur">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200" alt="Simran Kaur" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Vikram Nair">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=200&h=200" alt="Vikram Nair" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
+                    <button class="vt-avatar" type="button" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" aria-label="Play video testimonial from Neha Deshmukh">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=200&h=200" alt="Neha Deshmukh" loading="lazy">
+                        <span class="vt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+                    </button>
                 </div>
-                <div class="review-slide" data-index="1">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
+            </div>
+
+            <!-- Sliding text reviews -->
+            <div class="reviews-slider" id="reviewsSlider">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-slide" data-index="0">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"I used to trade based on instincts and random tips. The Trading Scholar helped me understand how to build a proper system and stick to it. Now I finally feel confident and consistent in my trades."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=120&h=120" alt="Nitin Vijay" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Nitin Vijay</span>
+                                    <span class="review-role">Senior Coordinator</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card">
-                        <p class="review-quote">"The systematic 1:1 mentorship helped me define custom position sizes. I stopped experiencing emotional drawdowns."</p>
-                        <span class="review-name">Priya Patel — Ahmedabad</span>
+                    <div class="review-slide" data-index="1">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"Red candles used to make me panic and exit too soon. After learning from The Trading Scholar, I now trade with clarity, patience, and a solid plan that works in real conditions."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120&h=120" alt="Hastimal Suthar" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Hastimal Suthar</span>
+                                    <span class="review-role">Head of Technology</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-slide" data-index="2">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
+                    <div class="review-slide" data-index="2">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"I've tried many trading courses, but most left me confused. The Trading Scholar was the first one that broke things down clearly and gave me real, usable strategies. It made trading feel simple."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&q=80&w=120&h=120" alt="Jugal Dev" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Jugal Dev</span>
+                                    <span class="review-role">Audit Associate</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card">
-                        <p class="review-quote">"The option selling and hedging course taught me to manage delta risk. I sleep peacefully knowing my max risk is hedged."</p>
-                        <span class="review-name">Ankit Joshi — Jaipur</span>
+                    <div class="review-slide" data-index="3">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"The Elgo system completely saved my capital. Shifting to systematic options selling changed my performance profile."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120" alt="Rohan Sharma" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Rohan Sharma</span>
+                                    <span class="review-role">Full-time Trader</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-slide" data-index="3">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
+                    <div class="review-slide" data-index="4">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"The systematic 1:1 mentorship helped me define custom position sizes. I stopped experiencing emotional drawdowns."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120" alt="Priya Patel" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Priya Patel</span>
+                                    <span class="review-role">Software Engineer</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card">
-                        <p class="review-quote">"Before this course I traded on gut feeling. Now every trade follows a checklist, and my win rate finally makes sense."</p>
-                        <span class="review-name">Simran Kaur — Delhi</span>
+                    <div class="review-slide" data-index="5">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"The option selling and hedging course taught me to manage delta risk. I sleep peacefully knowing my max risk is hedged."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120&h=120" alt="Ankit Joshi" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Ankit Joshi</span>
+                                    <span class="review-role">Chartered Accountant</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-slide" data-index="4">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
+                    <div class="review-slide" data-index="6">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"Before this course I traded on gut feeling. Now every trade follows a checklist, and my win rate finally makes sense."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120" alt="Simran Kaur" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Simran Kaur</span>
+                                    <span class="review-role">Marketing Manager</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card">
-                        <p class="review-quote">"The mentorship sessions caught mistakes I didn't know I was making. My drawdowns are a fraction of what they used to be."</p>
-                        <span class="review-name">Vikram Nair — Bengaluru</span>
+                    <div class="review-slide" data-index="7">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"The mentorship sessions caught mistakes I didn't know I was making. My drawdowns are a fraction of what they used to be."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=120&h=120" alt="Vikram Nair" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Vikram Nair</span>
+                                    <span class="review-role">Product Manager</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-slide" data-index="5">
-                    <div class="review-video-wrap">
-                        <video class="review-video" muted loop playsinline preload="metadata"
-                            poster="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=400&h=700">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                        </video>
-                        <button class="unmute-btn" type="button" aria-label="Unmute video">
-                            <svg class="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>
-                            <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                            <span class="unmute-label">Unmute</span>
-                        </button>
+                    <div class="review-slide" data-index="8">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"I finally understand why my trades work or fail. The framework gave me a process I can repeat every single day."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=120&h=120" alt="Neha Deshmukh" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Neha Deshmukh</span>
+                                    <span class="review-role">Business Analyst</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card">
-                        <p class="review-quote">"I finally understand why my trades work or fail. The framework gave me a process I can repeat every single day."</p>
-                        <span class="review-name">Neha Deshmukh — Pune</span>
+                    <div class="review-slide" data-index="9">
+                        <div class="review-card">
+                            <div class="review-card-top">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                </div>
+                                <span class="review-badge-in">in</span>
+                            </div>
+                            <p class="review-quote">"Six months in, and my portfolio finally has a process behind it instead of guesswork. The Trading Scholar gave me the discipline I was missing."</p>
+                            <div class="review-person">
+                                <img class="review-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=120&h=120" alt="Arjun Mehta" loading="lazy">
+                                <div class="review-person-info">
+                                    <span class="review-name">Arjun Mehta</span>
+                                    <span class="review-role">Operations Head</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="reviews-dots" id="reviewsDots"></div>
         </div>
-        <div class="reviews-dots" id="reviewsDots"></div>
     </section>
+
+    <!-- Video testimonial lightbox -->
+    <div class="video-modal" id="videoModal" aria-hidden="true">
+        <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+        <div class="video-modal-box">
+            <button class="video-modal-close" id="videoModalClose" type="button" aria-label="Close video">&times;</button>
+            <video id="videoModalPlayer" playsinline controls></video>
+        </div>
+    </div>
 
     <script>
         (function () {
             const track = document.getElementById('reviewsTrack');
             const dotsWrap = document.getElementById('reviewsDots');
-            const carousel = document.getElementById('reviewsCarousel');
-            if (!track || !dotsWrap || !carousel) return;
+            const slider = document.getElementById('reviewsSlider');
+            if (!track || !dotsWrap || !slider) return;
 
             // The visible strip is 3 copies of the review set laid end to end.
             // Navigating always steps by exactly 1 through this flat list, so a
@@ -6499,12 +6786,10 @@
                     slides.push(clone);
                 });
             }
-            const total = slides.length;
 
             let current = N + 2; // middle copy, starting on the 3rd review
             let autoTimer = null;
             let normalizeTimer = null;
-            let userUnmuted = false;
 
             baseSlides.forEach((_, i) => {
                 const dot = document.createElement('button');
@@ -6516,39 +6801,33 @@
             });
             const dots = Array.from(dotsWrap.children);
 
+            // Flat 3-up layout: the active card plus one neighbour on each side
+            // sit fully visible side by side (desktop) — a single neighbour
+            // shows on mobile — everything else is parked off-screen at 0
+            // opacity so it can slide in cleanly on the next step.
             function layout() {
                 const isMobile = window.innerWidth <= 768;
-                const maxAbs = isMobile ? 1 : 2;
+                const slot = isMobile ? 320 : 412;
+                const maxVisible = isMobile ? 0 : 1;
 
                 slides.forEach((slide, i) => {
                     const diff = i - current;
                     const abs = Math.abs(diff);
-                    const video = slide.querySelector('.review-video');
 
-                    let x = 0, scale = 1, opacity = 1, z = 6, bright = 1, pe = 'auto';
-                    if (abs === 0) {
-                        x = 0; scale = 1; opacity = 1; z = 6; bright = 1; pe = 'auto';
-                    } else if (abs === 1) {
-                        x = diff * (isMobile ? 192 : 283); scale = 0.8; opacity = 0.65; z = 5; bright = 0.55; pe = 'auto';
-                    } else if (abs === 2 && !isMobile) {
-                        x = diff * 249; scale = 0.6; opacity = 0.38; z = 4; bright = 0.4; pe = 'auto';
+                    let x, opacity, z, pe;
+                    if (abs <= maxVisible) {
+                        x = diff * slot; opacity = 1; z = 5 - abs; pe = 'auto';
+                    } else if (abs === maxVisible + 1) {
+                        x = diff * slot; opacity = 0; z = 1; pe = 'none';
                     } else {
-                        x = diff * (isMobile ? 300 : 700); scale = 0.45; opacity = 0; z = 1; bright = 0.3; pe = 'none';
+                        x = diff * slot * 1.4; opacity = 0; z = 0; pe = 'none';
                     }
 
                     slide.style.setProperty('--x', x + 'px');
-                    slide.style.setProperty('--scale', scale);
                     slide.style.setProperty('--opacity', opacity);
-                    slide.style.setProperty('--bright', bright);
                     slide.style.zIndex = z;
                     slide.style.pointerEvents = pe;
                     slide.classList.toggle('active', abs === 0);
-
-                    if (abs <= maxAbs) {
-                        video.play().catch(() => {});
-                    } else if (video !== document.activeElement) {
-                        video.pause();
-                    }
                 });
                 const activeBase = ((current % N) + N) % N;
                 dots.forEach((d, i) => d.classList.toggle('active', i === activeBase));
@@ -6586,14 +6865,12 @@
                         void track.offsetHeight;
                         slides.forEach((s) => { s.style.transition = ''; });
                     }
-                }, 650);
+                }, 550);
             }
 
             function startAuto() {
                 stopAuto();
-                autoTimer = setInterval(() => {
-                    if (!userUnmuted) goTo(current + 1);
-                }, 3000);
+                autoTimer = setInterval(() => goTo(current + 1), 2660);
             }
             function stopAuto() {
                 if (autoTimer) clearInterval(autoTimer);
@@ -6602,46 +6879,68 @@
             function restartAuto() { startAuto(); }
 
             slides.forEach((slide, i) => {
-                const video = slide.querySelector('.review-video');
-                const btn = slide.querySelector('.unmute-btn');
-
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const wasMuted = video.muted;
-
-                    slides.forEach((s) => {
-                        if (s === slide) return;
-                        const v = s.querySelector('.review-video');
-                        const b = s.querySelector('.unmute-btn');
-                        v.muted = true;
-                        b.classList.remove('is-unmuted');
-                    });
-
-                    if (wasMuted) {
-                        video.muted = false;
-                        video.play().catch(() => {});
-                        btn.classList.add('is-unmuted');
-                        userUnmuted = true;
-                        goTo(i, false);
-                        stopAuto();
-                    } else {
-                        video.muted = true;
-                        btn.classList.remove('is-unmuted');
-                        userUnmuted = false;
-                        startAuto();
-                    }
-                });
-
                 slide.addEventListener('click', () => {
                     if (!slide.classList.contains('active')) goTo(i, true);
                 });
             });
 
-            carousel.addEventListener('mouseenter', () => { if (!userUnmuted) stopAuto(); });
-            carousel.addEventListener('mouseleave', () => { if (!userUnmuted) startAuto(); });
+            // Only the centered/active card pauses autoplay on hover — so
+            // reading it doesn't feel like the slideshow "broke"; passing over
+            // a side card or the gaps between cards never interrupts it.
+            let hoveringActive = false;
+            slider.addEventListener('mouseover', (e) => {
+                if (hoveringActive) return;
+                if (e.target.closest('.review-slide.active')) {
+                    hoveringActive = true;
+                    stopAuto();
+                }
+            });
+            slider.addEventListener('mouseout', (e) => {
+                if (!hoveringActive) return;
+                const stillInside = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.review-slide.active');
+                if (!stillInside) {
+                    hoveringActive = false;
+                    startAuto();
+                }
+            });
 
             layout();
             startAuto();
+        })();
+
+        (function () {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoModalPlayer');
+            const closeBtn = document.getElementById('videoModalClose');
+            const backdrop = document.getElementById('videoModalBackdrop');
+            const avatars = document.querySelectorAll('.vt-avatar');
+            if (!modal || !player) return;
+
+            function openModal(src) {
+                player.src = src;
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                player.play().catch(() => {});
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                player.pause();
+                player.removeAttribute('src');
+                player.load();
+            }
+
+            avatars.forEach((btn) => {
+                btn.addEventListener('click', () => openModal(btn.dataset.video));
+            });
+            closeBtn.addEventListener('click', closeModal);
+            backdrop.addEventListener('click', closeModal);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+            });
         })();
     </script>
 
@@ -6803,7 +7102,7 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                 </div>
-                                <p class="bullet-text">Why 90% of traders fail — and the exact mindset shift that
+                                <p class="bullet-text">Why 90% of traders fail - and the exact mindset shift that
                                     changes everything</p>
                             </div>
                             <div class="bullet-item">
@@ -6928,10 +7227,11 @@
                                     </div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Systematic trading utilizes rules-based logic to
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Systematic trading utilizes rules-based logic to
                                         handle entry, exit, and sizing parameters. Automating these protocols completely
                                         removes emotional and psychological bias from execution flows, enabling
                                         consistent performance.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -6949,9 +7249,10 @@
                                     </div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">No. During the execution phase, we utilize hosted
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">No. During the execution phase, we utilize hosted
                                         virtual private servers (AWS cloud services) so systems run independently
                                         without manual interventions or a dedicated machine.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -6968,10 +7269,11 @@
                                     </div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Yes. Our programs are structured from foundational
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Yes. Our programs are structured from foundational
                                         market concepts all the way to advanced institutional execution techniques. You
                                         do not need prior trading experience to join our beginner-friendly pathways.
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -6988,10 +7290,11 @@
                                     </div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Results vary based on consistency of practice.
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Results vary based on consistency of practice.
                                         Most students begin implementing live strategies within 4–8 weeks. Measurable,
                                         sustainable performance improvement typically appears in the 2–4 month window
                                         for committed learners.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7008,9 +7311,10 @@
                                     </div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Yes. All enrolled students gain access to our
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Yes. All enrolled students gain access to our
                                         private community channel where Kundan and senior traders share live market
                                         insights, strategy updates, and performance reviews on a regular basis.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7030,9 +7334,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">We cover multi-leg option combinations,
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">We cover multi-leg option combinations,
                                         trend-following momentum models, and institutional-style delta risk mitigation
                                         tools utilizing Python and broker APIs.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7047,9 +7352,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Yes. Our student metrics highlight real account
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Yes. Our student metrics highlight real account
                                         execution sheets with defined drawdowns and maximum drawdown risk caps. All
                                         showcased results are from live broker account statements.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7064,9 +7370,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">The Elgo system currently supports Zerodha (Kite
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">The Elgo system currently supports Zerodha (Kite
                                         API), Angel One SmartAPI, Upstox API, Alice Blue Ant API, and 5Paisa. Additional
                                         broker integrations are added based on student demand.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7081,10 +7388,11 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Course content is reviewed and updated quarterly
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Course content is reviewed and updated quarterly
                                         based on market structure changes, SEBI regulatory updates, and student
                                         feedback. Major strategy overhauls are communicated directly through the
                                         community channel.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7099,9 +7407,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">We offer a 7-day satisfaction guarantee for the
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">We offer a 7-day satisfaction guarantee for the
                                         core modules. If you complete the first week of content and do not find value in
                                         the methodology, we will process a full refund without conditions.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7120,10 +7429,11 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Every session is scheduled directly on a live
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Every session is scheduled directly on a live
                                         shared desk with Kundan Prajapati. We construct personalized rule sets
                                         customized entirely to your capital size, trading schedule, and long-term
                                         financial goals.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7138,9 +7448,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Yes. All alumni receive access to our community
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Yes. All alumni receive access to our community
                                         forums where ongoing code updates, market structure changes, and structural
                                         strategy revisions are shared periodically with detailed commentary.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7155,10 +7466,11 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">The standard mentorship package includes 8
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">The standard mentorship package includes 8
                                         one-hour live sessions over 4 weeks. Extended packages of 16 and 24 sessions are
                                         also available for traders requiring deeper, long-term structural
                                         transformation.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7173,9 +7485,10 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">Yes. All live sessions are recorded and made
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">Yes. All live sessions are recorded and made
                                         available in your student portal within 24 hours of completion. Recordings
                                         remain accessible for the full duration of your mentorship package.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7190,10 +7503,11 @@
                                         </svg></div>
                                 </div>
                                 <div class="accordion-content">
-                                    <div class="accordion-inner-desc">There is no fixed minimum capital requirement to
+                                    <div class="accordion-collapse"><div class="accordion-inner-desc">There is no fixed minimum capital requirement to
                                         enroll. However, for optimal strategy execution, we recommend a minimum of
                                         ₹2,00,000 in your trading account to properly implement the hedging systems
                                         taught in the program.</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -7282,7 +7596,7 @@
     <div class="fixed-bottom-dock">
 
         <!-- Review badge: left col = label+logo, right col = stars+count -->
-        <div class="trustpilot-badge" id="trustpilotBadge">
+        <a class="trustpilot-badge" id="trustpilotBadge" href="https://www.trustpilot.com/review/thetradingscholar.in" target="_blank" rel="noopener">
             <div class="tp-left">
                 <span class="tp-label">Reviewed on</span>
                 <div class="tp-logo-row">
@@ -7296,13 +7610,13 @@
                         <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
                         <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
                         <span class="tp-star"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                        <span class="tp-star" style="background:linear-gradient(90deg,#00B67A 70%,#DCDCE6 70%)"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                        <span class="tp-star" style="background:linear-gradient(90deg,#00B67A 80%,#DCDCE6 80%)"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
                     </div>
-                    <span class="tp-rating">4.7</span>
+                    <span class="tp-rating">4.8</span>
                 </div>
-                <span class="tp-count">29 Reviews</span>
+                <span class="tp-count">39 Reviews</span>
             </div>
-        </div>
+        </a>
 
         <!-- Social icons — horizontal row of 3 black circles -->
         <div class="social-icons-row">

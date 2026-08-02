@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me — Aditi Agarwal</title>
+  
+  <!-- Urbanist Font Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+       COLOR PALETTE & RESET
+    ------------------------------------------------------------- */
+    :root {
+      --bg-ivory: #F3EFEA;
+      --text-dark: #1E1C1A;
+      --accent-red: #CE442B;
+      --text-muted: #827D77;
+      --border-light: #DCD5CC;
+      --font-main: 'Urbanist', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-ivory);
+      color: var(--text-dark);
+      font-family: var(--font-main);
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: var(--bg-ivory);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* -------------------------------------------------------------
+       TRANSPARENT NAVBAR WITH MIX-BLEND-MODE
+    ------------------------------------------------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3000;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      text-decoration: none;
+      pointer-events: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: lowercase;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* -------------------------------------------------------------
+       GLOBAL SECTION LAYOUT
+    ------------------------------------------------------------- */
+    section {
+      width: 100vw;
+      min-height: 100vh;
+      position: relative;
+      padding: 120px 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg-ivory);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .sec-meta-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .sec-meta-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: lowercase;
+    }
+
+    .heading-red {
+      font-family: var(--font-main);
+      font-weight: 900;
+      color: var(--accent-red);
+      text-transform: lowercase;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+    }
+
+    .subhead-red {
+      font-weight: 800;
+      color: var(--accent-red);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+
+    .body-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .bw-photo {
+      filter: grayscale(100%) contrast(106%);
+      object-fit: cover;
+      display: block;
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+
+    .bw-photo:hover {
+      filter: grayscale(0%) contrast(100%);
+    }
+
+    /* -------------------------------------------------------------
+       SLIDE 1 CANVAS (STRICT BASELINE ALIGNMENT)
+    ------------------------------------------------------------- */
+    .s1-canvas {
+      position: relative;
+      width: 100%;
+      height: 65vh;
+      margin: auto 0;
+      display: flex;
+      align-items: flex-end; /* LOCKS ALL ELEMENTS TO THE EXACT SAME BOTTOM BASELINE */
+      justify-content: space-between;
+    }
+
+    /* 1. Small Far-Left Thumbnail (Top Aligned) */
+    .s1-small-img {
+      position: absolute;
+      left: 5vw;
+      top: 0;
+      width: 170px;
+      height: 180px;
+    }
+
+    /* Right Group (Text + Main Image + Vertical Title) */
+    .s1-right-group {
+      display: flex;
+      align-items: flex-end; /* SHARED BASELINE FOR ALL THREE COMPONENTS */
+      gap: 32px;
+      margin-left: auto;
+      height: 100%; /* FILLS THE CANVAS SO MAIN IMAGE CAN MATCH IT TOP-TO-BOTTOM */
+      transform: translateX(-12%); /* SHIFTS MAIN IMG + TEXT + CIRCLE + TITLE TOWARD SMALL THUMBNAIL */
+    }
+
+    /* 2. Center-Bottom Text Block (Right Aligned, Baseline Matched) */
+    .s1-center-text {
+      text-align: right;
+      padding-bottom: 4px;
+    }
+
+    .s1-center-text p {
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    .s1-center-text strong {
+      font-weight: 800;
+    }
+
+    /* 3. Main Large Image & Top-Left Circle Badge */
+    .s1-main-img-wrap {
+      position: relative;
+      width: auto;
+      aspect-ratio: 4 / 5; /* WIDTH DERIVED FROM HEIGHT SO THE IMAGE STAYS A 4:5 PORTRAIT */
+      height: 100%; /* MATCHES THE FULL CANVAS HEIGHT — STARTS AT THE SAME TOP AS THE SMALL THUMBNAIL */
+      flex-shrink: 0;
+    }
+
+    .s1-main-img {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Circle badge sitting on the LEFT (side) edge of main photo, inset from the top so it never touches/cuts the top edge */
+    .s1-circle-badge {
+      position: absolute;
+      top: -30px;
+      left: -70px;
+      width: 211px;
+      height: 211px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .s1-circle-solid {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 106px;
+      height: 106px;
+      background-color: var(--accent-red);
+      border-radius: 50%;
+    }
+
+    .s1-rotating-svg {
+      width: 100%;
+      height: 100%;
+      animation: spinCircle 24s linear infinite;
+    }
+
+    @keyframes spinCircle {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 4. Far-Right Vertical "about me." Title */
+    .s1-vertical-title {
+      writing-mode: vertical-rl;
+      white-space: nowrap; /* PREVENTS "me." FROM BREAKING TO A NEW LINE */
+      font-size: 15vh; /* SCALED SO THE TEXT SPANS TOP-TO-BOTTOM OF THE MAIN IMAGE */
+      line-height: 0.85;
+      height: 100%; /* MATCHES MAIN IMAGE HEIGHT */
+      display: flex;
+      align-items: center; /* CENTERS IT BETWEEN THE TOP AND BOTTOM META BARS */
+    }
+
+    /* -------------------------------------------------------------
+       SLIDE 2 STYLING
+    ------------------------------------------------------------- */
+    .s2-container {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      margin: auto 0;
+    }
+
+    .s2-title {
+      font-size: 6vw;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Right: 3-photo collage, sized to match the initiatives collage */
+    .s2-collage {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .s2-collage-tall img {
+      height: 330px;
+      width: auto;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+    }
+
+    .s2-collage-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .s2-collage-stack .collage-square {
+      height: 225px;
+      width: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .s2-collage-stack .collage-portrait {
+      height: 225px;
+      width: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    /* Left: all content stacked, right-aligned toward the collage */
+    .s2-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 22px;
+      flex: 1;
+      text-align: right;
+    }
+
+    .caption-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* -------------------------------------------------------------
+       SLIDE 3 STYLING
+    ------------------------------------------------------------- */
+    .s3-title {
+      font-size: 6vw;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+
+    .s3-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin: auto 0;
+    }
+
+    .s3-collage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      grid-template-rows: auto auto;
+      column-gap: 22px;
+      row-gap: 14px;
+    }
+
+    .collage-1 {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      align-self: center;
+      justify-self: stretch;
+      width: 100%;
+      height: 220px;
+    }
+
+    .collage-2 {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      align-self: start;
+      justify-self: start;
+      width: 70%;
+      height: 150px;
+    }
+
+    .collage-3 {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      align-self: start;
+      justify-self: stretch;
+      width: 100%;
+      height: 150px;
+    }
+
+    .init-compact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .init-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 18px;
+    }
+
+    .init-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .init-num-sm {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent-red);
+      line-height: 0.9;
+    }
+
+    .init-item h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: lowercase;
+      margin-bottom: 4px;
+    }
+
+    .init-story p {
+      margin-bottom: 16px;
+    }
+
+    .init-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* -------------------------------------------------------------
+       SLIDE 4 STYLING (SCATTERED PHOTO COMPOSITION)
+    ------------------------------------------------------------- */
+    .s4-canvas {
+      position: relative;
+      width: 100%;
+      min-height: 58vh;
+      margin: auto 0;
+    }
+
+    /* Left portrait thumbnail, vertically nudged below the top-right photo */
+    .s4-img-left {
+      position: absolute;
+      left: 0;
+      top: 10%;
+      width: 200px;
+      height: 265px;
+      z-index: 2;
+    }
+
+    /* Top-right landscape photo */
+    .s4-img-topright {
+      position: absolute;
+      right: 60px;
+      top: 0;
+      width: 220px;
+      height: 155px;
+      z-index: 2;
+    }
+
+    /* Small square-ish photo sitting beside the motto / buttons — offset diagonally
+       from the top-right photo so there's a clear gap on both axes */
+    .s4-img-small {
+      position: absolute;
+      right: 320px;
+      top: 260px;
+      width: 165px;
+      height: 185px;
+      z-index: 2;
+    }
+
+    .s4-main {
+      position: relative;
+      margin-left: 260px;
+      max-width: 760px;
+      padding-top: 2%;
+    }
+
+    .s4-title {
+      font-size: clamp(3rem, 6.5vw, 6.2rem);
+      white-space: nowrap;
+      margin-bottom: 24px;
+    }
+
+    .s4-quote-block {
+      border-left: 2px solid var(--accent-red);
+      padding-left: 20px;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    .s4-quote-block p {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .nav-links-cta {
+      display: flex;
+      gap: 20px;
+      margin-top: 26px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--text-dark);
+      color: var(--bg-ivory);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: lowercase;
+      letter-spacing: 0.04em;
+      transition: background-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1024px) {
+      section { padding: 100px 30px 40px; height: auto; }
+      .navbar { padding: 20px 30px; }
+      .s1-canvas { height: auto; flex-direction: column; align-items: flex-start; gap: 30px; }
+      .s1-small-img, .s1-center-text, .s1-main-img-wrap, .s1-vertical-title { position: static; transform: none; width: 100%; text-align: left; }
+      .s1-right-group { flex-direction: column; align-items: flex-start; width: 100%; height: auto; transform: none; }
+      .s1-main-img-wrap { height: 350px; width: 100%; }
+      .s1-vertical-title { writing-mode: horizontal-tb; font-size: 4rem; height: auto; }
+      .s2-container { flex-direction: column; align-items: flex-start; gap: 30px; }
+      .s3-container { grid-template-columns: 1fr; gap: 36px; }
+      .s2-title { font-size: 3rem; }
+      .s3-collage-grid { grid-template-columns: 1fr; }
+      .collage-1, .collage-2, .collage-3 { width: 100%; height: 200px; }
+      .s4-canvas { min-height: auto; }
+      .s4-img-left, .s4-img-topright, .s4-img-small { position: static; width: 100%; height: 220px; margin-bottom: 16px; }
+      .s4-main { margin-left: 0; max-width: 100%; padding-top: 0; }
+      .s4-title { white-space: normal; font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TRANSPARENT NAVBAR -->
+  <nav class="navbar">
+    <a href="#hero" class="nav-brand">aditi.</a>
+    <ul class="nav-links">
+      <li><a href="#about">about me</a></li>
+      <li><a href="#work">work</a></li>
+      <li><a href="#content">content</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECTION 1: HERO (SLIDE 1 — STRICT BASELINE ALIGNED) -->
+  <section id="hero">
+    <div class="sec-meta-top">
+      <span>ADITI AGARWAL</span>
+      <span>PERSONAL WEB</span>
+    </div>
+
+    <div class="s1-canvas">
+      <!-- 1. Small Far-Left Thumbnail (Top Aligned) -->
+      <img class="bw-photo s1-small-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" alt="Aditi thumbnail">
+
+      <!-- Right Group (Text + Main Image + Vertical Title aligned to same baseline) -->
+      <div class="s1-right-group">
+
+        <!-- 2. Center-Bottom Text Block (bottom-anchored beside the main image) -->
+        <div class="s1-center-text">
+          <p>
+            Hi, I'm <strong>Aditi.</strong><br>
+            I'm just a girl who likes<br>
+            context-switching and questioning<br>
+            why people are the way they are.
+          </p>
+        </div>
+
+        <!-- 3. Main Large Image with Top-Left Circle Badge -->
+        <div class="s1-main-img-wrap">
+          <div class="s1-circle-badge">
+            <div class="s1-circle-solid"></div>
+            <svg class="s1-rotating-svg" viewBox="0 0 200 200">
+              <path id="badgePathHero" d="M 100, 100 m -68, 0 a 68,68 0 1,1 136,0 a 68,68 0 1,1 -136,0" fill="none"/>
+              <text fill="#CE442B" font-size="11.5" font-weight="800" textLength="427" lengthAdjust="spacingAndGlyphs">
+                <textPath href="#badgePathHero" startOffset="0">ADITI AGARWAL &bull; PORTFOLIO &bull; </textPath>
+              </text>
+            </svg>
+          </div>
+
+          <img class="bw-photo s1-main-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&q=80" alt="Aditi portrait">
+        </div>
+
+        <!-- 4. Far-Right Vertical "about me." Title -->
+        <h1 class="heading-red s1-vertical-title">about me.</h1>
+      </div>
+    </div>
+
+    <div class="sec-meta-bottom">
+      <span>portfolio - info</span>
+      <span>scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- SECTION 2: STORY, LIFE & SPORTS -->
+  <section id="about">
+    <div class="sec-meta-top">
+      <span>02 / Personal Narrative</span>
+      <span>Origins &bull; Movement &bull; Focus</span>
+    </div>
+
+    <div class="s2-container">
+      <div class="s2-content">
+        <h2 class="heading-red s2-title">story &amp; life.</h2>
+
+        <p class="body-text">
+          I grew up in <span style="color:var(--accent-red); font-weight:700;">Korba</span> — yeah, you've probably never heard of it. I've lived across five-plus cities since. I studied psychology (honours), mostly because it was fun.
+        </p>
+        <p class="body-text">
+          I never wanted a conventional career, so I joined a startup that was barely six months old and learned everything by doing it. Right now I'm an Early MBA programme student at <span style="color:var(--accent-red); font-weight:700;">INSEAD</span>. When I'm not working, I'm lifting, surfing, or doing any sport that'll have me. I also make content over at <a href="https://instagram.com/ftlogaditi" target="_blank" style="color:var(--accent-red); font-weight:700;">@ftlogaditi</a>.
+        </p>
+        <p class="body-text" style="font-weight: 700; color: var(--accent-red); font-size: 1.05rem;">
+          Different city, different chapter — same person chasing whatever's fun.
+        </p>
+      </div>
+
+      <div class="s2-collage">
+        <div class="s2-collage-tall">
+          <img class="bw-photo" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=700&q=80" alt="Lifting">
+        </div>
+        <div class="s2-collage-stack">
+          <img class="bw-photo collage-square" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" alt="Korba Roots">
+          <img class="bw-photo collage-portrait" src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80" alt="Surfing">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-meta-bottom">
+      <span>psychology (hons)</span>
+      <span>instagram: @ftlogaditi</span>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INITIATIVES -->
+  <section id="work">
+    <div class="sec-meta-top">
+      <span>03 / Initiatives</span>
+      <span>Social Impact &amp; Ventures</span>
+    </div>
+
+    <h2 class="heading-red s3-title">initiatives.</h2>
+
+    <div class="s3-container">
+      <div class="s3-collage-grid">
+        <img class="bw-photo collage-1" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="The Pet Story">
+        <img class="bw-photo collage-2" src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="ChildrenWise">
+        <img class="bw-photo collage-3" src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&q=80" alt="Community">
+      </div>
+
+      <div class="init-compact-list">
+        <div class="init-story">
+          <p class="body-text">
+            Some of the stuff I'm proudest of never made me a rupee. I co-founded <span style="color:var(--accent-red); font-weight:700;">The Pet Story</span> after losing my own pet, and we ran feeding and rescue drives, documented people's stories, and once got a university to answer for a cruelty case.
+          </p>
+          <p class="body-text">
+            I tutored kids at <span style="color:var(--accent-red); font-weight:700;">ChildrenWise</span> until they made me academic manager. I helped women artisans in Korba sell more one Diwali. I've painted government-school walls so classrooms felt less grey.
+          </p>
+          <p class="body-text" style="font-weight: 700; color: var(--accent-red); font-size: 1.05rem;">
+            I don't have a tidy reason for any of it beyond wanting to help. That's kind of the point.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-meta-bottom">
+      <span>community action</span>
+      <span>grassroots ventures</span>
+    </div>
+  </section>
+
+  <!-- SECTION 4: THANK YOU -->
+  <section id="content">
+    <div class="sec-meta-top">
+      <span>04 / Closing</span>
+      <span>Contact &amp; Navigation</span>
+    </div>
+
+    <div class="s4-canvas">
+      <img class="bw-photo s4-img-left" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80" alt="Aditi portrait">
+      <img class="bw-photo s4-img-topright" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=80" alt="Candid photo">
+      <img class="bw-photo s4-img-small" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80" alt="Candid photo">
+
+      <div class="s4-main">
+        <h2 class="heading-red s4-title">thank you.</h2>
+
+        <div class="s4-quote-block">
+          <p>
+            "If nothing mattered and I could do anything, I'd teach underprivileged children full-time. That's the plan for when I'm old."
+          </p>
+        </div>
+
+        <p class="body-text" style="font-weight: 700; color: var(--accent-red); font-size: 1.05rem;">
+          If I had to sum myself up in a sentence, it'd be this: have courage, and be kind.
+        </p>
+
+        <div class="nav-links-cta">
+          <a href="#work" class="cta-button">see my work &rarr;</a>
+          <a href="https://instagram.com/ftlogaditi" target="_blank" class="cta-button">see my content &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-meta-bottom">
+      <span>aditi agarwal</span>
+      <span><a href="https://instagram.com/ftlogaditi" target="_blank" style="color: var(--text-muted); text-decoration: none;">instagram: @ftlogaditi</a></span>
+    </div>
+  </section>
+
+</body>
+</html>

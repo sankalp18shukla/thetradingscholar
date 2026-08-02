@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AR Anime Fireball Battle Arena</title>
+
+  <!-- MediaPipe & PeerJS CDN Imports -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #030305;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #fff;
+    }
+
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* UI Overlay */
+    #ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+    }
+
+    .interactive {
+      pointer-events: auto;
+    }
+
+    /* Health Bars HUD */
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .player-card {
+      width: 42%;
+      background: rgba(12, 16, 28, 0.85);
+      border: 2px solid rgba(255, 100, 0, 0.35);
+      backdrop-filter: blur(12px);
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .player-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .bar-container {
+      width: 100%;
+      height: 22px;
+      background: rgba(0,0,0,0.75);
+      border-radius: 11px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .health-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #ff2a2a, #ff7a00);
+      transition: width 0.15s ease-out;
+      box-shadow: 0 0 15px #ff3300;
+    }
+
+    .energy-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      transition: width 0.08s linear;
+      box-shadow: 0 0 15px #00f2fe;
+    }
+
+    /* Modal Screens */
+    .modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(10, 12, 22, 0.95);
+      border: 2px solid #ff5500;
+      border-radius: 20px;
+      padding: 36px;
+      width: 90%;
+      max-width: 540px;
+      text-align: center;
+      box-shadow: 0 0 70px rgba(255, 85, 0, 0.45);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      background: linear-gradient(45deg, #ff4500, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff4500, #ff7700);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 20px rgba(255, 69, 0, 0.45);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 25px rgba(255, 69, 0, 0.65);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, #1e293b, #334155);
+      box-shadow: none;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #ff5500;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 3px;
+    }
+
+    /* State Badge */
+    #gesture-badge {
+      align-self: center;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #ff5500;
+      border-radius: 30px;
+      padding: 10px 28px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ffaa00;
+      box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    #hint-text {
+      align-self: center;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1px;
+    }
+
+    /* Status Banner */
+    #status-banner {
+      position: absolute;
+      top: 22%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      text-shadow: 0 0 35px rgba(255, 69, 0, 0.9);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #video-element {
+      display: none;
+    }
+
+    /* Loading Overlay */
+    #loading-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 200;
+      background: #030305;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .spinner {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 120, 0, 0.2);
+      border-top-color: #ff7700;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #loading-text {
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      color: #ffaa00;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #loading-sub {
+      color: #999;
+      font-size: 0.9rem;
+      max-width: 420px;
+    }
+
+    /* Charge fill ring pulse used purely via JS canvas, no extra CSS needed */
+  </style>
+</head>
+<body>
+
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="ui-layer">
+      <!-- Top HUD -->
+      <div class="hud-top">
+        <div class="player-card">
+          <div class="player-info">
+            <span id="p1-name">PLAYER 1 (YOU)</span>
+            <span id="p1-lives">❤❤❤</span>
+          </div>
+          <div class="bar-container">
+            <div id="p1-health" class="health-bar"></div>
+          </div>
+          <div class="bar-container" style="height: 8px;">
+            <div id="p1-energy" class="energy-bar"></div>
+          </div>
+        </div>
+
+        <div class="player-card">
+          <div class="player-info">
+            <span id="p2-name">PLAYER 2 (OPPONENT)</span>
+            <span id="p2-lives">❤❤❤</span>
+          </div>
+          <div class="bar-container">
+            <div id="p2-health" class="health-bar"></div>
+          </div>
+          <div class="bar-container" style="height: 8px;">
+            <div id="p2-energy" class="energy-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Status Message -->
+      <div id="status-banner">MATCH START</div>
+
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <!-- Active Gesture State Badge -->
+        <div id="gesture-badge">JOIN PALMS &amp; CLOSE EYES TO CHARGE</div>
+        <div id="hint-text">Tip: hold SPACE (or press &amp; hold anywhere on screen) as a manual backup charge/launch control</div>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+      <div class="spinner"></div>
+      <div id="loading-text">Starting camera &amp; AR tracking...</div>
+      <div id="loading-sub">Please allow camera access when prompted. This can take a few seconds.</div>
+    </div>
+
+    <!-- Lobby / Setup Modal -->
+    <div id="lobby-modal" class="modal interactive" style="display:none;">
+      <h1>FIREBALL ARENA</h1>
+      <p>Augmented Reality Anime Energy Battle</p>
+
+      <div id="lobby-step-1">
+        <button id="btn-solo" class="btn">Practice Mode (VS AI)</button>
+        <button id="btn-host" class="btn">Host Game</button>
+        <button id="btn-join-menu" class="btn btn-secondary">Join Game</button>
+      </div>
+
+      <div id="lobby-step-join" style="display: none;">
+        <input type="text" id="room-input" placeholder="ENTER ROOM CODE..." maxlength="6" />
+        <button id="btn-connect" class="btn">Connect</button>
+        <button id="btn-back" class="btn btn-secondary">Back</button>
+      </div>
+
+      <div id="lobby-step-waiting" style="display: none;">
+        <p>ROOM CODE: <strong id="room-code-display" style="color: #ffaa00; font-size: 1.5rem;">------</strong></p>
+        <p>Share this code with your opponent. Waiting for connection...</p>
+        <button id="btn-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Calibration Overlay -->
+    <div id="calibration-modal" class="modal interactive" style="display: none;">
+      <h1>POSITIONING CALIBRATION</h1>
+      <p id="calib-text">Stand in view of your camera. Your character will be scaled into your assigned arena side.</p>
+      <button id="btn-ready" class="btn">I'm Positioned!</button>
+    </div>
+  </div>
+
+  <video id="video-element" playsinline></video>
+
+  <script>
+    /* ===================================================================
+       GLOBAL STATE & CONFIGURATION
+       =================================================================== */
+    const CONFIG = {
+      maxHealth: 100,
+      fireballMaxRadius: 110,
+      playerScale: 0.78,
+      lerpFactor: 0.35,      // Smoothing factor for lerps, tuned assuming ~60fps (used with dt-normalization)
+      cameraWidth: 640,
+      cameraHeight: 480,
+      minChargeTimeMs: 220,  // Minimum hold time before a launch gesture can trigger (prevents accidental fires)
+      launchCooldownMs: 450, // Cooldown between launches (prevents double/triple fires)
+      manualChargeRatePerSec: 55, // % per second for keyboard/tap fallback charge
+      maxParticles: 320
+    };
+
+    const state = {
+      mode: 'MENU', // MENU, CALIBRATION, PLAYING, GAMEOVER
+      isMultiplayer: false,
+      isHost: true,
+      mySide: 'LEFT',
+      connected: false,
+      cameraReady: false,
+
+      // Charging & Aiming Machine
+      chargeInitiated: false,
+      chargeAmount: 0,
+      chargeStartTime: 0,
+      lastLaunchTime: 0,
+      manualCharge: false,
+      eyesClosed: false,
+      handsTogether: false,
+      handDistance: 0.3,
+      handDistanceSmooth: 0.3,
+      handDistanceHistory: [], // rolling {t, d} samples for robust velocity/snap detection
+
+      // Smoothed Tracking Coordinates (EMA Filter)
+      smoothLeftPalm: { x: 0.5, y: 0.5 },
+      smoothRightPalm: { x: 0.5, y: 0.5 },
+      smoothCenterPalm: { x: 0.5, y: 0.5 },
+      targetReticle: { x: 0.75, y: 0.5 }, // Target Crosshair Position
+
+      // Gameplay Stats
+      p1: { health: 100, energy: 0, lives: 3, x: 0.25, y: 0.65, pose: null },
+      p2: { health: 100, energy: 0, lives: 3, x: 0.75, y: 0.65, pose: null },
+
+      projectiles: [],
+      particles: [],
+      cameraShake: 0
+    };
+
+    // Lerp Helper (raw)
+    function lerp(start, end, amt) {
+      return (1 - amt) * start + amt * end;
+    }
+
+    // Frame-rate independent lerp: `factor` is the "per-frame-at-60fps" smoothing amount,
+    // dt is elapsed seconds. This keeps motion consistent whether the game runs at 30fps or 120fps.
+    function dtLerp(start, end, factor, dt) {
+      const amt = 1 - Math.pow(1 - factor, Math.max(0, dt) * 60);
+      return lerp(start, end, amt);
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    /* ===================================================================
+       AUDIO SYNTHESIZER (Web Audio API)
+       =================================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.chargeOsc = null;
+        this.chargeGain = null;
+      }
+
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      startCharge() {
+        if (!this.ctx || this.chargeOsc) return;
+
+        this.chargeOsc = this.ctx.createOscillator();
+        this.chargeGain = this.ctx.createGain();
+
+        this.chargeOsc.type = 'sawtooth';
+        this.chargeOsc.frequency.setValueAtTime(100, this.ctx.currentTime);
+        this.chargeGain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(400, this.ctx.currentTime);
+
+        this.chargeOsc.connect(filter);
+        filter.connect(this.chargeGain);
+        this.chargeGain.connect(this.ctx.destination);
+
+        this.chargeOsc.start();
+      }
+
+      updateCharge(amount) {
+        if (!this.ctx || !this.chargeOsc) return;
+        this.chargeOsc.frequency.setValueAtTime(100 + amount * 4, this.ctx.currentTime);
+        this.chargeGain.gain.setValueAtTime(0.03 + amount * 0.003, this.ctx.currentTime);
+      }
+
+      stopCharge() {
+        if (this.chargeOsc) {
+          try {
+            this.chargeOsc.stop();
+            this.chargeOsc.disconnect();
+          } catch (e) {}
+          this.chargeOsc = null;
+        }
+      }
+
+      playLaunch() {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(500, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.3);
+
+        gain.gain.setValueAtTime(0.5, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.3);
+      }
+
+      playExplosion() {
+        if (!this.ctx) return;
+        const bufferSize = this.ctx.sampleRate * 0.5;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1000, this.ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.5);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.5);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        noise.start();
+      }
+    }
+
+    const sound = new SoundEngine();
+
+    /* ===================================================================
+       NETWORKING (Peer.js P2P)
+       =================================================================== */
+    let peer = null;
+    let conn = null;
+
+    function initNetworkHost(onCodeGenerated) {
+      const code = Math.floor(100000 + Math.random() * 900000).toString();
+      peer = new Peer('fireball-' + code);
+
+      peer.on('open', () => onCodeGenerated(code));
+      peer.on('error', err => {
+        console.error('Peer error:', err);
+        showStatus('CONNECTION ERROR');
+      });
+
+      peer.on('connection', connection => {
+        conn = connection;
+        setupConnection();
+      });
+    }
+
+    function initNetworkClient(code, onConnected) {
+      peer = new Peer();
+      peer.on('open', () => {
+        conn = peer.connect('fireball-' + code);
+        setupConnection(onConnected);
+      });
+      peer.on('error', err => {
+        console.error('Peer error:', err);
+        showStatus('CONNECTION ERROR');
+      });
+    }
+
+    function setupConnection(callback) {
+      conn.on('open', () => {
+        state.connected = true;
+        if (callback) callback();
+        showStatus('CONNECTED!');
+        setTimeout(() => startCalibration(), 1000);
+      });
+
+      conn.on('data', data => {
+        handleNetworkData(data);
+      });
+
+      conn.on('error', err => console.error('Connection error:', err));
+    }
+
+    function sendNetState(payload) {
+      if (conn && conn.open) {
+        conn.send(payload);
+      }
+    }
+
+    function handleNetworkData(data) {
+      if (data.type === 'POSE_UPDATE') {
+        state.p2.pose = data.pose;
+        state.p2.x = data.x;
+        state.p2.y = data.y;
+      } else if (data.type === 'SPAWN_PROJECTILE') {
+        spawnProjectile(data.x, data.y, data.targetX, data.targetY, data.radius, false);
+      } else if (data.type === 'HIT') {
+        state.p1.health = Math.max(0, state.p1.health - data.damage);
+        sound.playExplosion();
+        triggerCameraShake(20);
+        if (state.p1.health <= 0) handleRoundLoss('p1', 'OPPONENT');
+      }
+    }
+
+    /* ===================================================================
+       VISION & TRACKING (MediaPipe Pipelines)
+       - Throttled: hands run every frame (critical for responsive aiming/launch),
+         pose/face/segmentation run at a reduced rate to keep frame times low
+         and the game smooth, since running all 4 models every frame is far
+         too expensive for real-time canvas rendering.
+       =================================================================== */
+    const videoElement = document.getElementById('video-element');
+    let selfieSegmentation, hands, faceMesh, pose;
+    let visionFrameCount = 0;
+
+    async function setupVision() {
+      hands = new Hands({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}` });
+      hands.setOptions({ maxNumHands: 2, modelComplexity: 0, minDetectionConfidence: 0.7, minTrackingConfidence: 0.6 });
+
+      faceMesh = new FaceMesh({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}` });
+      faceMesh.setOptions({ maxNumFaces: 1, refineLandmarks: false, minDetectionConfidence: 0.6, minTrackingConfidence: 0.6 });
+
+      pose = new Pose({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}` });
+      pose.setOptions({ modelComplexity: 0, smoothLandmarks: true, minDetectionConfidence: 0.6, minTrackingConfidence: 0.6 });
+
+      selfieSegmentation = new SelfieSegmentation({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}` });
+      selfieSegmentation.setOptions({ modelSelection: 1 });
+
+      hands.onResults(onHandsResults);
+      faceMesh.onResults(onFaceResults);
+      pose.onResults(onPoseResults);
+      selfieSegmentation.onResults(onSegmentationResults);
+
+      const camera = new Camera(videoElement, {
+        onFrame: async () => {
+          visionFrameCount++;
+          // Hands every frame: this drives aiming + the launch gesture, so it needs to feel instant.
+          await hands.send({ image: videoElement });
+          // Segmentation every 2nd frame: visually the mask barely changes frame-to-frame.
+          if (visionFrameCount % 2 === 0) await selfieSegmentation.send({ image: videoElement });
+          // Face mesh every 2nd frame: only used for the eyes-closed trigger, doesn't need full rate.
+          if (visionFrameCount % 2 === 1) await faceMesh.send({ image: videoElement });
+          // Pose every 3rd frame: only used for the opponent overlay/body silhouette line.
+          if (visionFrameCount % 3 === 0) await pose.send({ image: videoElement });
+        },
+        width: CONFIG.cameraWidth,
+        height: CONFIG.cameraHeight
+      });
+
+      await camera.start();
+      state.cameraReady = true;
+    }
+
+    function onHandsResults(results) {
+      if (results.multiHandLandmarks && results.multiHandLandmarks.length >= 2) {
+        const rawH1 = results.multiHandLandmarks[0][9];
+        const rawH2 = results.multiHandLandmarks[1][9];
+
+        // Apply EMA filter for smooth hand movement
+        state.smoothLeftPalm.x = lerp(state.smoothLeftPalm.x, rawH1.x, CONFIG.lerpFactor);
+        state.smoothLeftPalm.y = lerp(state.smoothLeftPalm.y, rawH1.y, CONFIG.lerpFactor);
+
+        state.smoothRightPalm.x = lerp(state.smoothRightPalm.x, rawH2.x, CONFIG.lerpFactor);
+        state.smoothRightPalm.y = lerp(state.smoothRightPalm.y, rawH2.y, CONFIG.lerpFactor);
+
+        state.smoothCenterPalm.x = (state.smoothLeftPalm.x + state.smoothRightPalm.x) / 2;
+        state.smoothCenterPalm.y = (state.smoothLeftPalm.y + state.smoothRightPalm.y) / 2;
+
+        // Smooth the raw distance itself (separate from the palm position smoothing above)
+        // so the launch-detection velocity isn't fooled by single-frame landmark jitter.
+        const rawDist = Math.hypot(rawH1.x - rawH2.x, rawH1.y - rawH2.y);
+        state.handDistanceSmooth = lerp(state.handDistanceSmooth, rawDist, 0.55);
+        state.handDistance = state.handDistanceSmooth;
+        state.handsTogether = state.handDistanceSmooth < 0.22;
+
+        // Keep a short rolling history of smoothed distances so we can measure
+        // real velocity (change over ~120ms) instead of trusting one noisy frame delta.
+        const now = performance.now();
+        state.handDistanceHistory.push({ t: now, d: state.handDistanceSmooth });
+        while (state.handDistanceHistory.length && now - state.handDistanceHistory[0].t > 130) {
+          state.handDistanceHistory.shift();
+        }
+
+        if (state.chargeInitiated && !state.manualCharge && state.chargeAmount > 20) {
+          const earliest = state.handDistanceHistory[0];
+          const chargedLongEnough = now - state.chargeStartTime > CONFIG.minChargeTimeMs;
+          const cooledDown = now - state.lastLaunchTime > CONFIG.launchCooldownMs;
+
+          if (earliest && chargedLongEnough && cooledDown) {
+            const elapsedMs = Math.max(1, now - earliest.t);
+            const closingSpeed = (earliest.d - state.handDistanceSmooth) / elapsedMs; // positive = hands snapping together
+            if (closingSpeed > 0.0011) {
+              launchFireball();
+            }
+          }
+        }
+      } else {
+        state.handsTogether = false;
+      }
+    }
+
+    function onFaceResults(results) {
+      if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+        const lm = results.multiFaceLandmarks[0];
+        const leftDist = Math.hypot(lm[386].x - lm[374].x, lm[386].y - lm[374].y);
+        const rightDist = Math.hypot(lm[159].x - lm[145].x, lm[159].y - lm[145].y);
+
+        const averageEAR = (leftDist + rightDist) / 2;
+        state.eyesClosed = averageEAR < 0.022; // EAR closed eyes threshold
+      }
+    }
+
+    function onPoseResults(results) {
+      if (results.poseLandmarks) {
+        const nose = results.poseLandmarks[0];
+        state.p1.pose = results.poseLandmarks;
+        state.p1.x = lerp(state.p1.x, nose.x, CONFIG.lerpFactor);
+        state.p1.y = lerp(state.p1.y, nose.y, CONFIG.lerpFactor);
+
+        if (state.isMultiplayer) {
+          sendNetState({
+            type: 'POSE_UPDATE',
+            pose: results.poseLandmarks,
+            x: state.p1.x,
+            y: state.p1.y
+          });
+        }
+      }
+    }
+
+    let userSegmentMask = null;
+    function onSegmentationResults(results) {
+      userSegmentMask = results.segmentationMask;
+    }
+
+    /* ===================================================================
+       GAMEPLAY LOGIC & AIMING SYSTEM
+       =================================================================== */
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const playerBufferCanvas = document.createElement('canvas');
+    const playerBufferCtx = playerBufferCanvas.getContext('2d');
+
+    function update(dt) {
+      if (state.mode !== 'PLAYING') return;
+
+      const dtScale = dt * 60; // normalizes per-frame constants that were tuned assuming ~60fps
+      const badge = document.getElementById('gesture-badge');
+
+      // 1. Gesture / Manual Charging & Aiming Machine
+      if (!state.chargeInitiated) {
+        badge.innerText = "JOIN PALMS & CLOSE EYES TO CHARGE (or hold SPACE)";
+        badge.style.borderColor = "#ff5500";
+        badge.style.color = "#ffaa00";
+
+        if (state.eyesClosed && state.handsTogether) {
+          beginCharge(false);
+        }
+      } else {
+        sound.startCharge();
+
+        if (state.manualCharge) {
+          state.chargeAmount = clamp(state.chargeAmount + CONFIG.manualChargeRatePerSec * dt, 20, 100);
+        } else {
+          const expansionRate = Math.max(0, (state.handDistance - 0.12) * 220);
+          state.chargeAmount = clamp(state.chargeAmount + expansionRate * 0.12 * dtScale, 20, 100);
+        }
+        sound.updateCharge(state.chargeAmount);
+
+        // Update Target Reticle Aim Position based on hand elevation & shift
+        const targetSideX = getOpponentScreenX();
+        const aimOffsetY = (state.smoothCenterPalm.y - 0.5) * canvas.height * 0.9;
+        const aimOffsetX = (0.5 - state.smoothCenterPalm.x) * canvas.width * 0.3;
+
+        const oppBounds = getOpponentBounds();
+        const rawTargetX = clamp(targetSideX + aimOffsetX, oppBounds.minX, oppBounds.maxX);
+        const rawTargetY = clamp(canvas.height * 0.5 + aimOffsetY, canvas.height * 0.15, canvas.height * 0.95);
+
+        state.targetReticle.x = dtLerp(state.targetReticle.x, rawTargetX, CONFIG.lerpFactor, dt);
+        state.targetReticle.y = dtLerp(state.targetReticle.y, rawTargetY, CONFIG.lerpFactor, dt);
+
+        badge.innerText = `CHARGED: ${Math.floor(state.chargeAmount)}% | ${state.manualCharge ? 'RELEASE SPACE TO LAUNCH' : 'SNAP HANDS TOGETHER TO LAUNCH'}`;
+        badge.style.borderColor = "#00f2fe";
+        badge.style.color = "#00f2fe";
+
+        // Charging sparks (capped so long charges can't spawn unbounded particles)
+        const orbX = getPlayerScreenX(state.smoothCenterPalm.x);
+        const orbY = getPlayerScreenY(state.smoothCenterPalm.y);
+        if (state.particles.length < CONFIG.maxParticles) {
+          createParticle(orbX + (Math.random() - 0.5) * 35, orbY + (Math.random() - 0.5) * 35, '#ff7700', Math.random() * 6 + 2);
+        }
+      }
+
+      // HUD Bars Update
+      document.getElementById('p1-energy').style.width = state.chargeAmount + '%';
+      document.getElementById('p1-health').style.width = state.p1.health + '%';
+      document.getElementById('p2-health').style.width = state.p2.health + '%';
+
+      // 2. Projectile Movement & Collision Detection
+      for (let i = state.projectiles.length - 1; i >= 0; i--) {
+        const p = state.projectiles[i];
+
+        p.x += p.vx * dtScale;
+        p.y += p.vy * dtScale;
+
+        if (state.particles.length < CONFIG.maxParticles) {
+          createParticle(p.x, p.y, '#ff4500', p.radius * 0.35);
+        }
+
+        const targetX = p.isLocal ? getOpponentScreenX() : getPlayerScreenX(state.p1.x);
+        const targetY = p.isLocal ? (state.p2.y * canvas.height * CONFIG.playerScale) : getPlayerScreenY(state.p1.y);
+
+        const dist = Math.hypot(p.x - targetX, p.y - targetY);
+
+        if (dist < p.radius + 65) {
+          sound.playExplosion();
+          triggerCameraShake(24);
+          createExplosion(p.x, p.y);
+
+          if (p.isLocal) {
+            state.p2.health = Math.max(0, state.p2.health - p.damage);
+            if (state.isMultiplayer) sendNetState({ type: 'HIT', damage: p.damage });
+            if (state.p2.health <= 0) handleRoundLoss('p2', 'YOU');
+          }
+
+          state.projectiles.splice(i, 1);
+          continue;
+        }
+
+        if (p.x < -100 || p.x > canvas.width + 100 || p.y < -100 || p.y > canvas.height + 100) {
+          state.projectiles.splice(i, 1);
+        }
+      }
+
+      // Single Player Bot AI Updates
+      if (!state.isMultiplayer) {
+        updateAIOpponent(dt, dtScale);
+      }
+
+      if (state.cameraShake > 0.5) {
+        state.cameraShake *= Math.pow(0.88, dtScale);
+      } else {
+        state.cameraShake = 0;
+      }
+    }
+
+    function updateAIOpponent(dt, dtScale) {
+      // Roughly one shot every ~1.3s on average, independent of framerate
+      if (Math.random() < 0.14 * dt) {
+        const startX = canvas.width * 0.78;
+        const startY = canvas.height * 0.5;
+        const targetX = getPlayerScreenX(state.p1.x);
+        const targetY = getPlayerScreenY(state.p1.y);
+
+        spawnProjectile(startX, startY, targetX, targetY, 38, false);
+      }
+      state.p2.x = dtLerp(state.p2.x, 0.78 + Math.sin(Date.now() * 0.002) * 0.07, CONFIG.lerpFactor, dt);
+      state.p2.y = dtLerp(state.p2.y, 0.5 + Math.cos(Date.now() * 0.003) * 0.05, CONFIG.lerpFactor, dt);
+    }
+
+    function beginCharge(manual) {
+      state.chargeInitiated = true;
+      state.chargeAmount = 25;
+      state.chargeStartTime = performance.now();
+      state.manualCharge = manual;
+      state.handDistanceHistory = [];
+      sound.startCharge();
+    }
+
+    function launchFireball() {
+      if (state.chargeAmount < 15) {
+        cancelCharge();
+        return;
+      }
+
+      sound.stopCharge();
+      sound.playLaunch();
+
+      const startX = getPlayerScreenX(state.smoothCenterPalm.x);
+      const startY = getPlayerScreenY(state.smoothCenterPalm.y);
+      const targetX = state.targetReticle.x;
+      const targetY = state.targetReticle.y;
+
+      const radius = 30 + (state.chargeAmount / 100) * CONFIG.fireballMaxRadius;
+
+      spawnProjectile(startX, startY, targetX, targetY, radius, true);
+
+      if (state.isMultiplayer) {
+        sendNetState({
+          type: 'SPAWN_PROJECTILE',
+          x: startX,
+          y: startY,
+          targetX: targetX,
+          targetY: targetY,
+          radius: radius
+        });
+      }
+
+      state.lastLaunchTime = performance.now();
+      state.chargeInitiated = false;
+      state.manualCharge = false;
+      state.chargeAmount = 0;
+      state.handDistanceHistory = [];
+    }
+
+    function cancelCharge() {
+      sound.stopCharge();
+      state.chargeInitiated = false;
+      state.manualCharge = false;
+      state.chargeAmount = 0;
+      state.handDistanceHistory = [];
+    }
+
+    function spawnProjectile(startX, startY, targetX, targetY, radius, isLocal) {
+      const angle = Math.atan2(targetY - startY, targetX - startX);
+      const speed = 18; // units per "frame-at-60fps" — scaled by dtScale in update()
+
+      state.projectiles.push({
+        x: startX,
+        y: startY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        radius,
+        damage: Math.floor(radius * 0.45),
+        isLocal
+      });
+    }
+
+    function getPlayerScreenX(normX) {
+      const playerWidth = canvas.width * 0.45;
+      const offsetX = state.mySide === 'LEFT' ? canvas.width * 0.05 : canvas.width * 0.5;
+      return offsetX + (1 - normX) * playerWidth;
+    }
+
+    function getPlayerScreenY(normY) {
+      const playerHeight = canvas.height * CONFIG.playerScale;
+      const offsetY = canvas.height * (1 - CONFIG.playerScale);
+      return offsetY + normY * playerHeight;
+    }
+
+    function getOpponentScreenX() {
+      return state.mySide === 'LEFT' ? canvas.width * 0.78 : canvas.width * 0.22;
+    }
+
+    function getOpponentBounds() {
+      return state.mySide === 'LEFT'
+        ? { minX: canvas.width * 0.52, maxX: canvas.width * 0.98 }
+        : { minX: canvas.width * 0.02, maxX: canvas.width * 0.48 };
+    }
+
+    /* ===================================================================
+       COMPOSITING & RENDERING
+       =================================================================== */
+    function render(now) {
+      if (!render.lastTime) render.lastTime = now;
+      const dt = Math.min(0.05, (now - render.lastTime) / 1000); // clamp to avoid huge jumps on tab-switch/lag spikes
+      render.lastTime = now;
+
+      ctx.save();
+
+      if (state.cameraShake > 0.5) {
+        ctx.translate((Math.random() - 0.5) * state.cameraShake, (Math.random() - 0.5) * state.cameraShake);
+      }
+
+      // 1. Draw Volcanic Shared Arena
+      drawArenaBackground();
+
+      // 2. Render Scaled Local Player (background-removed)
+      renderLocalPlayer();
+
+      // 3. Render Opponent
+      renderOpponent();
+
+      // 4. Render Aiming Reticle & Fireball
+      if (state.mode === 'PLAYING') {
+        drawPalmIndicators();
+
+        if (state.chargeInitiated) {
+          const orbX = getPlayerScreenX(state.smoothCenterPalm.x);
+          const orbY = getPlayerScreenY(state.smoothCenterPalm.y);
+
+          drawAimGuide(orbX, orbY, state.targetReticle.x, state.targetReticle.y);
+          drawEnergyOrb(orbX, orbY, (state.chargeAmount / 100) * CONFIG.fireballMaxRadius);
+        }
+      }
+
+      // 5. Render Flying Projectiles
+      state.projectiles.forEach(p => {
+        drawEnergyOrb(p.x, p.y, p.radius);
+      });
+
+      // 6. Particle Engine
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = state.particles.length - 1; i >= 0; i--) {
+        const pt = state.particles[i];
+        pt.x += pt.vx * (dt * 60);
+        pt.y += pt.vy * (dt * 60);
+        pt.life -= 0.035 * (dt * 60);
+
+        if (pt.life <= 0) {
+          state.particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, Math.max(1, pt.size * pt.life), 0, Math.PI * 2);
+        ctx.fillStyle = pt.color;
+        ctx.globalAlpha = pt.life;
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1.0;
+
+      ctx.restore();
+
+      update(dt);
+      requestAnimationFrame(render);
+    }
+
+    function drawArenaBackground() {
+      const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      grad.addColorStop(0, '#040208');
+      grad.addColorStop(0.5, '#180402');
+      grad.addColorStop(1, '#3a0800');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(255, 60, 0, 0.22)';
+      ctx.beginPath();
+      ctx.ellipse(canvas.width / 2, canvas.height * 0.95, canvas.width * 0.55, 140, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Produces a clean, background-removed cutout of the local player using the
+    // MediaPipe segmentation mask, in the officially-correct draw order (mask first,
+    // then 'source-in' the video), with a slight blur on the mask to feather hard edges.
+    function compositePlayerCutout() {
+      const w = videoElement.videoWidth;
+      const h = videoElement.videoHeight;
+      if (!w || !h) return null;
+
+      playerBufferCanvas.width = w;
+      playerBufferCanvas.height = h;
+      playerBufferCtx.clearRect(0, 0, w, h);
+
+      if (userSegmentMask) {
+        playerBufferCtx.save();
+        playerBufferCtx.filter = 'blur(2px)';
+        playerBufferCtx.drawImage(userSegmentMask, 0, 0, w, h);
+        playerBufferCtx.filter = 'none';
+        playerBufferCtx.globalCompositeOperation = 'source-in';
+        playerBufferCtx.drawImage(videoElement, 0, 0, w, h);
+        playerBufferCtx.globalCompositeOperation = 'source-over';
+        playerBufferCtx.restore();
+      } else {
+        // No mask yet (still loading) — show the raw feed rather than nothing.
+        playerBufferCtx.drawImage(videoElement, 0, 0, w, h);
+      }
+
+      return playerBufferCanvas;
+    }
+
+    // Draws a source image into a destination box using "cover" cropping (like CSS object-fit: cover),
+    // so the player never looks stretched/warped when the camera's aspect ratio doesn't match the box.
+    function drawCover(destCtx, img, dx, dy, dWidth, dHeight, imgW, imgH) {
+      const imgRatio = imgW / imgH;
+      const targetRatio = dWidth / dHeight;
+      let sx = 0, sy = 0, sw = imgW, sh = imgH;
+
+      if (imgRatio > targetRatio) {
+        sw = imgH * targetRatio;
+        sx = (imgW - sw) / 2;
+      } else {
+        sh = imgW / targetRatio;
+        sy = (imgH - sh) / 2;
+      }
+
+      destCtx.drawImage(img, sx, sy, sw, sh, dx, dy, dWidth, dHeight);
+    }
+
+    function renderLocalPlayer() {
+      const cutout = compositePlayerCutout();
+      if (!cutout) return;
+
+      const pWidth = canvas.width * 0.45;
+      const pHeight = canvas.height * CONFIG.playerScale;
+      const pX = state.mySide === 'LEFT' ? canvas.width * 0.05 : canvas.width * 0.5;
+      const pY = canvas.height - pHeight;
+
+      ctx.save();
+      // Mirror horizontally so the player sees themselves like a mirror (selfie view)
+      ctx.translate(pX + pWidth, pY);
+      ctx.scale(-1, 1);
+      drawCover(ctx, cutout, 0, 0, pWidth, pHeight, cutout.width, cutout.height);
+      ctx.restore();
+    }
+
+    function renderOpponent() {
+      const oppX = getOpponentScreenX();
+      const oppY = canvas.height * 0.52;
+
+      ctx.save();
+      if (!state.p2.pose) {
+        ctx.fillStyle = 'rgba(255, 85, 0, 0.35)';
+        ctx.strokeStyle = '#ff7700';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(oppX, oppY - 60, 45, 0, Math.PI * 2);
+        ctx.rect(oppX - 40, oppY - 15, 80, 160);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText(state.isMultiplayer ? 'WAITING...' : 'AI OPPONENT', oppX - 55, oppY - 120);
+      } else {
+        ctx.strokeStyle = '#00f2fe';
+        ctx.lineWidth = 6;
+        ctx.shadowColor = '#00f2fe';
+        ctx.shadowBlur = 15;
+
+        const lm = state.p2.pose;
+        if (lm[11] && lm[12]) {
+          ctx.beginPath();
+          ctx.moveTo(lm[11].x * canvas.width, lm[11].y * canvas.height);
+          ctx.lineTo(lm[12].x * canvas.width, lm[12].y * canvas.height);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+
+    function drawAimGuide(startX, startY, targetX, targetY) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0, 242, 254, 0.6)';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([8, 8]);
+
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(targetX, targetY);
+      ctx.stroke();
+
+      ctx.setLineDash([]);
+      ctx.strokeStyle = '#ff3300';
+      ctx.lineWidth = 4;
+      ctx.shadowColor = '#ff3300';
+      ctx.shadowBlur = 15;
+
+      ctx.beginPath();
+      ctx.arc(targetX, targetY, 26, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(targetX - 35, targetY);
+      ctx.lineTo(targetX + 35, targetY);
+      ctx.moveTo(targetX, targetY - 35);
+      ctx.lineTo(targetX, targetY + 35);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function drawPalmIndicators() {
+      const lx = getPlayerScreenX(state.smoothLeftPalm.x);
+      const ly = getPlayerScreenY(state.smoothLeftPalm.y);
+      const rx = getPlayerScreenX(state.smoothRightPalm.x);
+      const ry = getPlayerScreenY(state.smoothRightPalm.y);
+
+      ctx.save();
+      ctx.strokeStyle = state.chargeInitiated ? '#ffaa00' : '#00f2fe';
+      ctx.lineWidth = 3;
+
+      ctx.beginPath();
+      ctx.arc(lx, ly, 20, 0, Math.PI * 2);
+      ctx.arc(rx, ry, 20, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function drawEnergyOrb(x, y, radius) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      const glowGrad = ctx.createRadialGradient(x, y, radius * 0.15, x, y, radius * 1.6);
+      glowGrad.addColorStop(0, '#ffffff');
+      glowGrad.addColorStop(0.35, '#ff7700');
+      glowGrad.addColorStop(1, 'rgba(255, 0, 0, 0)');
+
+      ctx.fillStyle = glowGrad;
+      ctx.beginPath();
+      ctx.arc(x, y, radius * 1.6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(x, y, radius * 0.45, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function createParticle(x, y, color, size) {
+      state.particles.push({
+        x, y,
+        vx: (Math.random() - 0.5) * 5,
+        vy: (Math.random() - 0.5) * 5,
+        size, color,
+        life: 1.0
+      });
+    }
+
+    function createExplosion(x, y) {
+      const count = Math.min(50, CONFIG.maxParticles - state.particles.length);
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 14 + 3;
+        state.particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: Math.random() * 14 + 4,
+          color: Math.random() > 0.5 ? '#ff4500' : '#ffdd00',
+          life: 1.0
+        });
+      }
+    }
+
+    function triggerCameraShake(intensity) {
+      state.cameraShake = intensity;
+    }
+
+    /* ===================================================================
+       ROUND / MATCH FLOW
+       =================================================================== */
+    function updateLivesUI() {
+      document.getElementById('p1-lives').innerText = '❤'.repeat(state.p1.lives) + '🖤'.repeat(3 - state.p1.lives);
+      document.getElementById('p2-lives').innerText = '❤'.repeat(state.p2.lives) + '🖤'.repeat(3 - state.p2.lives);
+    }
+
+    function resetRound() {
+      state.p1.health = 100;
+      state.p2.health = 100;
+      state.projectiles = [];
+      cancelCharge();
+    }
+
+    function handleRoundLoss(loserKey, winnerLabel) {
+      const loser = state[loserKey];
+      loser.lives = Math.max(0, loser.lives - 1);
+      updateLivesUI();
+
+      if (loser.lives <= 0) {
+        handleGameOver(winnerLabel);
+      } else {
+        showStatus(winnerLabel + ' WINS THE ROUND!');
+        resetRound();
+      }
+    }
+
+    /* ===================================================================
+       UI & FLOW CONTROL
+       =================================================================== */
+    function showStatus(msg) {
+      const banner = document.getElementById('status-banner');
+      banner.innerText = msg;
+      banner.style.opacity = 1;
+      clearTimeout(showStatus._t);
+      showStatus._t = setTimeout(() => banner.style.opacity = 0, 2500);
+    }
+
+    function resetMatchState() {
+      state.p1.health = 100; state.p1.lives = 3;
+      state.p2.health = 100; state.p2.lives = 3;
+      state.p2.pose = null;
+      state.projectiles = [];
+      state.particles = [];
+      cancelCharge();
+      updateLivesUI();
+    }
+
+    function startCalibration() {
+      resetMatchState();
+      state.mode = 'CALIBRATION';
+      document.getElementById('lobby-modal').style.display = 'none';
+      document.getElementById('calibration-modal').style.display = 'block';
+
+      const calibText = document.getElementById('calib-text');
+      calibText.innerText = state.mySide === 'LEFT' ?
+        "Position yourself on the LEFT side of your webcam view." :
+        "Position yourself on the RIGHT side of your webcam view.";
+    }
+
+    function startGame() {
+      document.getElementById('calibration-modal').style.display = 'none';
+      state.mode = 'PLAYING';
+      showStatus('3... 2... 1... FIGHT!');
+    }
+
+    function handleGameOver(winner) {
+      state.mode = 'GAMEOVER';
+      cancelCharge();
+      showStatus(winner === 'YOU' ? 'VICTORY!' : 'DEFEAT!');
+      setTimeout(() => {
+        document.getElementById('lobby-modal').style.display = 'block';
+        document.getElementById('lobby-step-1').style.display = 'block';
+        document.getElementById('lobby-step-waiting').style.display = 'none';
+        document.getElementById('lobby-step-join').style.display = 'none';
+      }, 3200);
+    }
+
+    /* ===================================================================
+       INPUT: gestures (primary) + keyboard/tap (reliable backup)
+       =================================================================== */
+    document.getElementById('btn-solo').addEventListener('click', () => {
+      sound.init();
+      state.isMultiplayer = false;
+      state.mySide = 'LEFT';
+      startCalibration();
+    });
+
+    document.getElementById('btn-host').addEventListener('click', () => {
+      sound.init();
+      state.isMultiplayer = true;
+      state.isHost = true;
+      state.mySide = 'LEFT';
+
+      document.getElementById('lobby-step-1').style.display = 'none';
+      document.getElementById('lobby-step-waiting').style.display = 'block';
+
+      initNetworkHost(code => {
+        document.getElementById('room-code-display').innerText = code;
+      });
+    });
+
+    document.getElementById('btn-join-menu').addEventListener('click', () => {
+      document.getElementById('lobby-step-1').style.display = 'none';
+      document.getElementById('lobby-step-join').style.display = 'block';
+    });
+
+    document.getElementById('btn-connect').addEventListener('click', () => {
+      sound.init();
+      const code = document.getElementById('room-input').value.trim();
+      if (code.length === 6) {
+        state.isMultiplayer = true;
+        state.isHost = false;
+        state.mySide = 'RIGHT';
+        initNetworkClient(code);
+      }
+    });
+
+    document.getElementById('btn-back').addEventListener('click', () => {
+      document.getElementById('lobby-step-join').style.display = 'none';
+      document.getElementById('lobby-step-1').style.display = 'block';
+    });
+
+    document.getElementById('btn-cancel').addEventListener('click', () => {
+      if (peer) { try { peer.destroy(); } catch (e) {} }
+      document.getElementById('lobby-step-waiting').style.display = 'none';
+      document.getElementById('lobby-step-1').style.display = 'block';
+    });
+
+    document.getElementById('btn-ready').addEventListener('click', () => {
+      startGame();
+    });
+
+    // Manual backup control: hold SPACE (desktop) or press-and-hold on screen (touch/mouse)
+    // to charge, release to launch — guarantees the game is playable even if gesture
+    // recognition has a rough moment.
+    function manualChargeStart() {
+      if (state.mode !== 'PLAYING' || state.chargeInitiated) return;
+      beginCharge(true);
+    }
+    function manualChargeEnd() {
+      if (state.mode !== 'PLAYING' || !state.manualCharge) return;
+      launchFireball();
+    }
+
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        manualChargeStart();
+      }
+    });
+    window.addEventListener('keyup', e => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        manualChargeEnd();
+      }
+    });
+    canvas.addEventListener('mousedown', manualChargeStart);
+    canvas.addEventListener('mouseup', manualChargeEnd);
+    canvas.addEventListener('touchstart', e => { e.preventDefault(); manualChargeStart(); }, { passive: false });
+    canvas.addEventListener('touchend', e => { e.preventDefault(); manualChargeEnd(); }, { passive: false });
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const loadingOverlay = document.getElementById('loading-overlay');
+      const loadingText = document.getElementById('loading-text');
+      const loadingSub = document.getElementById('loading-sub');
+
+      try {
+        await setupVision();
+        loadingOverlay.style.display = 'none';
+        document.getElementById('lobby-modal').style.display = 'block';
+      } catch (err) {
+        console.error('Camera/vision setup failed:', err);
+        loadingText.innerText = 'Camera Access Failed';
+        loadingText.style.color = '#ff5555';
+        loadingSub.innerText = 'Please allow camera access in your browser settings, then reload the page to play.';
+      }
+
+      requestAnimationFrame(render);
+    });
+  </script>
+</body>
+</html>
