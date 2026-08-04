@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-04T08:10:45.415Z",
+  "updatedAt": "2026-08-04T10:58:57.121Z",
   "movers": [
     {
       "symbol": "CGPOWER",
-      "ltp": 877.65,
-      "change": 6.24,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1467.5,
-      "change": -4.08,
-      "type": "loser"
-    },
-    {
-      "symbol": "SIEMENS",
-      "ltp": 4006.5,
-      "change": 2.73,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GRASIM",
-      "ltp": 3135.3,
-      "change": -3.83,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 560.4,
-      "change": 2.45,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 532,
-      "change": -3.81,
-      "type": "loser"
-    },
-    {
-      "symbol": "ABB",
-      "ltp": 7786,
-      "change": 2.43,
+      "ltp": 880.05,
+      "change": 6.53,
       "type": "gainer"
     },
     {
       "symbol": "DLF",
-      "ltp": 646.8,
-      "change": -3.25,
+      "ltp": 643.4,
+      "change": -3.76,
       "type": "loser"
     },
     {
-      "symbol": "ENRIN",
-      "ltp": 3322.9,
-      "change": 2.05,
+      "symbol": "HINDZINC",
+      "ltp": 562.9,
+      "change": 2.91,
       "type": "gainer"
     },
     {
-      "symbol": "HINDUNILVR",
-      "ltp": 2074.7,
-      "change": -2.96,
+      "symbol": "GRASIM",
+      "ltp": 3138,
+      "change": -3.74,
       "type": "loser"
     },
     {
-      "symbol": "HYUNDAI",
-      "ltp": 2232.1,
-      "change": 1.14,
+      "symbol": "APOLLOHOSP",
+      "ltp": 9050,
+      "change": 2.61,
       "type": "gainer"
     },
     {
-      "symbol": "DIVISLAB",
-      "ltp": 8347.5,
-      "change": -2.77,
+      "symbol": "HDFCLIFE",
+      "ltp": 535.95,
+      "change": -3.1,
       "type": "loser"
     },
     {
-      "symbol": "TRENT",
-      "ltp": 3082,
-      "change": 1.05,
+      "symbol": "SIEMENS",
+      "ltp": 4000.5,
+      "change": 2.58,
       "type": "gainer"
     },
     {
-      "symbol": "MOTHERSON",
-      "ltp": 150.73,
-      "change": -2.76,
-      "type": "loser"
-    },
-    {
-      "symbol": "JINDALSTEL",
-      "ltp": 1116.5,
-      "change": 1.03,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAXHEALTH",
-      "ltp": 1074.5,
-      "change": -2.35,
+      "symbol": "LTM",
+      "ltp": 4559,
+      "change": -2.79,
       "type": "loser"
     },
     {
       "symbol": "HINDALCO",
-      "ltp": 1004.25,
-      "change": 0.94,
+      "ltp": 1020,
+      "change": 2.52,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MOTHERSON",
+      "ltp": 151,
+      "change": -2.59,
+      "type": "loser"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3318.2,
+      "change": 1.91,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GODREJCP",
+      "ltp": 1058.2,
+      "change": -2.55,
+      "type": "loser"
+    },
+    {
+      "symbol": "TRENT",
+      "ltp": 3107.7,
+      "change": 1.89,
+      "type": "gainer"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "ltp": 8378,
+      "change": -2.41,
+      "type": "loser"
+    },
+    {
+      "symbol": "JINDALSTEL",
+      "ltp": 1124,
+      "change": 1.71,
       "type": "gainer"
     },
     {
       "symbol": "BAJAJ-AUTO",
-      "ltp": 11593,
-      "change": -2.22,
+      "ltp": 11600,
+      "change": -2.16,
       "type": "loser"
     },
     {
-      "symbol": "GAIL",
-      "ltp": 175.85,
-      "change": 0.89,
+      "symbol": "ABB",
+      "ltp": 7700,
+      "change": 1.3,
       "type": "gainer"
     },
     {
-      "symbol": "TATACONSUM",
-      "ltp": 1085.4,
-      "change": -2.22,
+      "symbol": "MAXHEALTH",
+      "ltp": 1077,
+      "change": -2.13,
+      "type": "loser"
+    },
+    {
+      "symbol": "PNB",
+      "ltp": 113.99,
+      "change": 0.88,
+      "type": "gainer"
+    },
+    {
+      "symbol": "RELIANCE",
+      "ltp": 1290.9,
+      "change": -2.13,
       "type": "loser"
     }
   ]
