@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-07T06:10:41.635Z",
+  "updatedAt": "2026-08-07T07:47:05.601Z",
   "movers": [
     {
       "symbol": "ENRIN",
-      "ltp": 3645,
-      "change": 12.08,
+      "ltp": 3683.5,
+      "change": 13.26,
       "type": "gainer"
     },
     {
       "symbol": "BAJFINANCE",
-      "ltp": 1094.9,
-      "change": -4.36,
+      "ltp": 1083,
+      "change": -5.4,
       "type": "loser"
     },
     {
       "symbol": "MOTHERSON",
-      "ltp": 167.65,
-      "change": 8.16,
+      "ltp": 167.73,
+      "change": 8.21,
       "type": "gainer"
     },
     {
       "symbol": "BAJAJFINSV",
-      "ltp": 2009.4,
-      "change": -3.67,
-      "type": "loser"
-    },
-    {
-      "symbol": "BRITANNIA",
-      "ltp": 5567,
-      "change": 3.02,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACAP",
-      "ltp": 370.4,
-      "change": -3.21,
+      "ltp": 1993.1,
+      "change": -4.45,
       "type": "loser"
     },
     {
       "symbol": "TCS",
-      "ltp": 2437.1,
-      "change": 2.7,
+      "ltp": 2439.5,
+      "change": 2.8,
       "type": "gainer"
     },
     {
       "symbol": "TRENT",
-      "ltp": 3028,
-      "change": -2.55,
-      "type": "loser"
-    },
-    {
-      "symbol": "RECLTD",
-      "ltp": 367.95,
-      "change": 1.78,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1896.1,
-      "change": -2.26,
+      "ltp": 3003.4,
+      "change": -3.34,
       "type": "loser"
     },
     {
       "symbol": "M&M",
-      "ltp": 3464.5,
-      "change": 1.72,
+      "ltp": 3489.4,
+      "change": 2.45,
       "type": "gainer"
     },
     {
-      "symbol": "TMCV",
-      "ltp": 450.7,
-      "change": -1.95,
+      "symbol": "CHOLAFIN",
+      "ltp": 1881.3,
+      "change": -3.03,
+      "type": "loser"
+    },
+    {
+      "symbol": "BRITANNIA",
+      "ltp": 5535.5,
+      "change": 2.43,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACAP",
+      "ltp": 371.35,
+      "change": -2.97,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDZINC",
+      "ltp": 602.6,
+      "change": 2.14,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GODREJCP",
+      "ltp": 1050,
+      "change": -2.53,
       "type": "loser"
     },
     {
       "symbol": "LTM",
-      "ltp": 4605.9,
-      "change": 1.72,
+      "ltp": 4623.9,
+      "change": 2.12,
       "type": "gainer"
     },
     {
       "symbol": "SHRIRAMFIN",
-      "ltp": 1119,
-      "change": -1.93,
+      "ltp": 1115,
+      "change": -2.28,
       "type": "loser"
     },
     {
-      "symbol": "ADANIPOWER",
-      "ltp": 210.9,
-      "change": 1.34,
-      "type": "gainer"
-    },
-    {
-      "symbol": "PIDILITIND",
-      "ltp": 1654,
-      "change": -1.9,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "ltp": 1641.2,
-      "change": 1.31,
+      "symbol": "GRASIM",
+      "ltp": 3273.2,
+      "change": 1.97,
       "type": "gainer"
     },
     {
       "symbol": "GAIL",
-      "ltp": 173.39,
-      "change": -1.71,
+      "ltp": 172.68,
+      "change": -2.11,
       "type": "loser"
     },
     {
-      "symbol": "ONGC",
-      "ltp": 240.56,
-      "change": 1.16,
+      "symbol": "RECLTD",
+      "ltp": 366.45,
+      "change": 1.37,
       "type": "gainer"
     },
     {
-      "symbol": "ASIANPAINT",
-      "ltp": 2714.9,
-      "change": -1.46,
+      "symbol": "PIDILITIND",
+      "ltp": 1655,
+      "change": -1.84,
+      "type": "loser"
+    },
+    {
+      "symbol": "TVSMOTOR",
+      "ltp": 4432.6,
+      "change": 1.32,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ICICIBANK",
+      "ltp": 1434.3,
+      "change": -1.59,
       "type": "loser"
     }
   ]
