@@ -1,34 +1,34 @@
 {
-  "updatedAt": "2026-08-10T09:45:03.704Z",
+  "updatedAt": "2026-08-10T10:50:51.958Z",
   "movers": [
     {
       "symbol": "DMART",
-      "ltp": 4030.6,
-      "change": 3.35,
+      "ltp": 4054,
+      "change": 3.95,
       "type": "gainer"
     },
     {
       "symbol": "PFC",
-      "ltp": 385.1,
-      "change": -8.31,
+      "ltp": 385.15,
+      "change": -8.3,
       "type": "loser"
     },
     {
       "symbol": "TITAN",
-      "ltp": 5095,
-      "change": 3.12,
+      "ltp": 5090,
+      "change": 3.02,
       "type": "gainer"
     },
     {
       "symbol": "RECLTD",
-      "ltp": 342.75,
-      "change": -6.61,
+      "ltp": 343.75,
+      "change": -6.34,
       "type": "loser"
     },
     {
       "symbol": "LTM",
-      "ltp": 4790,
-      "change": 2.83,
+      "ltp": 4795,
+      "change": 2.94,
       "type": "gainer"
     },
     {
@@ -39,14 +39,14 @@
     },
     {
       "symbol": "CHOLAFIN",
-      "ltp": 1918.5,
-      "change": 2.8,
+      "ltp": 1920,
+      "change": 2.88,
       "type": "gainer"
     },
     {
       "symbol": "CANBK",
-      "ltp": 129.12,
-      "change": -2.14,
+      "ltp": 129,
+      "change": -2.24,
       "type": "loser"
     },
     {
@@ -57,68 +57,68 @@
     },
     {
       "symbol": "ENRIN",
-      "ltp": 3570.8,
-      "change": -2.14,
-      "type": "loser"
-    },
-    {
-      "symbol": "MAZDOCK",
-      "ltp": 2575.8,
-      "change": 2.42,
-      "type": "gainer"
-    },
-    {
-      "symbol": "UNIONBANK",
-      "ltp": 180.18,
-      "change": -1.86,
-      "type": "loser"
-    },
-    {
-      "symbol": "BRITANNIA",
-      "ltp": 5630.5,
-      "change": 2.19,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GODREJCP",
-      "ltp": 1032.8,
-      "change": -1.64,
-      "type": "loser"
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "ltp": 1101.5,
-      "change": 2.18,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 246.85,
-      "change": -1.54,
+      "ltp": 3574,
+      "change": -2.05,
       "type": "loser"
     },
     {
       "symbol": "TATACONSUM",
-      "ltp": 1104.8,
-      "change": 2.08,
+      "ltp": 1108.7,
+      "change": 2.44,
       "type": "gainer"
     },
     {
-      "symbol": "GAIL",
-      "ltp": 170.99,
-      "change": -1.52,
+      "symbol": "GODREJCP",
+      "ltp": 1033,
+      "change": -1.62,
       "type": "loser"
     },
     {
-      "symbol": "GRASIM",
-      "ltp": 3391.1,
-      "change": 2.05,
+      "symbol": "MAZDOCK",
+      "ltp": 2575,
+      "change": 2.39,
       "type": "gainer"
     },
     {
       "symbol": "ETERNAL",
       "ltp": 310.25,
       "change": -1.51,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "ltp": 1102.2,
+      "change": 2.24,
+      "type": "gainer"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "ltp": 181.14,
+      "change": -1.34,
+      "type": "loser"
+    },
+    {
+      "symbol": "BRITANNIA",
+      "ltp": 5623.5,
+      "change": 2.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HINDZINC",
+      "ltp": 595.15,
+      "change": -1.3,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1137.8,
+      "change": 2.04,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ITC",
+      "ltp": 282.65,
+      "change": -1.21,
       "type": "loser"
     }
   ]
