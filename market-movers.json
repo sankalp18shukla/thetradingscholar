@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-11T06:32:11.599Z",
+  "updatedAt": "2026-08-11T07:51:13.699Z",
   "movers": [
     {
       "symbol": "BOSCHLTD",
-      "ltp": 45105,
-      "change": 3.68,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 1077.2,
-      "change": -2.84,
-      "type": "loser"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1151,
-      "change": 2.86,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 25550,
-      "change": -2.11,
-      "type": "loser"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 8481,
-      "change": 2.18,
+      "ltp": 45470,
+      "change": 4.52,
       "type": "gainer"
     },
     {
       "symbol": "MAXHEALTH",
-      "ltp": 1046.9,
-      "change": -2.07,
+      "ltp": 1040.2,
+      "change": -2.69,
+      "type": "loser"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1157.6,
+      "change": 3.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 1083.9,
+      "change": -2.24,
       "type": "loser"
     },
     {
       "symbol": "DRREDDY",
-      "ltp": 1184,
-      "change": 2.17,
-      "type": "gainer"
-    },
-    {
-      "symbol": "APOLLOHOSP",
-      "ltp": 8735.5,
-      "change": -1.98,
-      "type": "loser"
-    },
-    {
-      "symbol": "HCLTECH",
-      "ltp": 1370.7,
-      "change": 0.99,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1499.1,
-      "change": -1.93,
-      "type": "loser"
-    },
-    {
-      "symbol": "TITAN",
-      "ltp": 5135.6,
-      "change": 0.9,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ULTRACEMCO",
-      "ltp": 11807,
-      "change": -1.92,
-      "type": "loser"
-    },
-    {
-      "symbol": "CANBK",
-      "ltp": 130.08,
-      "change": 0.84,
+      "ltp": 1193.8,
+      "change": 3.02,
       "type": "gainer"
     },
     {
       "symbol": "JINDALSTEL",
-      "ltp": 1103.9,
-      "change": -1.88,
+      "ltp": 1100.1,
+      "change": -2.21,
       "type": "loser"
     },
     {
-      "symbol": "GAIL",
-      "ltp": 173.85,
-      "change": 0.78,
+      "symbol": "DIVISLAB",
+      "ltp": 8490,
+      "change": 2.29,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 25535,
+      "change": -2.16,
+      "type": "loser"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "ltp": 184.15,
+      "change": 1.66,
       "type": "gainer"
     },
     {
       "symbol": "SBILIFE",
-      "ltp": 1821.2,
-      "change": -1.82,
+      "ltp": 1817,
+      "change": -2.05,
       "type": "loser"
     },
     {
-      "symbol": "BAJAJ-AUTO",
-      "ltp": 11765,
-      "change": 0.75,
+      "symbol": "GAIL",
+      "ltp": 174.8,
+      "change": 1.33,
       "type": "gainer"
     },
     {
-      "symbol": "INDIGO",
-      "ltp": 5243.5,
-      "change": -1.69,
+      "symbol": "APOLLOHOSP",
+      "ltp": 8731.5,
+      "change": -2.03,
       "type": "loser"
     },
     {
-      "symbol": "EICHERMOT",
-      "ltp": 8031.5,
-      "change": 0.71,
+      "symbol": "TITAN",
+      "ltp": 5143.6,
+      "change": 1.05,
       "type": "gainer"
     },
     {
-      "symbol": "IOC",
-      "ltp": 139.62,
-      "change": -1.68,
+      "symbol": "TVSMOTOR",
+      "ltp": 4378.3,
+      "change": -1.97,
+      "type": "loser"
+    },
+    {
+      "symbol": "LTM",
+      "ltp": 4842.6,
+      "change": 0.99,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 11811,
+      "change": -1.89,
+      "type": "loser"
+    },
+    {
+      "symbol": "CANBK",
+      "ltp": 130.22,
+      "change": 0.95,
+      "type": "gainer"
+    },
+    {
+      "symbol": "NESTLEIND",
+      "ltp": 1500.1,
+      "change": -1.86,
+      "type": "loser"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2441.9,
+      "change": 0.67,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VEDL",
+      "ltp": 278.6,
+      "change": -1.78,
       "type": "loser"
     }
   ]
