@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-12T07:48:23.193Z",
+  "updatedAt": "2026-08-12T08:55:40.238Z",
   "movers": [
     {
       "symbol": "PNB",
-      "ltp": 117.83,
-      "change": 3.33,
+      "ltp": 117.87,
+      "change": 3.37,
       "type": "gainer"
     },
     {
       "symbol": "GODREJCP",
-      "ltp": 914.6,
-      "change": -10.77,
+      "ltp": 911.5,
+      "change": -11.07,
       "type": "loser"
     },
     {
       "symbol": "HINDALCO",
-      "ltp": 1083.15,
-      "change": 3.25,
+      "ltp": 1081.25,
+      "change": 3.06,
       "type": "gainer"
     },
     {
       "symbol": "TCS",
-      "ltp": 2326,
-      "change": -4.89,
+      "ltp": 2329.3,
+      "change": -4.76,
       "type": "loser"
     },
     {
       "symbol": "BOSCHLTD",
-      "ltp": 46500,
-      "change": 2.91,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TMPV",
-      "ltp": 335.75,
-      "change": -3.41,
-      "type": "loser"
-    },
-    {
-      "symbol": "HYUNDAI",
-      "ltp": 2239,
-      "change": 1.77,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1320.2,
-      "change": -3.35,
-      "type": "loser"
-    },
-    {
-      "symbol": "UNIONBANK",
-      "ltp": 185.3,
-      "change": 1.53,
+      "ltp": 46390,
+      "change": 2.67,
       "type": "gainer"
     },
     {
       "symbol": "MAXHEALTH",
-      "ltp": 1006.6,
-      "change": -3.21,
+      "ltp": 1005.2,
+      "change": -3.35,
       "type": "loser"
     },
     {
-      "symbol": "BANKBARODA",
-      "ltp": 249.74,
-      "change": 1.44,
+      "symbol": "HAL",
+      "ltp": 5011.5,
+      "change": 2.09,
       "type": "gainer"
     },
     {
       "symbol": "LTM",
-      "ltp": 4710.5,
-      "change": -2.88,
+      "ltp": 4702.7,
+      "change": -3.04,
       "type": "loser"
     },
     {
-      "symbol": "GRASIM",
-      "ltp": 3367.2,
-      "change": 1.35,
+      "symbol": "UNIONBANK",
+      "ltp": 185.32,
+      "change": 1.55,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIENSOL",
-      "ltp": 1577.8,
-      "change": -2.73,
+      "symbol": "TMPV",
+      "ltp": 337.8,
+      "change": -2.82,
       "type": "loser"
     },
     {
-      "symbol": "SBIN",
-      "ltp": 1080,
-      "change": 1.31,
+      "symbol": "HYUNDAI",
+      "ltp": 2233.3,
+      "change": 1.51,
       "type": "gainer"
     },
     {
       "symbol": "APOLLOHOSP",
-      "ltp": 8546,
-      "change": -2.34,
+      "ltp": 8509,
+      "change": -2.76,
       "type": "loser"
     },
     {
-      "symbol": "CANBK",
-      "ltp": 131.62,
-      "change": 1.01,
+      "symbol": "ABB",
+      "ltp": 7709.5,
+      "change": 1.29,
       "type": "gainer"
     },
     {
-      "symbol": "TITAN",
-      "ltp": 5010.8,
-      "change": -2.29,
+      "symbol": "ADANIGREEN",
+      "ltp": 1332.5,
+      "change": -2.45,
       "type": "loser"
     },
     {
-      "symbol": "TMCV",
-      "ltp": 453.95,
-      "change": 0.87,
+      "symbol": "BANKBARODA",
+      "ltp": 249.34,
+      "change": 1.28,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1582.6,
+      "change": -2.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 1078.9,
+      "change": 1.21,
       "type": "gainer"
     },
     {
       "symbol": "INFY",
-      "ltp": 1167.5,
-      "change": -1.95,
+      "ltp": 1165.1,
+      "change": -2.15,
+      "type": "loser"
+    },
+    {
+      "symbol": "GRASIM",
+      "ltp": 3360.3,
+      "change": 1.15,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 1056.5,
+      "change": -1.99,
       "type": "loser"
     }
   ]
