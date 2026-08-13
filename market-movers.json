@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-13T09:19:50.863Z",
+  "updatedAt": "2026-08-13T10:32:26.044Z",
   "movers": [
     {
       "symbol": "SOLARINDS",
-      "ltp": 19864,
-      "change": 6.05,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 1046.1,
-      "change": -3,
-      "type": "loser"
-    },
-    {
-      "symbol": "TMCV",
-      "ltp": 474.9,
-      "change": 3.91,
+      "ltp": 20324,
+      "change": 8.51,
       "type": "gainer"
     },
     {
       "symbol": "ZYDUSLIFE",
-      "ltp": 1172,
-      "change": -2.74,
+      "ltp": 1167.3,
+      "change": -3.13,
+      "type": "loser"
+    },
+    {
+      "symbol": "TMCV",
+      "ltp": 474.5,
+      "change": 3.82,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HINDALCO",
+      "ltp": 1046.25,
+      "change": -2.99,
       "type": "loser"
     },
     {
       "symbol": "GODREJCP",
-      "ltp": 932.4,
-      "change": 3.03,
-      "type": "gainer"
-    },
-    {
-      "symbol": "VEDL",
-      "ltp": 270.45,
-      "change": -1.94,
-      "type": "loser"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 1089.7,
-      "change": 2.62,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ULTRACEMCO",
-      "ltp": 11661,
-      "change": -1.93,
-      "type": "loser"
-    },
-    {
-      "symbol": "LODHA",
-      "ltp": 1237.5,
-      "change": 2.36,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 25105,
-      "change": -1.82,
-      "type": "loser"
-    },
-    {
-      "symbol": "TMPV",
-      "ltp": 348.3,
-      "change": 1.55,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GRASIM",
-      "ltp": 3248,
-      "change": -1.81,
-      "type": "loser"
-    },
-    {
-      "symbol": "ETERNAL",
-      "ltp": 318.5,
-      "change": 1.42,
-      "type": "gainer"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 8446,
-      "change": -1.79,
-      "type": "loser"
-    },
-    {
-      "symbol": "BEL",
-      "ltp": 410.15,
-      "change": 1.23,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GAIL",
-      "ltp": 174.96,
-      "change": -1.68,
-      "type": "loser"
-    },
-    {
-      "symbol": "MAXHEALTH",
-      "ltp": 1019.8,
-      "change": 1.22,
+      "ltp": 936.9,
+      "change": 3.52,
       "type": "gainer"
     },
     {
       "symbol": "ICICIBANK",
-      "ltp": 1409.9,
-      "change": -1.52,
+      "ltp": 1406.8,
+      "change": -1.74,
       "type": "loser"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1644,
-      "change": 1.17,
+      "symbol": "TATACONSUM",
+      "ltp": 1090.5,
+      "change": 2.69,
       "type": "gainer"
     },
     {
-      "symbol": "JINDALSTEL",
-      "ltp": 1095.1,
-      "change": -1.52,
+      "symbol": "VEDL",
+      "ltp": 271.1,
+      "change": -1.7,
+      "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1232.3,
+      "change": 1.93,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 11706,
+      "change": -1.56,
+      "type": "loser"
+    },
+    {
+      "symbol": "TMPV",
+      "ltp": 349.6,
+      "change": 1.92,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GRASIM",
+      "ltp": 3257,
+      "change": -1.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "NTPC",
+      "ltp": 344.25,
+      "change": 1.41,
+      "type": "gainer"
+    },
+    {
+      "symbol": "UNITDSPR",
+      "ltp": 1515,
+      "change": -1.3,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDUNILVR",
+      "ltp": 2092,
+      "change": 1.41,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 25245,
+      "change": -1.27,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1132.3,
+      "change": 1.35,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MOTHERSON",
+      "ltp": 167.4,
+      "change": -1.24,
+      "type": "loser"
+    },
+    {
+      "symbol": "BEL",
+      "ltp": 410.5,
+      "change": 1.32,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BANKBARODA",
+      "ltp": 248,
+      "change": -1.2,
       "type": "loser"
     }
   ]
