@@ -1,123 +1,123 @@
 {
-  "updatedAt": "2026-08-13T06:17:42.906Z",
+  "updatedAt": "2026-08-13T07:58:13.828Z",
   "movers": [
     {
       "symbol": "TMCV",
-      "ltp": 472.8,
-      "change": 3.45,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1173.9,
-      "change": -2.58,
-      "type": "loser"
-    },
-    {
-      "symbol": "GODREJCP",
-      "ltp": 927.5,
-      "change": 2.49,
+      "ltp": 471.65,
+      "change": 3.19,
       "type": "gainer"
     },
     {
       "symbol": "HINDALCO",
-      "ltp": 1053,
-      "change": -2.36,
+      "ltp": 1045.95,
+      "change": -3.02,
       "type": "loser"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 19130,
-      "change": 2.14,
+      "symbol": "GODREJCP",
+      "ltp": 932.5,
+      "change": 3.04,
       "type": "gainer"
     },
     {
-      "symbol": "ULTRACEMCO",
-      "ltp": 11640,
-      "change": -2.11,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "ltp": 1135.9,
-      "change": 1.67,
-      "type": "gainer"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 8430.5,
-      "change": -1.97,
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1169.1,
+      "change": -2.98,
       "type": "loser"
     },
     {
       "symbol": "TATACONSUM",
-      "ltp": 1079,
-      "change": 1.61,
+      "ltp": 1085,
+      "change": 2.18,
       "type": "gainer"
     },
     {
-      "symbol": "SHREECEM",
-      "ltp": 25065,
-      "change": -1.97,
-      "type": "loser"
-    },
-    {
-      "symbol": "TMPV",
-      "ltp": 348.05,
-      "change": 1.47,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BPCL",
-      "ltp": 311,
-      "change": -1.89,
-      "type": "loser"
-    },
-    {
-      "symbol": "ETERNAL",
-      "ltp": 318,
-      "change": 1.26,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "ltp": 1572,
-      "change": -1.69,
-      "type": "loser"
-    },
-    {
-      "symbol": "MAXHEALTH",
-      "ltp": 1019.6,
-      "change": 1.2,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GRASIM",
-      "ltp": 3252.4,
-      "change": -1.67,
+      "symbol": "VEDL",
+      "ltp": 270.5,
+      "change": -1.92,
       "type": "loser"
     },
     {
       "symbol": "LODHA",
-      "ltp": 1221.8,
-      "change": 1.06,
+      "ltp": 1234.1,
+      "change": 2.08,
       "type": "gainer"
     },
     {
-      "symbol": "GAIL",
-      "ltp": 175.21,
-      "change": -1.54,
+      "symbol": "SHREECEM",
+      "ltp": 25095,
+      "change": -1.86,
+      "type": "loser"
+    },
+    {
+      "symbol": "TMPV",
+      "ltp": 348.6,
+      "change": 1.63,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GRASIM",
+      "ltp": 3248.8,
+      "change": -1.78,
       "type": "loser"
     },
     {
       "symbol": "TECHM",
-      "ltp": 1640.6,
-      "change": 0.96,
+      "ltp": 1650,
+      "change": 1.54,
       "type": "gainer"
     },
     {
-      "symbol": "RELIANCE",
-      "ltp": 1309.2,
+      "symbol": "GAIL",
+      "ltp": 174.82,
+      "change": -1.76,
+      "type": "loser"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 19002,
+      "change": 1.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "ltp": 8455.5,
+      "change": -1.68,
+      "type": "loser"
+    },
+    {
+      "symbol": "BEL",
+      "ltp": 409.35,
+      "change": 1.04,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 11696,
+      "change": -1.64,
+      "type": "loser"
+    },
+    {
+      "symbol": "MAXHEALTH",
+      "ltp": 1017.3,
+      "change": 0.97,
+      "type": "gainer"
+    },
+    {
+      "symbol": "JINDALSTEL",
+      "ltp": 1094.9,
+      "change": -1.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "ETERNAL",
+      "ltp": 316.9,
+      "change": 0.91,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ICICIBANK",
+      "ltp": 1410.3,
       "change": -1.49,
       "type": "loser"
     }
