@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-14T07:47:38.697Z",
+  "updatedAt": "2026-08-14T08:52:02.750Z",
   "movers": [
     {
       "symbol": "APOLLOHOSP",
-      "ltp": 8878,
-      "change": 3.35,
+      "ltp": 8898,
+      "change": 3.59,
       "type": "gainer"
     },
     {
       "symbol": "TMPV",
-      "ltp": 333.05,
-      "change": -4.73,
+      "ltp": 332.95,
+      "change": -4.76,
       "type": "loser"
     },
     {
       "symbol": "BHARTIARTL",
-      "ltp": 1997.4,
-      "change": 3.01,
+      "ltp": 2001.4,
+      "change": 3.21,
       "type": "gainer"
     },
     {
       "symbol": "HINDZINC",
-      "ltp": 560.3,
-      "change": -3.12,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIPORTS",
-      "ltp": 1690.3,
-      "change": 1.95,
-      "type": "gainer"
-    },
-    {
-      "symbol": "RECLTD",
-      "ltp": 335.15,
-      "change": -2.84,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIENT",
-      "ltp": 3020.7,
-      "change": 1.88,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ASIANPAINT",
-      "ltp": 2693.8,
-      "change": -2.24,
-      "type": "loser"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 5410,
-      "change": 1.79,
-      "type": "gainer"
-    },
-    {
-      "symbol": "JIOFIN",
-      "ltp": 250.65,
-      "change": -1.94,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1340.5,
-      "change": 1.63,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1147.2,
-      "change": -1.72,
+      "ltp": 562.2,
+      "change": -2.79,
       "type": "loser"
     },
     {
       "symbol": "ADANIENSOL",
-      "ltp": 1608.2,
-      "change": 1.59,
+      "ltp": 1622,
+      "change": 2.46,
+      "type": "gainer"
+    },
+    {
+      "symbol": "RECLTD",
+      "ltp": 335.8,
+      "change": -2.65,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENT",
+      "ltp": 3035.7,
+      "change": 2.39,
       "type": "gainer"
     },
     {
       "symbol": "SHREECEM",
-      "ltp": 24810,
-      "change": -1.72,
+      "ltp": 24700,
+      "change": -2.16,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "ltp": 1694.3,
+      "change": 2.19,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1142.9,
+      "change": -2.09,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1342.7,
+      "change": 1.8,
+      "type": "gainer"
+    },
+    {
+      "symbol": "JIOFIN",
+      "ltp": 250.45,
+      "change": -2.01,
+      "type": "loser"
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "ltp": 5409.5,
+      "change": 1.78,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "ltp": 2702.6,
+      "change": -1.92,
       "type": "loser"
     },
     {
       "symbol": "HAL",
-      "ltp": 5010.2,
-      "change": 1.52,
+      "ltp": 5020.5,
+      "change": 1.73,
       "type": "gainer"
     },
     {
       "symbol": "ONGC",
-      "ltp": 236.05,
-      "change": -1.6,
+      "ltp": 235.61,
+      "change": -1.79,
       "type": "loser"
     },
     {
       "symbol": "UNITDSPR",
-      "ltp": 1536.8,
-      "change": 1.44,
+      "ltp": 1539.3,
+      "change": 1.6,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1896,
+      "change": -1.65,
+      "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1246.3,
+      "change": 1.14,
       "type": "gainer"
     },
     {
       "symbol": "VBL",
-      "ltp": 433.85,
-      "change": -1.51,
-      "type": "loser"
-    },
-    {
-      "symbol": "BPCL",
-      "ltp": 318.7,
-      "change": 1.17,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NTPC",
-      "ltp": 339.15,
-      "change": -1.48,
+      "ltp": 433.35,
+      "change": -1.62,
       "type": "loser"
     }
   ]
