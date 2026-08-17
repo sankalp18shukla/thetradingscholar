@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-17T03:51:30.100Z",
+  "updatedAt": "2026-08-17T04:42:58.616Z",
   "movers": [
     {
-      "symbol": "HAL",
-      "ltp": 5118,
-      "change": 1.75,
+      "symbol": "HINDZINC",
+      "ltp": 571.1,
+      "change": 1.64,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2322.4,
+      "change": -1.63,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2883.7,
+      "change": 1.47,
       "type": "gainer"
     },
     {
       "symbol": "PNB",
-      "ltp": 116.18,
-      "change": -1.54,
+      "ltp": 116.1,
+      "change": -1.61,
       "type": "loser"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 20215,
-      "change": 1.23,
+      "symbol": "HAL",
+      "ltp": 5097,
+      "change": 1.33,
       "type": "gainer"
     },
     {
-      "symbol": "LTM",
-      "ltp": 4646.2,
-      "change": -1.46,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 568.3,
-      "change": 1.14,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJAJHLDNG",
-      "ltp": 11314,
-      "change": -1.4,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 47570,
-      "change": 1,
-      "type": "gainer"
-    },
-    {
-      "symbol": "JSWSTEEL",
-      "ltp": 1252.9,
-      "change": -1.35,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 1039.6,
-      "change": 0.98,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BPCL",
-      "ltp": 315.2,
-      "change": -1.33,
+      "symbol": "INFY",
+      "ltp": 1151.3,
+      "change": -1.53,
       "type": "loser"
     },
     {
       "symbol": "TVSMOTOR",
-      "ltp": 4349,
-      "change": 0.98,
+      "ltp": 4357.1,
+      "change": 1.16,
       "type": "gainer"
     },
     {
-      "symbol": "CANBK",
-      "ltp": 129.55,
-      "change": -1.3,
+      "symbol": "HCLTECH",
+      "ltp": 1339.6,
+      "change": -1.5,
       "type": "loser"
     },
     {
-      "symbol": "EICHERMOT",
-      "ltp": 8144,
-      "change": 0.96,
+      "symbol": "HDFCLIFE",
+      "ltp": 541.9,
+      "change": 1.13,
       "type": "gainer"
     },
     {
-      "symbol": "UNIONBANK",
-      "ltp": 184.95,
-      "change": -1.3,
+      "symbol": "LTM",
+      "ltp": 4648.8,
+      "change": -1.4,
       "type": "loser"
     },
     {
-      "symbol": "MAZDOCK",
-      "ltp": 2603.3,
-      "change": 0.9,
+      "symbol": "ENRIN",
+      "ltp": 3575.2,
+      "change": 1.1,
       "type": "gainer"
     },
     {
-      "symbol": "DRREDDY",
-      "ltp": 1185.4,
-      "change": -1.22,
+      "symbol": "GAIL",
+      "ltp": 172.5,
+      "change": -1.37,
       "type": "loser"
     },
     {
-      "symbol": "DIVISLAB",
-      "ltp": 8520,
-      "change": 0.51,
+      "symbol": "ABB",
+      "ltp": 7731.5,
+      "change": 1.08,
+      "type": "gainer"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 181.69,
+      "change": -1.26,
+      "type": "loser"
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "ltp": 5450.5,
+      "change": 0.94,
       "type": "gainer"
     },
     {
       "symbol": "BANKBARODA",
-      "ltp": 245.33,
-      "change": -1.16,
+      "ltp": 245.11,
+      "change": -1.25,
       "type": "loser"
     },
     {
-      "symbol": "ONGC",
-      "ltp": 237.4,
-      "change": 0.42,
+      "symbol": "HINDALCO",
+      "ltp": 1038.2,
+      "change": 0.85,
       "type": "gainer"
     },
     {
-      "symbol": "JIOFIN",
-      "ltp": 246.2,
-      "change": -1.14,
+      "symbol": "TMPV",
+      "ltp": 330.8,
+      "change": -1.11,
+      "type": "loser"
+    },
+    {
+      "symbol": "BOSCHLTD",
+      "ltp": 47480,
+      "change": 0.81,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 1055.8,
+      "change": -1.11,
       "type": "loser"
     }
   ]
