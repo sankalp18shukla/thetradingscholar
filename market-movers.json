@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-17T06:00:35.074Z",
+  "updatedAt": "2026-08-17T07:13:30.559Z",
   "movers": [
     {
-      "symbol": "HINDZINC",
-      "ltp": 573.2,
+      "symbol": "HDFCAMC",
+      "ltp": 2535,
       "change": 2.01,
       "type": "gainer"
     },
     {
       "symbol": "INFY",
-      "ltp": 1139,
-      "change": -2.58,
+      "ltp": 1143.3,
+      "change": -2.22,
       "type": "loser"
     },
     {
-      "symbol": "HDFCAMC",
-      "ltp": 2530.6,
-      "change": 1.84,
+      "symbol": "HINDZINC",
+      "ltp": 571.9,
+      "change": 1.78,
       "type": "gainer"
     },
     {
       "symbol": "HCLTECH",
-      "ltp": 1331.1,
-      "change": -2.13,
+      "ltp": 1334.2,
+      "change": -1.9,
       "type": "loser"
     },
     {
       "symbol": "TVSMOTOR",
-      "ltp": 4376.8,
-      "change": 1.62,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TCS",
-      "ltp": 2315.6,
-      "change": -1.92,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 543.5,
-      "change": 1.43,
-      "type": "gainer"
-    },
-    {
-      "symbol": "AMBUJACEM",
-      "ltp": 410,
-      "change": -1.8,
-      "type": "loser"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1151.4,
-      "change": 1.43,
-      "type": "gainer"
-    },
-    {
-      "symbol": "PNB",
-      "ltp": 116,
-      "change": -1.69,
-      "type": "loser"
-    },
-    {
-      "symbol": "HAL",
-      "ltp": 5100,
-      "change": 1.39,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GAIL",
-      "ltp": 172.12,
-      "change": -1.59,
-      "type": "loser"
-    },
-    {
-      "symbol": "MUTHOOTFIN",
-      "ltp": 2878.2,
-      "change": 1.27,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 244.32,
-      "change": -1.57,
-      "type": "loser"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 5453,
-      "change": 0.98,
-      "type": "gainer"
-    },
-    {
-      "symbol": "LTM",
-      "ltp": 4641.2,
-      "change": -1.57,
-      "type": "loser"
-    },
-    {
-      "symbol": "JINDALSTEL",
-      "ltp": 1102,
-      "change": 0.96,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TECHM",
-      "ltp": 1607.4,
-      "change": -1.56,
-      "type": "loser"
-    },
-    {
-      "symbol": "SOLARINDS",
-      "ltp": 20161,
-      "change": 0.96,
+      "ltp": 4374.6,
+      "change": 1.57,
       "type": "gainer"
     },
     {
       "symbol": "ITC",
-      "ltp": 273.9,
-      "change": -1.55,
+      "ltp": 273.3,
+      "change": -1.76,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDALCO",
+      "ltp": 1043.1,
+      "change": 1.32,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1325.4,
+      "change": -1.68,
+      "type": "loser"
+    },
+    {
+      "symbol": "HDFCLIFE",
+      "ltp": 542.45,
+      "change": 1.23,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2326.3,
+      "change": -1.47,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2875,
+      "change": 1.16,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BANKBARODA",
+      "ltp": 244.57,
+      "change": -1.47,
+      "type": "loser"
+    },
+    {
+      "symbol": "DLF",
+      "ltp": 672.2,
+      "change": 1.08,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CIPLA",
+      "ltp": 1428.8,
+      "change": -1.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "JINDALSTEL",
+      "ltp": 1103.1,
+      "change": 1.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TMCV",
+      "ltp": 467.5,
+      "change": -1.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "HAL",
+      "ltp": 5081.6,
+      "change": 1.03,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1592.9,
+      "change": -1.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "TITAN",
+      "ltp": 5106,
+      "change": 0.98,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1904,
+      "change": -1.35,
       "type": "loser"
     }
   ]
