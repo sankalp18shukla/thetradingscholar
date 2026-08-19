@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-19T07:56:34.513Z",
+  "updatedAt": "2026-08-19T08:43:48.321Z",
   "movers": [
     {
-      "symbol": "ETERNAL",
-      "ltp": 321.75,
-      "change": 1.85,
+      "symbol": "HCLTECH",
+      "ltp": 1320.8,
+      "change": 1.76,
       "type": "gainer"
     },
     {
       "symbol": "ADANIENSOL",
-      "ltp": 1546.7,
-      "change": -3.51,
+      "ltp": 1549,
+      "change": -3.37,
       "type": "loser"
     },
     {
-      "symbol": "HCLTECH",
-      "ltp": 1321.8,
-      "change": 1.83,
+      "symbol": "ETERNAL",
+      "ltp": 321.2,
+      "change": 1.68,
       "type": "gainer"
     },
     {
       "symbol": "SOLARINDS",
-      "ltp": 19622,
-      "change": -3.24,
+      "ltp": 19616,
+      "change": -3.27,
       "type": "loser"
     },
     {
       "symbol": "JINDALSTEL",
-      "ltp": 1117,
-      "change": 1.41,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 869.45,
-      "change": -2.77,
-      "type": "loser"
-    },
-    {
-      "symbol": "JSWSTEEL",
-      "ltp": 1280.1,
-      "change": 0.99,
+      "ltp": 1119,
+      "change": 1.59,
       "type": "gainer"
     },
     {
       "symbol": "ENRIN",
-      "ltp": 3495.8,
-      "change": -2.71,
+      "ltp": 3489.9,
+      "change": -2.87,
       "type": "loser"
     },
     {
-      "symbol": "DLF",
-      "ltp": 671.35,
-      "change": 0.84,
+      "symbol": "JSWSTEEL",
+      "ltp": 1281.4,
+      "change": 1.09,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CGPOWER",
+      "ltp": 868.65,
+      "change": -2.86,
+      "type": "loser"
+    },
+    {
+      "symbol": "HDFCAMC",
+      "ltp": 2551,
+      "change": 1.03,
       "type": "gainer"
     },
     {
       "symbol": "CUMMINSIND",
-      "ltp": 5246,
-      "change": -1.94,
-      "type": "loser"
-    },
-    {
-      "symbol": "WIPRO",
-      "ltp": 179.5,
-      "change": 0.81,
-      "type": "gainer"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 399.1,
-      "change": -1.92,
-      "type": "loser"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 1069.7,
-      "change": 0.76,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 24260,
-      "change": -1.88,
-      "type": "loser"
-    },
-    {
-      "symbol": "SUNPHARMA",
-      "ltp": 1888.9,
-      "change": 0.74,
-      "type": "gainer"
-    },
-    {
-      "symbol": "POWERGRID",
-      "ltp": 263.05,
+      "ltp": 5251,
       "change": -1.85,
       "type": "loser"
     },
     {
-      "symbol": "KOTAKBANK",
-      "ltp": 390.25,
-      "change": 0.67,
+      "symbol": "SUNPHARMA",
+      "ltp": 1892.3,
+      "change": 0.92,
       "type": "gainer"
     },
     {
-      "symbol": "AMBUJACEM",
-      "ltp": 405.8,
-      "change": -1.6,
+      "symbol": "POWERGRID",
+      "ltp": 263.1,
+      "change": -1.83,
+      "type": "loser"
+    },
+    {
+      "symbol": "DLF",
+      "ltp": 671.75,
+      "change": 0.9,
+      "type": "gainer"
+    },
+    {
+      "symbol": "COALINDIA",
+      "ltp": 399.55,
+      "change": -1.81,
+      "type": "loser"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 179.6,
+      "change": 0.86,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 24300,
+      "change": -1.72,
+      "type": "loser"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 391,
+      "change": 0.86,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SIEMENS",
+      "ltp": 3903,
+      "change": -1.36,
       "type": "loser"
     },
     {
       "symbol": "BAJAJHLDNG",
-      "ltp": 11326,
-      "change": 0.64,
+      "ltp": 11349,
+      "change": 0.84,
       "type": "gainer"
     },
     {
-      "symbol": "BAJFINANCE",
-      "ltp": 1077.4,
-      "change": -1.54,
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2855.9,
+      "change": -1.32,
       "type": "loser"
     }
   ]
