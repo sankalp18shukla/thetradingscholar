@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-19T03:48:13.287Z",
+  "updatedAt": "2026-08-19T04:22:46.462Z",
   "movers": [
     {
-      "symbol": "HCLTECH",
-      "ltp": 1315.2,
-      "change": 1.33,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "ltp": 1565.8,
-      "change": -2.32,
-      "type": "loser"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1126.6,
-      "change": 1.04,
+      "symbol": "LTM",
+      "ltp": 4644,
+      "change": 1.79,
       "type": "gainer"
     },
     {
       "symbol": "CGPOWER",
-      "ltp": 879.7,
-      "change": -1.62,
+      "ltp": 868,
+      "change": -2.93,
       "type": "loser"
     },
     {
-      "symbol": "LTM",
-      "ltp": 4609.6,
-      "change": 1.04,
+      "symbol": "HCLTECH",
+      "ltp": 1313.3,
+      "change": 1.18,
       "type": "gainer"
     },
     {
-      "symbol": "SHREECEM",
-      "ltp": 24405,
-      "change": -1.29,
+      "symbol": "ADANIENSOL",
+      "ltp": 1556.4,
+      "change": -2.91,
+      "type": "loser"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1126.2,
+      "change": 1,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3489.8,
+      "change": -2.88,
       "type": "loser"
     },
     {
       "symbol": "ETERNAL",
-      "ltp": 318.6,
-      "change": 0.85,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 1028.3,
-      "change": -1.28,
-      "type": "loser"
-    },
-    {
-      "symbol": "SUNPHARMA",
-      "ltp": 1886.1,
-      "change": 0.59,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "ltp": 1080.3,
-      "change": -1.28,
-      "type": "loser"
-    },
-    {
-      "symbol": "UNITDSPR",
-      "ltp": 1528,
-      "change": 0.47,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJAJFINSV",
-      "ltp": 1986,
-      "change": -1.25,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 48955,
-      "change": 0.46,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1292.4,
-      "change": -1.19,
-      "type": "loser"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1468.5,
-      "change": 0.41,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATASTEEL",
-      "ltp": 183.34,
-      "change": -1.16,
-      "type": "loser"
-    },
-    {
-      "symbol": "DMART",
-      "ltp": 3996,
-      "change": 0.38,
+      "ltp": 318.85,
+      "change": 0.93,
       "type": "gainer"
     },
     {
       "symbol": "SOLARINDS",
-      "ltp": 20058,
-      "change": -1.09,
+      "ltp": 19737,
+      "change": -2.68,
+      "type": "loser"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "ltp": 187.1,
+      "change": 0.86,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1282.5,
+      "change": -1.95,
+      "type": "loser"
+    },
+    {
+      "symbol": "NESTLEIND",
+      "ltp": 1474.8,
+      "change": 0.84,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 24305,
+      "change": -1.7,
       "type": "loser"
     },
     {
       "symbol": "WIPRO",
-      "ltp": 178.69,
-      "change": 0.35,
+      "ltp": 179.47,
+      "change": 0.79,
       "type": "gainer"
     },
     {
-      "symbol": "SIEMENS",
-      "ltp": 3916.3,
-      "change": -1.03,
+      "symbol": "CUMMINSIND",
+      "ltp": 5271,
+      "change": -1.48,
+      "type": "loser"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1889.8,
+      "change": 0.78,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1754.2,
+      "change": -1.34,
+      "type": "loser"
+    },
+    {
+      "symbol": "BRITANNIA",
+      "ltp": 5536,
+      "change": 0.75,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 183.25,
+      "change": -1.21,
+      "type": "loser"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 1068.6,
+      "change": 0.66,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 7454.5,
+      "change": -1.21,
       "type": "loser"
     }
   ]
