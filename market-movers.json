@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-20T04:22:13.728Z",
+  "updatedAt": "2026-08-20T05:04:29.105Z",
   "movers": [
     {
       "symbol": "MUTHOOTFIN",
-      "ltp": 2962.1,
-      "change": 3.61,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 1016.2,
-      "change": -2.19,
-      "type": "loser"
-    },
-    {
-      "symbol": "ETERNAL",
-      "ltp": 327.2,
-      "change": 2.25,
-      "type": "gainer"
-    },
-    {
-      "symbol": "PFC",
-      "ltp": 368.05,
-      "change": -1.71,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "ltp": 1129.2,
-      "change": 2.1,
+      "ltp": 2967,
+      "change": 3.78,
       "type": "gainer"
     },
     {
       "symbol": "RECLTD",
-      "ltp": 332.05,
-      "change": -1.47,
+      "ltp": 328.4,
+      "change": -2.55,
       "type": "loser"
     },
     {
       "symbol": "VEDL",
-      "ltp": 268.1,
-      "change": 2.09,
+      "ltp": 270.1,
+      "change": 2.86,
       "type": "gainer"
     },
     {
-      "symbol": "ONGC",
-      "ltp": 234.65,
-      "change": -1.41,
-      "type": "loser"
-    },
-    {
-      "symbol": "DMART",
-      "ltp": 4042.5,
-      "change": 1.95,
-      "type": "gainer"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 397.4,
-      "change": -0.65,
+      "symbol": "PFC",
+      "ltp": 366.2,
+      "change": -2.2,
       "type": "loser"
     },
     {
       "symbol": "HINDZINC",
-      "ltp": 567.8,
-      "change": 1.94,
+      "ltp": 570.1,
+      "change": 2.35,
       "type": "gainer"
     },
     {
-      "symbol": "TATAPOWER",
-      "ltp": 376.5,
-      "change": -0.63,
+      "symbol": "HINDALCO",
+      "ltp": 1026.75,
+      "change": -1.17,
       "type": "loser"
     },
     {
-      "symbol": "INFY",
-      "ltp": 1140.4,
-      "change": 1.84,
+      "symbol": "ETERNAL",
+      "ltp": 327.3,
+      "change": 2.28,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ONGC",
+      "ltp": 236.13,
+      "change": -0.79,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1129.3,
+      "change": 2.11,
       "type": "gainer"
     },
     {
       "symbol": "MAXHEALTH",
-      "ltp": 992.5,
-      "change": -0.45,
-      "type": "loser"
-    },
-    {
-      "symbol": "VBL",
-      "ltp": 438.25,
-      "change": 1.48,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NTPC",
-      "ltp": 335.05,
-      "change": -0.45,
-      "type": "loser"
-    },
-    {
-      "symbol": "LTM",
-      "ltp": 4630.1,
-      "change": 1.44,
-      "type": "gainer"
-    },
-    {
-      "symbol": "IOC",
-      "ltp": 135.69,
-      "change": -0.45,
+      "ltp": 989.9,
+      "change": -0.71,
       "type": "loser"
     },
     {
       "symbol": "LODHA",
-      "ltp": 1226.8,
-      "change": 1.39,
+      "ltp": 1231.1,
+      "change": 1.74,
       "type": "gainer"
     },
     {
       "symbol": "ASIANPAINT",
-      "ltp": 2620.5,
-      "change": -0.39,
+      "ltp": 2612.9,
+      "change": -0.68,
+      "type": "loser"
+    },
+    {
+      "symbol": "VBL",
+      "ltp": 439.25,
+      "change": 1.71,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATAPOWER",
+      "ltp": 376.35,
+      "change": -0.67,
+      "type": "loser"
+    },
+    {
+      "symbol": "JINDALSTEL",
+      "ltp": 1134.1,
+      "change": 1.71,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "ltp": 4986,
+      "change": -0.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1137.8,
+      "change": 1.61,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HAL",
+      "ltp": 4990,
+      "change": -0.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "ltp": 1305.6,
+      "change": 1.54,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1891.2,
+      "change": -0.46,
       "type": "loser"
     }
   ]
