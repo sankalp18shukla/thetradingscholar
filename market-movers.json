@@ -1,88 +1,76 @@
 {
-  "updatedAt": "2026-08-21T05:16:12.595Z",
+  "updatedAt": "2026-08-21T05:51:44.390Z",
   "movers": [
     {
-      "symbol": "HINDZINC",
-      "ltp": 591.2,
-      "change": 3.01,
+      "symbol": "POWERGRID",
+      "ltp": 274.1,
+      "change": 3.51,
       "type": "gainer"
     },
     {
       "symbol": "BRITANNIA",
-      "ltp": 5363,
-      "change": -3.33,
+      "ltp": 5362.5,
+      "change": -3.34,
       "type": "loser"
     },
     {
-      "symbol": "MUTHOOTFIN",
-      "ltp": 3052.1,
-      "change": 2.76,
+      "symbol": "HINDZINC",
+      "ltp": 588.7,
+      "change": 2.58,
       "type": "gainer"
     },
     {
       "symbol": "LTM",
-      "ltp": 4451.5,
-      "change": -2.23,
+      "ltp": 4471.2,
+      "change": -1.8,
       "type": "loser"
     },
     {
-      "symbol": "POWERGRID",
-      "ltp": 271.25,
-      "change": 2.44,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 5107.5,
-      "change": -1.87,
-      "type": "loser"
-    },
-    {
-      "symbol": "VEDL",
-      "ltp": 273.95,
-      "change": 2.22,
+      "symbol": "MUTHOOTFIN",
+      "ltp": 3044.7,
+      "change": 2.52,
       "type": "gainer"
     },
     {
       "symbol": "PNB",
-      "ltp": 116.24,
-      "change": -1.49,
+      "ltp": 115.96,
+      "change": -1.73,
+      "type": "loser"
+    },
+    {
+      "symbol": "VEDL",
+      "ltp": 273.55,
+      "change": 2.07,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "ltp": 5125.5,
+      "change": -1.53,
       "type": "loser"
     },
     {
       "symbol": "KOTAKBANK",
-      "ltp": 402.85,
-      "change": 1.38,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TORNTPHARM",
-      "ltp": 4938,
-      "change": -1.34,
-      "type": "loser"
-    },
-    {
-      "symbol": "NTPC",
-      "ltp": 341.9,
-      "change": 1.3,
+      "ltp": 402.65,
+      "change": 1.33,
       "type": "gainer"
     },
     {
       "symbol": "DMART",
-      "ltp": 3907,
-      "change": -1.34,
+      "ltp": 3902.5,
+      "change": -1.45,
       "type": "loser"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 20007,
-      "change": 1.25,
+      "symbol": "ADANIGREEN",
+      "ltp": 1318.7,
+      "change": 1.3,
       "type": "gainer"
     },
     {
-      "symbol": "GODREJCP",
-      "ltp": 935.1,
-      "change": -1.26,
+      "symbol": "TORNTPHARM",
+      "ltp": 4936,
+      "change": -1.38,
       "type": "loser"
     },
     {
@@ -92,33 +80,45 @@
       "type": "gainer"
     },
     {
+      "symbol": "GODREJCP",
+      "ltp": 933.9,
+      "change": -1.38,
+      "type": "loser"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 20001,
+      "change": 1.22,
+      "type": "gainer"
+    },
+    {
       "symbol": "CHOLAFIN",
-      "ltp": 1867.2,
-      "change": -1.15,
+      "ltp": 1863.5,
+      "change": -1.34,
       "type": "loser"
     },
     {
-      "symbol": "ADANIGREEN",
-      "ltp": 1317,
-      "change": 1.17,
+      "symbol": "HAL",
+      "ltp": 5054,
+      "change": 1.12,
       "type": "gainer"
     },
     {
-      "symbol": "BAJAJ-AUTO",
-      "ltp": 11661,
-      "change": -1.12,
+      "symbol": "INDIGO",
+      "ltp": 5100.5,
+      "change": -1.25,
       "type": "loser"
     },
     {
-      "symbol": "HDFCBANK",
-      "ltp": 732.75,
-      "change": 1.06,
+      "symbol": "NTPC",
+      "ltp": 341.25,
+      "change": 1.11,
       "type": "gainer"
     },
     {
-      "symbol": "VBL",
-      "ltp": 433.4,
-      "change": -1.12,
+      "symbol": "TMCV",
+      "ltp": 472.5,
+      "change": -1.07,
       "type": "loser"
     }
   ]
