@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-24T07:17:27.530Z",
+  "updatedAt": "2026-08-24T08:08:03.402Z",
   "movers": [
     {
       "symbol": "MUTHOOTFIN",
-      "ltp": 3187.9,
-      "change": 5.49,
+      "ltp": 3195.4,
+      "change": 5.74,
       "type": "gainer"
     },
     {
       "symbol": "BANKBARODA",
-      "ltp": 241,
-      "change": -2.43,
+      "ltp": 240.7,
+      "change": -2.55,
       "type": "loser"
     },
     {
       "symbol": "SIEMENS",
-      "ltp": 4054.1,
-      "change": 3.42,
+      "ltp": 4064.9,
+      "change": 3.7,
       "type": "gainer"
     },
     {
       "symbol": "HAL",
-      "ltp": 4893.4,
-      "change": -2.13,
+      "ltp": 4881,
+      "change": -2.38,
       "type": "loser"
     },
     {
       "symbol": "HINDZINC",
-      "ltp": 609.95,
-      "change": 2.53,
+      "ltp": 607.6,
+      "change": 2.13,
       "type": "gainer"
     },
     {
       "symbol": "CANBK",
-      "ltp": 127.2,
-      "change": -2.12,
+      "ltp": 127.25,
+      "change": -2.09,
       "type": "loser"
     },
     {
       "symbol": "HINDALCO",
-      "ltp": 1054.5,
-      "change": 1.98,
-      "type": "gainer"
-    },
-    {
-      "symbol": "AMBUJACEM",
-      "ltp": 407.8,
-      "change": -1.62,
-      "type": "loser"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 3496,
-      "change": 1.76,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1103.2,
-      "change": -1.5,
-      "type": "loser"
-    },
-    {
-      "symbol": "IOC",
-      "ltp": 138.09,
-      "change": 1.61,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIPORTS",
-      "ltp": 1674.6,
-      "change": -1.49,
-      "type": "loser"
-    },
-    {
-      "symbol": "JSWSTEEL",
-      "ltp": 1312.4,
-      "change": 1.45,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SBIN",
-      "ltp": 1034,
-      "change": -1.4,
-      "type": "loser"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1136.5,
-      "change": 1.38,
+      "ltp": 1050.1,
+      "change": 1.56,
       "type": "gainer"
     },
     {
       "symbol": "BEL",
-      "ltp": 408.2,
-      "change": -1.4,
+      "ltp": 405.9,
+      "change": -1.96,
       "type": "loser"
     },
     {
-      "symbol": "TATASTEEL",
-      "ltp": 185.27,
-      "change": 1.24,
+      "symbol": "IOC",
+      "ltp": 138.02,
+      "change": 1.56,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIGREEN",
-      "ltp": 1302.5,
-      "change": -1.33,
+      "symbol": "AMBUJACEM",
+      "ltp": 407.75,
+      "change": -1.63,
+      "type": "loser"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3488.1,
+      "change": 1.53,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1103.6,
+      "change": -1.46,
       "type": "loser"
     },
     {
       "symbol": "HCLTECH",
-      "ltp": 1318.3,
-      "change": 1.21,
+      "ltp": 1320.2,
+      "change": 1.36,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIPOWER",
-      "ltp": 202.79,
-      "change": -1.32,
+      "symbol": "BAJAJFINSV",
+      "ltp": 2003,
+      "change": -1.45,
+      "type": "loser"
+    },
+    {
+      "symbol": "DLF",
+      "ltp": 687.35,
+      "change": 1.36,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 1033.6,
+      "change": -1.44,
+      "type": "loser"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 7517,
+      "change": 1.25,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POWERGRID",
+      "ltp": 268.5,
+      "change": -1.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 185.04,
+      "change": 1.11,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "ltp": 1678.2,
+      "change": -1.28,
       "type": "loser"
     }
   ]
