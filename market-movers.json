@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-25T08:02:10.410Z",
+  "updatedAt": "2026-08-25T08:56:32.255Z",
   "movers": [
     {
-      "symbol": "HDFCAMC",
-      "ltp": 2664.6,
-      "change": 1.78,
+      "symbol": "ADANIENT",
+      "ltp": 3065.2,
+      "change": 2.22,
       "type": "gainer"
     },
     {
       "symbol": "ENRIN",
-      "ltp": 3406.1,
-      "change": -2.28,
+      "ltp": 3397.5,
+      "change": -2.53,
       "type": "loser"
     },
     {
-      "symbol": "DIVISLAB",
-      "ltp": 8630,
-      "change": 1.58,
+      "symbol": "HDFCAMC",
+      "ltp": 2673.4,
+      "change": 2.12,
       "type": "gainer"
     },
     {
       "symbol": "MOTHERSON",
-      "ltp": 165.28,
-      "change": -2.2,
+      "ltp": 165.5,
+      "change": -2.07,
       "type": "loser"
     },
     {
-      "symbol": "ADANIENT",
-      "ltp": 3043.5,
-      "change": 1.5,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HCLTECH",
-      "ltp": 1295.2,
-      "change": -2.03,
-      "type": "loser"
-    },
-    {
-      "symbol": "UNIONBANK",
-      "ltp": 185.74,
-      "change": 1.17,
+      "symbol": "DIVISLAB",
+      "ltp": 8625,
+      "change": 1.52,
       "type": "gainer"
     },
     {
       "symbol": "GRASIM",
-      "ltp": 3230.4,
-      "change": -1.75,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "ltp": 1572.3,
-      "change": 1.11,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 594.45,
-      "change": -1.58,
-      "type": "loser"
-    },
-    {
-      "symbol": "BPCL",
-      "ltp": 315.1,
-      "change": 1.03,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CIPLA",
-      "ltp": 1417.9,
-      "change": -1.39,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1319.7,
-      "change": 0.89,
-      "type": "gainer"
-    },
-    {
-      "symbol": "WIPRO",
-      "ltp": 178.83,
-      "change": -1.37,
-      "type": "loser"
-    },
-    {
-      "symbol": "LODHA",
-      "ltp": 1269.4,
-      "change": 0.87,
-      "type": "gainer"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 401.4,
-      "change": -1.35,
+      "ltp": 3233.4,
+      "change": -1.66,
       "type": "loser"
     },
     {
       "symbol": "SHREECEM",
-      "ltp": 24215,
-      "change": 0.81,
+      "ltp": 24350,
+      "change": 1.37,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CIPLA",
+      "ltp": 1415.3,
+      "change": -1.57,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1325.5,
+      "change": 1.34,
       "type": "gainer"
     },
     {
       "symbol": "TATASTEEL",
-      "ltp": 183.98,
-      "change": -1.25,
+      "ltp": 183.51,
+      "change": -1.5,
       "type": "loser"
     },
     {
-      "symbol": "ETERNAL",
-      "ltp": 329.65,
-      "change": 0.76,
+      "symbol": "MAXHEALTH",
+      "ltp": 1003.5,
+      "change": 1.31,
       "type": "gainer"
     },
     {
-      "symbol": "ASIANPAINT",
-      "ltp": 2608.3,
-      "change": -1.23,
+      "symbol": "HINDZINC",
+      "ltp": 595.05,
+      "change": -1.48,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1574.4,
+      "change": 1.24,
+      "type": "gainer"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 178.67,
+      "change": -1.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "MAZDOCK",
+      "ltp": 2570,
+      "change": 1.18,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HCLTECH",
+      "ltp": 1303.3,
+      "change": -1.41,
+      "type": "loser"
+    },
+    {
+      "symbol": "APOLLOHOSP",
+      "ltp": 8799,
+      "change": 1.11,
+      "type": "gainer"
+    },
+    {
+      "symbol": "COALINDIA",
+      "ltp": 401.25,
+      "change": -1.39,
+      "type": "loser"
+    },
+    {
+      "symbol": "VBL",
+      "ltp": 432.7,
+      "change": 1.1,
+      "type": "gainer"
+    },
+    {
+      "symbol": "RECLTD",
+      "ltp": 323.5,
+      "change": -1.34,
       "type": "loser"
     }
   ]
