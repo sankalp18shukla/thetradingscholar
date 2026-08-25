@@ -1,123 +1,123 @@
 {
-  "updatedAt": "2026-08-25T05:45:46.630Z",
+  "updatedAt": "2026-08-25T06:19:21.020Z",
   "movers": [
     {
       "symbol": "DIVISLAB",
-      "ltp": 8618.5,
-      "change": 1.44,
+      "ltp": 8607,
+      "change": 1.31,
       "type": "gainer"
     },
     {
       "symbol": "HINDZINC",
-      "ltp": 589.7,
-      "change": -2.37,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIENT",
-      "ltp": 3034.7,
-      "change": 1.2,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 3406.3,
-      "change": -2.28,
-      "type": "loser"
-    },
-    {
-      "symbol": "LODHA",
-      "ltp": 1273.3,
-      "change": 1.18,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MOTHERSON",
-      "ltp": 165.97,
-      "change": -1.79,
+      "ltp": 587.75,
+      "change": -2.69,
       "type": "loser"
     },
     {
       "symbol": "UNIONBANK",
-      "ltp": 185.42,
+      "ltp": 185.82,
+      "change": 1.21,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3399.9,
+      "change": -2.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENT",
+      "ltp": 3030,
+      "change": 1.05,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MOTHERSON",
+      "ltp": 165.59,
+      "change": -2.02,
+      "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1270.8,
       "change": 0.99,
       "type": "gainer"
     },
     {
       "symbol": "HCLTECH",
-      "ltp": 1298.9,
-      "change": -1.75,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1320.3,
-      "change": 0.94,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATASTEEL",
-      "ltp": 183.68,
-      "change": -1.41,
-      "type": "loser"
-    },
-    {
-      "symbol": "ETERNAL",
-      "ltp": 329.95,
-      "change": 0.86,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CIPLA",
-      "ltp": 1417.6,
-      "change": -1.41,
-      "type": "loser"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 5230,
-      "change": 0.77,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GRASIM",
-      "ltp": 3246.5,
-      "change": -1.26,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCAMC",
-      "ltp": 2634,
-      "change": 0.61,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 1045.5,
-      "change": -1.23,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 24165,
-      "change": 0.6,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HAL",
-      "ltp": 4847.8,
-      "change": -1.19,
+      "ltp": 1302,
+      "change": -1.51,
       "type": "loser"
     },
     {
       "symbol": "VBL",
-      "ltp": 430.55,
-      "change": 0.6,
+      "ltp": 432.15,
+      "change": 0.97,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GRASIM",
+      "ltp": 3240.1,
+      "change": -1.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJAJHLDNG",
+      "ltp": 11210,
+      "change": 0.81,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 183.87,
+      "change": -1.3,
+      "type": "loser"
+    },
+    {
+      "symbol": "ETERNAL",
+      "ltp": 329.2,
+      "change": 0.63,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CIPLA",
+      "ltp": 1420.4,
+      "change": -1.22,
+      "type": "loser"
+    },
+    {
+      "symbol": "BPCL",
+      "ltp": 313.85,
+      "change": 0.63,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HAL",
+      "ltp": 4849,
+      "change": -1.16,
+      "type": "loser"
+    },
+    {
+      "symbol": "HDFCAMC",
+      "ltp": 2633,
+      "change": 0.57,
       "type": "gainer"
     },
     {
       "symbol": "TECHM",
-      "ltp": 1566.7,
+      "ltp": 1566,
+      "change": -1.14,
+      "type": "loser"
+    },
+    {
+      "symbol": "CANBK",
+      "ltp": 127.98,
+      "change": 0.53,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "ltp": 2612.1,
       "change": -1.09,
       "type": "loser"
     }
