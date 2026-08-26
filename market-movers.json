@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-26T05:54:33.372Z",
+  "updatedAt": "2026-08-26T06:52:16.517Z",
   "movers": [
     {
       "symbol": "HINDZINC",
-      "ltp": 621.65,
-      "change": 4.9,
+      "ltp": 618.85,
+      "change": 4.43,
       "type": "gainer"
     },
     {
       "symbol": "VBL",
-      "ltp": 426.85,
-      "change": -2.55,
+      "ltp": 424.4,
+      "change": -3.11,
       "type": "loser"
     },
     {
       "symbol": "KOTAKBANK",
-      "ltp": 412.85,
-      "change": 2.8,
+      "ltp": 416.15,
+      "change": 3.62,
       "type": "gainer"
     },
     {
       "symbol": "INFY",
-      "ltp": 1124.9,
-      "change": -1.67,
-      "type": "loser"
-    },
-    {
-      "symbol": "VEDL",
-      "ltp": 282.1,
-      "change": 2.58,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "ltp": 1915,
-      "change": -1.64,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 560.75,
-      "change": 2.57,
-      "type": "gainer"
-    },
-    {
-      "symbol": "UNITDSPR",
-      "ltp": 1526.5,
-      "change": -1.52,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 25040,
-      "change": 2.45,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "ltp": 1122.3,
-      "change": -1.42,
+      "ltp": 1122.7,
+      "change": -1.86,
       "type": "loser"
     },
     {
       "symbol": "DIVISLAB",
-      "ltp": 8901,
-      "change": 1.79,
+      "ltp": 8970,
+      "change": 2.58,
       "type": "gainer"
     },
     {
       "symbol": "TECHM",
-      "ltp": 1578,
-      "change": -1.37,
+      "ltp": 1570.6,
+      "change": -1.83,
       "type": "loser"
     },
     {
-      "symbol": "HYUNDAI",
-      "ltp": 2269.5,
-      "change": 1.66,
+      "symbol": "HDFCLIFE",
+      "ltp": 559.95,
+      "change": 2.42,
+      "type": "gainer"
+    },
+    {
+      "symbol": "UNITDSPR",
+      "ltp": 1522.4,
+      "change": -1.78,
+      "type": "loser"
+    },
+    {
+      "symbol": "VEDL",
+      "ltp": 281.35,
+      "change": 2.31,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1118.6,
+      "change": -1.75,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 24930,
+      "change": 2,
       "type": "gainer"
     },
     {
       "symbol": "NESTLEIND",
-      "ltp": 1460,
-      "change": -1.28,
+      "ltp": 1453.8,
+      "change": -1.7,
       "type": "loser"
     },
     {
-      "symbol": "SBILIFE",
-      "ltp": 1783,
-      "change": 1.6,
+      "symbol": "TATACAP",
+      "ltp": 370.5,
+      "change": 1.86,
       "type": "gainer"
     },
     {
-      "symbol": "TATACONSUM",
-      "ltp": 1048.1,
-      "change": -1.17,
+      "symbol": "BAJAJ-AUTO",
+      "ltp": 11750,
+      "change": -1.48,
+      "type": "loser"
+    },
+    {
+      "symbol": "AMBUJACEM",
+      "ltp": 419.85,
+      "change": 1.63,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "ltp": 1918.3,
+      "change": -1.47,
       "type": "loser"
     },
     {
       "symbol": "ZYDUSLIFE",
-      "ltp": 1141.7,
-      "change": 1.53,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 5178,
-      "change": -1.17,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIPOWER",
-      "ltp": 209.18,
-      "change": 1.38,
+      "ltp": 1140.9,
+      "change": 1.46,
       "type": "gainer"
     },
     {
       "symbol": "ETERNAL",
-      "ltp": 327.3,
-      "change": -1.12,
+      "ltp": 326.15,
+      "change": -1.47,
+      "type": "loser"
+    },
+    {
+      "symbol": "HYUNDAI",
+      "ltp": 2262.8,
+      "change": 1.36,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 1045.8,
+      "change": -1.39,
       "type": "loser"
     }
   ]
