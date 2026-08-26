@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-08-26T09:12:29.368Z",
+  "updatedAt": "2026-08-26T10:00:35.577Z",
   "movers": [
     {
       "symbol": "HINDZINC",
-      "ltp": 629.75,
-      "change": 6.27,
+      "ltp": 629.85,
+      "change": 6.29,
       "type": "gainer"
     },
     {
       "symbol": "VBL",
-      "ltp": 421.4,
-      "change": -3.79,
-      "type": "loser"
-    },
-    {
-      "symbol": "KOTAKBANK",
-      "ltp": 415.75,
-      "change": 3.52,
-      "type": "gainer"
-    },
-    {
-      "symbol": "DMART",
-      "ltp": 3789.3,
-      "change": -3.08,
+      "ltp": 421.25,
+      "change": -3.82,
       "type": "loser"
     },
     {
       "symbol": "VEDL",
-      "ltp": 283.85,
-      "change": 3.22,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 3311.4,
-      "change": -2.31,
-      "type": "loser"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 9016.5,
-      "change": 3.11,
-      "type": "gainer"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1122.4,
-      "change": -1.89,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 559.05,
-      "change": 2.26,
-      "type": "gainer"
-    },
-    {
-      "symbol": "UNITDSPR",
-      "ltp": 1521.8,
-      "change": -1.82,
-      "type": "loser"
-    },
-    {
-      "symbol": "AMBUJACEM",
-      "ltp": 422.15,
-      "change": 2.19,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATAPOWER",
-      "ltp": 364.25,
-      "change": -1.71,
-      "type": "loser"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1148.2,
-      "change": 2.11,
+      "ltp": 287,
+      "change": 4.36,
       "type": "gainer"
     },
     {
       "symbol": "BHARTIARTL",
-      "ltp": 1914.3,
-      "change": -1.68,
+      "ltp": 1902.1,
+      "change": -2.31,
+      "type": "loser"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 416.45,
+      "change": 3.7,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POWERGRID",
+      "ltp": 265.2,
+      "change": -2.14,
+      "type": "loser"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "ltp": 9030,
+      "change": 3.26,
+      "type": "gainer"
+    },
+    {
+      "symbol": "DMART",
+      "ltp": 3826.9,
+      "change": -2.12,
+      "type": "loser"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1149.5,
+      "change": 2.22,
+      "type": "gainer"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1120,
+      "change": -2.1,
+      "type": "loser"
+    },
+    {
+      "symbol": "AMBUJACEM",
+      "ltp": 422,
+      "change": 2.15,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3320,
+      "change": -2.05,
+      "type": "loser"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 11775,
+      "change": 2.04,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1303.2,
+      "change": -2.02,
       "type": "loser"
     },
     {
       "symbol": "TATACAP",
-      "ltp": 371.1,
-      "change": 2.02,
+      "ltp": 370.5,
+      "change": 1.86,
       "type": "gainer"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1574,
-      "change": -1.62,
+      "symbol": "LT",
+      "ltp": 4038.1,
+      "change": -1.96,
       "type": "loser"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 20190,
-      "change": 1.97,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "ltp": 1120,
-      "change": -1.62,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 24915,
-      "change": 1.94,
+      "symbol": "JINDALSTEL",
+      "ltp": 1174.5,
+      "change": 1.77,
       "type": "gainer"
     },
     {
       "symbol": "NESTLEIND",
-      "ltp": 1455,
-      "change": -1.62,
+      "ltp": 1451.5,
+      "change": -1.86,
+      "type": "loser"
+    },
+    {
+      "symbol": "TMCV",
+      "ltp": 483,
+      "change": 1.71,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1117.5,
+      "change": -1.84,
       "type": "loser"
     }
   ]
