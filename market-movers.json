@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-07T14:13:08.010Z",
+  "updatedAt": "2026-09-08T07:53:55.592Z",
   "movers": [
     {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1156.9,
-      "change": 3.29,
+      "symbol": "HAL",
+      "ltp": 5044.8,
+      "change": 3.91,
       "type": "gainer"
     },
     {
-      "symbol": "INFY",
-      "ltp": 1087.5,
-      "change": -3.76,
+      "symbol": "BPCL",
+      "ltp": 306.1,
+      "change": -2.17,
       "type": "loser"
     },
     {
-      "symbol": "BOSCHLTD",
-      "ltp": 48025,
-      "change": 2.57,
+      "symbol": "ENRIN",
+      "ltp": 3188.7,
+      "change": 2.14,
       "type": "gainer"
     },
     {
-      "symbol": "PIDILITIND",
-      "ltp": 1575,
-      "change": -3.34,
-      "type": "loser"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 9315,
-      "change": 2.36,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 533.2,
-      "change": -2.42,
+      "symbol": "ICICIBANK",
+      "ltp": 1398,
+      "change": -2.07,
       "type": "loser"
     },
     {
       "symbol": "SOLARINDS",
-      "ltp": 21950,
-      "change": 2.35,
+      "ltp": 22420,
+      "change": 2.14,
       "type": "gainer"
     },
     {
-      "symbol": "SBILIFE",
-      "ltp": 1732,
-      "change": -2.42,
+      "symbol": "AXISBANK",
+      "ltp": 1240.9,
+      "change": -1.98,
       "type": "loser"
     },
     {
-      "symbol": "GAIL",
-      "ltp": 176,
-      "change": 1.5,
+      "symbol": "DIVISLAB",
+      "ltp": 9503,
+      "change": 2.02,
       "type": "gainer"
     },
     {
-      "symbol": "LTM",
-      "ltp": 4448,
-      "change": -2.33,
+      "symbol": "UNIONBANK",
+      "ltp": 182.71,
+      "change": -1.79,
       "type": "loser"
     },
     {
-      "symbol": "APOLLOHOSP",
-      "ltp": 8760,
-      "change": 1.27,
+      "symbol": "BEL",
+      "ltp": 411.2,
+      "change": 1.78,
       "type": "gainer"
     },
     {
-      "symbol": "UNITDSPR",
-      "ltp": 1440,
-      "change": -2.15,
+      "symbol": "RELIANCE",
+      "ltp": 1292.3,
+      "change": -1.31,
       "type": "loser"
     },
     {
-      "symbol": "TORNTPHARM",
-      "ltp": 4914,
-      "change": 1.17,
+      "symbol": "CGPOWER",
+      "ltp": 910.15,
+      "change": 1.69,
       "type": "gainer"
     },
     {
-      "symbol": "JIOFIN",
-      "ltp": 234.4,
-      "change": -2.13,
+      "symbol": "IRFC",
+      "ltp": 81.94,
+      "change": -1.28,
       "type": "loser"
     },
     {
-      "symbol": "LT",
-      "ltp": 3999,
-      "change": 0.88,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TECHM",
-      "ltp": 1564,
-      "change": -2.06,
-      "type": "loser"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 418.85,
-      "change": 0.84,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 23365,
-      "change": -2.05,
-      "type": "loser"
-    },
-    {
-      "symbol": "MOTHERSON",
-      "ltp": 162,
-      "change": 0.81,
+      "symbol": "ADANIPOWER",
+      "ltp": 207.85,
+      "change": 1.64,
       "type": "gainer"
     },
     {
       "symbol": "ULTRACEMCO",
-      "ltp": 11175,
-      "change": -2.04,
+      "ltp": 11034,
+      "change": -1.26,
+      "type": "loser"
+    },
+    {
+      "symbol": "BOSCHLTD",
+      "ltp": 48795,
+      "change": 1.6,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1827.4,
+      "change": -1.13,
+      "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1217.4,
+      "change": 1.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1714.1,
+      "change": -1.03,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDUNILVR",
+      "ltp": 1987.6,
+      "change": 1.41,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1027,
+      "change": -0.96,
       "type": "loser"
     }
   ]
