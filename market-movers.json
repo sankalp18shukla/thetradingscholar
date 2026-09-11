@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-10T12:48:40.148Z",
+  "updatedAt": "2026-09-11T07:52:23.510Z",
   "movers": [
     {
-      "symbol": "HDFCLIFE",
-      "ltp": 526.15,
-      "change": 2.36,
+      "symbol": "DRREDDY",
+      "ltp": 1173.6,
+      "change": 2.68,
       "type": "gainer"
     },
     {
-      "symbol": "UNIONBANK",
-      "ltp": 179.2,
-      "change": -2.55,
-      "type": "loser"
-    },
-    {
-      "symbol": "POWERGRID",
-      "ltp": 271.75,
-      "change": 2.22,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIENSOL",
-      "ltp": 1391.9,
-      "change": -2.21,
-      "type": "loser"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1859,
-      "change": 1.64,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 593.6,
-      "change": -1.95,
-      "type": "loser"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 237.62,
-      "change": 1.5,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HCLTECH",
-      "ltp": 1207,
-      "change": -1.85,
-      "type": "loser"
-    },
-    {
-      "symbol": "ONGC",
-      "ltp": 237.27,
-      "change": 1.39,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BRITANNIA",
-      "ltp": 5009,
-      "change": -1.59,
-      "type": "loser"
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "ltp": 1839,
-      "change": 1.34,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TMCV",
-      "ltp": 438.8,
-      "change": -1.38,
+      "symbol": "LODHA",
+      "ltp": 1097.1,
+      "change": -5.7,
       "type": "loser"
     },
     {
       "symbol": "TECHM",
-      "ltp": 1525.8,
-      "change": 1.18,
+      "ltp": 1540.2,
+      "change": 0.94,
       "type": "gainer"
     },
     {
-      "symbol": "CGPOWER",
-      "ltp": 914.55,
-      "change": -1.34,
+      "symbol": "HINDZINC",
+      "ltp": 578,
+      "change": -2.63,
       "type": "loser"
     },
     {
-      "symbol": "PNB",
-      "ltp": 116.85,
-      "change": 1.07,
+      "symbol": "HCLTECH",
+      "ltp": 1218.2,
+      "change": 0.93,
       "type": "gainer"
     },
     {
-      "symbol": "VEDL",
-      "ltp": 269.05,
-      "change": -1.27,
+      "symbol": "JSWSTEEL",
+      "ltp": 1270,
+      "change": -2.61,
       "type": "loser"
     },
     {
-      "symbol": "HYUNDAI",
-      "ltp": 2205,
-      "change": 1.04,
+      "symbol": "TORNTPHARM",
+      "ltp": 4970.5,
+      "change": 0.82,
       "type": "gainer"
     },
     {
       "symbol": "HINDALCO",
-      "ltp": 1014,
-      "change": -1.26,
+      "ltp": 988.9,
+      "change": -2.48,
       "type": "loser"
     },
     {
-      "symbol": "SBILIFE",
-      "ltp": 1700.6,
-      "change": 0.99,
+      "symbol": "MOTHERSON",
+      "ltp": 164.52,
+      "change": 0.81,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIGREEN",
-      "ltp": 1299.1,
-      "change": -1.21,
+      "symbol": "DLF",
+      "ltp": 640,
+      "change": -2.42,
+      "type": "loser"
+    },
+    {
+      "symbol": "TMPV",
+      "ltp": 302.6,
+      "change": 0.7,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 182.3,
+      "change": -2.4,
+      "type": "loser"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 167.11,
+      "change": 0.49,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MAZDOCK",
+      "ltp": 2328.9,
+      "change": -2.28,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJAJHLDNG",
+      "ltp": 11045,
+      "change": 0.48,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2778.5,
+      "change": -2.22,
+      "type": "loser"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1123,
+      "change": 0.47,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIPOWER",
+      "ltp": 208.78,
+      "change": -2.21,
+      "type": "loser"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1041.2,
+      "change": 0.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VEDL",
+      "ltp": 263.1,
+      "change": -2.21,
       "type": "loser"
     }
   ]
