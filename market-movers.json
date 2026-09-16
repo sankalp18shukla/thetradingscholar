@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-16T08:21:42.832Z",
+  "updatedAt": "2026-09-16T13:39:37.279Z",
   "movers": [
     {
-      "symbol": "BOSCHLTD",
-      "ltp": 48090,
-      "change": 2.17,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TCS",
-      "ltp": 2198.6,
-      "change": -2.33,
-      "type": "loser"
-    },
-    {
       "symbol": "HDFCLIFE",
-      "ltp": 526.85,
-      "change": 2.08,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SOLARINDS",
-      "ltp": 18865,
-      "change": -2,
-      "type": "loser"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1390.2,
-      "change": 2.07,
+      "ltp": 530.2,
+      "change": 2.73,
       "type": "gainer"
     },
     {
       "symbol": "TATACAP",
-      "ltp": 346.35,
-      "change": -1.98,
+      "ltp": 343.35,
+      "change": -2.83,
       "type": "loser"
     },
     {
-      "symbol": "ITC",
-      "ltp": 263.3,
-      "change": 2.05,
+      "symbol": "SBILIFE",
+      "ltp": 1697.9,
+      "change": 2.65,
       "type": "gainer"
     },
     {
-      "symbol": "WIPRO",
-      "ltp": 166.98,
-      "change": -1.78,
-      "type": "loser"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 1005.6,
-      "change": 1.98,
-      "type": "gainer"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1058.9,
-      "change": -1.68,
+      "symbol": "TCS",
+      "ltp": 2188.8,
+      "change": -2.76,
       "type": "loser"
     },
     {
       "symbol": "SBIN",
-      "ltp": 987,
-      "change": 1.96,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1765.4,
-      "change": -1.46,
-      "type": "loser"
-    },
-    {
-      "symbol": "AXISBANK",
-      "ltp": 1246.5,
-      "change": 1.93,
+      "ltp": 991.4,
+      "change": 2.42,
       "type": "gainer"
     },
     {
       "symbol": "LTM",
-      "ltp": 4286.2,
-      "change": -1.39,
+      "ltp": 4233,
+      "change": -2.61,
       "type": "loser"
     },
     {
-      "symbol": "PNB",
-      "ltp": 116.89,
-      "change": 1.91,
+      "symbol": "ITC",
+      "ltp": 264.15,
+      "change": 2.38,
       "type": "gainer"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1555.2,
-      "change": -1.31,
+      "symbol": "WIPRO",
+      "ltp": 166.89,
+      "change": -1.83,
+      "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1087.4,
+      "change": 2.12,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 18900,
+      "change": -1.82,
       "type": "loser"
     },
     {
       "symbol": "IOC",
-      "ltp": 134.51,
-      "change": 1.88,
+      "ltp": 134.75,
+      "change": 2.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1060,
+      "change": -1.58,
+      "type": "loser"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "ltp": 178.2,
+      "change": 1.83,
       "type": "gainer"
     },
     {
       "symbol": "BAJAJHLDNG",
-      "ltp": 10960,
-      "change": -1.26,
+      "ltp": 10930,
+      "change": -1.53,
+      "type": "loser"
+    },
+    {
+      "symbol": "PNB",
+      "ltp": 116.8,
+      "change": 1.83,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HDFCAMC",
+      "ltp": 2373.1,
+      "change": -1.49,
       "type": "loser"
     },
     {
       "symbol": "MUTHOOTFIN",
-      "ltp": 2773.3,
-      "change": 1.87,
+      "ltp": 2771.4,
+      "change": 1.8,
       "type": "gainer"
     },
     {
-      "symbol": "DIVISLAB",
-      "ltp": 9088.5,
-      "change": -1.19,
+      "symbol": "CHOLAFIN",
+      "ltp": 1765.6,
+      "change": -1.45,
+      "type": "loser"
+    },
+    {
+      "symbol": "NESTLEIND",
+      "ltp": 1384.5,
+      "change": 1.65,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TECHM",
+      "ltp": 1558,
+      "change": -1.14,
       "type": "loser"
     }
   ]
