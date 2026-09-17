@@ -1,70 +1,58 @@
 {
-  "updatedAt": "2026-09-17T08:27:38.557Z",
+  "updatedAt": "2026-09-17T13:44:00.031Z",
   "movers": [
     {
       "symbol": "HDFCLIFE",
-      "ltp": 559.9,
-      "change": 5.6,
+      "ltp": 557,
+      "change": 5.05,
       "type": "gainer"
     },
     {
       "symbol": "ONGC",
-      "ltp": 232.05,
-      "change": -2.01,
+      "ltp": 232.43,
+      "change": -1.85,
       "type": "loser"
     },
     {
-      "symbol": "SBILIFE",
-      "ltp": 1766,
-      "change": 4.01,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAZDOCK",
-      "ltp": 2194,
-      "change": -1.7,
-      "type": "loser"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 878,
-      "change": 3.11,
+      "symbol": "TMPV",
+      "ltp": 314.5,
+      "change": 4.49,
       "type": "gainer"
     },
     {
       "symbol": "TITAN",
-      "ltp": 4850.5,
+      "ltp": 4841,
+      "change": -1.38,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1766.9,
+      "change": 4.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HDFCBANK",
+      "ltp": 713,
       "change": -1.18,
       "type": "loser"
     },
     {
-      "symbol": "DLF",
-      "ltp": 641,
-      "change": 2.92,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJAJ-AUTO",
-      "ltp": 11463,
-      "change": -1.12,
-      "type": "loser"
-    },
-    {
-      "symbol": "DRREDDY",
-      "ltp": 1172.1,
-      "change": 2.82,
+      "symbol": "CGPOWER",
+      "ltp": 880,
+      "change": 3.34,
       "type": "gainer"
     },
     {
       "symbol": "BANKBARODA",
-      "ltp": 232.43,
-      "change": -1.09,
+      "ltp": 232.3,
+      "change": -1.14,
       "type": "loser"
     },
     {
-      "symbol": "MOTHERSON",
-      "ltp": 162.12,
-      "change": 2.43,
+      "symbol": "ENRIN",
+      "ltp": 3111.6,
+      "change": 3.26,
       "type": "gainer"
     },
     {
@@ -74,51 +62,63 @@
       "type": "loser"
     },
     {
-      "symbol": "BEL",
-      "ltp": 394.85,
-      "change": 2.36,
+      "symbol": "DRREDDY",
+      "ltp": 1175,
+      "change": 3.07,
       "type": "gainer"
     },
     {
-      "symbol": "UNIONBANK",
-      "ltp": 176.44,
-      "change": -0.99,
+      "symbol": "HINDUNILVR",
+      "ltp": 1942.2,
+      "change": -1.01,
       "type": "loser"
     },
     {
-      "symbol": "INDIGO",
-      "ltp": 4842.5,
-      "change": 2.3,
+      "symbol": "TMCV",
+      "ltp": 436.45,
+      "change": 2.88,
       "type": "gainer"
     },
     {
       "symbol": "NESTLEIND",
-      "ltp": 1371.3,
-      "change": -0.95,
+      "ltp": 1370.6,
+      "change": -1,
       "type": "loser"
     },
     {
-      "symbol": "ETERNAL",
-      "ltp": 324.2,
-      "change": 2.27,
+      "symbol": "ADANIENSOL",
+      "ltp": 1386.8,
+      "change": 2.79,
       "type": "gainer"
     },
     {
-      "symbol": "GRASIM",
-      "ltp": 3160.6,
-      "change": -0.83,
+      "symbol": "MAZDOCK",
+      "ltp": 2210,
+      "change": -0.98,
       "type": "loser"
     },
     {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1131,
-      "change": 2.12,
+      "symbol": "DLF",
+      "ltp": 640,
+      "change": 2.76,
       "type": "gainer"
     },
     {
-      "symbol": "CHOLAFIN",
-      "ltp": 1751.1,
+      "symbol": "ICICIBANK",
+      "ltp": 1347.6,
       "change": -0.82,
+      "type": "loser"
+    },
+    {
+      "symbol": "BEL",
+      "ltp": 395.45,
+      "change": 2.51,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "ltp": 11500,
+      "change": -0.8,
       "type": "loser"
     }
   ]
