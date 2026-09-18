@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-17T13:44:00.031Z",
+  "updatedAt": "2026-09-18T08:02:13.198Z",
   "movers": [
     {
-      "symbol": "HDFCLIFE",
-      "ltp": 557,
-      "change": 5.05,
+      "symbol": "ADANIGREEN",
+      "ltp": 1327.9,
+      "change": 4.21,
       "type": "gainer"
     },
     {
-      "symbol": "ONGC",
-      "ltp": 232.43,
-      "change": -1.85,
+      "symbol": "TCS",
+      "ltp": 2114.4,
+      "change": -3.45,
       "type": "loser"
+    },
+    {
+      "symbol": "LODHA",
+      "ltp": 1145,
+      "change": 3.8,
+      "type": "gainer"
     },
     {
       "symbol": "TMPV",
-      "ltp": 314.5,
-      "change": 4.49,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TITAN",
-      "ltp": 4841,
-      "change": -1.38,
-      "type": "loser"
-    },
-    {
-      "symbol": "SBILIFE",
-      "ltp": 1766.9,
-      "change": 4.06,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HDFCBANK",
-      "ltp": 713,
-      "change": -1.18,
-      "type": "loser"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 880,
-      "change": 3.34,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 232.3,
-      "change": -1.14,
-      "type": "loser"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 3111.6,
-      "change": 3.26,
-      "type": "gainer"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 418,
-      "change": -1.01,
-      "type": "loser"
-    },
-    {
-      "symbol": "DRREDDY",
-      "ltp": 1175,
-      "change": 3.07,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDUNILVR",
-      "ltp": 1942.2,
-      "change": -1.01,
-      "type": "loser"
-    },
-    {
-      "symbol": "TMCV",
-      "ltp": 436.45,
-      "change": 2.88,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1370.6,
-      "change": -1,
+      "ltp": 304.75,
+      "change": -3.1,
       "type": "loser"
     },
     {
       "symbol": "ADANIENSOL",
-      "ltp": 1386.8,
-      "change": 2.79,
+      "ltp": 1429.3,
+      "change": 3.06,
       "type": "gainer"
     },
     {
-      "symbol": "MAZDOCK",
-      "ltp": 2210,
-      "change": -0.98,
+      "symbol": "NESTLEIND",
+      "ltp": 1338,
+      "change": -2.38,
       "type": "loser"
     },
     {
-      "symbol": "DLF",
-      "ltp": 640,
-      "change": 2.76,
+      "symbol": "CGPOWER",
+      "ltp": 906.65,
+      "change": 3.03,
       "type": "gainer"
     },
     {
-      "symbol": "ICICIBANK",
-      "ltp": 1347.6,
-      "change": -0.82,
+      "symbol": "WIPRO",
+      "ltp": 163.76,
+      "change": -1.59,
       "type": "loser"
     },
     {
-      "symbol": "BEL",
-      "ltp": 395.45,
-      "change": 2.51,
+      "symbol": "PIDILITIND",
+      "ltp": 1593.8,
+      "change": 2.73,
       "type": "gainer"
     },
     {
-      "symbol": "BAJAJ-AUTO",
-      "ltp": 11500,
-      "change": -0.8,
+      "symbol": "TECHM",
+      "ltp": 1536.9,
+      "change": -1.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJAJHLDNG",
+      "ltp": 11309,
+      "change": 2.72,
+      "type": "gainer"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1042.8,
+      "change": -1.49,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDZINC",
+      "ltp": 586.7,
+      "change": 2.52,
+      "type": "gainer"
+    },
+    {
+      "symbol": "COALINDIA",
+      "ltp": 411.9,
+      "change": -1.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENT",
+      "ltp": 2996,
+      "change": 2.49,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HCLTECH",
+      "ltp": 1240.1,
+      "change": -1.45,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2839,
+      "change": 2.48,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MARUTI",
+      "ltp": 12175,
+      "change": -1.32,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHREECEM",
+      "ltp": 22505,
+      "change": 2.48,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 1003.6,
+      "change": -1,
       "type": "loser"
     }
   ]
