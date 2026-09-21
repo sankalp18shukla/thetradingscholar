@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-21T08:40:47.759Z",
+  "updatedAt": "2026-09-21T15:21:20.054Z",
   "movers": [
     {
       "symbol": "SOLARINDS",
-      "ltp": 19290,
-      "change": 3.96,
+      "ltp": 19265,
+      "change": 3.83,
       "type": "gainer"
     },
     {
       "symbol": "BHARTIARTL",
-      "ltp": 1834,
-      "change": -3.13,
-      "type": "loser"
-    },
-    {
-      "symbol": "HCLTECH",
-      "ltp": 1279.7,
-      "change": 2.43,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HYUNDAI",
-      "ltp": 2149.4,
-      "change": -2.69,
+      "ltp": 1830.2,
+      "change": -3.33,
       "type": "loser"
     },
     {
       "symbol": "ETERNAL",
-      "ltp": 334.5,
-      "change": 2.34,
+      "ltp": 335.9,
+      "change": 2.77,
       "type": "gainer"
     },
     {
-      "symbol": "VEDL",
-      "ltp": 260.75,
-      "change": -2.56,
-      "type": "loser"
-    },
-    {
-      "symbol": "UNITDSPR",
-      "ltp": 1403.1,
-      "change": 2.34,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACAP",
-      "ltp": 342.8,
-      "change": -2.43,
-      "type": "loser"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 912.45,
-      "change": 2.29,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATAPOWER",
-      "ltp": 367.3,
-      "change": -2,
+      "symbol": "HYUNDAI",
+      "ltp": 2144,
+      "change": -2.93,
       "type": "loser"
     },
     {
       "symbol": "TORNTPHARM",
-      "ltp": 4951,
-      "change": 2.29,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAZDOCK",
-      "ltp": 2237.5,
-      "change": -1.86,
-      "type": "loser"
-    },
-    {
-      "symbol": "DLF",
-      "ltp": 658.25,
-      "change": 2.16,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1310,
-      "change": -1.84,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCLIFE",
-      "ltp": 562.7,
-      "change": 2.13,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1768.2,
-      "change": -1.77,
-      "type": "loser"
-    },
-    {
-      "symbol": "SBILIFE",
-      "ltp": 1765.2,
-      "change": 1.98,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIPORTS",
-      "ltp": 1792.7,
-      "change": -1.72,
-      "type": "loser"
-    },
-    {
-      "symbol": "ITC",
-      "ltp": 267.4,
-      "change": 1.94,
+      "ltp": 4970,
+      "change": 2.69,
       "type": "gainer"
     },
     {
       "symbol": "ADANIENSOL",
-      "ltp": 1413.5,
-      "change": -1.57,
+      "ltp": 1397.6,
+      "change": -2.68,
+      "type": "loser"
+    },
+    {
+      "symbol": "HCLTECH",
+      "ltp": 1281,
+      "change": 2.54,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VEDL",
+      "ltp": 260.5,
+      "change": -2.65,
+      "type": "loser"
+    },
+    {
+      "symbol": "DLF",
+      "ltp": 660.25,
+      "change": 2.47,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1303.6,
+      "change": -2.32,
+      "type": "loser"
+    },
+    {
+      "symbol": "CGPOWER",
+      "ltp": 910,
+      "change": 2.02,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACAP",
+      "ltp": 343.5,
+      "change": -2.23,
+      "type": "loser"
+    },
+    {
+      "symbol": "UNITDSPR",
+      "ltp": 1397,
+      "change": 1.9,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MAZDOCK",
+      "ltp": 2232,
+      "change": -2.11,
+      "type": "loser"
+    },
+    {
+      "symbol": "ITC",
+      "ltp": 267,
+      "change": 1.79,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATAPOWER",
+      "ltp": 367.15,
+      "change": -2.04,
+      "type": "loser"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1868.9,
+      "change": 1.72,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "ltp": 1787.1,
+      "change": -2.02,
+      "type": "loser"
+    },
+    {
+      "symbol": "RELIANCE",
+      "ltp": 1247.4,
+      "change": 1.71,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1764,
+      "change": -2,
       "type": "loser"
     }
   ]
