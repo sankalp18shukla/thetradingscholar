@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-18T12:56:24.391Z",
+  "updatedAt": "2026-09-21T08:40:47.759Z",
   "movers": [
     {
-      "symbol": "ADANIPORTS",
-      "ltp": 1824,
-      "change": 4.93,
+      "symbol": "SOLARINDS",
+      "ltp": 19290,
+      "change": 3.96,
       "type": "gainer"
     },
     {
-      "symbol": "TCS",
-      "ltp": 2105,
-      "change": -3.88,
+      "symbol": "BHARTIARTL",
+      "ltp": 1834,
+      "change": -3.13,
       "type": "loser"
     },
     {
-      "symbol": "ADANIGREEN",
-      "ltp": 1334.5,
-      "change": 4.73,
+      "symbol": "HCLTECH",
+      "ltp": 1279.7,
+      "change": 2.43,
       "type": "gainer"
     },
     {
-      "symbol": "TMPV",
-      "ltp": 303.8,
-      "change": -3.4,
+      "symbol": "HYUNDAI",
+      "ltp": 2149.4,
+      "change": -2.69,
       "type": "loser"
     },
     {
-      "symbol": "ENRIN",
-      "ltp": 3245,
-      "change": 4.37,
+      "symbol": "ETERNAL",
+      "ltp": 334.5,
+      "change": 2.34,
       "type": "gainer"
-    },
-    {
-      "symbol": "SBILIFE",
-      "ltp": 1731,
-      "change": -2.03,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 596,
-      "change": 4.14,
-      "type": "gainer"
-    },
-    {
-      "symbol": "COALINDIA",
-      "ltp": 409.9,
-      "change": -1.94,
-      "type": "loser"
-    },
-    {
-      "symbol": "SIEMENS",
-      "ltp": 3913.9,
-      "change": 4,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MARUTI",
-      "ltp": 12103,
-      "change": -1.9,
-      "type": "loser"
     },
     {
       "symbol": "VEDL",
-      "ltp": 267.6,
-      "change": 3.94,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NTPC",
-      "ltp": 323.65,
-      "change": -1.81,
+      "ltp": 260.75,
+      "change": -2.56,
       "type": "loser"
     },
     {
-      "symbol": "LODHA",
-      "ltp": 1144.7,
-      "change": 3.77,
+      "symbol": "UNITDSPR",
+      "ltp": 1403.1,
+      "change": 2.34,
       "type": "gainer"
     },
     {
-      "symbol": "TATACONSUM",
-      "ltp": 996,
-      "change": -1.75,
+      "symbol": "TATACAP",
+      "ltp": 342.8,
+      "change": -2.43,
       "type": "loser"
     },
     {
-      "symbol": "ADANIENSOL",
-      "ltp": 1436.1,
-      "change": 3.55,
+      "symbol": "CGPOWER",
+      "ltp": 912.45,
+      "change": 2.29,
       "type": "gainer"
     },
     {
-      "symbol": "SUNPHARMA",
-      "ltp": 1837.3,
-      "change": -1.61,
+      "symbol": "TATAPOWER",
+      "ltp": 367.3,
+      "change": -2,
       "type": "loser"
     },
     {
-      "symbol": "ADANIENT",
-      "ltp": 3020,
-      "change": 3.31,
+      "symbol": "TORNTPHARM",
+      "ltp": 4951,
+      "change": 2.29,
       "type": "gainer"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 47000,
-      "change": -1.54,
-      "type": "loser"
     },
     {
       "symbol": "MAZDOCK",
-      "ltp": 2280,
-      "change": 3.17,
+      "ltp": 2237.5,
+      "change": -1.86,
+      "type": "loser"
+    },
+    {
+      "symbol": "DLF",
+      "ltp": 658.25,
+      "change": 2.16,
       "type": "gainer"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1537.1,
-      "change": -1.53,
+      "symbol": "ADANIGREEN",
+      "ltp": 1310,
+      "change": -1.84,
+      "type": "loser"
+    },
+    {
+      "symbol": "HDFCLIFE",
+      "ltp": 562.7,
+      "change": 2.13,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1768.2,
+      "change": -1.77,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1765.2,
+      "change": 1.98,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "ltp": 1792.7,
+      "change": -1.72,
+      "type": "loser"
+    },
+    {
+      "symbol": "ITC",
+      "ltp": 267.4,
+      "change": 1.94,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1413.5,
+      "change": -1.57,
       "type": "loser"
     }
   ]
