@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-22T13:29:59.896Z",
+  "updatedAt": "2026-09-23T08:21:39.703Z",
   "movers": [
     {
-      "symbol": "SOLARINDS",
-      "ltp": 19890,
-      "change": 3.24,
+      "symbol": "TATASTEEL",
+      "ltp": 191.08,
+      "change": 3.3,
       "type": "gainer"
     },
     {
       "symbol": "LTM",
-      "ltp": 4158.3,
-      "change": -2.84,
+      "ltp": 4098.4,
+      "change": -1.44,
       "type": "loser"
     },
     {
-      "symbol": "COALINDIA",
-      "ltp": 428,
-      "change": 3.21,
+      "symbol": "JINDALSTEL",
+      "ltp": 1178.6,
+      "change": 3.3,
       "type": "gainer"
     },
     {
-      "symbol": "BRITANNIA",
-      "ltp": 4918,
-      "change": -2.09,
+      "symbol": "INFY",
+      "ltp": 1016.8,
+      "change": -1.22,
       "type": "loser"
     },
     {
-      "symbol": "ETERNAL",
-      "ltp": 342,
-      "change": 1.82,
+      "symbol": "BAJFINANCE",
+      "ltp": 1035.8,
+      "change": 2.68,
       "type": "gainer"
-    },
-    {
-      "symbol": "ABB",
-      "ltp": 7120.5,
-      "change": -2.07,
-      "type": "loser"
-    },
-    {
-      "symbol": "INDIGO",
-      "ltp": 5030,
-      "change": 1.8,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CUMMINSIND",
-      "ltp": 4962.5,
-      "change": -2.06,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 48290,
-      "change": 1.52,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HYUNDAI",
-      "ltp": 2101,
-      "change": -2.01,
-      "type": "loser"
-    },
-    {
-      "symbol": "DLF",
-      "ltp": 669.5,
-      "change": 1.4,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJAJHLDNG",
-      "ltp": 11185,
-      "change": -1.96,
-      "type": "loser"
-    },
-    {
-      "symbol": "VBL",
-      "ltp": 430,
-      "change": 1.18,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 984.1,
-      "change": -1.65,
-      "type": "loser"
     },
     {
       "symbol": "TITAN",
-      "ltp": 4928.5,
-      "change": 1.1,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SHREECEM",
-      "ltp": 22200,
-      "change": -1.55,
+      "ltp": 4870,
+      "change": -1.19,
       "type": "loser"
     },
     {
-      "symbol": "DRREDDY",
-      "ltp": 1211,
-      "change": 1.06,
+      "symbol": "LODHA",
+      "ltp": 1172,
+      "change": 2.45,
       "type": "gainer"
     },
     {
-      "symbol": "CGPOWER",
-      "ltp": 896.1,
-      "change": -1.53,
+      "symbol": "ADANIPOWER",
+      "ltp": 204.62,
+      "change": -1.13,
+      "type": "loser"
+    },
+    {
+      "symbol": "UNITDSPR",
+      "ltp": 1431.6,
+      "change": 2.4,
+      "type": "gainer"
+    },
+    {
+      "symbol": "COALINDIA",
+      "ltp": 423.3,
+      "change": -1.1,
       "type": "loser"
     },
     {
       "symbol": "VEDL",
-      "ltp": 263,
-      "change": 0.96,
+      "ltp": 269.25,
+      "change": 2.38,
       "type": "gainer"
     },
     {
-      "symbol": "NESTLEIND",
-      "ltp": 1363.9,
-      "change": -1.52,
+      "symbol": "BOSCHLTD",
+      "ltp": 47790,
+      "change": -1.04,
+      "type": "loser"
+    },
+    {
+      "symbol": "CANBK",
+      "ltp": 125.8,
+      "change": 2.36,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2083.7,
+      "change": -1.01,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDALCO",
+      "ltp": 994.8,
+      "change": 2.24,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 19690,
+      "change": -1.01,
+      "type": "loser"
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "ltp": 1294.7,
+      "change": 2.19,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HCLTECH",
+      "ltp": 1258.7,
+      "change": -0.92,
+      "type": "loser"
+    },
+    {
+      "symbol": "TATACAP",
+      "ltp": 348.5,
+      "change": 2.17,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1293,
+      "change": -0.84,
       "type": "loser"
     }
   ]
