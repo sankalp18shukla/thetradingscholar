@@ -1,88 +1,94 @@
 {
-  "updatedAt": "2026-09-28T09:28:40.226Z",
+  "updatedAt": "2026-09-28T17:47:17.809Z",
   "movers": [
     {
       "symbol": "DRREDDY",
-      "ltp": 1222.6,
-      "change": 1.8,
+      "ltp": 1221,
+      "change": 1.67,
       "type": "gainer"
     },
     {
       "symbol": "ADANIGREEN",
-      "ltp": 1237.6,
-      "change": -4.55,
+      "ltp": 1235,
+      "change": -4.75,
       "type": "loser"
     },
     {
       "symbol": "ZYDUSLIFE",
-      "ltp": 1213.9,
-      "change": 0.83,
+      "ltp": 1215,
+      "change": 0.92,
       "type": "gainer"
     },
     {
       "symbol": "UNIONBANK",
-      "ltp": 172.01,
-      "change": -4.54,
+      "ltp": 171.75,
+      "change": -4.69,
       "type": "loser"
     },
     {
       "symbol": "INFY",
-      "ltp": 1004.5,
-      "change": 0.43,
+      "ltp": 1003.2,
+      "change": 0.3,
       "type": "gainer"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 19015,
-      "change": -3.7,
+      "symbol": "LODHA",
+      "ltp": 1117.1,
+      "change": -4.11,
       "type": "loser"
     },
     {
       "symbol": "LTM",
-      "ltp": 4095.7,
-      "change": 0.31,
+      "ltp": 4091.4,
+      "change": 0.21,
       "type": "gainer"
     },
     {
-      "symbol": "ENRIN",
-      "ltp": 3191,
-      "change": -3.68,
+      "symbol": "ADANIENSOL",
+      "ltp": 1287.9,
+      "change": -3.78,
       "type": "loser"
     },
     {
-      "symbol": "LODHA",
-      "ltp": 1123.1,
-      "change": -3.6,
-      "type": "loser"
-    },
-    {
-      "symbol": "HYUNDAI",
-      "ltp": 2044.3,
-      "change": -3.34,
-      "type": "loser"
+      "symbol": "HDFCLIFE",
+      "ltp": 531.6,
+      "change": 0.11,
+      "type": "gainer"
     },
     {
       "symbol": "CANBK",
-      "ltp": 120.98,
-      "change": -3.21,
+      "ltp": 120.65,
+      "change": -3.47,
+      "type": "loser"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3198.1,
+      "change": -3.47,
+      "type": "loser"
+    },
+    {
+      "symbol": "PNB",
+      "ltp": 112.6,
+      "change": -3.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "BANKBARODA",
+      "ltp": 227.5,
+      "change": -3.3,
       "type": "loser"
     },
     {
       "symbol": "ADANIPOWER",
-      "ltp": 196.32,
-      "change": -3.17,
+      "ltp": 196.14,
+      "change": -3.26,
       "type": "loser"
     },
     {
-      "symbol": "TATACAP",
-      "ltp": 328.5,
-      "change": -3.14,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIENT",
-      "ltp": 2825.4,
-      "change": -3.12,
+      "symbol": "HDFCAMC",
+      "ltp": 2302.3,
+      "change": -3.18,
       "type": "loser"
     }
   ]
