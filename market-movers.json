@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-09-29T09:33:11.371Z",
+  "updatedAt": "2026-09-29T16:06:24.059Z",
   "movers": [
     {
-      "symbol": "ADANIENSOL",
-      "ltp": 1320.1,
-      "change": 2.5,
-      "type": "gainer"
-    },
-    {
-      "symbol": "UNITDSPR",
-      "ltp": 1367.8,
-      "change": -3.36,
-      "type": "loser"
-    },
-    {
-      "symbol": "DRREDDY",
-      "ltp": 1245.1,
-      "change": 1.97,
-      "type": "gainer"
-    },
-    {
-      "symbol": "WIPRO",
-      "ltp": 157.09,
-      "change": -2.77,
-      "type": "loser"
-    },
-    {
       "symbol": "ADANIENT",
-      "ltp": 2884.8,
-      "change": 1.9,
+      "ltp": 2972.9,
+      "change": 5.01,
       "type": "gainer"
     },
     {
-      "symbol": "TITAN",
-      "ltp": 4690.5,
-      "change": -2.68,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIGREEN",
-      "ltp": 1255,
-      "change": 1.62,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HDFCAMC",
-      "ltp": 2254.5,
-      "change": -2.08,
+      "symbol": "ABB",
+      "ltp": 6660.5,
+      "change": -4.47,
       "type": "loser"
     },
     {
       "symbol": "ADANIPORTS",
-      "ltp": 1770,
-      "change": 1.51,
+      "ltp": 1822,
+      "change": 4.49,
       "type": "gainer"
     },
     {
-      "symbol": "MAXHEALTH",
-      "ltp": 980.5,
-      "change": -1.96,
+      "symbol": "HAL",
+      "ltp": 4549.3,
+      "change": -3.98,
       "type": "loser"
     },
     {
-      "symbol": "TORNTPHARM",
-      "ltp": 4939.5,
-      "change": 1.45,
+      "symbol": "DRREDDY",
+      "ltp": 1251.9,
+      "change": 2.53,
       "type": "gainer"
     },
     {
-      "symbol": "HCLTECH",
-      "ltp": 1228.2,
-      "change": -1.95,
+      "symbol": "LTM",
+      "ltp": 3936,
+      "change": -3.8,
+      "type": "loser"
+    },
+    {
+      "symbol": "HYUNDAI",
+      "ltp": 2100,
+      "change": 2.4,
+      "type": "gainer"
+    },
+    {
+      "symbol": "UNITDSPR",
+      "ltp": 1363,
+      "change": -3.7,
+      "type": "loser"
+    },
+    {
+      "symbol": "IRFC",
+      "ltp": 80.26,
+      "change": 2.18,
+      "type": "gainer"
+    },
+    {
+      "symbol": "RECLTD",
+      "ltp": 292.45,
+      "change": -3.56,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "ltp": 1260,
+      "change": 2.02,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HDFCAMC",
+      "ltp": 2223.3,
+      "change": -3.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1865,
+      "change": 1.47,
+      "type": "gainer"
+    },
+    {
+      "symbol": "UNIONBANK",
+      "ltp": 166,
+      "change": -3.35,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1305.8,
+      "change": 1.39,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TITAN",
+      "ltp": 4675,
+      "change": -3,
+      "type": "loser"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1015.4,
+      "change": 1.22,
+      "type": "gainer"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 156.79,
+      "change": -2.95,
       "type": "loser"
     },
     {
       "symbol": "KOTAKBANK",
-      "ltp": 407.1,
-      "change": 1.38,
+      "ltp": 406,
+      "change": 1.11,
       "type": "gainer"
     },
     {
-      "symbol": "BAJAJ-AUTO",
-      "ltp": 10814,
-      "change": -1.9,
-      "type": "loser"
-    },
-    {
-      "symbol": "ADANIPOWER",
-      "ltp": 197.96,
-      "change": 0.93,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BRITANNIA",
-      "ltp": 4825,
-      "change": -1.83,
-      "type": "loser"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 229.56,
-      "change": 0.91,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAZDOCK",
-      "ltp": 2099.4,
-      "change": -1.81,
-      "type": "loser"
-    },
-    {
-      "symbol": "TATASTEEL",
-      "ltp": 187.98,
-      "change": 0.9,
-      "type": "gainer"
-    },
-    {
-      "symbol": "APOLLOHOSP",
-      "ltp": 8706.5,
-      "change": -1.73,
+      "symbol": "BOSCHLTD",
+      "ltp": 45700,
+      "change": -2.81,
       "type": "loser"
     }
   ]
