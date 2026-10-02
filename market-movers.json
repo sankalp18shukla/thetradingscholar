@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-01T09:51:50.898Z",
+  "updatedAt": "2026-10-02T09:28:20.729Z",
   "movers": [
     {
       "symbol": "ENRIN",
-      "ltp": 3340,
-      "change": 4.38,
+      "ltp": 3334,
+      "change": 4.19,
       "type": "gainer"
     },
     {
@@ -15,14 +15,14 @@
     },
     {
       "symbol": "INFY",
-      "ltp": 1028.9,
-      "change": 3.5,
+      "ltp": 1035,
+      "change": 4.11,
       "type": "gainer"
     },
     {
       "symbol": "MARUTI",
-      "ltp": 11350,
-      "change": -5.16,
+      "ltp": 11386,
+      "change": -4.86,
       "type": "loser"
     },
     {
@@ -33,32 +33,68 @@
     },
     {
       "symbol": "SHRIRAMFIN",
-      "ltp": 942,
-      "change": -4.14,
+      "ltp": 945,
+      "change": -3.84,
       "type": "loser"
     },
     {
       "symbol": "HDFCLIFE",
-      "ltp": 534,
-      "change": 2.46,
+      "ltp": 534.2,
+      "change": 2.49,
       "type": "gainer"
     },
     {
-      "symbol": "BOSCHLTD",
-      "ltp": 45300,
+      "symbol": "ADANIPOWER",
+      "ltp": 196.21,
+      "change": -3.82,
+      "type": "loser"
+    },
+    {
+      "symbol": "POWERINDIA",
+      "ltp": 31290,
+      "change": 2.15,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MOTHERSON",
+      "ltp": 157.03,
       "change": -3.82,
       "type": "loser"
     },
     {
       "symbol": "CUMMINSIND",
-      "ltp": 4858,
-      "change": 2.06,
+      "ltp": 4860,
+      "change": 2.1,
       "type": "gainer"
     },
     {
-      "symbol": "MOTHERSON",
-      "ltp": 157.3,
-      "change": -3.65,
+      "symbol": "BOSCHLTD",
+      "ltp": 45480,
+      "change": -3.44,
+      "type": "loser"
+    },
+    {
+      "symbol": "SIEMENS",
+      "ltp": 3804,
+      "change": 2.1,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "ltp": 178,
+      "change": -3.42,
+      "type": "loser"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 6900,
+      "change": 1.83,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "ltp": 1737.8,
+      "change": -3.36,
       "type": "loser"
     },
     {
@@ -68,57 +104,21 @@
       "type": "gainer"
     },
     {
-      "symbol": "ADANIPOWER",
-      "ltp": 197.2,
-      "change": -3.33,
-      "type": "loser"
-    },
-    {
-      "symbol": "MAXHEALTH",
-      "ltp": 946,
-      "change": 1.74,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATASTEEL",
-      "ltp": 178.3,
+      "symbol": "GRASIM",
+      "ltp": 2962,
       "change": -3.26,
       "type": "loser"
     },
     {
-      "symbol": "SIEMENS",
-      "ltp": 3790,
-      "change": 1.73,
-      "type": "gainer"
-    },
-    {
-      "symbol": "AMBUJACEM",
-      "ltp": 362,
-      "change": -3.21,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCAMC",
-      "ltp": 2319.9,
-      "change": 1.72,
-      "type": "gainer"
-    },
-    {
-      "symbol": "M&M",
-      "ltp": 2856.3,
-      "change": -3.18,
-      "type": "loser"
-    },
-    {
       "symbol": "SBILIFE",
-      "ltp": 1723.6,
-      "change": 1.6,
+      "ltp": 1721.6,
+      "change": 1.49,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIPORTS",
-      "ltp": 1741.4,
-      "change": -3.16,
+      "symbol": "EICHERMOT",
+      "ltp": 6920,
+      "change": -3.22,
       "type": "loser"
     }
   ]
