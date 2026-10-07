@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elgo Algo Trading System — The Trading Scholar</title>
+    <title>Swing Trading Course — The Trading Scholar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700;1,800&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -1727,6 +1727,332 @@
             .curriculum-columns { flex-direction: column; gap: 40px; }
             .process-col { width: 100%; padding-top: 0; }
         }
+        .coming-soon-tag {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.45);
+            color: #93C5FD;
+            font-family: var(--font-body, inherit);
+            font-size: 10px;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: 0.08em;
+            line-height: 1.2;
+            text-transform: uppercase;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        /* ===== COURSE CONTENT (chapter accordion) ===== */
+        .content-section {
+            background: var(--bg-dark);
+            padding: 140px 40px 130px;
+            display: flex; flex-direction: column; align-items: center;
+            position: relative; z-index: 11;
+        }
+
+        .content-header {
+            text-align: center; max-width: 660px;
+            margin-bottom: 56px;
+        }
+
+        .content-header .section-heading { color: #fff; }
+
+        .content-header p {
+            font-size: 0.95rem; color: var(--text-secondary);
+            margin: 16px auto 0; line-height: 1.7;
+        }
+
+        .cc-card {
+            width: 100%; max-width: 1000px;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .cc-card-head {
+            position: relative; overflow: hidden;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+            padding: 22px 28px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #031445 0%, #0024E8 100%);
+            margin-bottom: 8px;
+        }
+
+        .cc-card-head::after {
+            content: '';
+            position: absolute; top: -80px; right: -60px;
+            width: 220px; height: 220px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cc-head-stat {
+            display: inline-flex; align-items: baseline; gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            line-height: 1;
+        }
+
+        .cc-head-stat strong {
+            font-family: var(--font-headings);
+            font-size: 1.15rem; font-weight: 800;
+            color: #fff; letter-spacing: -0.3px; line-height: 1;
+        }
+
+        .cc-head-stat span {
+            font-size: 0.82rem; font-weight: 500; line-height: 1;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .cc-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .cc-item {
+            border-radius: 18px;
+            background: var(--bg-dark-secondary);
+            border: 1px solid transparent;
+            transition: border-color .3s, box-shadow .3s, transform .3s;
+        }
+
+        .cc-item:hover { border-color: rgba(0, 36, 232, 0.35); }
+
+        .cc-item.open {
+            border-color: rgba(0, 36, 232, 0.55);
+            box-shadow: 0 18px 44px rgba(0, 36, 232, 0.14);
+        }
+
+        .cc-toggle {
+            appearance: none; background: transparent; border: 0;
+            width: 100%;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 24px 32px;
+            text-align: left; color: #fff;
+            border-radius: 18px;
+        }
+
+        .cc-toggle:focus-visible { outline: 2px solid #0024E8; outline-offset: -2px; }
+
+        .cc-chapter-num {
+            font-family: var(--font-headings);
+            font-size: 1.15rem; font-weight: 500; letter-spacing: -0.2px;
+            color: rgba(255, 255, 255, 0.85);
+            transition: color .3s;
+        }
+
+        .cc-item.open .cc-chapter-num { color: #fff; }
+
+        .cc-toggle-icon {
+            width: 30px; height: 30px; flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.06); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .3s;
+        }
+
+        .cc-chevron {
+            width: 14px; height: 14px;
+            fill: none; stroke: rgba(255, 255, 255, 0.6);
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+            transition: transform .3s;
+        }
+
+        .cc-item.open .cc-toggle-icon { background: rgba(0, 36, 232, 0.25); }
+        .cc-item.open .cc-chevron { transform: rotate(180deg); stroke: #fff; }
+
+        .cc-panel {
+            display: grid; grid-template-rows: 0fr;
+            transition: grid-template-rows .45s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .cc-item.open .cc-panel { grid-template-rows: 1fr; }
+
+        .cc-panel-inner { overflow: hidden; }
+
+        .cc-panel-body { padding: 4px 32px 32px; }
+
+        .cc-chapter-title {
+            font-family: var(--font-headings);
+            font-size: 1.75rem; font-weight: 800;
+            color: #fff; letter-spacing: -0.5px; line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .cc-lessons {
+            list-style: none;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+
+        .cc-lessons li {
+            display: flex; align-items: center; gap: 14px;
+            font-size: 0.95rem; font-weight: 500; line-height: 1.45;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cc-lesson-dot {
+            width: 24px; height: 24px; flex-shrink: 0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 36, 232, 0.12);
+            border: 1px solid rgba(0, 36, 232, 0.35);
+        }
+
+        .cc-lesson-icon { width: 9px; height: 9px; fill: #3B5BFF; }
+
+        /* ===== HERO FACTS ===== */
+        .hero-facts {
+            list-style: none; padding: 0; margin: 34px auto 0;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px;
+            position: relative; z-index: 2;
+            opacity: 0;
+        }
+
+        .hero-facts li {
+            display: flex; align-items: center; gap: 9px;
+            font-size: 0.85rem; color: #CBD5E1; font-weight: 500;
+        }
+
+        .hero-facts li::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: #0024E8; box-shadow: 0 0 10px rgba(0, 36, 232, 0.8);
+        }
+
+        /* ===== ENROLMENT STEPS ===== */
+        .steps-section {
+            background: var(--bg-dark);
+            padding: 110px 40px 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .steps-header { text-align: center; margin-bottom: 52px; }
+        .steps-header .section-heading { color: #fff; }
+
+        .steps-grid {
+            list-style: none; padding: 0; margin: 0;
+            width: 100%; max-width: 1100px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+        }
+
+        .step-card {
+            position: relative;
+            padding: 32px 28px;
+            border-radius: 20px;
+            background: var(--bg-dark-secondary);
+            transition: transform .3s, background .3s;
+        }
+
+        .step-card:hover { background: #0C1222; transform: translateY(-5px); }
+
+        .step-num {
+            display: inline-block; margin-bottom: 18px;
+            font-family: var(--font-headings);
+            font-size: 0.72rem; font-weight: 800;
+            color: #0024E8;
+            background: rgba(0, 36, 232, 0.12);
+            border: 1px solid rgba(0, 36, 232, 0.25);
+            border-radius: 8px; padding: 5px 10px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+
+        .step-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.05rem; font-weight: 700; color: #fff;
+            margin-bottom: 10px; line-height: 1.3;
+        }
+
+        .step-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+        /* ===== SECTION THEMES =====
+           Cards and text read their colours from these variables. GSAP tweens the variables together with the
+           section background (see "Section theme washes"), so cards and text crossfade with the background. */
+        .transformation-section, .benefits-section, .faq-section-outer {
+            --heading: #ffffff;
+            --card-bg: #0B0F19;
+            --card-bg-hover: #0C1222;
+            --card-title: #ffffff;
+            --card-text: #94A3B8;
+            --tf-before-a: #0f0505; --tf-before-b: #1a0a0a;
+            --tf-after-a: #030f1a;  --tf-after-b: #041425;
+            --tf-before-title: rgba(255, 255, 255, 0.85);
+            --tf-before-text: rgba(255, 255, 255, 0.5);
+            --tf-after-text: rgba(255, 255, 255, 0.85);
+            --faq-card: #050507;
+            --faq-ring: rgba(255, 255, 255, 0.04);
+            --faq-toggle: rgba(255, 255, 255, 0.06);
+            --faq-toggle-icon: rgba(255, 255, 255, 0.6);
+        }
+
+        .overview-section, .audience-section {
+            --heading: #0B0F19;
+            --card-bg: #F7F9FC;
+            --card-bg-hover: #F0F4FF;
+            --card-title: #0B0F19;
+            --card-text: #5B6475;
+            --tf-before-a: #FFF6F6; --tf-before-b: #FDEDED;
+            --tf-after-a: #F3F7FF;  --tf-after-b: #E9F0FF;
+            --tf-before-title: rgba(11, 15, 25, 0.8);
+            --tf-before-text: rgba(11, 15, 25, 0.55);
+            --tf-after-text: rgba(11, 15, 25, 0.85);
+            --faq-card: #F7F9FC;
+            --faq-ring: rgba(11, 15, 25, 0.06);
+            --faq-toggle: rgba(11, 15, 25, 0.06);
+            --faq-toggle-icon: rgba(11, 15, 25, 0.55);
+        }
+
+        .transformation-section .section-heading,
+        .overview-header .section-heading,
+        .benefits-section .section-heading,
+        .audience-left .section-heading,
+        .faq-header .section-heading { color: var(--heading); }
+
+        .transform-card.before { background: linear-gradient(135deg, var(--tf-before-a) 0%, var(--tf-before-b) 100%); }
+        .transform-card.after  { background: linear-gradient(135deg, var(--tf-after-a) 0%, var(--tf-after-b) 100%); }
+        .transform-title { color: var(--tf-before-title); }
+        .transform-card.after .transform-title { color: var(--card-title); }
+        .transform-card.before .transform-list li { color: var(--tf-before-text); }
+        .transform-card.after .transform-list li { color: var(--tf-after-text); }
+
+        .overview-card { background: var(--card-bg); }
+        .overview-card h3 { color: var(--card-title); }
+        .overview-card p { color: var(--card-text); }
+
+        .benefit-card { background: var(--card-bg); }
+        .benefit-card:hover { background: var(--card-bg-hover); }
+        .benefit-card h3 { color: var(--card-title); }
+        .benefit-card p { color: var(--card-text); }
+
+        .audience-left p { color: var(--card-text); }
+        .audience-item { background: var(--card-bg); }
+        .audience-item:hover { background: var(--card-bg-hover); }
+        .audience-item p { color: var(--card-title); }
+
+        .faq-item-wrapper { background: var(--faq-ring); }
+        .faq-item-wrapper .glow-border-inner { background: var(--faq-card); }
+        .accordion-question { color: var(--card-title); }
+        .accordion-inner-desc { color: var(--card-text); }
+        .accordion-toggle { background: var(--faq-toggle); }
+        .accordion-toggle svg { stroke: var(--faq-toggle-icon); }
+
+        @media (max-width: 1024px) {
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-facts { flex-direction: column; align-items: center; gap: 10px; }
+            .steps-section { padding: 70px 16px 0; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .content-section { padding: 70px 16px; }
+            .content-header { margin-bottom: 36px; }
+            .cc-card-head { padding: 16px; gap: 8px; border-radius: 16px; }
+            .cc-head-stat { padding: 9px 14px; }
+            .cc-head-stat strong { font-size: 1rem; }
+            .cc-item { border-radius: 16px; }
+            .cc-toggle { padding: 20px 22px; }
+            .cc-panel-body { padding: 0 22px 26px; }
+            .cc-chapter-title { font-size: 1.35rem; margin-bottom: 18px; }
+            .cc-lessons li { font-size: 0.9rem; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -1742,7 +2068,7 @@
                     <li><a href="aboutus.html" class="mobile-link" target="_blank">About Us</a></li>
                     <li><a href="index.html#courses" class="mobile-link">Academy Programs</a></li>
                     <li><a href="index.html#stack-viewport" class="mobile-link">Services</a></li>
-                    <li><a href="index.html#results" class="mobile-link">Student Results</a></li>
+                    <li><a href="index.html#results" class="mobile-link">Student Reviews</a></li>
                     <li><a href="index.html#masterclass" class="mobile-link">Contact</a></li>
                 </ul>
             </nav>
@@ -1827,31 +2153,18 @@
                         <a href="course1.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algo Trading — Elgo System</span>
-                                <span class="mega-link-desc">Automate your strategy. Trade without emotion. Scale with
-                                    precision.</span>
-                            </div>
-                        </a>
-                        <a href="course2.html" class="mega-menu-link-item">
-                            <div class="mega-link-icon">
-                                <svg viewBox="0 0 24 24">
                                     <circle cx="12" cy="8" r="4" />
                                     <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">1-on-1 Live Mentorship</span>
-                                <span class="mega-link-desc">Direct coaching with Kundan. Personalised systems built
-                                    around your capital.</span>
+                                <span class="mega-link-title">Swing Trading Course</span>
+                                <span class="mega-link-desc">Master swing setups and intraday execution through pure
+                                    price action - a rule-based system, no indicators, no guesswork.</span>
                             </div>
                         </a>
-                        <a href="course3.html" class="mega-menu-link-item">
+                        <a href="course2.html" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
                                     <circle cx="12" cy="12" r="10" />
@@ -1860,9 +2173,22 @@
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Option Selling &amp; Hedging</span>
-                                <span class="mega-link-desc">Consistent monthly income. Defined risk.
-                                    Institutional-style execution.</span>
+                                <span class="mega-link-title">Hedging Course</span>
+                                <span class="mega-link-desc">The only course in India with 20+ proprietary Zero
+                                    Adjustment Hedging strategies, refined over 10 years of live markets.</span>
+                            </div>
+                        </a>
+                        <a href="course3.html" class="mega-menu-link-item">
+                            <div class="mega-link-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="mega-link-text-wrap">
+                                <span class="mega-link-title">AI Algo Trading Course <span class="coming-soon-tag">Coming Soon</span></span>
+                                <span class="mega-link-desc">From zero knowledge to live deployment - build,
+                                    backtest, and automate strategies, even with no coding experience.</span>
                             </div>
                         </a>
                     </div>
@@ -1883,9 +2209,9 @@
                                     <svg class="mega-collage-icon" viewBox="0 0 24 24">
                                         <path
                                             d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"
-                                            fill="rgba(96,165,250,0.4)" />
+                                            fill="rgba(0,36,232,0.4)" />
                                     </svg>
-                                    <span class="mega-collage-label">Student Results</span>
+                                    <span class="mega-collage-label">Student Reviews</span>
                                 </div>
                             </div>
                             <div class="mega-collage-img">
@@ -1913,36 +2239,36 @@
                         <a href="index.html#service-1" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="3" />
-                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Expert Mutual Funds Structuring</span>
-                                <span class="mega-link-desc">Goal-aligned portfolios, risk calibration, and long-term wealth building.</span>
+                                <span class="mega-link-title">Algo Trading - Basket Strategies <span class="coming-soon-tag">Coming Soon</span></span>
+                                <span class="mega-link-desc">Fully automated intraday &amp; positional baskets. Exclusive to students.</span>
                             </div>
                         </a>
                         <a href="index.html#service-2" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <polyline points="16 18 22 12 16 6" />
-                                    <polyline points="8 6 2 12 8 18" />
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5" stroke-linecap="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Custom Strategy Automation</span>
-                                <span class="mega-link-desc">Python-powered algo systems built exactly to your logic and API specs.</span>
+                                <span class="mega-link-title">Expert Consultation - Mutual Funds</span>
+                                <span class="mega-link-desc">Personalised portfolios aligned to your risk, goals, and time horizon.</span>
                             </div>
                         </a>
                         <a href="index.html#service-3" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round" />
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">Algorithmic Trading — Elgo System</span>
-                                <span class="mega-link-desc">Learn to build and deploy automated trading systems. No emotion. Pure precision.</span>
+                                <span class="mega-link-title">1-on-1 Mentorship - Kundan Prajapati</span>
+                                <span class="mega-link-desc">10 live sessions. Premium strategies backtested and explained live.</span>
                             </div>
                         </a>
                         <a href="index.html#service-4" class="mega-menu-link-item">
@@ -1953,19 +2279,19 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Pre-IPO Unlisted Shares</span>
-                                <span class="mega-link-desc">Early-stage equity access. Institutional wealth-building before listing.</span>
+                                <span class="mega-link-desc">Buy &amp; sell high-potential unlisted shares below grey market price.</span>
                             </div>
                         </a>
                         <a href="index.html#service-5" class="mega-menu-link-item">
                             <div class="mega-link-icon">
                                 <svg viewBox="0 0 24 24">
-                                    <circle cx="12" cy="8" r="4" />
-                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
                                 </svg>
                             </div>
                             <div class="mega-link-text-wrap">
-                                <span class="mega-link-title">1:1 Consultation — Kundan Prajapati</span>
-                                <span class="mega-link-desc">Direct mentorship tailored to your capital, psychology, and trading goals.</span>
+                                <span class="mega-link-title">Custom Strategy - Automation &amp; Backtesting</span>
+                                <span class="mega-link-desc">Bring your rule-defined strategy. We backtest, optimise, and deploy it.</span>
                             </div>
                         </a>
                     </div>
@@ -2020,7 +2346,7 @@
                             </div>
                             <div class="mega-link-text-wrap">
                                 <span class="mega-link-title">Meet Your Mentor</span>
-                                <span class="mega-link-desc">Kundan Prajapati — 9+ years, 1000+ traders mentored across
+                                <span class="mega-link-desc">Kundan Prajapati - 9+ years, 1000+ traders mentored across
                                     India.</span>
                             </div>
                         </a>
@@ -2114,27 +2440,28 @@
     <section class="course-hero">
         <span class="hero-badge">
             <span class="hero-badge-dot"></span>
-            Course 1 — Algo Trading
+            Course 1 — Swing Trading
         </span>
         <h1>
-            Elgo Algo
-            <em>Trading System</em>
+            Swing Trading
+            <em>Through Pure Price Action</em>
         </h1>
         <p class="course-hero-sub">
-            Build and deploy automated trading systems that execute with discipline — even when you cannot be at your screen. Replace emotion with precision, structure, and repeatability.
+            Read the chart the way the market actually moves. A rule-based price action system for swing and intraday trading — from your first candlestick to a complete trade plan. No indicators. No guesswork.
         </p>
         <div class="hero-actions">
             <a href="#enroll" class="course-btn filled">
-                <span class="btn-sizer">Enroll in This Course</span>
-                <span class="btn-row btn-visible">Enroll in This Course</span>
-                <span class="btn-row btn-ghost">Enroll in This Course</span>
-            </a>
-            <a href="#curriculum" class="course-btn outline">
-                <span class="btn-sizer">View Curriculum</span>
-                <span class="btn-row btn-visible">View Curriculum</span>
-                <span class="btn-row btn-ghost">View Curriculum</span>
-            </a>
+                    <span class="btn-sizer">Enroll in This Course</span>
+                    <span class="btn-row btn-visible">Enroll in This Course</span>
+                    <span class="btn-row btn-ghost">Enroll in This Course</span>
+                </a>
+            <a href="#course-content" class="course-btn outline">
+                    <span class="btn-sizer">View Course Content</span>
+                    <span class="btn-row btn-visible">View Course Content</span>
+                    <span class="btn-row btn-ghost">View Course Content</span>
+                </a>
         </div>
+        <ul class="hero-facts"><li>Instructed by Kundan Prajapati</li><li>13 chapters &middot; 75 lessons</li><li>Saturday &amp; Sunday live sessions</li><li>Lifetime access</li></ul>
         <div class="hero-scroll-hint">
             <span>Scroll</span>
             <div class="scroll-bar"></div>
@@ -2145,7 +2472,7 @@
     <section class="vr-section" id="video-reveal">
         <div class="vr-sticky" id="vr-sticky">
             <div class="vr-text-top" id="vr-top">
-                <span>See how the system</span>
+                <span>See price action in motion</span>
             </div>
             <div class="vr-frame" id="vr-frame">
                 <div class="vr-placeholder">
@@ -2158,12 +2485,208 @@
         </div>
     </section>
 
-    <!-- CURRICULUM -->
-    <section class="curriculum-section" id="curriculum">
+    <!-- COURSE CONTENT -->
+    <section class="content-section" id="course-content">
+        <div class="content-header">
+            <span class="section-label">Course Content</span>
+            <h2 class="section-heading">Thirteen chapters. <em>Zero fluff.</em></h2>
+            <p>Start from the absolute basics and finish with a complete, rule-based price action system — every chapter ends in something you can apply on a live chart.</p>
+        </div>
+        <div class="cc-card">
+            <div class="cc-card-head"><span class="cc-head-stat"><strong>13</strong><span>chapters</span></span><span class="cc-head-stat"><strong>75</strong><span>lessons</span></span><span class="cc-head-stat"><strong>Sat &amp; Sun</strong><span>live sessions</span></span></div>
+            <div class="cc-list">
+                <div class="cc-item open">
+                    <button type="button" class="cc-toggle" id="sw-h1" aria-expanded="true" aria-controls="sw-p1">
+                        <span class="cc-chapter-num">Chapter-1</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p1" role="region" aria-labelledby="sw-h1">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Basics of Stock Markets</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Stock market basics</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Essential trading terminology</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Types of orders</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Short selling</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Trade execution</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Building a basic trade plan</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h2" aria-expanded="false" aria-controls="sw-p2">
+                        <span class="cc-chapter-num">Chapter-2</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p2" role="region" aria-labelledby="sw-h2">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Introduction to Price Action</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding market structure</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>What is Dow Theory</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Practical applications of Dow Theory</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding market cycles</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h3" aria-expanded="false" aria-controls="sw-p3">
+                        <span class="cc-chapter-num">Chapter-3</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p3" role="region" aria-labelledby="sw-h3">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Understanding Candlesticks</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Types of charts</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Anatomy of a candlestick</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Open, High, Low &amp; Close</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Candlestick psychology</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Types of candlesticks</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h4" aria-expanded="false" aria-controls="sw-p4">
+                        <span class="cc-chapter-num">Chapter-4</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p4" role="region" aria-labelledby="sw-h4">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Candlestick Trading Strategies</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Bullish reversal patterns</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Bearish reversal patterns</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Pattern confirmation</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Entry &amp; exit planning</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Stop-loss and target planning</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Trade plans for candlestick setups</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h5" aria-expanded="false" aria-controls="sw-p5">
+                        <span class="cc-chapter-num">Chapter-5</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p5" role="region" aria-labelledby="sw-h5">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Support, Resistance &amp; Supply-Demand</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding support &amp; resistance</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Supply &amp; demand zones</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>How to identify important zones</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Drawing effective levels</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>What are trendlines</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>4 golden rules for a strong breakout</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>How to identify fakeouts and avoid trapping</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h6" aria-expanded="false" aria-controls="sw-p6">
+                        <span class="cc-chapter-num">Chapter-6</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p6" role="region" aria-labelledby="sw-h6">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Price &amp; Volume Analysis</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding trading volume</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Price-volume relationship</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Intraday vs delivery volume</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Reading volume with price action</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Identifying participation and strength</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h7" aria-expanded="false" aria-controls="sw-p7">
+                        <span class="cc-chapter-num">Chapter-7</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p7" role="region" aria-labelledby="sw-h7">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Chart Patterns</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding chart patterns</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>6 bullish chart patterns (primary)</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>6 bearish chart patterns (primary)</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>18 secondary chart patterns</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Pattern confirmation</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Entry, stop-loss &amp; targets</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Complete trade plans for chart patterns</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h8" aria-expanded="false" aria-controls="sw-p8">
+                        <span class="cc-chapter-num">Chapter-8</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p8" role="region" aria-labelledby="sw-h8">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Different Trading Approaches</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Momentum trading (personal favourite)</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Pullback trading</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Reversal trading</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Identifying the right market condition</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Entry and risk-management framework</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h9" aria-expanded="false" aria-controls="sw-p9">
+                        <span class="cc-chapter-num">Chapter-9</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p9" role="region" aria-labelledby="sw-h9">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Gap Theory</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding price gaps</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>4 types of gaps</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Gap identification</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Gap behaviour</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Trading gap setups</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Risk management for gap trades</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h10" aria-expanded="false" aria-controls="sw-p10">
+                        <span class="cc-chapter-num">Chapter-10</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p10" role="region" aria-labelledby="sw-h10">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Stock Selection &amp; Scanning</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Intraday stock selection</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Swing trading stock selection</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>6 free stock scanners</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Building a watchlist</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Identifying institutional footprints</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Creating a systematic stock-selection process</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h11" aria-expanded="false" aria-controls="sw-p11">
+                        <span class="cc-chapter-num">Chapter-11</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p11" role="region" aria-labelledby="sw-h11">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Risk, Money &amp; Trade Management</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Risk management</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Money management</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Trade management</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Position sizing</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Risk-to-reward</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Trading psychology</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Building trading discipline</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h12" aria-expanded="false" aria-controls="sw-p12">
+                        <span class="cc-chapter-num">Chapter-12</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p12" role="region" aria-labelledby="sw-h12">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Introduction to Futures &amp; Options</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Futures &amp; options fundamentals</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding option contracts</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Introduction to option Greeks</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>Understanding the 5 major Greeks</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2l6.3 3.8-6.3 3.8z"/></svg></span><span>How Greeks affect option prices</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cc-item">
+                    <button type="button" class="cc-toggle" id="sw-h13" aria-expanded="false" aria-controls="sw-p13">
+                        <span class="cc-chapter-num">Chapter-13</span>
+                        <span class="cc-toggle-icon"><svg class="cc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="cc-panel" id="sw-p13" role="region" aria-labelledby="sw-h13">
+                        <div class="cc-panel-inner">
+                            <div class="cc-panel-body">
+                                <h3 class="cc-chapter-title">Bonus &amp; Mentorship Benefits</h3>
+                                <ul class="cc-lessons"><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Live homework review</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Weekly doubt-solving sessions</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Trade report analysis</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Weekly watchlist</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Trading community access</span></li><li><span class="cc-lesson-dot"><svg class="cc-lesson-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.1 6 20.4l1.3-6.7-5-4.7 6.8-.8z"/></svg></span><span>Post-course support</span></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS TIMELINE -->
+    <section class="curriculum-section" id="process">
         <div class="curriculum-header">
-            <span class="section-label">Curriculum</span>
-            <h2 class="section-heading" style="color:#fff;">Eight modules. <em>One complete system.</em></h2>
-            <p>Each module builds directly on the last — from foundational concepts through to live deployment and ongoing optimization.</p>
+            <span class="section-label">The Process</span>
+            <h2 class="section-heading" style="color:#fff;">One trade. <em>Seven deliberate steps.</em></h2>
+            <p>This is the workflow the course trains into you. Every chapter exists to make one of these steps sharper — until you run it on every trade without thinking.</p>
         </div>
         <div class="curriculum-timeline-wrapper" id="curriculumTimelineWrapper">
             <div class="curriculum-sticky">
@@ -2173,83 +2696,74 @@
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
-                                <span class="process-phase-label">Strategy Design &amp; Validation</span>
+                                <span class="process-phase-label">Before the Trade</span>
                                 <span class="process-line-after"></span>
                             </div>
-                            <span class="process-num">M 01</span>
-                            <h2>Introduction to Algorithmic Trading &amp; Institutional Systems</h2>
-                            <p class="process-desc">Understand what algorithmic trading actually is, how institutional players use it, why retail traders need it, and how the Elgo system is structured from end to end.</p>
-                            <div class="process-tags"><span class="process-tag">Algo fundamentals</span><span class="process-tag">Institutional frameworks</span><span class="process-tag">System overview</span></div>
+                            <span class="process-num">Step 01</span>
+                            <h2>Scan &amp; Shortlist</h2>
+                            <p class="process-desc">Run free scanners, filter for liquidity and strength, and build a focused watchlist — instead of chasing tips and headlines.</p>
+                            <div class="process-tags"><span class="process-tag">Stock scanners</span><span class="process-tag">Watchlist</span><span class="process-tag">Institutional footprints</span></div>
                         </div>
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
                                 <span class="process-line-after"></span>
                             </div>
-                            <span class="process-num">M 02</span>
-                            <h2>Building Your First Trading Strategy</h2>
-                            <p class="process-desc">Learn how to convert a trading idea into a coded strategy with entry logic, exit logic, position sizing rules, and stop-loss integration built in from the start.</p>
-                            <div class="process-tags"><span class="process-tag">Entry logic</span><span class="process-tag">Exit logic</span><span class="process-tag">Position sizing</span><span class="process-tag">Stop-loss integration</span></div>
+                            <span class="process-num">Step 02</span>
+                            <h2>Read the Structure</h2>
+                            <p class="process-desc">Use Dow Theory and market cycles to decide if the market is trending, ranging or turning — before you look for a single entry.</p>
+                            <div class="process-tags"><span class="process-tag">Market structure</span><span class="process-tag">Dow Theory</span><span class="process-tag">Market cycles</span></div>
                         </div>
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
                                 <span class="process-line-after"></span>
                             </div>
-                            <span class="process-num">M 03</span>
-                            <h2>Backtesting</h2>
-                            <p class="process-desc">Run your strategy against years of historical market data to understand its real performance characteristics before going live with capital.</p>
-                            <div class="process-tags"><span class="process-tag">Win rate analysis</span><span class="process-tag">Drawdown</span><span class="process-tag">Sharpe ratio</span><span class="process-tag">Strategy viability</span></div>
+                            <span class="process-num">Step 03</span>
+                            <h2>Mark the Zones</h2>
+                            <p class="process-desc">Plot the support, resistance, supply-demand zones and trendlines that actually matter, so you know where price is likely to react.</p>
+                            <div class="process-tags"><span class="process-tag">Support &amp; resistance</span><span class="process-tag">Supply &amp; demand</span><span class="process-tag">Trendlines</span></div>
+                        </div>
+                        <div class="process-col">
+                            <div class="process-node-row">
+                                <span class="process-dot"></span>
+                                <span class="process-phase-label">Taking the Trade</span>
+                                <span class="process-line-after"></span>
+                            </div>
+                            <span class="process-num">Step 04</span>
+                            <h2>Wait for the Trigger</h2>
+                            <p class="process-desc">Let a candlestick setup, chart pattern or gap confirm the idea at your zone. No confirmation, no trade.</p>
+                            <div class="process-tags"><span class="process-tag">Candlestick setups</span><span class="process-tag">Chart patterns</span><span class="process-tag">Gap setups</span></div>
                         </div>
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
                                 <span class="process-line-after"></span>
                             </div>
-                            <span class="process-num">M 04</span>
-                            <h2>Risk Management Systems</h2>
-                            <p class="process-desc">Apply institutional-grade risk rules including risk per trade, daily loss limits, capital preservation protocols, and drawdown recovery frameworks.</p>
-                            <div class="process-tags"><span class="process-tag">Risk per trade</span><span class="process-tag">Daily loss limits</span><span class="process-tag">Capital preservation</span><span class="process-tag">Drawdown recovery</span></div>
-                        </div>
-                        <div class="process-col">
-                            <div class="process-node-row">
-                                <span class="process-dot"></span>
-                                <span class="process-phase-label">Live Deployment &amp; Scaling</span>
-                                <span class="process-line-after"></span>
-                            </div>
-                            <span class="process-num">M 05</span>
-                            <h2>Live Deployment</h2>
-                            <p class="process-desc">Deploy your strategy and connect it to live broker APIs. Progress from paper trading to live deployment with a structured, low-risk transition process.</p>
-                            <div class="process-tags"><span class="process-tag">Paper trading</span><span class="process-tag">Live deployment</span><span class="process-tag">Broker integration</span></div>
+                            <span class="process-num">Step 05</span>
+                            <h2>Confirm With Volume</h2>
+                            <p class="process-desc">Check participation. Is volume backing the move, or is it a fakeout waiting to trap late buyers?</p>
+                            <div class="process-tags"><span class="process-tag">Price-volume</span><span class="process-tag">Delivery volume</span><span class="process-tag">Fakeouts</span></div>
                         </div>
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
                                 <span class="process-line-after"></span>
                             </div>
-                            <span class="process-num">M 06</span>
-                            <h2>Optimization &amp; Scaling</h2>
-                            <p class="process-desc">Analyse live results, identify weaknesses, optimize parameters, and scale strategy capital intelligently without over-fitting or chasing past performance.</p>
-                            <div class="process-tags"><span class="process-tag">Live analysis</span><span class="process-tag">Parameter optimization</span><span class="process-tag">Capital scaling</span></div>
+                            <span class="process-num">Step 06</span>
+                            <h2>Plan &amp; Size</h2>
+                            <p class="process-desc">Define entry, stop-loss and target, confirm the risk-to-reward, and size the position so one loss never hurts the account.</p>
+                            <div class="process-tags"><span class="process-tag">Entry &amp; exit</span><span class="process-tag">Position sizing</span><span class="process-tag">Risk-to-reward</span></div>
                         </div>
                         <div class="process-col">
                             <div class="process-node-row">
                                 <span class="process-dot"></span>
-                                <span class="process-line-after"></span>
+                                <span class="process-phase-label">After the Trade</span>
                             </div>
-                            <span class="process-num">M 07</span>
-                            <h2>Advanced Hedging Integration</h2>
-                            <p class="process-desc">Build hedged algorithmic strategies that protect capital during adverse market conditions while maintaining upside participation when conditions are favourable.</p>
-                            <div class="process-tags"><span class="process-tag">Hedging strategies</span><span class="process-tag">Capital protection</span><span class="process-tag">Upside participation</span></div>
-                        </div>
-                        <div class="process-col">
-                            <div class="process-node-row">
-                                <span class="process-dot"></span>
-                            </div>
-                            <span class="process-num">M 08</span>
-                            <h2>Live Trading Supervision &amp; Ongoing Support</h2>
-                            <p class="process-desc">Supervised live trading sessions, Q&amp;A, error resolution, and ongoing mentorship during the live deployment phase so you are never operating alone.</p>
-                            <div class="process-tags"><span class="process-tag">Supervised sessions</span><span class="process-tag">Q&amp;A</span><span class="process-tag">Error resolution</span><span class="process-tag">Live mentorship</span></div>
+                            <span class="process-num">Step 07</span>
+                            <h2>Manage &amp; Review</h2>
+                            <p class="process-desc">Trail, book or exit by rules — then log it. Trade report analysis and weekly reviews turn every trade into feedback.</p>
+                            <div class="process-tags"><span class="process-tag">Trade management</span><span class="process-tag">Trade reports</span><span class="process-tag">Weekly review</span></div>
                         </div>
                     </div>
 
@@ -2261,30 +2775,30 @@
     <!-- BEFORE / AFTER -->
     <section class="transformation-section">
         <span class="section-label" style="text-align:center;">The Transformation</span>
-        <h2 class="section-heading" style="color:#fff;text-align:center;margin-bottom:60px;">Before <em>and After</em></h2>
+        <h2 class="section-heading" style="text-align:center;margin-bottom:60px;">Before <em>and After</em></h2>
         <div class="transformation-grid">
             <div class="transform-card before">
-                <span class="transform-label">Before the System</span>
-                <h3 class="transform-title">How most traders operate</h3>
+                <span class="transform-label">Before the Course</span>
+                <h3 class="transform-title">How most new traders operate</h3>
                 <ul class="transform-list">
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Missing entries at the right moment</li>
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Emotional exits driven by fear</li>
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Revenge trading after losses</li>
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Manual errors in position sizing</li>
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Inconsistent month-to-month results</li>
-                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Watching screens all day and still making mistakes</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Buying on tips, news and social media calls</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Cluttering charts with lagging indicators</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Entering late and getting trapped in fakeouts</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>No stop-loss or target defined before entry</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Position size decided by gut feel</li>
+                    <li><span class="list-dot-before"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></span>Repeating the same mistakes with no review</li>
                 </ul>
             </div>
             <div class="transform-card after">
-                <span class="transform-label">After the Elgo System</span>
-                <h3 class="transform-title">How Elgo students trade</h3>
+                <span class="transform-label">After the Swing Course</span>
+                <h3 class="transform-title">How price action traders operate</h3>
                 <ul class="transform-list">
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Automated execution, zero missed entries</li>
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Systematic entries and exits every time</li>
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Zero emotional interference in the process</li>
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Scalable as capital grows with no extra effort</li>
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Trade without being tied to the screen</li>
-                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Consistent, backtested performance month on month</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Clean charts read through structure, zones and candles</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Every trade backed by a written trade plan</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Entries at key zones with confirmation — no chasing</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Stop-loss, target and risk-to-reward fixed in advance</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Position size calculated from risk, every time</li>
+                    <li><span class="list-dot-after"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>A journal and weekly review that compounds skill</li>
                 </ul>
             </div>
         </div>
@@ -2294,28 +2808,28 @@
     <section class="overview-section">
         <div class="overview-header">
             <span class="section-label">Course Overview</span>
-            <h2 class="section-heading" style="color:var(--primary-text);">What this <em>course delivers</em></h2>
+            <h2 class="section-heading">What this <em>course delivers</em></h2>
         </div>
         <div class="overview-grid">
             <div class="overview-card">
                 <div class="overview-card-icon"><img src="service3.png" alt=""></div>
-                <h3>Strategy Design Logic</h3>
-                <p>Translate a trading idea into clear, rule-based logic — the foundation every system in this course is built on.</p>
+                <h3>Market Structure First</h3>
+                <p>Learn to read trend, range and reversal through Dow Theory and market cycles before you ever place a trade.</p>
             </div>
             <div class="overview-card">
                 <div class="overview-card-icon"><img src="service3.png" alt=""></div>
-                <h3>Historical Backtesting</h3>
-                <p>Validate every strategy against years of historical data before a single rupee goes live, so conviction is built on evidence.</p>
+                <h3>Zones That Matter</h3>
+                <p>Draw support, resistance and supply-demand zones that price actually respects — and spot fakeouts before they trap you.</p>
             </div>
             <div class="overview-card">
                 <div class="overview-card-icon"><img src="service3.png" alt=""></div>
-                <h3>Live Broker Deployment</h3>
-                <p>Connect your strategy directly to broker APIs and move from backtest to live execution without manual intervention.</p>
+                <h3>Patterns With Plans</h3>
+                <p>Every candlestick and chart pattern comes with confirmation rules, entry, stop-loss and target — not just a picture.</p>
             </div>
             <div class="overview-card">
                 <div class="overview-card-icon"><img src="service3.png" alt=""></div>
-                <h3>Emotion-Free Scaling</h3>
-                <p>Scale position size as capital grows while the system executes every trade — zero hesitation, zero emotion.</p>
+                <h3>Risk Before Reward</h3>
+                <p>Position sizing, risk-to-reward and trade management built into every setup, so discipline becomes the default.</p>
             </div>
         </div>
     </section>
@@ -2323,37 +2837,37 @@
     <!-- BENEFITS -->
     <section class="benefits-section">
         <span class="section-label">Key Benefits</span>
-        <h2 class="section-heading" style="color:#fff;text-align:center;margin-bottom:60px;">What you walk away <em>with</em></h2>
+        <h2 class="section-heading" style="text-align:center;margin-bottom:60px;">What you walk away <em>with</em></h2>
         <div class="benefits-grid">
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Eliminate Emotional Trading</h3>
-                <p>Permanently remove emotional decision-making from your trading through systematic, rule-based automation.</p>
+                <h3>A Complete Price Action System</h3>
+                <p>One coherent method — structure, zones, triggers and volume — that works on any liquid stock or index, on any time frame.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Build Systems From Scratch</h3>
-                <p>Learn to build fully automated trading systems from the ground up, tailored to your strategy logic.</p>
+                <h3>30 Chart Patterns, Fully Planned</h3>
+                <p>6 bullish, 6 bearish and 18 secondary patterns, each with confirmation, entry, stop-loss and target rules.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Professional Backtesting</h3>
-                <p>Validate your strategy against years of historical data before risking a single rupee of capital.</p>
+                <h3>Systematic Stock Selection</h3>
+                <p>Use 6 free scanners and a repeatable process to build a watchlist for both swing and intraday trades.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Scalable as Capital Grows</h3>
-                <p>Design strategies that scale seamlessly as your account size increases without rebuilding from scratch.</p>
+                <h3>Three Trading Approaches</h3>
+                <p>Momentum, pullback and reversal trading — and how to tell which one the current market condition calls for.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Institutional Risk Framework</h3>
-                <p>Apply the same risk management protocols used by institutional desks to protect and grow capital.</p>
+                <h3>Discipline &amp; Psychology</h3>
+                <p>Money management, trade management and the mindset work that keeps you consistent after a losing streak.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon"><img src="service3.png" alt=""></div>
-                <h3>Live Broker API Deployment</h3>
-                <p>Connect your strategies directly to broker APIs and see them execute in real market conditions.</p>
+                <h3>Mentorship That Continues</h3>
+                <p>Live homework review, weekly doubt-solving, a weekly watchlist, community access and post-course support.</p>
             </div>
         </div>
     </section>
@@ -2363,15 +2877,15 @@
         <div class="audience-inner">
             <div class="audience-left">
                 <span class="section-label">Who Is This For</span>
-                <h2 class="section-heading" style="color:var(--primary-text);margin-bottom:20px;">Built for <em>traders who are ready</em></h2>
-                <p>This is not a theory course. It is for traders who have a problem to solve — and are ready to solve it with systems, not hope.</p>
+                <h2 class="section-heading" style="margin-bottom:20px;">Built for <em>traders who are ready</em></h2>
+                <p>This course is for anyone who wants to stop guessing and start trading from a plan — whether you are placing your first trade or rebuilding after years of inconsistency.</p>
             </div>
             <div class="audience-right">
-                <div class="audience-item"><span class="audience-num">01</span><p>Retail traders losing money due to emotional decision-making and undisciplined execution</p></div>
-                <div class="audience-item"><span class="audience-num">02</span><p>Working professionals who cannot watch screens during market hours but still want to trade</p></div>
-                <div class="audience-item"><span class="audience-num">03</span><p>Traders ready to systematize their approach and scale capital with repeatable results</p></div>
-                <div class="audience-item"><span class="audience-num">04</span><p>Anyone who wants to remove human error, bias, and emotion from every single trade</p></div>
-                <div class="audience-item"><span class="audience-num">05</span><p>Traders who have a strategy idea but do not know how to automate and deploy it</p></div>
+                <div class="audience-item"><span class="audience-num">01</span><p>Complete beginners who want a structured, step-by-step start in the stock market</p></div>
+                <div class="audience-item"><span class="audience-num">02</span><p>Traders whose charts are crowded with indicators but who still cannot find clean entries</p></div>
+                <div class="audience-item"><span class="audience-num">03</span><p>Working professionals who want swing setups that do not need them glued to the screen</p></div>
+                <div class="audience-item"><span class="audience-num">04</span><p>Traders who keep getting trapped in fakeouts and false breakouts</p></div>
+                <div class="audience-item"><span class="audience-num">05</span><p>Intraday traders who want a rule-based process for stock selection, entries and exits</p></div>
             </div>
         </div>
     </section>
@@ -2381,18 +2895,18 @@
         <div class="faq-section">
             <div class="faq-header">
                 <span class="section-label" style="text-align:center;display:block;">FAQs</span>
-                <h2 class="section-heading" style="color:#fff;text-align:center;">Common <em>questions answered</em></h2>
+                <h2 class="section-heading" style="text-align:center;">Common <em>questions answered</em></h2>
             </div>
             <div class="faq-items">
                 <div class="glow-border-wrapper faq-item-wrapper active glowing">
                     <div class="glow-border-inner">
                         <div class="accordion-inner-content-box">
                             <div class="accordion-header" onclick="toggleFaq(this)">
-                                <div class="accordion-question">Is this suitable for beginners?</div>
+                                <div class="accordion-question">Is this course suitable for complete beginners?</div>
                                 <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
                             </div>
                             <div class="accordion-content">
-                                <div class="accordion-inner-desc">The course is designed to help traders understand algorithmic trading from foundational concepts through to live deployment. Prior coding knowledge is helpful but not required — the curriculum is structured to build competence progressively.</div>
+                                <div class="accordion-inner-desc">Yes. Chapter 1 starts from stock market basics, trading terminology and order types, and each chapter builds on the last. No prior trading experience is required.</div>
                             </div>
                         </div>
                     </div>
@@ -2401,11 +2915,11 @@
                     <div class="glow-border-inner">
                         <div class="accordion-inner-content-box">
                             <div class="accordion-header" onclick="toggleFaq(this)">
-                                <div class="accordion-question">Do I need coding knowledge to enroll?</div>
+                                <div class="accordion-question">Do I need indicators or paid software?</div>
                                 <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
                             </div>
                             <div class="accordion-content">
-                                <div class="accordion-inner-desc">The course focuses on helping traders build automated systems without requiring extensive technical expertise. The emphasis is on understanding logic and structure, not becoming a software engineer.</div>
+                                <div class="accordion-inner-desc">No. The course is built on pure price action — structure, zones, candles and volume. Stock selection is taught using 6 free scanners, so there is nothing extra to buy.</div>
                             </div>
                         </div>
                     </div>
@@ -2414,11 +2928,11 @@
                     <div class="glow-border-inner">
                         <div class="accordion-inner-content-box">
                             <div class="accordion-header" onclick="toggleFaq(this)">
-                                <div class="accordion-question">What if I miss a live session?</div>
+                                <div class="accordion-question">Is this for swing trading or intraday trading?</div>
                                 <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
                             </div>
                             <div class="accordion-content">
-                                <div class="accordion-inner-desc">All live sessions are recorded and made available in your student portal. Recordings remain accessible throughout the full duration of your program so you can review any session at your own pace.</div>
+                                <div class="accordion-inner-desc">Both. The system is built around swing trading, and the stock-selection, gap and momentum chapters cover how to apply the same price action principles intraday.</div>
                             </div>
                         </div>
                     </div>
@@ -2427,11 +2941,37 @@
                     <div class="glow-border-inner">
                         <div class="accordion-inner-content-box">
                             <div class="accordion-header" onclick="toggleFaq(this)">
-                                <div class="accordion-question">Is there ongoing support after the course ends?</div>
+                                <div class="accordion-question">What support do I get after the course?</div>
                                 <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
                             </div>
                             <div class="accordion-content">
-                                <div class="accordion-inner-desc">Support and continued guidance are included depending on the program level selected. The highest tier includes live trading supervision, ongoing mentorship during deployment, and ongoing access to Q&amp;A sessions.</div>
+                                <div class="accordion-inner-desc">You get live homework review, weekly doubt-solving sessions, trade report analysis, a weekly watchlist, trading community access and post-course support.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glow-border-wrapper faq-item-wrapper">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">How soon do I get access after enrolling?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">Once your payment proof is received and confirmed, you are enrolled and get access to all course resources within 24 hours.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glow-border-wrapper faq-item-wrapper">
+                    <div class="glow-border-inner">
+                        <div class="accordion-inner-content-box">
+                            <div class="accordion-header" onclick="toggleFaq(this)">
+                                <div class="accordion-question">Does the course cover Futures &amp; Options?</div>
+                                <div class="accordion-toggle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-inner-desc">Chapter 12 introduces F&amp;O fundamentals, option contracts and the 5 major Greeks. To go deeper into option strategies and hedging, the Hedging Course is the natural next step.</div>
                             </div>
                         </div>
                     </div>
@@ -2440,16 +2980,30 @@
         </div>
     </div>
 
+    <!-- ENROLMENT STEPS -->
+    <section class="steps-section">
+        <div class="steps-header">
+            <span class="section-label">How to Enroll</span>
+            <h2 class="section-heading">Four steps <em>to get started</em></h2>
+        </div>
+        <ol class="steps-grid">
+            <li class="step-card"><span class="step-num">01</span><h3>Talk to a Counsellor</h3><p>Tap Enroll or message us on WhatsApp — our Academic Counsellor will call you to walk you through the course.</p></li>
+            <li class="step-card"><span class="step-num">02</span><h3>Make the Payment</h3><p>Complete the payment using the details shared by your counsellor.</p></li>
+            <li class="step-card"><span class="step-num">03</span><h3>Send the Proof</h3><p>Share your payment proof with us so we can confirm your enrolment.</p></li>
+            <li class="step-card"><span class="step-num">04</span><h3>Get the Access</h3><p>Once payment is confirmed, you are enrolled and get access to all course resources within 24 hours.</p></li>
+        </ol>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section" id="enroll">
         <div class="cta-card">
-            <h2>Ready to trade <em>without emotion?</em></h2>
-            <p>Join traders who have systematized their approach with The Trading Scholar's Elgo Algo System. The system does not wait — and neither should you.</p>
+            <h2>Ready to trade from <em>a plan?</em></h2>
+            <p>Join The Trading Scholar's Swing Trading Course and learn to read price the way it actually moves. Lifetime access, weekly live sessions and a community that trades alongside you.</p>
             <div class="cta-actions">
                 <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="course-btn filled" style="font-size:14px;">
-                    <span class="btn-sizer" style="padding:17px 42px;font-size:14px;">Enroll in Elgo Now</span>
-                    <span class="btn-row btn-visible" style="padding:17px 42px;font-size:14px;">Enroll in Elgo Now</span>
-                    <span class="btn-row btn-ghost" style="padding:17px 42px;font-size:14px;">Enroll in Elgo Now</span>
+                    <span class="btn-sizer" style="padding:17px 42px;font-size:14px;">Enroll in Swing Course</span>
+                    <span class="btn-row btn-visible" style="padding:17px 42px;font-size:14px;">Enroll in Swing Course</span>
+                    <span class="btn-row btn-ghost" style="padding:17px 42px;font-size:14px;">Enroll in Swing Course</span>
                 </a>
                 <a href="https://wa.me/918376851169" target="_blank" rel="noopener" class="course-btn outline">
                     <span class="btn-sizer">Speak to an Advisor</span>
@@ -2527,11 +3081,11 @@
                 <span class="spc-badge-dot"></span>
                 Course 1
             </div>
-            <h3 class="spc-title">Elgo Algo Trading System</h3>
+            <h3 class="spc-title">Swing Trading Course</h3>
             <div class="spc-divider"></div>
             <div class="spc-price-row">
-                <span class="spc-price-label">From</span>
-                <span class="spc-price-amount">&#8377;49,999 <span>&#8377;75,000</span></span>
+                <span class="spc-price-label">Access</span>
+                <span class="spc-price-amount">Lifetime</span>
             </div>
             <a href="#enroll" class="spc-btn">
                 <span class="btn-sizer" style="padding:13px 20px;font-size:12px;width:100%;justify-content:center;">Enroll Now &rarr;</span>
@@ -2634,6 +3188,24 @@
             });
         }
 
+        /* ===== COURSE CONTENT ACCORDION (one chapter open at a time) ===== */
+        document.querySelectorAll('.cc-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const item = toggle.closest('.cc-item');
+                const willOpen = !item.classList.contains('open');
+                document.querySelectorAll('.cc-item.open').forEach(openItem => {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.cc-toggle').setAttribute('aria-expanded', 'false');
+                });
+                if (willOpen) {
+                    item.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+                /* section height changed — re-measure scroll-triggered sections below */
+                setTimeout(() => ScrollTrigger.refresh(), 450);
+            });
+        });
+
         /* ===== BACK TO TOP ===== */
         const backToTopBtn = document.getElementById('backToTopBtn');
         if (backToTopBtn) {
@@ -2677,7 +3249,8 @@
             .to('.hero-badge',       { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', fromVars: { y: 20 } })
             .fromTo('.course-hero h1',       { opacity: 0, y: 36, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, ease: 'power3.out' }, '-=0.3')
             .fromTo('.course-hero-sub',      { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.55')
-            .fromTo('.hero-actions',         { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5');
+            .fromTo('.hero-actions',         { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+            .fromTo('.hero-facts',           { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
 
         gsap.fromTo('.hero-badge', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.25 });
 
@@ -2747,51 +3320,30 @@
             .fromTo('.overview-header .section-heading', { opacity: 0, y: 30, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25')
             .fromTo('.overview-card',                    { opacity: 0, y: 28, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'back.out(1.2)' }, '-=0.3');
 
-        /* Section background washes — gradual crossfade as each section scrolls into view, tied to
-           that section's own height (not the outgoing section), so there is no hard seam/division line */
-        gsap.fromTo(['.transformation-section', '.overview-section'], { backgroundColor: '#000000' }, {
-            backgroundColor: '#ffffff', ease: 'none',
-            scrollTrigger: { trigger: '.overview-section', start: 'top bottom', end: '+=40%', scrub: true }
+        /* Section theme washes — as each section scrolls in, its background AND the cards/text on it crossfade
+           together between the dark and light themes. Theme values come from the CSS (see "SECTION THEMES"),
+           read once here before any tween writes inline styles. */
+        const THEME_VARS = ['--heading', '--card-bg', '--card-bg-hover', '--card-title', '--card-text',
+            '--tf-before-a', '--tf-before-b', '--tf-after-a', '--tf-after-b',
+            '--tf-before-title', '--tf-before-text', '--tf-after-text',
+            '--faq-card', '--faq-ring', '--faq-toggle', '--faq-toggle-icon'];
+        const readTheme = selector => {
+            const styles = getComputedStyle(document.querySelector(selector));
+            const theme = { backgroundColor: styles.backgroundColor };
+            THEME_VARS.forEach(v => { theme[v] = styles.getPropertyValue(v).trim(); });
+            return theme;
+        };
+        const THEME_BLACK = readTheme('.transformation-section');
+        const THEME_LIGHT = readTheme('.overview-section');
+        const THEME_DARK  = readTheme('.benefits-section');
+        const themeWash = (targets, from, to, trigger) => gsap.fromTo(targets, { ...from }, {
+            ...to, ease: 'none',
+            scrollTrigger: { trigger, start: 'top bottom', end: '+=40%', scrub: true }
         });
-        gsap.fromTo(['.overview-section', '.benefits-section'], { backgroundColor: '#ffffff' }, {
-            backgroundColor: '#030712', ease: 'none',
-            scrollTrigger: { trigger: '.benefits-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo(['.benefits-section', '.audience-section'], { backgroundColor: '#030712' }, {
-            backgroundColor: '#ffffff', ease: 'none',
-            scrollTrigger: { trigger: '.audience-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo(['.audience-section', '.faq-section-outer'], { backgroundColor: '#ffffff' }, {
-            backgroundColor: '#000000', ease: 'none',
-            scrollTrigger: { trigger: '.faq-section-outer', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-
-        /* Foreground text washes — bare headings/paragraphs sitting directly on the section background
-           must crossfade in lockstep with the bg wash above, or they go invisible right at the seam. */
-        gsap.fromTo(['.transformation-section .section-heading', '.overview-header .section-heading'], { color: '#ffffff' }, {
-            color: '#0B0F19', ease: 'none',
-            scrollTrigger: { trigger: '.overview-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo(['.overview-header .section-heading', '.benefits-section .section-heading'], { color: '#0B0F19' }, {
-            color: '#ffffff', ease: 'none',
-            scrollTrigger: { trigger: '.benefits-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo(['.benefits-section .section-heading', '.audience-left .section-heading'], { color: '#ffffff' }, {
-            color: '#0B0F19', ease: 'none',
-            scrollTrigger: { trigger: '.audience-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo('.audience-left p', { color: '#94A3B8' }, {
-            color: '#5B6475', ease: 'none',
-            scrollTrigger: { trigger: '.audience-section', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo(['.audience-left .section-heading', '.faq-header .section-heading'], { color: '#0B0F19' }, {
-            color: '#ffffff', ease: 'none',
-            scrollTrigger: { trigger: '.faq-section-outer', start: 'top bottom', end: '+=40%', scrub: true }
-        });
-        gsap.fromTo('.audience-left p', { color: '#5B6475' }, {
-            color: '#94A3B8', ease: 'none',
-            scrollTrigger: { trigger: '.faq-section-outer', start: 'top bottom', end: '+=40%', scrub: true }
-        });
+        themeWash(['.transformation-section', '.overview-section'], THEME_BLACK, THEME_LIGHT, '.overview-section');
+        themeWash(['.overview-section', '.benefits-section'],       THEME_LIGHT, THEME_DARK,  '.benefits-section');
+        themeWash(['.benefits-section', '.audience-section'],       THEME_DARK,  THEME_LIGHT, '.audience-section');
+        themeWash(['.audience-section', '.faq-section-outer'],      THEME_LIGHT, THEME_BLACK, '.faq-section-outer');
 
         /* Benefits */
         const benTl = gsap.timeline({
@@ -2818,6 +3370,19 @@
             opacity: 0, y: 44, scale: 0.96,
             duration: 0.7, stagger: 0.18, ease: 'power3.out',
             scrollTrigger: { trigger: '.audience-right', start: 'top 85%' }
+        });
+
+        /* Course content */
+        gsap.timeline({ scrollTrigger: { trigger: '.content-section', start: 'top 78%' } })
+            .fromTo('.content-header .section-label',   { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 })
+            .fromTo('.content-header .section-heading', { opacity: 0, y: 28, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power3.out' }, '-=0.25')
+            .fromTo('.content-header p',                { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
+            .fromTo('.cc-card',                         { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.35');
+
+        /* Enrolment steps */
+        gsap.fromTo('.step-card', { opacity: 0, y: 30 }, {
+            opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: '.steps-grid', start: 'top 85%' }
         });
 
         /* Curriculum */
