@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-12T10:24:31.888Z",
+  "updatedAt": "2026-10-13T10:15:11.441Z",
   "movers": [
     {
-      "symbol": "IRFC",
-      "ltp": 77.5,
-      "change": 3.75,
+      "symbol": "HCLTECH",
+      "ltp": 1326,
+      "change": 8.42,
       "type": "gainer"
     },
     {
-      "symbol": "DMART",
-      "ltp": 3364.9,
-      "change": -4.32,
+      "symbol": "POWERINDIA",
+      "ltp": 30250,
+      "change": -3.32,
       "type": "loser"
     },
     {
-      "symbol": "PFC",
-      "ltp": 337.9,
-      "change": 3.08,
+      "symbol": "TCS",
+      "ltp": 2269.3,
+      "change": 6.79,
       "type": "gainer"
     },
     {
-      "symbol": "APOLLOHOSP",
-      "ltp": 7775,
-      "change": -3.15,
+      "symbol": "VEDL",
+      "ltp": 256.3,
+      "change": -3.25,
       "type": "loser"
     },
     {
-      "symbol": "DRREDDY",
-      "ltp": 1229.4,
-      "change": 2.71,
+      "symbol": "SHRIRAMFIN",
+      "ltp": 988,
+      "change": 6.31,
       "type": "gainer"
     },
     {
-      "symbol": "ITC",
-      "ltp": 257.9,
-      "change": -3.05,
+      "symbol": "CGPOWER",
+      "ltp": 854,
+      "change": -1.56,
+      "type": "loser"
+    },
+    {
+      "symbol": "TECHM",
+      "ltp": 1543.5,
+      "change": 4.93,
+      "type": "gainer"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "ltp": 9285,
+      "change": -1.5,
+      "type": "loser"
+    },
+    {
+      "symbol": "LTM",
+      "ltp": 4215,
+      "change": 4.88,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POLYCAB",
+      "ltp": 8290,
+      "change": -1.37,
+      "type": "loser"
+    },
+    {
+      "symbol": "MAZDOCK",
+      "ltp": 2120,
+      "change": 4.59,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SOLARINDS",
+      "ltp": 20087,
+      "change": -1.21,
+      "type": "loser"
+    },
+    {
+      "symbol": "WIPRO",
+      "ltp": 169,
+      "change": 4.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 439,
+      "change": -0.99,
+      "type": "loser"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1062.1,
+      "change": 4.13,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "ltp": 4642.9,
+      "change": -0.84,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDUNILVR",
+      "ltp": 1875.5,
+      "change": 3.01,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ETERNAL",
+      "ltp": 320.45,
+      "change": -0.79,
       "type": "loser"
     },
     {
       "symbol": "BAJAJ-AUTO",
-      "ltp": 10034,
-      "change": 2.62,
+      "ltp": 10318,
+      "change": 2.83,
       "type": "gainer"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1471,
-      "change": -2.85,
-      "type": "loser"
-    },
-    {
-      "symbol": "MOTHERSON",
-      "ltp": 156.99,
-      "change": 2.61,
-      "type": "gainer"
-    },
-    {
-      "symbol": "IDEA",
-      "ltp": 12.67,
-      "change": -2.54,
-      "type": "loser"
-    },
-    {
-      "symbol": "TATACAP",
-      "ltp": 326.8,
-      "change": 2.54,
-      "type": "gainer"
-    },
-    {
-      "symbol": "LT",
-      "ltp": 3627.5,
-      "change": -2.05,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 44585,
-      "change": 2.39,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAXHEALTH",
-      "ltp": 865.95,
-      "change": -2.02,
-      "type": "loser"
-    },
-    {
-      "symbol": "HAL",
-      "ltp": 4760,
-      "change": 2.24,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDALCO",
-      "ltp": 882.5,
-      "change": -1.98,
-      "type": "loser"
-    },
-    {
-      "symbol": "POWERINDIA",
-      "ltp": 31290,
-      "change": 2.24,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDUNILVR",
-      "ltp": 1820.7,
-      "change": -1.94,
-      "type": "loser"
-    },
-    {
-      "symbol": "TVSMOTOR",
-      "ltp": 3940.3,
-      "change": 1.9,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SBIN",
-      "ltp": 941,
-      "change": -1.89,
+      "symbol": "MARUTI",
+      "ltp": 11245,
+      "change": -0.62,
       "type": "loser"
     }
   ]
