@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-16T07:57:46.813Z",
+  "updatedAt": "2026-10-16T13:10:30.645Z",
   "movers": [
     {
       "symbol": "TECHM",
-      "ltp": 1774.9,
-      "change": 7.57,
-      "type": "gainer"
-    },
-    {
-      "symbol": "INDIGO",
-      "ltp": 4658.7,
-      "change": -2.5,
-      "type": "loser"
-    },
-    {
-      "symbol": "WIPRO",
-      "ltp": 183.95,
-      "change": 5.69,
-      "type": "gainer"
-    },
-    {
-      "symbol": "GODREJCP",
-      "ltp": 850.15,
-      "change": -2.21,
-      "type": "loser"
-    },
-    {
-      "symbol": "TCS",
-      "ltp": 2448.4,
-      "change": 4.19,
+      "ltp": 1790,
+      "change": 8.48,
       "type": "gainer"
     },
     {
       "symbol": "PFC",
-      "ltp": 336.05,
-      "change": -1.83,
+      "ltp": 333.25,
+      "change": -2.64,
       "type": "loser"
     },
     {
-      "symbol": "AMBUJACEM",
-      "ltp": 364.9,
-      "change": 3.99,
+      "symbol": "WIPRO",
+      "ltp": 184.4,
+      "change": 5.95,
       "type": "gainer"
     },
     {
-      "symbol": "MAXHEALTH",
-      "ltp": 843.7,
-      "change": -1.67,
+      "symbol": "ENRIN",
+      "ltp": 2889,
+      "change": -2.3,
+      "type": "loser"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2465,
+      "change": 4.89,
+      "type": "gainer"
+    },
+    {
+      "symbol": "INDIGO",
+      "ltp": 4686.9,
+      "change": -1.91,
       "type": "loser"
     },
     {
       "symbol": "INFY",
-      "ltp": 1150.5,
-      "change": 3.65,
+      "ltp": 1161.2,
+      "change": 4.61,
       "type": "gainer"
     },
     {
       "symbol": "BSE",
-      "ltp": 3375.7,
-      "change": -1.53,
-      "type": "loser"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 847.6,
-      "change": 3.62,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACONSUM",
-      "ltp": 976.7,
-      "change": -1.49,
-      "type": "loser"
-    },
-    {
-      "symbol": "VAML",
-      "ltp": 371.85,
-      "change": 3.42,
-      "type": "gainer"
-    },
-    {
-      "symbol": "JIOFIN",
-      "ltp": 216.6,
-      "change": -1.1,
-      "type": "loser"
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "ltp": 1904.7,
-      "change": 2.73,
-      "type": "gainer"
-    },
-    {
-      "symbol": "DMART",
-      "ltp": 3341.5,
-      "change": -1.09,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 544.3,
-      "change": 2.5,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BRITANNIA",
-      "ltp": 4798.7,
-      "change": -1.06,
+      "ltp": 3363,
+      "change": -1.9,
       "type": "loser"
     },
     {
       "symbol": "LTM",
-      "ltp": 4340.1,
-      "change": 2.48,
+      "ltp": 4390,
+      "change": 3.66,
       "type": "gainer"
     },
     {
-      "symbol": "NESTLEIND",
-      "ltp": 1264.1,
-      "change": -0.92,
+      "symbol": "BRITANNIA",
+      "ltp": 4764,
+      "change": -1.77,
+      "type": "loser"
+    },
+    {
+      "symbol": "VAML",
+      "ltp": 372.1,
+      "change": 3.49,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GODREJCP",
+      "ltp": 855,
+      "change": -1.66,
+      "type": "loser"
+    },
+    {
+      "symbol": "CGPOWER",
+      "ltp": 846,
+      "change": 3.42,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ZYDUSLIFE",
+      "ltp": 1123,
+      "change": -1.51,
+      "type": "loser"
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "ltp": 1905,
+      "change": 2.75,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MAXHEALTH",
+      "ltp": 846,
+      "change": -1.4,
+      "type": "loser"
+    },
+    {
+      "symbol": "AMBUJACEM",
+      "ltp": 360,
+      "change": 2.59,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACONSUM",
+      "ltp": 978.9,
+      "change": -1.27,
+      "type": "loser"
+    },
+    {
+      "symbol": "HCLTECH",
+      "ltp": 1380,
+      "change": 2.37,
+      "type": "gainer"
+    },
+    {
+      "symbol": "JIOFIN",
+      "ltp": 216.25,
+      "change": -1.26,
       "type": "loser"
     }
   ]
