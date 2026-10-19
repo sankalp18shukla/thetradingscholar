@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-19T08:35:08.104Z",
+  "updatedAt": "2026-10-19T15:51:04.443Z",
   "movers": [
     {
       "symbol": "UNIONBANK",
-      "ltp": 180.55,
-      "change": 5.17,
+      "ltp": 180.7,
+      "change": 5.25,
       "type": "gainer"
     },
     {
       "symbol": "AXISBANK",
-      "ltp": 1236.8,
-      "change": -4.12,
+      "ltp": 1236,
+      "change": -4.19,
       "type": "loser"
     },
     {
       "symbol": "PNB",
-      "ltp": 122.18,
-      "change": 5.06,
-      "type": "gainer"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1127.95,
-      "change": -2.86,
-      "type": "loser"
-    },
-    {
-      "symbol": "CANBK",
-      "ltp": 121.96,
-      "change": 3.1,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TRENT",
-      "ltp": 2880.5,
-      "change": -2.64,
-      "type": "loser"
-    },
-    {
-      "symbol": "BANKBARODA",
-      "ltp": 237.16,
-      "change": 2.93,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HDFCBANK",
-      "ltp": 710.25,
-      "change": -2.55,
-      "type": "loser"
-    },
-    {
-      "symbol": "ABB",
-      "ltp": 6973.5,
-      "change": 2.54,
+      "ltp": 121.9,
+      "change": 4.82,
       "type": "gainer"
     },
     {
       "symbol": "TMPV",
-      "ltp": 279.65,
-      "change": -2.51,
+      "ltp": 278,
+      "change": -3.09,
       "type": "loser"
     },
     {
-      "symbol": "JSWSTEEL",
-      "ltp": 1236.8,
-      "change": 1.69,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TATACAP",
-      "ltp": 314.8,
-      "change": -2.48,
-      "type": "loser"
-    },
-    {
-      "symbol": "EICHERMOT",
-      "ltp": 7372,
-      "change": 1.2,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "ltp": 959.15,
-      "change": -2.34,
-      "type": "loser"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 854.1,
-      "change": 0.96,
+      "symbol": "BANKBARODA",
+      "ltp": 238.2,
+      "change": 3.39,
       "type": "gainer"
     },
     {
       "symbol": "LTM",
-      "ltp": 4290.5,
-      "change": -2.27,
+      "ltp": 4264.9,
+      "change": -2.85,
+      "type": "loser"
+    },
+    {
+      "symbol": "CANBK",
+      "ltp": 122,
+      "change": 3.14,
+      "type": "gainer"
+    },
+    {
+      "symbol": "INFY",
+      "ltp": 1130.7,
+      "change": -2.63,
+      "type": "loser"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 6974,
+      "change": 2.54,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TATACAP",
+      "ltp": 314.5,
+      "change": -2.57,
+      "type": "loser"
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "ltp": 1241.3,
+      "change": 2.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "ltp": 957.35,
+      "change": -2.52,
       "type": "loser"
     },
     {
       "symbol": "ONGC",
-      "ltp": 223.78,
-      "change": 0.8,
+      "ltp": 225,
+      "change": 1.35,
       "type": "gainer"
     },
     {
-      "symbol": "VBL",
-      "ltp": 421.35,
-      "change": -2.13,
+      "symbol": "IDEA",
+      "ltp": 12.28,
+      "change": -2.46,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 973.7,
+      "change": 1.15,
+      "type": "gainer"
+    },
+    {
+      "symbol": "APOLLOHOSP",
+      "ltp": 7700,
+      "change": -2.41,
+      "type": "loser"
+    },
+    {
+      "symbol": "CGPOWER",
+      "ltp": 855,
+      "change": 1.06,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 10650,
+      "change": -2.36,
       "type": "loser"
     },
     {
       "symbol": "LT",
-      "ltp": 3655.2,
-      "change": 0.77,
+      "ltp": 3661.9,
+      "change": 0.96,
       "type": "gainer"
     },
     {
-      "symbol": "HINDUNILVR",
-      "ltp": 1853.8,
-      "change": -2.11,
+      "symbol": "POLYCAB",
+      "ltp": 8025,
+      "change": -2.36,
       "type": "loser"
     }
   ]
