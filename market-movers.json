@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-21T08:20:43.679Z",
+  "updatedAt": "2026-10-21T14:01:44.725Z",
   "movers": [
     {
       "symbol": "WIPRO",
-      "ltp": 188.61,
-      "change": 3.55,
+      "ltp": 189.17,
+      "change": 3.86,
       "type": "gainer"
     },
     {
       "symbol": "ABB",
-      "ltp": 6525,
-      "change": -6.44,
+      "ltp": 6559.5,
+      "change": -5.94,
       "type": "loser"
     },
     {
       "symbol": "INFY",
-      "ltp": 1163.65,
-      "change": 2.91,
+      "ltp": 1168,
+      "change": 3.3,
       "type": "gainer"
     },
     {
       "symbol": "SIEMENS",
-      "ltp": 3433,
-      "change": -5.24,
-      "type": "loser"
-    },
-    {
-      "symbol": "TECHM",
-      "ltp": 1829,
-      "change": 2.8,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MUTHOOTFIN",
-      "ltp": 2445.9,
-      "change": -4.68,
-      "type": "loser"
-    },
-    {
-      "symbol": "TCS",
-      "ltp": 2511.9,
-      "change": 2.07,
-      "type": "gainer"
-    },
-    {
-      "symbol": "VAML",
-      "ltp": 354.15,
-      "change": -4.66,
+      "ltp": 3420.6,
+      "change": -5.59,
       "type": "loser"
     },
     {
       "symbol": "HCLTECH",
-      "ltp": 1405.8,
-      "change": 1.88,
+      "ltp": 1424.2,
+      "change": 3.21,
       "type": "gainer"
     },
     {
       "symbol": "IDEA",
-      "ltp": 11.72,
-      "change": -4.56,
+      "ltp": 11.64,
+      "change": -5.21,
       "type": "loser"
     },
     {
-      "symbol": "ULTRACEMCO",
-      "ltp": 10816,
-      "change": 1.56,
+      "symbol": "TECHM",
+      "ltp": 1834.7,
+      "change": 3.13,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VAML",
+      "ltp": 354.6,
+      "change": -4.54,
+      "type": "loser"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2529,
+      "change": 2.77,
       "type": "gainer"
     },
     {
       "symbol": "CGPOWER",
-      "ltp": 816.3,
-      "change": -4.53,
+      "ltp": 821,
+      "change": -3.98,
       "type": "loser"
     },
     {
-      "symbol": "GODREJCP",
-      "ltp": 855.5,
-      "change": 1,
+      "symbol": "ULTRACEMCO",
+      "ltp": 10849,
+      "change": 1.87,
       "type": "gainer"
     },
     {
       "symbol": "CUMMINSIND",
-      "ltp": 4413.8,
-      "change": -4.3,
+      "ltp": 4440,
+      "change": -3.73,
       "type": "loser"
     },
     {
-      "symbol": "LTM",
-      "ltp": 4297.9,
-      "change": 0.77,
+      "symbol": "GODREJCP",
+      "ltp": 859,
+      "change": 1.42,
       "type": "gainer"
     },
     {
-      "symbol": "SOLARINDS",
-      "ltp": 19046,
-      "change": -3.82,
+      "symbol": "ADANIPOWER",
+      "ltp": 187.09,
+      "change": -3.6,
+      "type": "loser"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "ltp": 9190,
+      "change": 1.13,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "ltp": 926,
+      "change": -3.27,
+      "type": "loser"
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "ltp": 1891.7,
+      "change": 0.88,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POLYCAB",
+      "ltp": 7770.5,
+      "change": -3.17,
       "type": "loser"
     },
     {
       "symbol": "SBILIFE",
-      "ltp": 1655.7,
-      "change": 0.48,
+      "ltp": 1661,
+      "change": 0.8,
       "type": "gainer"
     },
     {
-      "symbol": "ETERNAL",
-      "ltp": 308,
-      "change": -3.81,
-      "type": "loser"
-    },
-    {
-      "symbol": "UNIONBANK",
-      "ltp": 181.45,
-      "change": 0.42,
-      "type": "gainer"
-    },
-    {
-      "symbol": "VEDL",
-      "ltp": 234.3,
-      "change": -3.66,
+      "symbol": "ADANIENSOL",
+      "ltp": 1324,
+      "change": -3,
       "type": "loser"
     }
   ]
