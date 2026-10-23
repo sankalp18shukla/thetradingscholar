@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-23T08:19:36.990Z",
+  "updatedAt": "2026-10-23T13:37:32.947Z",
   "movers": [
     {
       "symbol": "ETERNAL",
-      "ltp": 317,
-      "change": 4.12,
+      "ltp": 317.4,
+      "change": 4.25,
       "type": "gainer"
     },
     {
       "symbol": "ADANIENSOL",
-      "ltp": 1227.5,
-      "change": -5.24,
-      "type": "loser"
-    },
-    {
-      "symbol": "TCS",
-      "ltp": 2537.5,
-      "change": 1.22,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ABB",
-      "ltp": 6158.5,
-      "change": -4.73,
-      "type": "loser"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1167.15,
-      "change": 1.2,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SIEMENS",
-      "ltp": 3226,
-      "change": -4.59,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 44300,
-      "change": 0.52,
-      "type": "gainer"
-    },
-    {
-      "symbol": "TMCV",
-      "ltp": 395.45,
-      "change": -4.54,
+      "ltp": 1220,
+      "change": -5.82,
       "type": "loser"
     },
     {
       "symbol": "APOLLOHOSP",
-      "ltp": 7636.5,
-      "change": 0.42,
+      "ltp": 7730,
+      "change": 1.65,
       "type": "gainer"
     },
     {
       "symbol": "ADANIGREEN",
-      "ltp": 1196,
-      "change": -4.32,
-      "type": "loser"
-    },
-    {
-      "symbol": "HCLTECH",
-      "ltp": 1425.9,
-      "change": 0.3,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 2651.6,
-      "change": -4.07,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCBANK",
-      "ltp": 695.75,
-      "change": 0.24,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1468.7,
-      "change": -4.06,
-      "type": "loser"
-    },
-    {
-      "symbol": "LT",
-      "ltp": 3646.1,
-      "change": 0.21,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIPOWER",
-      "ltp": 177.96,
-      "change": -3.95,
-      "type": "loser"
-    },
-    {
-      "symbol": "CIPLA",
-      "ltp": 1332.8,
-      "change": 0.14,
-      "type": "gainer"
-    },
-    {
-      "symbol": "VAML",
-      "ltp": 345.6,
-      "change": -3.84,
+      "ltp": 1185.1,
+      "change": -5.19,
       "type": "loser"
     },
     {
       "symbol": "ONGC",
-      "ltp": 225.1,
-      "change": 0.04,
+      "ltp": 227.5,
+      "change": 1.11,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 6140,
+      "change": -5.02,
+      "type": "loser"
+    },
+    {
+      "symbol": "ASIANPAINT",
+      "ltp": 2307,
+      "change": 0.97,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TMCV",
+      "ltp": 394,
+      "change": -4.89,
+      "type": "loser"
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2530,
+      "change": 0.92,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VAML",
+      "ltp": 343,
+      "change": -4.56,
+      "type": "loser"
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "ltp": 11050,
+      "change": 0.84,
+      "type": "gainer"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1463.8,
+      "change": -4.38,
+      "type": "loser"
+    },
+    {
+      "symbol": "MARUTI",
+      "ltp": 11230,
+      "change": 0.54,
       "type": "gainer"
     },
     {
       "symbol": "HINDZINC",
-      "ltp": 498.5,
-      "change": -3.76,
+      "ltp": 496,
+      "change": -4.25,
+      "type": "loser"
+    },
+    {
+      "symbol": "CIPLA",
+      "ltp": 1338,
+      "change": 0.53,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SIEMENS",
+      "ltp": 3245.2,
+      "change": -4.02,
+      "type": "loser"
+    },
+    {
+      "symbol": "RELIANCE",
+      "ltp": 1190,
+      "change": 0.46,
+      "type": "gainer"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 2653.3,
+      "change": -4.01,
+      "type": "loser"
+    },
+    {
+      "symbol": "AXISBANK",
+      "ltp": 1217.5,
+      "change": 0.45,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 865,
+      "change": -3.98,
       "type": "loser"
     }
   ]
