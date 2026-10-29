@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-28T16:12:42.402Z",
+  "updatedAt": "2026-10-29T09:32:46.961Z",
   "movers": [
     {
-      "symbol": "CHOLAFIN",
-      "ltp": 1545.2,
-      "change": 5.19,
+      "symbol": "ADANIPORTS",
+      "ltp": 1863.5,
+      "change": 5.8,
       "type": "gainer"
     },
     {
-      "symbol": "PIDILITIND",
-      "ltp": 1389.6,
-      "change": -4.17,
-      "type": "loser"
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "ltp": 47625,
-      "change": 4.44,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BAJAJHLDNG",
-      "ltp": 10461,
-      "change": -4.04,
-      "type": "loser"
-    },
-    {
-      "symbol": "APOLLOHOSP",
-      "ltp": 8137,
-      "change": 4.43,
-      "type": "gainer"
-    },
-    {
-      "symbol": "INFY",
-      "ltp": 1123.15,
-      "change": -3.43,
-      "type": "loser"
-    },
-    {
-      "symbol": "TVSMOTOR",
-      "ltp": 4239.9,
-      "change": 3.74,
-      "type": "gainer"
-    },
-    {
-      "symbol": "RELIANCE",
-      "ltp": 1158,
-      "change": -3.19,
-      "type": "loser"
-    },
-    {
-      "symbol": "LT",
-      "ltp": 3801.3,
-      "change": 3.72,
-      "type": "gainer"
-    },
-    {
-      "symbol": "BPCL",
-      "ltp": 287,
-      "change": -2.91,
-      "type": "loser"
-    },
-    {
-      "symbol": "TRENT",
-      "ltp": 2913.9,
-      "change": 3.31,
-      "type": "gainer"
-    },
-    {
-      "symbol": "VBL",
-      "ltp": 404.5,
-      "change": -2.76,
-      "type": "loser"
-    },
-    {
-      "symbol": "VEDL",
-      "ltp": 233.05,
-      "change": 3.3,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIPOWER",
-      "ltp": 184.59,
-      "change": -2.17,
-      "type": "loser"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 506.8,
-      "change": 2.9,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ONGC",
-      "ltp": 224.89,
-      "change": -2.16,
+      "symbol": "VAML",
+      "ltp": 349.6,
+      "change": -2.67,
       "type": "loser"
     },
     {
       "symbol": "TATACAP",
-      "ltp": 308.95,
-      "change": 2.83,
+      "ltp": 326.3,
+      "change": 5.5,
       "type": "gainer"
     },
     {
-      "symbol": "DMART",
-      "ltp": 3133.9,
-      "change": -2.07,
+      "symbol": "BAJAJHLDNG",
+      "ltp": 10201,
+      "change": -2.49,
       "type": "loser"
     },
     {
-      "symbol": "SBILIFE",
-      "ltp": 1666.7,
-      "change": 2.06,
+      "symbol": "ADANIENT",
+      "ltp": 2612.3,
+      "change": 5.34,
       "type": "gainer"
     },
     {
-      "symbol": "IDEA",
-      "ltp": 11.86,
-      "change": -2.06,
+      "symbol": "CUMMINSIND",
+      "ltp": 4527.6,
+      "change": -2,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "ltp": 1354.7,
+      "change": 4.69,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TRENT",
+      "ltp": 2866.1,
+      "change": -1.64,
+      "type": "loser"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1615.5,
+      "change": 4.55,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MARUTI",
+      "ltp": 11442,
+      "change": -1.18,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2496.3,
+      "change": 4.33,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1648.1,
+      "change": -1.12,
+      "type": "loser"
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "ltp": 457.55,
+      "change": 3.99,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BAJAJ-AUTO",
+      "ltp": 10385,
+      "change": -0.95,
+      "type": "loser"
+    },
+    {
+      "symbol": "BANKBARODA",
+      "ltp": 241.07,
+      "change": 3.99,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BOSCHLTD",
+      "ltp": 47240,
+      "change": -0.81,
+      "type": "loser"
+    },
+    {
+      "symbol": "ADANIPOWER",
+      "ltp": 191.84,
+      "change": 3.93,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HINDALCO",
+      "ltp": 886.9,
+      "change": -0.77,
+      "type": "loser"
+    },
+    {
+      "symbol": "POWERGRID",
+      "ltp": 260.9,
+      "change": 3.78,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POWERINDIA",
+      "ltp": 28260,
+      "change": -0.62,
       "type": "loser"
     }
   ]
