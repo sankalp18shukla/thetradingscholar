@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-10-30T16:16:23.218Z",
+  "updatedAt": "2026-11-02T10:40:10.004Z",
   "movers": [
     {
-      "symbol": "TRENT",
-      "ltp": 3017.3,
-      "change": 5.44,
+      "symbol": "RELIANCE",
+      "ltp": 1300,
+      "change": 11.6,
       "type": "gainer"
-    },
-    {
-      "symbol": "VBL",
-      "ltp": 392,
-      "change": -5.5,
-      "type": "loser"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1245.5,
-      "change": 5.16,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MUTHOOTFIN",
-      "ltp": 2408.6,
-      "change": -3.54,
-      "type": "loser"
-    },
-    {
-      "symbol": "INDIGO",
-      "ltp": 4877.6,
-      "change": 4.33,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MAZDOCK",
-      "ltp": 1705.3,
-      "change": -3.26,
-      "type": "loser"
-    },
-    {
-      "symbol": "WIPRO",
-      "ltp": 198.31,
-      "change": 4.32,
-      "type": "gainer"
-    },
-    {
-      "symbol": "SOLARINDS",
-      "ltp": 18800,
-      "change": -3.24,
-      "type": "loser"
-    },
-    {
-      "symbol": "LTM",
-      "ltp": 4233.5,
-      "change": 3.39,
-      "type": "gainer"
-    },
-    {
-      "symbol": "POWERINDIA",
-      "ltp": 27225,
-      "change": -3.2,
-      "type": "loser"
     },
     {
       "symbol": "INFY",
-      "ltp": 1185,
-      "change": 3.36,
-      "type": "gainer"
-    },
-    {
-      "symbol": "CGPOWER",
-      "ltp": 804,
-      "change": -3.11,
+      "ltp": 1161,
+      "change": -2.03,
       "type": "loser"
     },
     {
-      "symbol": "APOLLOHOSP",
-      "ltp": 8448,
-      "change": 3.02,
+      "symbol": "TATASTEEL",
+      "ltp": 177.37,
+      "change": 5.83,
       "type": "gainer"
     },
     {
-      "symbol": "IRFC",
-      "ltp": 73.37,
-      "change": -3.09,
+      "symbol": "WIPRO",
+      "ltp": 196.4,
+      "change": -0.96,
       "type": "loser"
     },
     {
-      "symbol": "PIDILITIND",
-      "ltp": 1461.6,
-      "change": 2.78,
+      "symbol": "GAIL",
+      "ltp": 177,
+      "change": 5.41,
       "type": "gainer"
     },
     {
-      "symbol": "IDEA",
-      "ltp": 11.83,
-      "change": -2.39,
+      "symbol": "ICICIBANK",
+      "ltp": 1387.4,
+      "change": -0.76,
       "type": "loser"
     },
     {
-      "symbol": "VAML",
-      "ltp": 355.7,
-      "change": 1.93,
+      "symbol": "JSWSTEEL",
+      "ltp": 1309.9,
+      "change": 5.13,
       "type": "gainer"
     },
     {
-      "symbol": "GODREJCP",
-      "ltp": 818,
-      "change": -2.27,
+      "symbol": "DRREDDY",
+      "ltp": 1342,
+      "change": -0.74,
       "type": "loser"
     },
     {
-      "symbol": "POWERGRID",
-      "ltp": 265,
-      "change": 1.92,
+      "symbol": "COALINDIA",
+      "ltp": 408,
+      "change": 4.88,
       "type": "gainer"
     },
     {
-      "symbol": "TATACAP",
-      "ltp": 319,
-      "change": -2.25,
+      "symbol": "KOTAKBANK",
+      "ltp": 458.35,
+      "change": -0.7,
+      "type": "loser"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 863.35,
+      "change": 4.88,
+      "type": "gainer"
+    },
+    {
+      "symbol": "AXISBANK",
+      "ltp": 1209,
+      "change": -0.66,
+      "type": "loser"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 2939.4,
+      "change": 4.85,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BSE",
+      "ltp": 3490,
+      "change": -0.58,
+      "type": "loser"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2514.7,
+      "change": 4.41,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HDFCLIFE",
+      "ltp": 522.25,
+      "change": -0.5,
+      "type": "loser"
+    },
+    {
+      "symbol": "JIOFIN",
+      "ltp": 213.25,
+      "change": 4.28,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "ltp": 1770,
+      "change": -0.43,
+      "type": "loser"
+    },
+    {
+      "symbol": "ONGC",
+      "ltp": 234.83,
+      "change": 4.19,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "ltp": 4595,
+      "change": -0.4,
       "type": "loser"
     }
   ]
