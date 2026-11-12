@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-11-11T10:28:05.034Z",
+  "updatedAt": "2026-11-12T10:44:14.716Z",
   "movers": [
     {
-      "symbol": "BANKBARODA",
-      "ltp": 275,
-      "change": 5.77,
+      "symbol": "HDFCLIFE",
+      "ltp": 597.8,
+      "change": 4.23,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIGREEN",
-      "ltp": 1401.7,
-      "change": -3.26,
+      "symbol": "HYUNDAI",
+      "ltp": 2103,
+      "change": -2.49,
       "type": "loser"
-    },
-    {
-      "symbol": "M&M",
-      "ltp": 3465,
-      "change": 5.3,
-      "type": "gainer"
-    },
-    {
-      "symbol": "LTM",
-      "ltp": 4224.8,
-      "change": -2.16,
-      "type": "loser"
-    },
-    {
-      "symbol": "MOTHERSON",
-      "ltp": 169.69,
-      "change": 4.81,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ADANIPORTS",
-      "ltp": 1907,
-      "change": -1.84,
-      "type": "loser"
-    },
-    {
-      "symbol": "PNB",
-      "ltp": 138.48,
-      "change": 4.77,
-      "type": "gainer"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "ltp": 11367,
-      "change": -1.72,
-      "type": "loser"
-    },
-    {
-      "symbol": "ENRIN",
-      "ltp": 2962.3,
-      "change": 4.41,
-      "type": "gainer"
     },
     {
       "symbol": "DLF",
-      "ltp": 742.65,
-      "change": -1.64,
-      "type": "loser"
-    },
-    {
-      "symbol": "INDIGO",
-      "ltp": 5665,
-      "change": 4.33,
+      "ltp": 769.3,
+      "change": 3.59,
       "type": "gainer"
     },
     {
-      "symbol": "ADANIENSOL",
-      "ltp": 1417,
-      "change": -1.54,
+      "symbol": "MOTHERSON",
+      "ltp": 165.83,
+      "change": -2.27,
       "type": "loser"
     },
     {
-      "symbol": "IRFC",
-      "ltp": 86.7,
-      "change": 3.83,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ZYDUSLIFE",
-      "ltp": 1199.5,
-      "change": -1.35,
-      "type": "loser"
-    },
-    {
-      "symbol": "HDFCAMC",
-      "ltp": 2715,
-      "change": 3.64,
-      "type": "gainer"
-    },
-    {
-      "symbol": "ICICIBANK",
-      "ltp": 1571.6,
-      "change": -1.1,
-      "type": "loser"
-    },
-    {
-      "symbol": "POWERINDIA",
-      "ltp": 29100,
-      "change": 3.37,
+      "symbol": "SHRIRAMFIN",
+      "ltp": 1003.8,
+      "change": 3.58,
       "type": "gainer"
     },
     {
       "symbol": "HAL",
-      "ltp": 4949,
-      "change": -1,
+      "ltp": 4843.4,
+      "change": -2.13,
       "type": "loser"
     },
     {
-      "symbol": "TRENT",
-      "ltp": 3222.7,
-      "change": 3.32,
+      "symbol": "BAJFINANCE",
+      "ltp": 1115,
+      "change": 3.36,
       "type": "gainer"
     },
     {
-      "symbol": "TECHM",
-      "ltp": 1788.5,
-      "change": -0.91,
+      "symbol": "NESTLEIND",
+      "ltp": 1260.9,
+      "change": -2.1,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBILIFE",
+      "ltp": 1819.5,
+      "change": 2.97,
+      "type": "gainer"
+    },
+    {
+      "symbol": "HINDZINC",
+      "ltp": 567.35,
+      "change": -2.01,
+      "type": "loser"
+    },
+    {
+      "symbol": "CHOLAFIN",
+      "ltp": 1862,
+      "change": 2.6,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POWERINDIA",
+      "ltp": 28545,
+      "change": -1.91,
+      "type": "loser"
+    },
+    {
+      "symbol": "ENRIN",
+      "ltp": 3037.7,
+      "change": 2.55,
+      "type": "gainer"
+    },
+    {
+      "symbol": "M&M",
+      "ltp": 3399,
+      "change": -1.9,
+      "type": "loser"
+    },
+    {
+      "symbol": "PNB",
+      "ltp": 141.79,
+      "change": 2.39,
+      "type": "gainer"
+    },
+    {
+      "symbol": "VAML",
+      "ltp": 382.8,
+      "change": -1.75,
+      "type": "loser"
+    },
+    {
+      "symbol": "SBIN",
+      "ltp": 1086.5,
+      "change": 2.38,
+      "type": "gainer"
+    },
+    {
+      "symbol": "POWERGRID",
+      "ltp": 259.45,
+      "change": -1.63,
+      "type": "loser"
+    },
+    {
+      "symbol": "BAJAJFINSV",
+      "ltp": 1887.1,
+      "change": 2.28,
+      "type": "gainer"
+    },
+    {
+      "symbol": "IRFC",
+      "ltp": 85.29,
+      "change": -1.63,
       "type": "loser"
     }
   ]
