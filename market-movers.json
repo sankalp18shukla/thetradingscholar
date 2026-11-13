@@ -1,124 +1,124 @@
 {
-  "updatedAt": "2026-11-12T10:44:14.716Z",
+  "updatedAt": "2026-11-13T10:40:03.528Z",
   "movers": [
     {
-      "symbol": "HDFCLIFE",
-      "ltp": 597.8,
-      "change": 4.23,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HYUNDAI",
-      "ltp": 2103,
-      "change": -2.49,
-      "type": "loser"
-    },
-    {
-      "symbol": "DLF",
-      "ltp": 769.3,
-      "change": 3.59,
-      "type": "gainer"
-    },
-    {
-      "symbol": "MOTHERSON",
-      "ltp": 165.83,
-      "change": -2.27,
-      "type": "loser"
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "ltp": 1003.8,
-      "change": 3.58,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HAL",
-      "ltp": 4843.4,
-      "change": -2.13,
-      "type": "loser"
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "ltp": 1115,
-      "change": 3.36,
-      "type": "gainer"
-    },
-    {
-      "symbol": "NESTLEIND",
-      "ltp": 1260.9,
-      "change": -2.1,
-      "type": "loser"
-    },
-    {
-      "symbol": "SBILIFE",
-      "ltp": 1819.5,
-      "change": 2.97,
-      "type": "gainer"
-    },
-    {
-      "symbol": "HINDZINC",
-      "ltp": 567.35,
-      "change": -2.01,
-      "type": "loser"
-    },
-    {
-      "symbol": "CHOLAFIN",
-      "ltp": 1862,
-      "change": 2.6,
-      "type": "gainer"
-    },
-    {
       "symbol": "POWERINDIA",
-      "ltp": 28545,
-      "change": -1.91,
+      "ltp": 31595,
+      "change": 10.68,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TMCV",
+      "ltp": 433.2,
+      "change": -4.46,
       "type": "loser"
     },
     {
       "symbol": "ENRIN",
-      "ltp": 3037.7,
-      "change": 2.55,
+      "ltp": 3125.9,
+      "change": 2.9,
       "type": "gainer"
     },
     {
-      "symbol": "M&M",
-      "ltp": 3399,
-      "change": -1.9,
+      "symbol": "PIDILITIND",
+      "ltp": 1525.7,
+      "change": -3.42,
+      "type": "loser"
+    },
+    {
+      "symbol": "CUMMINSIND",
+      "ltp": 4369,
+      "change": 2.6,
+      "type": "gainer"
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "ltp": 970,
+      "change": -3.37,
+      "type": "loser"
+    },
+    {
+      "symbol": "ABB",
+      "ltp": 7054.5,
+      "change": 1.9,
+      "type": "gainer"
+    },
+    {
+      "symbol": "TMPV",
+      "ltp": 287.4,
+      "change": -3.31,
+      "type": "loser"
+    },
+    {
+      "symbol": "EICHERMOT",
+      "ltp": 7650,
+      "change": 1.34,
+      "type": "gainer"
+    },
+    {
+      "symbol": "MUTHOOTFIN",
+      "ltp": 2840,
+      "change": -3.17,
+      "type": "loser"
+    },
+    {
+      "symbol": "HINDUNILVR",
+      "ltp": 1992.9,
+      "change": 0.96,
+      "type": "gainer"
+    },
+    {
+      "symbol": "IDEA",
+      "ltp": 12.57,
+      "change": -3.08,
+      "type": "loser"
+    },
+    {
+      "symbol": "CGPOWER",
+      "ltp": 828,
+      "change": 0.76,
+      "type": "gainer"
+    },
+    {
+      "symbol": "BPCL",
+      "ltp": 302,
+      "change": -3.05,
+      "type": "loser"
+    },
+    {
+      "symbol": "BSE",
+      "ltp": 3937.7,
+      "change": 0.73,
+      "type": "gainer"
+    },
+    {
+      "symbol": "GRASIM",
+      "ltp": 3034,
+      "change": -2.6,
       "type": "loser"
     },
     {
       "symbol": "PNB",
-      "ltp": 141.79,
-      "change": 2.39,
+      "ltp": 142.81,
+      "change": 0.72,
       "type": "gainer"
     },
     {
-      "symbol": "VAML",
-      "ltp": 382.8,
-      "change": -1.75,
+      "symbol": "TATAPOWER",
+      "ltp": 348,
+      "change": -2.52,
       "type": "loser"
     },
     {
-      "symbol": "SBIN",
-      "ltp": 1086.5,
-      "change": 2.38,
+      "symbol": "ASIANPAINT",
+      "ltp": 2550,
+      "change": 0.53,
       "type": "gainer"
     },
     {
-      "symbol": "POWERGRID",
-      "ltp": 259.45,
-      "change": -1.63,
-      "type": "loser"
-    },
-    {
-      "symbol": "BAJAJFINSV",
-      "ltp": 1887.1,
-      "change": 2.28,
-      "type": "gainer"
-    },
-    {
-      "symbol": "IRFC",
-      "ltp": 85.29,
-      "change": -1.63,
+      "symbol": "HDFCAMC",
+      "ltp": 2663,
+      "change": -2.45,
       "type": "loser"
     }
   ]
